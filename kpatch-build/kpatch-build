@@ -730,6 +730,10 @@ else
 		# upstream SUBLEVEL; they are always at SUBLEVEL 0
 		sed -i "s/^SUBLEVEL.*/${sublevel}/" "$SRCDIR/Makefile" || die
 		echo "$ARCHVERSION" > "$VERSIONFILE" || die
+	
+	#elif
+	#需要添加下载以及解压loongnix.rpm包的操作。
+	#loongnix可与fedora采用上述中相同的yumdownloader操作，但需注意loongnix的yum源
 
 	else
 		die "Unsupported distribution"
