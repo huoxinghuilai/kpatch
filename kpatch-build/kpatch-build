@@ -624,6 +624,13 @@ elif [[ "$DISTRO" = ubuntu ]] || [[ "$DISTRO" = debian ]]; then
 	fi
 
 	export PATH="/usr/lib/ccache:$PATH"
+
+elif [[ "$DISTRO" = loongnix ]]; then
+        [[ -z "$VMLINUX" ]] && VMLINUX="/usr/lib/modules/$ARCHVERSION/source/vmlinux"
+        [[ -e "$VMLINUX" ]] || die "kernel-debuginfo-$ARCHVERSION not installed"
+
+        export PATH="/usr/lib64/ccache:$PATH"
+
 fi
 
 find_dirs || die "can't find supporting tools"
