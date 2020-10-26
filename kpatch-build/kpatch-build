@@ -558,8 +558,8 @@ if [[ -n "$SRCRPM" ]]; then
 	fi
 	rpmname="$(basename "$SRCRPM")"
 	ARCHVERSION="${rpmname%.src.rpm}.$(uname -m)"
-	ARCHVERSION="${ARCHVERSION#*kernel-}"
-	ARCHVERSION="${ARCHVERSION#*alt-}"
+	ARCHVERSION="${ARCHVERSION#kernel-}"
+	ARCHVERSION="${ARCHVERSION#alt-}"
 fi
 
 if [[ -n "$OOT_MODULE" ]] &&  [[ -z "$USERSRCDIR" ]]; then
