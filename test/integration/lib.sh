@@ -112,11 +112,33 @@ kpatch_centos_dependencies()
 	sudo yum remove -y epel-release
 }
 
+#kpatch_loongnix_dependencies()
+#{
+#	local kernel_version
+#	local arch
+#	kernel_version=$(unmae -r)
+#	arch=$(uname -m)
+#
+#	sudo yum install -y gcc gcc-c++ "kernel-devel-${kernel_version%.*}" elfutils elfutils-devel
+#	sudo yum install -y yum-utils zlib-devel binutils-devel newt-devel \
+#		pythpn-devel perl-ExtUtils-Embed audit-libs-devel numactl-devel \
+#		pciutils-devel bison ncurse-devel rpm-build java-devel pesign
+#	sudo yum-config-manager --enable debug
+#	sudo yum-builddep -y "kernel-${kernel_version%.*}"
+#	sudo debuginfo-install -y "kernel-${kernel_version%.*}"
+#	
+#	sudo yum install -y  "..."
+#	sudo yum install -y ccache
+#	sudo yum remove -y epel-release
+#}
+
 kpatch_dependencies()
 {
 	# shellcheck disable=SC1091
 	source /etc/os-release
-
+	
+	#从龙芯系统的/etc/os-release文件中，获取的系统ID为loongnix
+	#需要添加接口kpatch_loongnix_dependencies
 	eval "kpatch_${ID}_dependencies" || { echo "Unsupported distro: ${ID}"; exit 1; }
 }
 
