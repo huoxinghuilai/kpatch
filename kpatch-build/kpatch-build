@@ -625,11 +625,11 @@ elif [[ "$DISTRO" = ubuntu ]] || [[ "$DISTRO" = debian ]]; then
 
 	export PATH="/usr/lib/ccache:$PATH"
 
-elif [[ "$DISTRO" = loongnix ]]; then
-        [[ -z "$VMLINUX" ]] && VMLINUX="/usr/lib/modules/$ARCHVERSION/source/vmlinux"
-        [[ -e "$VMLINUX" ]] || die "kernel-debuginfo-$ARCHVERSION not installed"
-
-        export PATH="/usr/lib64/ccache:$PATH"
+#elif [[ "$DISTRO" = loongnix ]]; then
+#        [[ -z "$VMLINUX" ]] && VMLINUX="/usr/lib/modules/$ARCHVERSION/source/vmlinux"
+#        [[ -e "$VMLINUX" ]] || die "kernel-debuginfo-$ARCHVERSION not installed"
+#
+#        export PATH="/usr/lib64/ccache:$PATH"
 
 fi
 
@@ -733,7 +733,7 @@ else
 	
 	#elif
 	#需要添加下载以及解压loongnix.rpm包的操作。
-	#loongnix可与fedora采用上述中相同的yumdownloader操作，但需注意loongnix的yum源
+	#...
 
 	else
 		die "Unsupported distribution"
