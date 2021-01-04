@@ -1,0 +1,462 @@
+create-diff-object.c:96:	    !strncmp(sym->sec->name, ".text.",6) &&
+create-diff-object.c:97:	    !strcmp(sym->sec->name + 6, sym->name))
+create-diff-object.c:101:	    !strncmp(sym->sec->name, ".text.unlikely.",15) &&
+create-diff-object.c:102:	    (!strcmp(sym->sec->name + 15, sym->name) ||
+create-diff-object.c:104:			  !strncmp(sym->sec->name + 15, sym->name, strlen(sym->sec->name) - 15))))
+create-diff-object.c:108:	    !strncmp(sym->sec->name, ".text.hot.",10) &&
+create-diff-object.c:109:	    !strcmp(sym->sec->name + 10, sym->name))
+create-diff-object.c:113:	   !strncmp(sym->sec->name, ".data.",6) &&
+create-diff-object.c:114:	   !strcmp(sym->sec->name + 6, sym->name))
+create-diff-object.c:118:	    !strncmp(sym->sec->name, ".data.rel.", 10) &&
+create-diff-object.c:119:	    !strcmp(sym->sec->name + 10, sym->name))
+create-diff-object.c:123:	    !strncmp(sym->sec->name, ".data.rel.ro.", 13) &&
+create-diff-object.c:124:	    !strcmp(sym->sec->name + 13, sym->name))
+create-diff-object.c:128:	   !strncmp(sym->sec->name, ".rodata.",8) &&
+create-diff-object.c:129:	   !strcmp(sym->sec->name + 8, sym->name))
+create-diff-object.c:133:	   !strncmp(sym->sec->name, ".bss.",5) &&
+create-diff-object.c:134:	   !strcmp(sym->sec->name + 5, sym->name))
+create-diff-object.c:209:	if (!rela->sym->sec->rela)
+create-diff-object.c:213:	return find_rela_by_offset(rela->sym->sec->rela,
+create-diff-object.c:220: * symbols.  They're indicated by "sym->sec->sym == sym".
+create-diff-object.c:232:				      sym->sec->name);
+create-diff-object.c:235:			sym->sec->sym = sym;
+create-diff-object.c:297:	if (sym->type == STT_OBJECT && !strcmp(sym->sec->name, "__verbose"))
+create-diff-object.c:333:		if (!sym->sec->sym)
+create-diff-object.c:337:		sym = sym->sec->sym;
+create-diff-object.c:444:		memcpy(&toc_data1, rela1->sym->sec->data->d_buf + rela1->addend, sizeof(toc_data1));
+create-diff-object.c:451:		memcpy(&toc_data2, rela2->sym->sec->data->d_buf + rela2->addend, sizeof(toc_data2));
+create-diff-object.c:479:	if (!strcmp(sec->name, ".rela.toc")) {
+create-diff-object.c:480:		sec->status = SAME;
+create-diff-object.c:484:	rela2 = list_entry(sec->twin->relas.next, struct rela, list);
+create-diff-object.c:485:	list_for_each_entry(rela1, &sec->relas, list) {
+create-diff-object.c:490:		sec->status = CHANGED;
+create-diff-object.c:494:	sec->status = SAME;
+create-diff-object.c:499:	struct section *sec1 = sec, *sec2 = sec->twin;
+create-diff-object.c:503:		sec->status = CHANGED;
+create-diff-object.c:505:		sec->status = SAME;
+create-diff-object.c:510:	struct section *sec1 = sec, *sec2 = sec->twin;
+create-diff-object.c:521:	if (!strcmp(sec->name, ".rela__mcount_loc") ||
+create-diff-object.c:522:	    !strcmp(sec->name, "__mcount_loc")) {
+create-diff-object.c:523:		sec->status = SAME;
+create-diff-object.c:530:		sec->status = CHANGED;
+create-diff-object.c:539:	if (sec->status == CHANGED)
+create-diff-object.c:540:		log_debug("section %s has changed\n", sec->name);
+create-diff-object.c:582:	if (sec->status != CHANGED ||
+create-diff-object.c:585:	    sec->sh.sh_size != sec->twin->sh.sh_size ||
+create-diff-object.c:586:	    !sec->rela ||
+create-diff-object.c:587:	    sec->rela->status != SAME)
+create-diff-object.c:590:	start1 = (unsigned long)sec->twin->data->d_buf;
+create-diff-object.c:591:	start2 = (unsigned long)sec->data->d_buf;
+create-diff-object.c:592:	size = sec->sh.sh_size;
+create-diff-object.c:602:			      sec->name, offset);
+create-diff-object.c:623:		list_for_each_entry(rela, &sec->rela->relas, list) {
+create-diff-object.c:650:		      sec->name);
+create-diff-object.c:665:	if (sec->status != CHANGED ||
+create-diff-object.c:668:	    sec->sh.sh_size != sec->twin->sh.sh_size ||
+create-diff-object.c:669:	    !sec->rela ||
+create-diff-object.c:670:	    sec->rela->status != SAME)
+create-diff-object.c:673:	start1 = (unsigned long)sec->twin->data->d_buf;
+create-diff-object.c:674:	start2 = (unsigned long)sec->data->d_buf;
+create-diff-object.c:675:	size = sec->sh.sh_size;
+create-diff-object.c:689:		list_for_each_entry(rela, &sec->rela->relas, list) {
+create-diff-object.c:716:		      sec->name);
+create-diff-object.c:739:		if (child->sec->status == CHANGED ||
+create-diff-object.c:753:		if (sec->twin)
+create-diff-object.c:756:			sec->status = NEW;
+create-diff-object.c:763:				  sec->name);
+create-diff-object.c:764:			sec->status = SAME;
+create-diff-object.c:771:			if (sec->base->sym && sec->base->sym->status != CHANGED)
+create-diff-object.c:772:				sec->base->sym->status = sec->status;
+create-diff-object.c:774:			struct symbol *sym = sec->sym;
+create-diff-object.c:777:				sym->status = sec->status;
+create-diff-object.c:788:	if (!strncmp(sec->name, ".text.unlikely.", 15))
+create-diff-object.c:791:	if (!strncmp(sec->name, ".text.hot.", 10))
+create-diff-object.c:824:	if (sym1->sec && sym2->sec && sym1->sec->twin != sym2->sec) {
+create-diff-object.c:825:		if ((sym2->sec->twin && sym2->sec->twin->ignore) ||
+create-diff-object.c:986:			    sym1->sec->sh.sh_type == SHT_GROUP &&
+create-diff-object.c:987:			    sym1->sec->twin != sym2->sec)
+create-diff-object.c:1036:		if (groupsec->sh.sh_type != SHT_GROUP)
+create-diff-object.c:1038:		data = groupsec->data->d_buf;
+create-diff-object.c:1039:		end = groupsec->data->d_buf + groupsec->data->d_size;
+create-diff-object.c:1045:			sec->grouped = 1;
+create-diff-object.c:1047:			          sec->name, sec->index);
+create-diff-object.c:1056:		sec = sec->base;
+create-diff-object.c:1057:	return sec->sym ? sec->sym->name : sec->name;
+create-diff-object.c:1066:	list_for_each_entry(rela, &rela_sec->relas, list) {
+create-diff-object.c:1101:		if (child->sec->rela == parent->sec->rela || !child->sec->rela)
+create-diff-object.c:1104:		res = kpatch_find_uncorrelated_rela(child->sec->rela, sym);
+create-diff-object.c:1125:	if (!sec->twin && sec->base->sym) {
+create-diff-object.c:1132:		parent = kpatch_get_correlated_parent(sec->base->sym);
+create-diff-object.c:1134:			sec = parent->sec->rela;
+create-diff-object.c:1138:	if (!sec->twin)
+create-diff-object.c:1141:	res = kpatch_find_uncorrelated_rela(sec->twin, sym);
+create-diff-object.c:1146:	if (sec->twin->base->sym)
+create-diff-object.c:1147:		return kpatch_find_static_twin_in_children(sec->twin->base->sym,
+create-diff-object.c:1171:	list_for_each_entry(rela, &rela_sec->relas, list) {
+create-diff-object.c:1177:	if (rela_sec->base->sym) {
+create-diff-object.c:1178:		struct symbol *parent = rela_sec->base->sym;
+create-diff-object.c:1183:			if (child->sec->rela == parent->sec->rela ||
+create-diff-object.c:1184:			    !child->sec->rela)
+create-diff-object.c:1187:			rela = kpatch_find_static_twin_ref(child->sec->rela, sym);
+create-diff-object.c:1241:		bundled = sym == sym->sec->sym;
+create-diff-object.c:1242:		if (bundled && sym->sec->twin) {
+create-diff-object.c:1245:			UNCORRELATE_ELEMENT(sym->sec->secsym);
+create-diff-object.c:1247:			if (sym->sec->rela)
+create-diff-object.c:1248:				UNCORRELATE_ELEMENT(sym->sec->rela);
+create-diff-object.c:1260:		    !strcmp(sec->name, ".rela.toc"))
+create-diff-object.c:1263:		list_for_each_entry(rela, &sec->relas, list) {
+create-diff-object.c:1275:			bundled = sym == sym->sec->sym;
+create-diff-object.c:1276:			if (bundled && sym->sec == sec->base) {
+create-diff-object.c:1295:			patched_bundled = patched_sym == patched_sym->sec->sym;
+create-diff-object.c:1298:			if (!bundled && sym->sec->twin != patched_sym->sec)
+create-diff-object.c:1300:				      sym->sec->name, patched_sym->sec->name, sym->name);
+create-diff-object.c:1325:		list_for_each_entry(rela, &sec->relas, list) {
+create-diff-object.c:1332:			if (!sec->twin && sec->base->sym) {
+create-diff-object.c:1335:				parent = kpatch_get_correlated_parent(sec->base->sym);
+create-diff-object.c:1337:					target_sec = parent->sec->rela;
+create-diff-object.c:1340:			if (!sym->twin || !target_sec->twin)
+create-diff-object.c:1345:			if (!kpatch_find_static_twin_ref(target_sec->twin, sym))
+create-diff-object.c:1348:					   kpatch_section_function_name(target_sec->twin));
+create-diff-object.c:1363:		list_for_each_entry(rela, &sec->relas, list) {
+create-diff-object.c:1399:	start = (unsigned long)sec->base->data->d_buf;
+create-diff-object.c:1400:	end = start + sec->base->sh.sh_size;
+create-diff-object.c:1411:			      sec->base->name, insn_addr);
+create-diff-object.c:1435:		if (!strcmp(sec->name, *callback_sec))
+create-diff-object.c:1462:		list_for_each_entry(rela, &sec->relas, list) {
+create-diff-object.c:1471:			if (rela->sym->sec->sym) {
+create-diff-object.c:1472:				rela->sym = rela->sym->sec->sym;
+create-diff-object.c:1496:					  (long)sec->base->data->d_buf -
+create-diff-object.c:1523:				    rela->addend == (long)sym->sec->sh.sh_size &&
+create-diff-object.c:1524:				    end == (long)sym->sec->sh.sh_size) {
+create-diff-object.c:1563:					  sec->name,
+create-diff-object.c:1602:		if (sec->status == CHANGED && !sec->include) {
+create-diff-object.c:1604:				   sec->name);
+create-diff-object.c:1608:		if (sec->status != SAME && sec->grouped) {
+create-diff-object.c:1610:				   sec->name);
+create-diff-object.c:1614:		if (sec->sh.sh_type == SHT_GROUP && sec->status == NEW) {
+create-diff-object.c:1623:		if (sec->include && sec->status != NEW &&
+create-diff-object.c:1624:		    (!strncmp(sec->name, ".data", 5) || !strncmp(sec->name, ".bss", 4)) &&
+create-diff-object.c:1625:		    (strcmp(sec->name, ".data.unlikely") && strcmp(sec->name, ".data.once"))) {
+create-diff-object.c:1627:				   sec->name);
+create-diff-object.c:1643:	if (sec->include)
+create-diff-object.c:1645:	sec->include = 1;
+create-diff-object.c:1646:	if (sec->secsym)
+create-diff-object.c:1647:		sec->secsym->include = 1;
+create-diff-object.c:1653:	if (!sec->rela)
+create-diff-object.c:1655:	sec->rela->include = 1;
+create-diff-object.c:1656:	list_for_each_entry(rela, &sec->rela->relas, list)
+create-diff-object.c:1715:		if (!strcmp(sec->name, ".shstrtab") ||
+create-diff-object.c:1716:		    !strcmp(sec->name, ".strtab") ||
+create-diff-object.c:1717:		    !strcmp(sec->name, ".symtab") ||
+create-diff-object.c:1718:		    !strcmp(sec->name, ".toc") ||
+create-diff-object.c:1719:		    !strcmp(sec->name, ".rodata") ||
+create-diff-object.c:1720:		    (!strncmp(sec->name, ".rodata.", 8) &&
+create-diff-object.c:1721:		     strstr(sec->name, ".str1."))) {
+create-diff-object.c:1742:		sec->include = 1;
+create-diff-object.c:1746:			rela = list_entry(sec->relas.next, struct rela, list);
+create-diff-object.c:1751:			sec->secsym->include = 1;
+create-diff-object.c:1773:		if (!strcmp(sec->name, ".kpatch.force") ||
+create-diff-object.c:1774:		    !strcmp(sec->name, ".rela.kpatch.force")) {
+create-diff-object.c:1775:			sec->include = 1;
+create-diff-object.c:1778:				sec->secsym->include = 1;
+create-diff-object.c:1782:			list_for_each_entry(rela, &sec->relas, list)
+create-diff-object.c:1819:printf("%s %s %d\n", sym->sec->name, sym->name, sym->status);
+create-diff-object.c:1879:		if (!sec->include)
+create-diff-object.c:1881:		list_del(&sec->list);
+create-diff-object.c:1882:		list_add_tail(&sec->list, &out->sections);
+create-diff-object.c:1883:		sec->index = 0;
+create-diff-object.c:1884:		if (!is_rela_section(sec) && sec->secsym && !sec->secsym->include)
+create-diff-object.c:1886:			sec->secsym = NULL;
+create-diff-object.c:1897:		if (sym->sec && !sym->sec->include)
+create-diff-object.c:2049:	list_for_each_entry(rela, &sec->relas, list) {
+create-diff-object.c:2062:	list_for_each_entry_continue(rela, &sec->relas, list) {
+create-diff-object.c:2076:		return (int)(fixupsec->sh.sh_size - offset);
+create-diff-object.c:2154:	list_for_each_entry(rela, &sec->relas, list) {
+create-diff-object.c:2238:	list_for_each_entry(rela, &sec->relas, list) {
+create-diff-object.c:2242:		    rela->sym->sec->include) {
+create-diff-object.c:2245:				  rela->sym->name, sec->name);
+create-diff-object.c:2252:	if (!strcmp(sec->name, ".rela__jump_table"))
+create-diff-object.c:2276:	list_for_each_entry(rela, &sec->relas, list) {
+create-diff-object.c:2296:	src = sec->base->data->d_buf;
+create-diff-object.c:2298:	dest = malloc(sec->base->sh.sh_size);
+create-diff-object.c:2304:		list_for_each_entry(rela, &sec->relas, list) {
+create-diff-object.c:2312:	for ( ; src_offset < sec->base->sh.sh_size; src_offset += group_size) {
+create-diff-object.c:2324:		if (src_offset + group_size > sec->base->sh.sh_size)
+create-diff-object.c:2325:			group_size = (unsigned int)(sec->base->sh.sh_size - src_offset);
+create-diff-object.c:2336:		list_for_each_entry_safe(rela, safe, &sec->relas, list) {
+create-diff-object.c:2367:		sec->status = sec->base->status = SAME;
+create-diff-object.c:2368:		sec->include = sec->base->include = 0;
+create-diff-object.c:2374:	list_replace(&newrelas, &sec->relas);
+create-diff-object.c:2377:	sec->include = 1;
+create-diff-object.c:2378:	sec->base->include = 1;
+create-diff-object.c:2380:	sec->base->secsym->include = 1;
+create-diff-object.c:2388:	sec->base->data->d_buf = dest;
+create-diff-object.c:2389:	sec->base->data->d_size = dest_offset;
+create-diff-object.c:2424:	if (orc_sec->sh.sh_size % orc_entry_size != 0)
+create-diff-object.c:2427:	if (ip_sec->sh.sh_size !=
+create-diff-object.c:2428:	    (orc_sec->sh.sh_size / orc_entry_size) * ORC_IP_PTR_SIZE)
+create-diff-object.c:2431:	src = orc_sec->data->d_buf;
+create-diff-object.c:2432:	dest = malloc(orc_sec->sh.sh_size);
+create-diff-object.c:2436:	list_for_each_entry_safe(rela, safe, &ip_sec->rela->relas, list) {
+create-diff-object.c:2438:		if (rela->sym->type != STT_FUNC || !rela->sym->sec->include)
+create-diff-object.c:2459:		orc_sec->status = ip_sec->status = ip_sec->rela->status = SAME;
+create-diff-object.c:2460:		orc_sec->include = ip_sec->include = ip_sec->rela->include = 0;
+create-diff-object.c:2466:	list_replace(&newrelas, &ip_sec->rela->relas);
+create-diff-object.c:2469:	orc_sec->include = ip_sec->include = ip_sec->rela->include = 1;
+create-diff-object.c:2478:	orc_sec->data->d_buf = dest;
+create-diff-object.c:2479:	orc_sec->data->d_size = dest_idx * orc_entry_size;
+create-diff-object.c:2480:	ip_sec->data->d_size = dest_idx * ORC_IP_PTR_SIZE;
+create-diff-object.c:2492:		list_for_each_entry(rela, &sec->relas, list) {
+create-diff-object.c:2494:				sdata = rela->sym->sec->data;
+create-diff-object.c:2496:					ERROR("out-of-range relocation %s+%lx in %s", rela->sym->sec->name,
+create-diff-object.c:2497:							rela->addend, sec->name);
+create-diff-object.c:2512:			sec->include = 1;
+create-diff-object.c:2514:				sec->secsym->include = 1;
+create-diff-object.c:2525:		list_for_each_entry_safe(rela, saferela, &sec->relas, list)
+create-diff-object.c:2526:			if (!rela->sym->sec->include)
+create-diff-object.c:2539:		if (!strncmp(sec->name, ".discard", 8) ||
+create-diff-object.c:2540:		    !strncmp(sec->name, ".rela.discard", 13))
+create-diff-object.c:2541:			sec->ignore = 1;
+create-diff-object.c:2548:	list_for_each_entry(rela, &sec->rela->relas, list) {
+create-diff-object.c:2550:		strsec->status = CHANGED;
+create-diff-object.c:2562:		strsec->include = 1;
+create-diff-object.c:2563:		strsec->secsym->include = 1;
+create-diff-object.c:2564:		name = strsec->data->d_buf + rela->addend;
+create-diff-object.c:2570:			ignoresec = ignoresec->base;
+create-diff-object.c:2571:		ignoresec->ignore = 1;
+create-diff-object.c:2572:		if (ignoresec->twin)
+create-diff-object.c:2573:			ignoresec->twin->ignore = 1;
+create-diff-object.c:2583:		if (!sec->ignore)
+create-diff-object.c:2585:		sec->status = SAME;
+create-diff-object.c:2587:			if (sec->secsym)
+create-diff-object.c:2588:				sec->secsym->status = SAME;
+create-diff-object.c:2589:			if (sec->rela)
+create-diff-object.c:2590:				sec->rela->status = SAME;
+create-diff-object.c:2626:	list_for_each_entry(rela, &sec->rela->relas, list) {
+create-diff-object.c:2635:		rela->sym->sec->status = SAME;
+create-diff-object.c:2639:		if (rela->sym->sec->secsym)
+create-diff-object.c:2640:			rela->sym->sec->secsym->status = SAME;
+create-diff-object.c:2641:		if (rela->sym->sec->rela)
+create-diff-object.c:2642:			rela->sym->sec->rela->status = SAME;
+create-diff-object.c:2681:		ALLOC_LINK(rela, &karch_sec->rela->relas);
+create-diff-object.c:2682:		rela->sym = sec->secsym;
+create-diff-object.c:2689:		ALLOC_LINK(rela, &karch_sec->rela->relas);
+create-diff-object.c:2699:	karch_sec->data->d_size = index * sizeof(struct kpatch_arch);
+create-diff-object.c:2700:	karch_sec->sh.sh_size = karch_sec->data->d_size;
+create-diff-object.c:2714:		if (!sec || !sec->rela)
+create-diff-object.c:2717:		kpatch_regenerate_special_section(kelf, lookup, special, sec->rela);
+create-diff-object.c:2719:		if (!strcmp(special->name, ".altinstructions") && sec->include)
+create-diff-object.c:2728:		if (strcmp(sec->name, ".altinstr_replacement"))
+create-diff-object.c:2738:		sec->include = 1;
+create-diff-object.c:2746:		if (sec->rela) {
+create-diff-object.c:2747:			sec->rela->include = 1;
+create-diff-object.c:2749:			list_for_each_entry(rela, &sec->rela->relas, list)
+create-diff-object.c:2764:			if (strcmp(sec->name, "__jump_table") &&
+create-diff-object.c:2765:			    strcmp(sec->name, "__tracepoints") &&
+create-diff-object.c:2766:			    strcmp(sec->name, "__tracepoints_ptrs") &&
+create-diff-object.c:2767:			    strcmp(sec->name, "__tracepoints_strings"))
+create-diff-object.c:2770:			sec->status = SAME;
+create-diff-object.c:2771:			sec->include = 0;
+create-diff-object.c:2772:			if (sec->rela) {
+create-diff-object.c:2773:				sec->rela->status = SAME;
+create-diff-object.c:2774:				sec->rela->include = 0;
+create-diff-object.c:2841:	relasec = sec->rela;
+create-diff-object.c:2842:	funcs = sec->data->d_buf;
+create-diff-object.c:2889:		ALLOC_LINK(rela, &relasec->relas);
+create-diff-object.c:2899:		ALLOC_LINK(rela, &relasec->relas);
+create-diff-object.c:2910:		ALLOC_LINK(rela, &relasec->relas);
+create-diff-object.c:3126:		if (!strcmp(sec->name, ".rela.kpatch.funcs"))
+create-diff-object.c:3128:		list_for_each_entry(rela, &sec->relas, list) {
+create-diff-object.c:3151:	krelas = krela_sec->data->d_buf;
+create-diff-object.c:3155:	ksyms = ksym_sec->data->d_buf;
+create-diff-object.c:3175:		if (!strcmp(sec->name, ".rela.kpatch.funcs") ||
+create-diff-object.c:3176:		    !strcmp(sec->name, ".rela.kpatch.relocations") ||
+create-diff-object.c:3177:		    !strcmp(sec->name, ".rela.kpatch.symbols"))
+create-diff-object.c:3182:			if (!strcmp(sec->base->name, s->name))
+create-diff-object.c:3185:		list_for_each_entry_safe(rela, safe, &sec->relas, list) {
+create-diff-object.c:3204:				      rela->sym->name, sec->base->name);
+create-diff-object.c:3225:			ALLOC_LINK(rela2, &ksym_sec->rela->relas);
+create-diff-object.c:3233:			ALLOC_LINK(rela2, &ksym_sec->rela->relas);
+create-diff-object.c:3249:			ALLOC_LINK(rela2, &krela_sec->rela->relas);
+create-diff-object.c:3250:			if (sec->base->secsym)
+create-diff-object.c:3251:				rela2->sym = sec->base->secsym;
+create-diff-object.c:3254:				      sec->name, rela->sym->name);
+create-diff-object.c:3262:			ALLOC_LINK(rela2, &krela_sec->rela->relas);
+create-diff-object.c:3270:			ALLOC_LINK(rela2, &krela_sec->rela->relas);
+create-diff-object.c:3294:	ksym_sec->data->d_size = index * sizeof(struct kpatch_symbol);
+create-diff-object.c:3295:	ksym_sec->sh.sh_size = ksym_sec->data->d_size;
+create-diff-object.c:3297:	krela_sec->data->d_size = index * sizeof(struct kpatch_relocation);
+create-diff-object.c:3298:	krela_sec->sh.sh_size = krela_sec->data->d_size;
+create-diff-object.c:3332:			if (!strcmp(callbackp->name, sec->name)) {
+create-diff-object.c:3333:				ALLOC_LINK(rela, &sec->relas);
+create-diff-object.c:3368:	relasec = sec->rela;
+create-diff-object.c:3384:		rela = list_first_entry(&sym->sec->rela->relas, struct rela, list);
+create-diff-object.c:3403:			newdata = malloc(sym->sec->data->d_size);
+create-diff-object.c:3404:			memcpy(newdata, sym->sec->data->d_buf, sym->sec->data->d_size);
+create-diff-object.c:3405:			sym->sec->data->d_buf = newdata;
+create-diff-object.c:3413:			insn = sym->sec->data->d_buf;
+create-diff-object.c:3429:		list_for_each_entry(rela, &sym->sec->rela->relas, list)
+create-diff-object.c:3446:		ALLOC_LINK(mcount_rela, &relasec->relas);
+create-diff-object.c:3487:	sec->name = ".kpatch.strings";
+create-diff-object.c:3490:	sec->data = malloc(sizeof(*sec->data));
+create-diff-object.c:3491:	if (!sec->data)
+create-diff-object.c:3493:	sec->data->d_type = ELF_T_BYTE;
+create-diff-object.c:3496:	sec->sh.sh_type = SHT_PROGBITS;
+create-diff-object.c:3497:	sec->sh.sh_entsize = 1;
+create-diff-object.c:3498:	sec->sh.sh_addralign = 1;
+create-diff-object.c:3499:	sec->sh.sh_flags = SHF_ALLOC;
+create-diff-object.c:3531:	sec->data->d_buf = strtab;
+create-diff-object.c:3532:	sec->data->d_size = size;
+create-diff-object.c:3564:		for (offset = 0; offset < sym->sec->data->d_size; offset += 4) {
+create-diff-object.c:3566:			insn = *(unsigned int *)(sym->sec->data->d_buf + offset);
+create-diff-object.c:3585:			if (!find_rela_by_offset(sym->sec->rela, offset))
+create-diff-object.c:3796:		sec->sh.sh_link = symtab->index;
+create-diff-object.c:3797:		sec->sh.sh_info = sec->base->index;
+Binary file .create-diff-object.c.swo matches
+create-kpatch-module.c:54:	ksyms = ksymsec->data->d_buf;
+create-kpatch-module.c:55:	krelas = krelasec->data->d_buf;
+create-kpatch-module.c:56:	nr = (unsigned int)(krelasec->data->d_size / sizeof(*krelas));
+create-kpatch-module.c:59:	dynrelas = dynsec->data->d_buf;
+create-kpatch-module.c:70:		rela = find_rela_by_offset(krelasec->rela,
+create-kpatch-module.c:78:		rela = find_rela_by_offset(krelasec->rela,
+create-kpatch-module.c:85:		rela = find_rela_by_offset(krelasec->rela,
+create-kpatch-module.c:92:		rela = find_rela_by_offset(ksymsec->rela,
+create-kpatch-module.c:102:			target_name = (char *)strsec->data->d_buf + name_offset;
+create-kpatch-module.c:114:		ALLOC_LINK(rela, &dynsec->rela->relas);
+create-kpatch-module.c:121:		ALLOC_LINK(rela, &dynsec->rela->relas);
+create-kpatch-module.c:122:		rela->sym = strsec->secsym;
+create-kpatch-module.c:129:		ALLOC_LINK(rela, &dynsec->rela->relas);
+create-kpatch-module.c:130:		rela->sym = strsec->secsym;
+create-kpatch-module.c:228:	ksyms_nr = (unsigned int)(ksymsec->data->d_size / sizeof(struct kpatch_symbol));
+create-kpatch-module.c:233:	krelas_nr = (unsigned int)(krelasec->data->d_size / sizeof(struct kpatch_relocation));
+create-kpatch-module.c:251:		sec->sh.sh_link = symtab->index;
+create-kpatch-module.c:252:		sec->sh.sh_info = sec->base->index;
+Binary file .create-diff-object.c.swn matches
+Binary file .kpatch-elf.c.swo matches
+create-klp-module.c:50:	ksyms = ksymsec->data->d_buf;
+create-klp-module.c:55:	rela = find_rela_by_offset(ksymsec->rela,
+create-klp-module.c:63:	rela = find_rela_by_offset(ksymsec->rela,
+create-klp-module.c:132:		if (!strcmp(sec->name, buf))
+create-klp-module.c:137:	sec->name = strdup(buf);
+create-klp-module.c:138:	if (!sec->name)
+create-klp-module.c:140:	sec->base = base;
+create-klp-module.c:142:	INIT_LIST_HEAD(&sec->relas);
+create-klp-module.c:144:	sec->data = malloc(sizeof(*sec->data));
+create-klp-module.c:145:	if (!sec->data)
+create-klp-module.c:147:	sec->data->d_type = ELF_T_RELA;
+create-klp-module.c:150:	sec->sh.sh_type = SHT_RELA;
+create-klp-module.c:151:	sec->sh.sh_entsize = sizeof(GElf_Rela);
+create-klp-module.c:152:	sec->sh.sh_addralign = 8;
+create-klp-module.c:153:	sec->sh.sh_flags = SHF_RELA_LIVEPATCH | SHF_INFO_LINK | SHF_ALLOC;
+create-klp-module.c:180:	krelas = krelasec->data->d_buf;
+create-klp-module.c:181:	nr = (unsigned int)(krelasec->data->d_size / sizeof(*krelas));
+create-klp-module.c:187:		rela = find_rela_by_offset(krelasec->rela,
+create-klp-module.c:196:		rela = find_rela_by_offset(krelasec->rela,
+create-klp-module.c:204:		rela = find_rela_by_offset(krelasec->rela,
+create-klp-module.c:221:		ALLOC_LINK(rela, &klp_relasec->relas);
+create-klp-module.c:305:		old_size = sec->data->d_size;
+create-klp-module.c:328:		sec->data->d_buf = realloc(sec->data->d_buf, new_size);
+create-klp-module.c:329:		sec->data->d_size = new_size;
+create-klp-module.c:330:		sec->sh.sh_size = sec->data->d_size;
+create-klp-module.c:331:		memcpy(sec->data->d_buf + old_size,
+create-klp-module.c:335:			ALLOC_LINK(rela2, &sec->rela->relas);
+create-klp-module.c:456:	strings = strsec->data->d_buf;
+create-klp-module.c:461:	ksyms_nr = (unsigned int)(ksymsec->data->d_size / sizeof(struct kpatch_symbol));
+create-klp-module.c:466:	krelas_nr = (unsigned int)(krelasec->data->d_size / sizeof(struct kpatch_relocation));
+create-klp-module.c:497:		sec->sh.sh_link = symtab->index;
+create-klp-module.c:498:		sec->sh.sh_info = sec->base->index;
+kpatch-elf.c:58:	return (sec->sh.sh_type == SHT_RELA);
+kpatch-elf.c:63:	return (sec->sh.sh_type == SHT_PROGBITS &&
+kpatch-elf.c:64:		(sec->sh.sh_flags & SHF_EXECINSTR));
+kpatch-elf.c:71:		name = sec->base->name;
+kpatch-elf.c:73:		name = sec->name;
+kpatch-elf.c:84:		if (sec->index == index)
+kpatch-elf.c:95:		if (!strcmp(sec->name, name))
+kpatch-elf.c:127:	list_for_each_entry(rela, &relasec->relas, list) {
+kpatch-elf.c:162:	sec->base = find_section_by_index(&kelf->sections, sec->sh.sh_info);
+kpatch-elf.c:163:	if (!sec->base)
+kpatch-elf.c:164:		ERROR("can't find base section for rela section %s", sec->name);
+kpatch-elf.c:167:	sec->base->rela = sec;
+kpatch-elf.c:169:	rela_nr = sec->sh.sh_size / sec->sh.sh_entsize;
+kpatch-elf.c:172:		sec->base->name, rela_nr);
+kpatch-elf.c:181:		ALLOC_LINK(rela, &sec->relas);
+kpatch-elf.c:183:		if (!gelf_getrela(sec->data, index, &rela->rela))
+kpatch-elf.c:195:		    (rela->sym->sec->sh.sh_flags & SHF_STRINGS)) {
+kpatch-elf.c:196:			rela->string = rela->sym->sec->data->d_buf + rela->addend;
+kpatch-elf.c:240:		if (!gelf_getshdr(scn, &sec->sh))
+kpatch-elf.c:243:		sec->name = elf_strptr(kelf->elf, shstrndx, sec->sh.sh_name);
+kpatch-elf.c:244:		if (!sec->name)
+kpatch-elf.c:247:		sec->data = elf_getdata(scn, NULL);
+kpatch-elf.c:248:		if (!sec->data)
+kpatch-elf.c:251:		sec->index = (unsigned int)elf_ndxscn(scn);
+kpatch-elf.c:254:			sec->index, sec->data->d_buf, sec->data->d_size,
+kpatch-elf.c:255:			sec->name);
+kpatch-elf.c:304:				sym->sec->secsym = sym;
+kpatch-elf.c:306:				sym->name = sym->sec->name;
+kpatch-elf.c:314:			log_debug(" -> %s", sym->sec->name);
+kpatch-elf.c:328:		if (sym->type != STT_FUNC || !sym->sec || !sym->sec->rela)
+kpatch-elf.c:332:		list_for_each_entry(rela, &sym->sec->rela->relas, list) {
+kpatch-elf.c:339:		rela = list_first_entry(&sym->sec->rela->relas, struct rela,
+kpatch-elf.c:350:		list_for_each_entry(rela, &sym->sec->rela->relas, list) {
+kpatch-elf.c:351:printf("%s %s %d\n", sym->sec->name, rela->sym->name, rela->type);
+kpatch-elf.c:394:		INIT_LIST_HEAD(&sec->relas);
+kpatch-elf.c:413:		printf("%02d %s (%s)", sec->index, sec->name, status_str(sec->status));
+kpatch-elf.c:415:			printf(", base-> %s\n", sec->base->name);
+kpatch-elf.c:420:			list_for_each_entry(rela, &sec->relas, list) {
+kpatch-elf.c:428:			if (sec->sym)
+kpatch-elf.c:429:				printf(", sym-> %s", sec->sym->name);
+kpatch-elf.c:430:			if (sec->secsym)
+kpatch-elf.c:431:				printf(", secsym-> %s", sec->secsym->name);
+kpatch-elf.c:432:			if (sec->rela)
+kpatch-elf.c:433:				printf(", rela-> %s", sec->rela->name);
+kpatch-elf.c:445:			printf(" -> %s", sym->sec->name);
+kpatch-elf.c:495:		size += strlen(sec->name) + 1; /* include NULL terminator */
+kpatch-elf.c:506:		len = strlen(sec->name) + 1;
+kpatch-elf.c:507:		sec->sh.sh_name = (unsigned int)offset;
+kpatch-elf.c:508:		memcpy(buf + offset, sec->name, len);
+kpatch-elf.c:525:			       sec->name, sec->sh.sh_name);
+kpatch-elf.c:643:	sec->name = name;
+kpatch-elf.c:646:	sec->data = malloc(sizeof(*sec->data));
+kpatch-elf.c:647:	if (!sec->data)
+kpatch-elf.c:649:	sec->data->d_buf = malloc(size);
+kpatch-elf.c:650:	if (!sec->data->d_buf)
+kpatch-elf.c:652:	memset(sec->data->d_buf, 0, size);
+kpatch-elf.c:653:	sec->data->d_size = size;
+kpatch-elf.c:654:	sec->data->d_type = ELF_T_BYTE;
+kpatch-elf.c:657:	sec->sh.sh_type = SHT_PROGBITS;
+kpatch-elf.c:658:	sec->sh.sh_entsize = entsize;
+kpatch-elf.c:659:	sec->sh.sh_addralign = 8;
+kpatch-elf.c:660:	sec->sh.sh_flags = SHF_ALLOC;
+kpatch-elf.c:661:	sec->sh.sh_size = size;
+kpatch-elf.c:665:	relasec->name = relaname;
+kpatch-elf.c:666:	relasec->base = sec;
+kpatch-elf.c:667:	INIT_LIST_HEAD(&relasec->relas);
+kpatch-elf.c:670:	relasec->data = malloc(sizeof(*relasec->data));
+kpatch-elf.c:671:	if (!relasec->data)
+kpatch-elf.c:673:	relasec->data->d_type = ELF_T_RELA;
+kpatch-elf.c:676:	relasec->sh.sh_type = SHT_RELA;
+kpatch-elf.c:677:	relasec->sh.sh_entsize = sizeof(GElf_Rela);
+kpatch-elf.c:678:	relasec->sh.sh_addralign = 8;
+kpatch-elf.c:681:	sec->rela = relasec;
+kpatch-elf.c:692:		if (strcmp(secname, sec->name))
+kpatch-elf.c:696:			list_for_each_entry_safe(rela, saferela, &sec->relas, list) {
+kpatch-elf.c:708:		if (!is_rela_section(sec) && sec->secsym) {
+kpatch-elf.c:709:			list_del(&sec->secsym->list);
+kpatch-elf.c:710:			memset(sec->secsym, 0, sizeof(*sec->secsym));
+kpatch-elf.c:711:			free(sec->secsym);
+kpatch-elf.c:714:		list_del(&sec->list);
+kpatch-elf.c:728:		sec->index = index++;
+kpatch-elf.c:734:			sym->sym.st_shndx = (unsigned short)sym->sec->index;
+kpatch-elf.c:748:	list_for_each_entry(rela, &sec->relas, list)
+kpatch-elf.c:756:	sec->data->d_buf = relas;
+kpatch-elf.c:757:	sec->data->d_size = size;
+kpatch-elf.c:760:	sec->sh.sh_size = size;
+kpatch-elf.c:762:	list_for_each_entry(rela, &sec->relas, list) {
+kpatch-elf.c:831:		data->d_type = sec->data->d_type;
+kpatch-elf.c:832:		data->d_buf = sec->data->d_buf;
+kpatch-elf.c:833:		data->d_size = sec->data->d_size;
+kpatch-elf.c:838:		sh = sec->sh;
+kpatch-elf.c:870:		if (sec->twin)
+kpatch-elf.c:871:			sec->twin->twin = NULL;
+kpatch-elf.c:873:			list_for_each_entry_safe(rela, saferela, &sec->relas, list) {
+Binary file .create-diff-object.c.swp matches

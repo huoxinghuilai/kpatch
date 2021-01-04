@@ -1,0 +1,1229 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ABSOLUTE_RELA_TYPE	kpatch-build/create-diff-object.c	64;"	d	file:
+ABSOLUTE_RELA_TYPE	kpatch-build/create-diff-object.c	66;"	d	file:
+ALLOC_LINK	kpatch-build/kpatch-elf.h	127;"	d
+ANY_RETURN_P	kpatch-build/gcc-plugins/gcc-common.h	257;"	d
+ARCH	test/unit/Makefile	/^ARCH    = $(shell uname -m)$/;"	m
+AVAIL_INTERPOSABLE	kpatch-build/gcc-plugins/gcc-common.h	564;"	d
+BASIC_BLOCK_FOR_FN	kpatch-build/gcc-plugins/gcc-common.h	412;"	d
+BUILD_DIRS	Makefile	/^BUILD_DIRS   = $(SUBDIRS:%=build-%)$/;"	m
+CALL_LOCAL	kpatch-build/gcc-plugins/ppc64le-plugin.c	12;"	d	file:
+CALL_LOCAL	kpatch-build/gcc-plugins/ppc64le-plugin.c	7;"	d	file:
+CALL_NONLOCAL	kpatch-build/gcc-plugins/ppc64le-plugin.c	13;"	d	file:
+CALL_NONLOCAL	kpatch-build/gcc-plugins/ppc64le-plugin.c	8;"	d	file:
+CALL_VALUE_LOCAL	kpatch-build/gcc-plugins/ppc64le-plugin.c	14;"	d	file:
+CALL_VALUE_LOCAL	kpatch-build/gcc-plugins/ppc64le-plugin.c	9;"	d	file:
+CALL_VALUE_NONLOCAL	kpatch-build/gcc-plugins/ppc64le-plugin.c	10;"	d	file:
+CALL_VALUE_NONLOCAL	kpatch-build/gcc-plugins/ppc64le-plugin.c	15;"	d	file:
+CFLAGS	kpatch-build/Makefile	/^insn\/%.o: CFLAGS := $(filter-out -Wconversion, $(CFLAGS))$/;"	m
+CHANGED	kpatch-build/kpatch-elf.h	/^	CHANGED,$/;"	e	enum:status
+CLEAN_DIRS	Makefile	/^CLEAN_DIRS   = $(SUBDIRS:%=clean-%)$/;"	m
+CONST_CAST_GIMPLE	kpatch-build/gcc-plugins/gcc-common.h	831;"	d
+CONST_CAST_GIMPLE	kpatch-build/gcc-plugins/gcc-common.h	832;"	d
+CORRELATE_ELEMENT	kpatch-build/create-diff-object.c	861;"	d	file:
+C_DECL_REGISTER	kpatch-build/gcc-plugins/gcc-common.h	258;"	d
+C_TYPE_FIELDS_READONLY	kpatch-build/gcc-plugins/gcc-common.h	163;"	d
+DEBUG	kpatch-build/log.h	/^	DEBUG,$/;"	e	enum:loglevel
+DECL_CHAIN	kpatch-build/gcc-plugins/gcc-common.h	193;"	d
+DECL_NAME_LENGTH	kpatch-build/gcc-plugins/gcc-common.h	158;"	d
+DECL_NAME_POINTER	kpatch-build/gcc-plugins/gcc-common.h	157;"	d
+DIFF_FATAL	kpatch-build/create-diff-object.c	57;"	d	file:
+EDGE_PRESERVE	kpatch-build/gcc-plugins/gcc-common.h	259;"	d
+ENTRY_BLOCK_PTR_FOR_FN	kpatch-build/gcc-plugins/gcc-common.h	404;"	d
+ERROR	kpatch-build/log.h	11;"	d
+EXIT_BLOCK_PTR_FOR_FN	kpatch-build/gcc-plugins/gcc-common.h	405;"	d
+EXIT_STATUS_DIFF_FATAL	kpatch-build/kpatch.h	/^	EXIT_STATUS_DIFF_FATAL		= 2,$/;"	e	enum:exit_status
+EXIT_STATUS_ERROR	kpatch-build/kpatch.h	/^	EXIT_STATUS_ERROR		= 1,$/;"	e	enum:exit_status
+EXIT_STATUS_NO_CHANGE	kpatch-build/kpatch.h	/^	EXIT_STATUS_NO_CHANGE		= 3,$/;"	e	enum:exit_status
+EXIT_STATUS_SUCCESS	kpatch-build/kpatch.h	/^	EXIT_STATUS_SUCCESS		= 0,$/;"	e	enum:exit_status
+FOR_EACH_FUNCTION	kpatch-build/gcc-plugins/gcc-common.h	362;"	d
+FOR_EACH_FUNCTION_WITH_GIMPLE_BODY	kpatch-build/gcc-plugins/gcc-common.h	351;"	d
+FOR_EACH_LOCAL_DECL	kpatch-build/gcc-plugins/gcc-common.h	189;"	d
+FOR_EACH_VARIABLE	kpatch-build/gcc-plugins/gcc-common.h	364;"	d
+FOR_EACH_VEC_ELT	kpatch-build/gcc-plugins/gcc-common.h	194;"	d
+FTRACE_OPS_FL_IPMODIFY	kmod/core/core.c	535;"	d	file:
+GCC_COMMON_H_INCLUDED	kpatch-build/gcc-plugins/gcc-common.h	2;"	d
+GCC_PLUGINS_DIR	kpatch-build/Makefile	/^GCC_PLUGINS_DIR := $(shell gcc -print-file-name=plugin)$/;"	m
+HAS_LIVEPATCH_CALLBACKS	kmod/patch/kpatch-macros.h	35;"	d
+HAS_LIVEPATCH_CALLBACKS	kmod/patch/kpatch-macros.h	38;"	d
+HAS_MODULE_TAINT	kmod/core/core.c	1180;"	d	file:
+HAVE_CALLBACKS	kmod/patch/livepatch-patch-hook.c	61;"	d	file:
+HAVE_CALLBACKS	kmod/patch/livepatch-patch-hook.c	64;"	d	file:
+HAVE_ELF_RELOCS	kmod/patch/livepatch-patch-hook.c	40;"	d	file:
+HAVE_IMMEDIATE	kmod/patch/livepatch-patch-hook.c	52;"	d	file:
+HAVE_IMMEDIATE	kmod/patch/livepatch-patch-hook.c	56;"	d	file:
+HAVE_SIMPLE_ENABLE	kmod/patch/livepatch-patch-hook.c	71;"	d	file:
+HAVE_SIMPLE_ENABLE	kmod/patch/livepatch-patch-hook.c	74;"	d	file:
+HAVE_SYMPOS	kmod/patch/livepatch-patch-hook.c	47;"	d	file:
+HOST_WIDE_INT_PRINT_HEX_PURE	kpatch-build/gcc-plugins/gcc-common.h	260;"	d
+INAT_ESC_BITS	kpatch-build/insn/asm/inat.h	71;"	d
+INAT_ESC_MASK	kpatch-build/insn/asm/inat.h	73;"	d
+INAT_ESC_MAX	kpatch-build/insn/asm/inat.h	72;"	d
+INAT_ESC_OFFS	kpatch-build/insn/asm/inat.h	70;"	d
+INAT_FLAG_OFFS	kpatch-build/insn/asm/inat.h	84;"	d
+INAT_FORCE64	kpatch-build/insn/asm/inat.h	86;"	d
+INAT_GROUP_TABLE_SIZE	kpatch-build/insn/asm/inat.h	31;"	d
+INAT_GRP_BITS	kpatch-build/insn/asm/inat.h	76;"	d
+INAT_GRP_MASK	kpatch-build/insn/asm/inat.h	78;"	d
+INAT_GRP_MAX	kpatch-build/insn/asm/inat.h	77;"	d
+INAT_GRP_OFFS	kpatch-build/insn/asm/inat.h	75;"	d
+INAT_IMM_BITS	kpatch-build/insn/asm/inat.h	81;"	d
+INAT_IMM_BYTE	kpatch-build/insn/asm/inat.h	56;"	d
+INAT_IMM_DWORD	kpatch-build/insn/asm/inat.h	58;"	d
+INAT_IMM_MASK	kpatch-build/insn/asm/inat.h	82;"	d
+INAT_IMM_OFFS	kpatch-build/insn/asm/inat.h	80;"	d
+INAT_IMM_PTR	kpatch-build/insn/asm/inat.h	60;"	d
+INAT_IMM_QWORD	kpatch-build/insn/asm/inat.h	59;"	d
+INAT_IMM_VWORD	kpatch-build/insn/asm/inat.h	62;"	d
+INAT_IMM_VWORD32	kpatch-build/insn/asm/inat.h	61;"	d
+INAT_IMM_WORD	kpatch-build/insn/asm/inat.h	57;"	d
+INAT_LGCPFX_MAX	kpatch-build/insn/asm/inat.h	53;"	d
+INAT_LSTPFX_MAX	kpatch-build/insn/asm/inat.h	52;"	d
+INAT_MAKE_ESCAPE	kpatch-build/insn/asm/inat.h	94;"	d
+INAT_MAKE_GROUP	kpatch-build/insn/asm/inat.h	95;"	d
+INAT_MAKE_IMM	kpatch-build/insn/asm/inat.h	96;"	d
+INAT_MAKE_PREFIX	kpatch-build/insn/asm/inat.h	93;"	d
+INAT_MODRM	kpatch-build/insn/asm/inat.h	85;"	d
+INAT_MOFFSET	kpatch-build/insn/asm/inat.h	88;"	d
+INAT_OPCODE_TABLE_SIZE	kpatch-build/insn/asm/inat.h	30;"	d
+INAT_PFX_ADDRSZ	kpatch-build/insn/asm/inat.h	45;"	d
+INAT_PFX_BITS	kpatch-build/insn/asm/inat.h	66;"	d
+INAT_PFX_CS	kpatch-build/insn/asm/inat.h	39;"	d
+INAT_PFX_DS	kpatch-build/insn/asm/inat.h	40;"	d
+INAT_PFX_ES	kpatch-build/insn/asm/inat.h	41;"	d
+INAT_PFX_FS	kpatch-build/insn/asm/inat.h	42;"	d
+INAT_PFX_GS	kpatch-build/insn/asm/inat.h	43;"	d
+INAT_PFX_LOCK	kpatch-build/insn/asm/inat.h	38;"	d
+INAT_PFX_MASK	kpatch-build/insn/asm/inat.h	68;"	d
+INAT_PFX_MAX	kpatch-build/insn/asm/inat.h	67;"	d
+INAT_PFX_OFFS	kpatch-build/insn/asm/inat.h	65;"	d
+INAT_PFX_OPNDSZ	kpatch-build/insn/asm/inat.h	34;"	d
+INAT_PFX_REPE	kpatch-build/insn/asm/inat.h	35;"	d
+INAT_PFX_REPNE	kpatch-build/insn/asm/inat.h	36;"	d
+INAT_PFX_REX	kpatch-build/insn/asm/inat.h	47;"	d
+INAT_PFX_SS	kpatch-build/insn/asm/inat.h	44;"	d
+INAT_PFX_VEX2	kpatch-build/insn/asm/inat.h	49;"	d
+INAT_PFX_VEX3	kpatch-build/insn/asm/inat.h	50;"	d
+INAT_SCNDIMM	kpatch-build/insn/asm/inat.h	87;"	d
+INAT_VARIANT	kpatch-build/insn/asm/inat.h	89;"	d
+INAT_VEXOK	kpatch-build/insn/asm/inat.h	90;"	d
+INAT_VEXONLY	kpatch-build/insn/asm/inat.h	91;"	d
+INIT_LIST_HEAD	kpatch-build/list.h	72;"	d
+INSN	kpatch-build/Makefile	/^INSN     = insn\/insn.o insn\/inat.o$/;"	m
+INSN_DELETED_P	kpatch-build/gcc-plugins/gcc-common.h	710;"	d
+INSN_LOCATION	kpatch-build/gcc-plugins/gcc-common.h	369;"	d
+INSTALL_DIRS	Makefile	/^INSTALL_DIRS = $(SUBDIRS:%=install-%)$/;"	m
+INTEGRATION_DIR	Makefile	/^INTEGRATION_DIR = test\/integration$/;"	m
+KERNELRELEASE	kmod/Makefile	/^KERNELRELEASE := $(lastword $(subst \/, , $(dir $(KPATCH_BUILD))))$/;"	m
+KERNELRELEASE	kmod/core/Makefile	/^KERNELRELEASE := $(lastword $(subst \/, , $(dir $(patsubst %\/,%,$(KPATCH_BUILD)))))$/;"	m
+KLP_ARCH	kpatch-build/create-diff-object.c	/^bool KLP_ARCH;$/;"	v
+KLP_ARCH_PREFIX	kpatch-build/kpatch-elf.h	30;"	d
+KLP_RELASEC_PREFIX	kpatch-build/kpatch-elf.h	29;"	d
+KLP_SYM_PREFIX	kpatch-build/kpatch-elf.h	28;"	d
+KPATCH_BUILD	kmod/Makefile	/^KPATCH_BUILD ?= \/lib\/modules\/$(shell uname -r)\/build$/;"	m
+KPATCH_BUILD	kmod/core/Makefile	/^KPATCH_BUILD ?= \/lib\/modules\/$(shell uname -r)\/build$/;"	m
+KPATCH_BUILD	kmod/patch/Makefile	/^KPATCH_BUILD ?= \/lib\/modules\/$(shell uname -r)\/build$/;"	m
+KPATCH_FORCE_UNSAFE	kmod/patch/kpatch-macros.h	112;"	d
+KPATCH_HASH_BITS	kmod/core/core.c	77;"	d	file:
+KPATCH_IGNORE_FUNCTION	kmod/patch/kpatch-macros.h	27;"	d
+KPATCH_IGNORE_SECTION	kmod/patch/kpatch-macros.h	16;"	d
+KPATCH_MAKE	kmod/core/Makefile	/^KPATCH_MAKE = $(MAKE) -C $(KPATCH_BUILD) M=$(THISDIR)$/;"	m
+KPATCH_MAKE	kmod/patch/Makefile	/^KPATCH_MAKE = $(MAKE) -C $(KPATCH_BUILD) M=$(PWD)$/;"	m
+KPATCH_OP_NONE	kmod/core/kpatch.h	/^	KPATCH_OP_NONE,$/;"	e	enum:kpatch_op
+KPATCH_OP_NONE	kmod/patch/kpatch.h	/^	KPATCH_OP_NONE,$/;"	e	enum:kpatch_op
+KPATCH_OP_PATCH	kmod/core/kpatch.h	/^	KPATCH_OP_PATCH,$/;"	e	enum:kpatch_op
+KPATCH_OP_PATCH	kmod/patch/kpatch.h	/^	KPATCH_OP_PATCH,$/;"	e	enum:kpatch_op
+KPATCH_OP_UNPATCH	kmod/core/kpatch.h	/^	KPATCH_OP_UNPATCH,$/;"	e	enum:kpatch_op
+KPATCH_OP_UNPATCH	kmod/patch/kpatch.h	/^	KPATCH_OP_UNPATCH,$/;"	e	enum:kpatch_op
+KPATCH_POST_PATCH_CALLBACK	kmod/patch/kpatch-macros.h	82;"	d
+KPATCH_POST_UNPATCH_CALLBACK	kmod/patch/kpatch-macros.h	94;"	d
+KPATCH_PRE_PATCH_CALLBACK	kmod/patch/kpatch-macros.h	76;"	d
+KPATCH_PRE_UNPATCH_CALLBACK	kmod/patch/kpatch-macros.h	88;"	d
+KPATCH_PRINTK	kmod/patch/kpatch-macros.h	130;"	d
+KPATCH_STATE_FAILURE	kmod/core/core.c	/^	KPATCH_STATE_FAILURE,$/;"	e	enum:__anon11	file:
+KPATCH_STATE_IDLE	kmod/core/core.c	/^	KPATCH_STATE_IDLE,$/;"	e	enum:__anon11	file:
+KPATCH_STATE_SUCCESS	kmod/core/core.c	/^	KPATCH_STATE_SUCCESS,$/;"	e	enum:__anon11	file:
+KPATCH_STATE_UPDATING	kmod/core/core.c	/^	KPATCH_STATE_UPDATING,$/;"	e	enum:__anon11	file:
+LDLIBS	kpatch-build/Makefile	/^LDLIBS = -lelf$/;"	m
+LIST_HEAD	kpatch-build/list.h	69;"	d
+LIST_HEAD_INIT	kpatch-build/list.h	67;"	d
+LIST_POISON1	kpatch-build/list.h	51;"	d
+LIST_POISON2	kpatch-build/list.h	52;"	d
+MAX_INSN_SIZE	kpatch-build/insn/asm/insn.h	71;"	d
+MAX_STACK_TRACE_DEPTH	kmod/core/core.c	157;"	d	file:
+NEW	kpatch-build/kpatch-elf.h	/^	NEW,$/;"	e	enum:status
+NODE_DECL	kpatch-build/gcc-plugins/gcc-common.h	368;"	d
+NODE_DECL	kpatch-build/gcc-plugins/gcc-common.h	550;"	d
+NODE_DECL	kpatch-build/gcc-plugins/gcc-common.h	684;"	d
+NODE_IMPLICIT_ALIAS	kpatch-build/gcc-plugins/gcc-common.h	413;"	d
+NODE_IMPLICIT_ALIAS	kpatch-build/gcc-plugins/gcc-common.h	686;"	d
+NODE_SYMBOL	kpatch-build/gcc-plugins/gcc-common.h	367;"	d
+NODE_SYMBOL	kpatch-build/gcc-plugins/gcc-common.h	549;"	d
+NODE_SYMBOL	kpatch-build/gcc-plugins/gcc-common.h	683;"	d
+NORMAL	kpatch-build/log.h	/^	NORMAL$/;"	e	enum:loglevel
+NO_EXECUTE	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	149;"	d
+NO_GATE	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	148;"	d
+NO_GATE	kpatch-build/gcc-plugins/ppc64le-plugin.c	78;"	d	file:
+OBJDIR	test/unit/Makefile	/^OBJDIR ?= objs\/$(ARCH)$/;"	m
+ORC_IP_PTR_SIZE	kpatch-build/create-diff-object.c	2403;"	d	file:
+O_BINARY	kpatch-build/gcc-plugins/gcc-common.h	200;"	d
+PASS_INFO	kpatch-build/gcc-plugins/gcc-common.h	180;"	d
+PASS_NAME	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	147;"	d
+PASS_NAME	kpatch-build/gcc-plugins/ppc64le-plugin.c	77;"	d	file:
+PATCH_DIR	test/integration/Makefile	/^PATCH_DIR?=${ID}-${VERSION_ID}$/;"	m
+PLUGIN	kpatch-build/Makefile	/^PLUGIN   = gcc-plugins\/ppc64le-plugin.so$/;"	m
+PLUGIN_CFLAGS	kpatch-build/Makefile	/^PLUGIN_CFLAGS := $(filter-out -Wconversion, $(CFLAGS))$/;"	m
+PLUGIN_NAME	kpatch-build/gcc-plugins/ppc64le-plugin.c	4;"	d	file:
+PPC64_LOCAL_ENTRY_OFFSET	kpatch-build/create-diff-object.c	144;"	d	file:
+PPC_INSTR_LEN	kpatch-build/create-diff-object.c	656;"	d	file:
+PPC_RA_OFFSET	kpatch-build/create-diff-object.c	657;"	d	file:
+PROCESSOR	kmod/patch/Makefile	/^PROCESSOR = $(shell uname -m)$/;"	m
+PROPERTIES_DESTROYED	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	151;"	d
+PROPERTIES_DESTROYED	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	65;"	d
+PROPERTIES_PROVIDED	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	152;"	d
+PROPERTIES_PROVIDED	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	61;"	d
+PROPERTIES_REQUIRED	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	153;"	d
+PROPERTIES_REQUIRED	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	57;"	d
+PROP_loops	kpatch-build/gcc-plugins/gcc-common.h	366;"	d
+R_PPC64_ENTRY	kpatch-build/kpatch-elf.h	141;"	d
+SAME	kpatch-build/kpatch-elf.h	/^	SAME$/;"	e	enum:status
+SCOPE_FILE_SCOPE_P	kpatch-build/gcc-plugins/gcc-common.h	197;"	d
+SET_DECL_ALIGN	kpatch-build/gcc-plugins/gcc-common.h	965;"	d
+SET_DECL_MODE	kpatch-build/gcc-plugins/gcc-common.h	966;"	d
+SHADOW_FLAG_INPLACE	kmod/core/shadow.c	63;"	d	file:
+SHADOW_FLAG_MASK	kmod/core/shadow.c	66;"	d	file:
+SHADOW_FLAG_RESERVED0	kmod/core/shadow.c	64;"	d	file:
+SHADOW_PTR_MASK	kmod/core/shadow.c	67;"	d	file:
+SHF_RELA_LIVEPATCH	kpatch-build/kpatch-elf.h	31;"	d
+SHN_LIVEPATCH	kpatch-build/kpatch-elf.h	32;"	d
+SOURCES	kpatch-build/Makefile	/^SOURCES = create-diff-object.c kpatch-elf.c \\$/;"	m
+SSH_USER	test/integration/Makefile	/^SSH_USER ?= root$/;"	m
+STO_PPC64_LOCAL_BIT	kpatch-build/create-diff-object.c	142;"	d	file:
+STO_PPC64_LOCAL_MASK	kpatch-build/create-diff-object.c	143;"	d	file:
+SUBDIRS	Makefile	/^SUBDIRS     = kpatch-build kpatch kmod man contrib$/;"	m
+SUBSECTION_HOT	kpatch-build/create-diff-object.c	/^	SUBSECTION_HOT,$/;"	e	enum:subsection	file:
+SUBSECTION_NORMAL	kpatch-build/create-diff-object.c	/^	SUBSECTION_NORMAL,$/;"	e	enum:subsection	file:
+SUBSECTION_UNLIKELY	kpatch-build/create-diff-object.c	/^	SUBSECTION_UNLIKELY$/;"	e	enum:subsection	file:
+TARGETS	kpatch-build/Makefile	/^TARGETS = create-diff-object create-klp-module create-kpatch-module$/;"	m
+THISDIR	kmod/core/Makefile	/^THISDIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))$/;"	m
+TODO_FLAGS_FINISH	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	154;"	d
+TODO_FLAGS_FINISH	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	73;"	d
+TODO_FLAGS_START	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	155;"	d
+TODO_FLAGS_START	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	69;"	d
+TODO_dump_cgraph	kpatch-build/gcc-plugins/gcc-common.h	559;"	d
+TODO_dump_func	kpatch-build/gcc-plugins/gcc-common.h	558;"	d
+TODO_ggc_collect	kpatch-build/gcc-plugins/gcc-common.h	682;"	d
+TODO_rebuild_cgraph_edges	kpatch-build/gcc-plugins/gcc-common.h	196;"	d
+TODO_verify_flow	kpatch-build/gcc-plugins/gcc-common.h	706;"	d
+TODO_verify_il	kpatch-build/gcc-plugins/gcc-common.h	563;"	d
+TODO_verify_rtl_sharing	kpatch-build/gcc-plugins/gcc-common.h	708;"	d
+TODO_verify_ssa	kpatch-build/gcc-plugins/gcc-common.h	705;"	d
+TODO_verify_stmts	kpatch-build/gcc-plugins/gcc-common.h	707;"	d
+TYPE_NAME_LENGTH	kpatch-build/gcc-plugins/gcc-common.h	160;"	d
+TYPE_NAME_POINTER	kpatch-build/gcc-plugins/gcc-common.h	159;"	d
+UNCORRELATE_ELEMENT	kpatch-build/create-diff-object.c	877;"	d	file:
+UNINSTALL_DIRS	Makefile	/^UNINSTALL_DIRS = $(SUBDIRS:%=uninstall-%)$/;"	m
+UNITTEST_DIR	Makefile	/^UNITTEST_DIR = test\/unit$/;"	m
+UTS_UBUNTU_RELEASE_ABI	kmod/core/core.c	54;"	d	file:
+UTS_UBUNTU_RELEASE_ABI	kmod/patch/livepatch-patch-hook.c	35;"	d	file:
+VAR_P	kpatch-build/gcc-plugins/gcc-common.h	414;"	d
+X86_MODRM_MOD	kpatch-build/insn/asm/insn.h	73;"	d
+X86_MODRM_REG	kpatch-build/insn/asm/insn.h	74;"	d
+X86_MODRM_RM	kpatch-build/insn/asm/insn.h	75;"	d
+X86_REX_B	kpatch-build/insn/asm/insn.h	84;"	d
+X86_REX_R	kpatch-build/insn/asm/insn.h	82;"	d
+X86_REX_W	kpatch-build/insn/asm/insn.h	81;"	d
+X86_REX_X	kpatch-build/insn/asm/insn.h	83;"	d
+X86_SIB_BASE	kpatch-build/insn/asm/insn.h	79;"	d
+X86_SIB_INDEX	kpatch-build/insn/asm/insn.h	78;"	d
+X86_SIB_SCALE	kpatch-build/insn/asm/insn.h	77;"	d
+X86_VEX2_M	kpatch-build/insn/asm/insn.h	94;"	d
+X86_VEX3_M	kpatch-build/insn/asm/insn.h	93;"	d
+X86_VEX_B	kpatch-build/insn/asm/insn.h	90;"	d
+X86_VEX_L	kpatch-build/insn/asm/insn.h	91;"	d
+X86_VEX_M_MAX	kpatch-build/insn/asm/insn.h	97;"	d
+X86_VEX_P	kpatch-build/insn/asm/insn.h	96;"	d
+X86_VEX_R	kpatch-build/insn/asm/insn.h	88;"	d
+X86_VEX_V	kpatch-build/insn/asm/insn.h	95;"	d
+X86_VEX_W	kpatch-build/insn/asm/insn.h	87;"	d
+X86_VEX_X	kpatch-build/insn/asm/insn.h	89;"	d
+_ASM_X86_INAT_H	kpatch-build/insn/asm/inat.h	2;"	d
+_ASM_X86_INAT_TYPES_H	kpatch-build/insn/asm/inat_types.h	2;"	d
+_ASM_X86_INSN_H	kpatch-build/insn/asm/insn.h	2;"	d
+_EXECUTE	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	158;"	d
+_EXECUTE	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	48;"	d
+_EXECUTE	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	52;"	d
+_GATE	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	160;"	d
+_GATE	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	39;"	d
+_GATE	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	43;"	d
+_GCC_PLUGIN_CONCAT2	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	162;"	d
+_GCC_PLUGIN_CONCAT2	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	24;"	d
+_GCC_PLUGIN_CONCAT3	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	163;"	d
+_GCC_PLUGIN_CONCAT3	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	25;"	d
+_GCC_PLUGIN_STRINGIFY	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	164;"	d
+_GCC_PLUGIN_STRINGIFY	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	23;"	d
+_HAS_EXECUTE	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	166;"	d
+_HAS_EXECUTE	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	49;"	d
+_HAS_EXECUTE	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	53;"	d
+_HAS_GATE	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	167;"	d
+_HAS_GATE	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	40;"	d
+_HAS_GATE	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	44;"	d
+_KPATCH_ELF_H_	kpatch-build/kpatch-elf.h	21;"	d
+_KPATCH_H_	kmod/core/kpatch.h	24;"	d
+_KPATCH_H_	kmod/patch/kpatch.h	24;"	d
+_KPATCH_H_	kpatch-build/kpatch.h	2;"	d
+_KPATCH_INTERMEDIATE_H_	kpatch-build/kpatch-intermediate.h	23;"	d
+_KPATCH_PATCH_H_	kmod/patch/kpatch-patch.h	23;"	d
+_LIST_H	kpatch-build/list.h	28;"	d
+_LOG_H_	kpatch-build/log.h	2;"	d
+_LOOKUP_H_	kpatch-build/lookup.h	2;"	d
+_MAKE_PASS_NAME_PASS	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	/^opt_pass *_MAKE_PASS_NAME_PASS(void)$/;"	f
+_MAKE_PASS_NAME_PASS	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	168;"	d
+_MAKE_PASS_NAME_PASS	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	36;"	d
+_PASS_NAME_NAME	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	170;"	d
+_PASS_NAME_NAME	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	33;"	d
+_PASS_NAME_PASS	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	171;"	d
+_PASS_NAME_PASS	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	31;"	d
+_PASS_NAME_PASS_DATA	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	/^static const pass_data _PASS_NAME_PASS_DATA = {$/;"	m	namespace:__anon9
+_PASS_NAME_PASS_DATA	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	173;"	d
+_PASS_NAME_PASS_DATA	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	28;"	d
+__EXECUTE	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	159;"	d
+__EXECUTE	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	51;"	d
+__GATE	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	161;"	d
+__GATE	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	42;"	d
+__GCC_PLUGIN_STRINGIFY	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	165;"	d
+__GCC_PLUGIN_STRINGIFY	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	22;"	d
+__KPATCH_MACROS_H_	kmod/patch/kpatch-macros.h	2;"	d
+__MAKE_PASS_NAME_PASS	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	169;"	d
+__MAKE_PASS_NAME_PASS	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	35;"	d
+__PASS_NAME_PASS	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	172;"	d
+__PASS_NAME_PASS	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	30;"	d
+__PASS_NAME_PASS_DATA	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	174;"	d
+__PASS_NAME_PASS_DATA	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	27;"	d
+__find_module	kpatch/kpatch	/^__find_module () {$/;"	f
+__get_immptr	kpatch-build/insn/insn.c	/^static int __get_immptr(struct insn *insn)$/;"	f	file:
+__get_immv	kpatch-build/insn/insn.c	/^static int __get_immv(struct insn *insn)$/;"	f	file:
+__get_immv32	kpatch-build/insn/insn.c	/^static int __get_immv32(struct insn *insn)$/;"	f	file:
+__get_moffset	kpatch-build/insn/insn.c	/^static int __get_moffset(struct insn *insn)$/;"	f	file:
+__get_next	kpatch-build/insn/insn.c	35;"	d	file:
+__kpatch_callbacks_post_patch	kmod/patch/kpatch.lds.S	/^    __kpatch_callbacks_post_patch = . ;$/;"	d
+__kpatch_callbacks_post_patch_end	kmod/patch/kpatch.lds.S	/^    __kpatch_callbacks_post_patch_end = . ;$/;"	d
+__kpatch_callbacks_post_unpatch	kmod/patch/kpatch.lds.S	/^    __kpatch_callbacks_post_unpatch = . ;$/;"	d
+__kpatch_callbacks_post_unpatch_end	kmod/patch/kpatch.lds.S	/^    __kpatch_callbacks_post_unpatch_end = . ;$/;"	d
+__kpatch_callbacks_pre_patch	kmod/patch/kpatch.lds.S	/^    __kpatch_callbacks_pre_patch = . ;$/;"	d
+__kpatch_callbacks_pre_patch_end	kmod/patch/kpatch.lds.S	/^    __kpatch_callbacks_pre_patch_end = . ;$/;"	d
+__kpatch_callbacks_pre_unpatch	kmod/patch/kpatch.lds.S	/^    __kpatch_callbacks_pre_unpatch = . ;$/;"	d
+__kpatch_callbacks_pre_unpatch_end	kmod/patch/kpatch.lds.S	/^    __kpatch_callbacks_pre_unpatch_end = . ;$/;"	d
+__kpatch_checksum	kmod/patch/kpatch.lds.S	/^__kpatch_checksum = ADDR(.kpatch.checksum);$/;"	d
+__kpatch_correlate_section	kpatch-build/create-diff-object.c	/^static void __kpatch_correlate_section(struct section *sec1, struct section *sec2)$/;"	f	file:
+__kpatch_dynrelas	kmod/patch/kpatch.lds.S	/^__kpatch_dynrelas = ADDR(.kpatch.dynrelas);$/;"	d
+__kpatch_dynrelas_end	kmod/patch/kpatch.lds.S	/^__kpatch_dynrelas_end = ADDR(.kpatch.dynrelas) + SIZEOF(.kpatch.dynrelas);$/;"	d
+__kpatch_force_funcs	kmod/patch/kpatch.lds.S	/^    __kpatch_force_funcs = . ;$/;"	d
+__kpatch_force_funcs_end	kmod/patch/kpatch.lds.S	/^    __kpatch_force_funcs_end = . ;$/;"	d
+__kpatch_funcs	kmod/patch/kpatch.lds.S	/^__kpatch_funcs = ADDR(.kpatch.funcs);$/;"	d
+__kpatch_funcs_end	kmod/patch/kpatch.lds.S	/^__kpatch_funcs_end = ADDR(.kpatch.funcs) + SIZEOF(.kpatch.funcs);$/;"	d
+__list_add	kpatch-build/list.h	/^static inline void __list_add(struct list_head *new,$/;"	f
+__list_del	kpatch-build/list.h	/^static inline void __list_del(struct list_head * prev, struct list_head * next)$/;"	f
+__peek_nbyte_next	kpatch-build/insn/insn.c	38;"	d	file:
+__read_mostly	kmod/core/core.c	/^static struct ftrace_ops kpatch_ftrace_ops __read_mostly = {$/;"	v	typeref:struct:kpatch_ftrace_ops	file:
+__this_module	kmod/core/kpatch.mod.c	/^__visible struct module __this_module$/;"	v	typeref:struct:module
+__unused	kpatch-build/gcc-plugins/gcc-common.h	154;"	d
+__used	kmod/core/kpatch.mod.c	/^__used$/;"	v	file:
+__used	kmod/core/kpatch.mod.c	/^__used$/;"	v	typeref:struct:____versions	file:
+__visible	kpatch-build/gcc-plugins/gcc-common.h	155;"	d
+add_callbacks_to_patch_objects	kmod/patch/livepatch-patch-hook.c	/^static inline int add_callbacks_to_patch_objects(void)$/;"	f	file:
+add_callbacks_to_patch_objects	kmod/patch/livepatch-patch-hook.c	/^static int add_callbacks_to_patch_objects(void)$/;"	f	file:
+add_local_decl	kpatch-build/gcc-plugins/gcc-common.h	/^static inline void add_local_decl(struct function *fun, tree d)$/;"	f
+add_referenced_var	kpatch-build/gcc-plugins/gcc-common.h	554;"	d
+addend	kmod/core/kpatch.h	/^	int addend;$/;"	m	struct:kpatch_dynrela
+addend	kmod/patch/kpatch-patch.h	/^	long addend;$/;"	m	struct:kpatch_patch_dynrela
+addend	kmod/patch/kpatch.h	/^	int addend;$/;"	m	struct:kpatch_dynrela
+addend	kpatch-build/kpatch-elf.h	/^	long addend;$/;"	m	struct:rela
+addend	kpatch-build/kpatch-intermediate.h	/^	long addend;$/;"	m	struct:kpatch_relocation
+addr	kmod/core/core.c	/^	unsigned long addr;$/;"	m	struct:kpatch_kallsyms_args	file:
+addr	kpatch-build/lookup.c	/^	unsigned long addr;$/;"	m	struct:object_symbol	file:
+addr	kpatch-build/lookup.h	/^	unsigned long addr;$/;"	m	struct:lookup_result
+addr_bytes	kpatch-build/insn/asm/insn.h	/^	unsigned char addr_bytes;$/;"	m	struct:insn
+altinstructions_group_size	kpatch-build/create-diff-object.c	/^static int altinstructions_group_size(struct kpatch_elf *kelf, int offset)$/;"	f	file:
+apply_patches	kpatch-build/kpatch-build	/^apply_patches() {$/;"	f
+argp	kpatch-build/create-diff-object.c	/^static struct argp argp = { options, parse_opt, args_doc, NULL };$/;"	v	typeref:struct:argp	file:
+argp	kpatch-build/create-klp-module.c	/^static struct argp argp = { options, parse_opt, args_doc, 0 };$/;"	v	typeref:struct:argp	file:
+argp	kpatch-build/create-kpatch-module.c	/^static struct argp argp = { options, parse_opt, args_doc, 0 };$/;"	v	typeref:struct:argp	file:
+args	kpatch-build/create-diff-object.c	/^	char *args[7];$/;"	m	struct:arguments	file:
+args	kpatch-build/create-klp-module.c	/^	char *args[2];$/;"	m	struct:arguments	file:
+args	kpatch-build/create-kpatch-module.c	/^	char *args[2];$/;"	m	struct:arguments	file:
+args_doc	kpatch-build/create-diff-object.c	/^static char args_doc[] = "original.o patched.o parent-name parent-symtab Module.symvers patch-module-name output.o";$/;"	v	file:
+args_doc	kpatch-build/create-klp-module.c	/^static char args_doc[] = "input.ko output.ko";$/;"	v	file:
+args_doc	kpatch-build/create-kpatch-module.c	/^static char args_doc[] = "input.o output.o";$/;"	v	file:
+arguments	kpatch-build/create-diff-object.c	/^struct arguments {$/;"	s	file:
+arguments	kpatch-build/create-klp-module.c	/^struct arguments {$/;"	s	file:
+arguments	kpatch-build/create-kpatch-module.c	/^struct arguments {$/;"	s	file:
+as_a_const_gasm	kpatch-build/gcc-plugins/gcc-common.h	/^static inline const gasm *as_a_const_gasm(const_gimple stmt)$/;"	f
+as_a_const_gassign	kpatch-build/gcc-plugins/gcc-common.h	/^static inline const gassign *as_a_const_gassign(const_gimple stmt)$/;"	f
+as_a_const_gcall	kpatch-build/gcc-plugins/gcc-common.h	/^static inline const gcall *as_a_const_gcall(const_gimple stmt)$/;"	f
+as_a_const_gcond	kpatch-build/gcc-plugins/gcc-common.h	/^static inline const gcond *as_a_const_gcond(const_gimple stmt)$/;"	f
+as_a_const_gdebug	kpatch-build/gcc-plugins/gcc-common.h	/^static inline const gdebug *as_a_const_gdebug(const_gimple stmt)$/;"	f
+as_a_const_ggoto	kpatch-build/gcc-plugins/gcc-common.h	/^static inline const ggoto *as_a_const_ggoto(const_gimple stmt)$/;"	f
+as_a_const_gphi	kpatch-build/gcc-plugins/gcc-common.h	/^static inline const gphi *as_a_const_gphi(const_gimple stmt)$/;"	f
+as_a_const_greturn	kpatch-build/gcc-plugins/gcc-common.h	/^static inline const greturn *as_a_const_greturn(const_gimple stmt)$/;"	f
+as_a_gasm	kpatch-build/gcc-plugins/gcc-common.h	/^static inline gasm *as_a_gasm(gimple stmt)$/;"	f
+as_a_gassign	kpatch-build/gcc-plugins/gcc-common.h	/^static inline gassign *as_a_gassign(gimple stmt)$/;"	f
+as_a_gcall	kpatch-build/gcc-plugins/gcc-common.h	/^static inline gcall *as_a_gcall(gimple stmt)$/;"	f
+as_a_gcond	kpatch-build/gcc-plugins/gcc-common.h	/^static inline gcond *as_a_gcond(gimple stmt)$/;"	f
+as_a_gdebug	kpatch-build/gcc-plugins/gcc-common.h	/^static inline gdebug *as_a_gdebug(gimple stmt)$/;"	f
+as_a_ggoto	kpatch-build/gcc-plugins/gcc-common.h	/^static inline ggoto *as_a_ggoto(gimple stmt)$/;"	f
+as_a_gphi	kpatch-build/gcc-plugins/gcc-common.h	/^static inline gphi *as_a_gphi(gimple stmt)$/;"	f
+as_a_greturn	kpatch-build/gcc-plugins/gcc-common.h	/^static inline greturn *as_a_greturn(gimple stmt)$/;"	f
+assert_num_funcs	test/test-functions.sh	/^assert_num_funcs() {$/;"	f
+attr	kpatch-build/insn/asm/insn.h	/^	insn_attr_t attr;$/;"	m	struct:insn
+base	kpatch-build/kpatch-elf.h	/^			struct section *base;$/;"	m	struct:section::__anon1::__anon2	typeref:struct:section::__anon1::__anon2::section
+basic_block_info_for_fn	kpatch-build/gcc-plugins/gcc-common.h	406;"	d
+bb_loop_depth	kpatch-build/gcc-plugins/gcc-common.h	/^static inline int bb_loop_depth(const_basic_block bb)$/;"	f
+bind	kpatch-build/kpatch-elf.h	/^	unsigned char bind, type;$/;"	m	struct:symbol
+bind	kpatch-build/kpatch-intermediate.h	/^	unsigned char bind, type;$/;"	m	struct:kpatch_symbol
+bind	kpatch-build/lookup.c	/^	int type, bind;$/;"	m	struct:object_symbol	file:
+bug_table_group_size	kpatch-build/create-diff-object.c	/^static int bug_table_group_size(struct kpatch_elf *kelf, int offset)$/;"	f	file:
+build_combined_module	test/integration/kpatch-test	/^build_combined_module() {$/;"	f
+build_const_char_string	kpatch-build/gcc-plugins/gcc-common.h	/^static inline tree build_const_char_string(int len, const char *str)$/;"	f
+build_module	test/integration/kpatch-test	/^build_module() {$/;"	f
+builtin_decl_implicit	kpatch-build/gcc-plugins/gcc-common.h	/^static inline tree builtin_decl_implicit(enum built_in_function fncode)$/;"	f
+bytes	kpatch-build/insn/asm/insn.h	/^		insn_byte_t bytes[4];$/;"	m	union:insn_field::__anon5
+callback	kmod/patch/kpatch-patch.h	/^	int (*callback)(void *obj);$/;"	m	struct:kpatch_pre_patch_callback
+callback	kmod/patch/kpatch-patch.h	/^	void (*callback)(void *obj);$/;"	m	struct:kpatch_post_patch_callback
+callback	kmod/patch/kpatch-patch.h	/^	void (*callback)(void *obj);$/;"	m	struct:kpatch_post_unpatch_callback
+callback	kmod/patch/kpatch-patch.h	/^	void (*callback)(void *obj);$/;"	m	struct:kpatch_pre_unpatch_callback
+callbacks	kmod/patch/livepatch-patch-hook.c	/^	struct klp_callbacks callbacks;$/;"	m	struct:patch_object	typeref:struct:patch_object::klp_callbacks	file:
+callbacks_enabled	kmod/core/kpatch.h	/^	bool callbacks_enabled;$/;"	m	struct:kpatch_object
+callbacks_enabled	kmod/patch/kpatch.h	/^	bool callbacks_enabled;$/;"	m	struct:kpatch_object
+cgraph_add_function_insertion_hook	kpatch-build/gcc-plugins/gcc-common.h	/^static inline struct cgraph_node_hook_list *cgraph_add_function_insertion_hook(cgraph_node_hook hook, void *data)$/;"	f
+cgraph_add_node_duplication_hook	kpatch-build/gcc-plugins/gcc-common.h	/^static inline struct cgraph_2node_hook_list *cgraph_add_node_duplication_hook(cgraph_2node_hook hook, void *data)$/;"	f
+cgraph_add_node_removal_hook	kpatch-build/gcc-plugins/gcc-common.h	/^static inline struct cgraph_node_hook_list *cgraph_add_node_removal_hook(cgraph_node_hook hook, void *data)$/;"	f
+cgraph_alias_target	kpatch-build/gcc-plugins/gcc-common.h	/^static inline cgraph_node_ptr cgraph_alias_target(cgraph_node_ptr node)$/;"	f
+cgraph_alias_target	kpatch-build/gcc-plugins/gcc-common.h	/^static inline struct cgraph_node *cgraph_alias_target(struct cgraph_node *n)$/;"	f
+cgraph_call_edge_duplication_hooks	kpatch-build/gcc-plugins/gcc-common.h	/^static inline void cgraph_call_edge_duplication_hooks(cgraph_edge *cs1, cgraph_edge *cs2)$/;"	f
+cgraph_call_node_duplication_hooks	kpatch-build/gcc-plugins/gcc-common.h	/^static inline void cgraph_call_node_duplication_hooks(cgraph_node_ptr node, cgraph_node_ptr node2)$/;"	f
+cgraph_create_edge	kpatch-build/gcc-plugins/gcc-common.h	397;"	d
+cgraph_create_edge	kpatch-build/gcc-plugins/gcc-common.h	727;"	d
+cgraph_create_edge_including_clones	kpatch-build/gcc-plugins/gcc-common.h	399;"	d
+cgraph_create_edge_including_clones	kpatch-build/gcc-plugins/gcc-common.h	729;"	d
+cgraph_create_node	kpatch-build/gcc-plugins/gcc-common.h	/^static inline struct cgraph_node *cgraph_create_node(tree decl)$/;"	f
+cgraph_create_node	kpatch-build/gcc-plugins/gcc-common.h	721;"	d
+cgraph_edge_p	kpatch-build/gcc-plugins/gcc-common.h	/^typedef struct cgraph_edge *cgraph_edge_p;$/;"	t	typeref:struct:cgraph_edge
+cgraph_first_function_with_gimple_body	kpatch-build/gcc-plugins/gcc-common.h	/^static inline struct cgraph_node *cgraph_first_function_with_gimple_body(void)$/;"	f
+cgraph_for_node_and_aliases	kpatch-build/gcc-plugins/gcc-common.h	/^static inline bool cgraph_for_node_and_aliases(cgraph_node_ptr node, bool (*callback)(cgraph_node_ptr, void *), void *data, bool include_overwritable)$/;"	f
+cgraph_function_body_availability	kpatch-build/gcc-plugins/gcc-common.h	/^static inline enum availability cgraph_function_body_availability(cgraph_node_ptr node)$/;"	f
+cgraph_function_node	kpatch-build/gcc-plugins/gcc-common.h	/^static inline cgraph_node_ptr cgraph_function_node(cgraph_node_ptr node, enum availability *availability)$/;"	f
+cgraph_function_or_thunk_node	kpatch-build/gcc-plugins/gcc-common.h	/^static inline cgraph_node_ptr cgraph_function_or_thunk_node(cgraph_node_ptr node, enum availability *availability = NULL)$/;"	f
+cgraph_function_with_gimple_body_p	kpatch-build/gcc-plugins/gcc-common.h	/^static inline bool cgraph_function_with_gimple_body_p(struct cgraph_node *node)$/;"	f
+cgraph_get_create_node	kpatch-build/gcc-plugins/gcc-common.h	/^static inline struct cgraph_node *cgraph_get_create_node(tree decl)$/;"	f
+cgraph_get_create_node	kpatch-build/gcc-plugins/gcc-common.h	720;"	d
+cgraph_get_node	kpatch-build/gcc-plugins/gcc-common.h	719;"	d
+cgraph_max_uid	kpatch-build/gcc-plugins/gcc-common.h	723;"	d
+cgraph_n_nodes	kpatch-build/gcc-plugins/gcc-common.h	722;"	d
+cgraph_next_function_with_gimple_body	kpatch-build/gcc-plugins/gcc-common.h	/^static inline struct cgraph_node *cgraph_next_function_with_gimple_body(struct cgraph_node *node)$/;"	f
+cgraph_node_name	kpatch-build/gcc-plugins/gcc-common.h	685;"	d
+cgraph_node_ptr	kpatch-build/gcc-plugins/gcc-common.h	/^typedef struct cgraph_node *cgraph_node_ptr;$/;"	t	typeref:struct:cgraph_node
+cgraph_only_called_directly_p	kpatch-build/gcc-plugins/gcc-common.h	/^static inline bool cgraph_only_called_directly_p(cgraph_node_ptr node)$/;"	f
+cgraph_remove_function_insertion_hook	kpatch-build/gcc-plugins/gcc-common.h	/^static inline void cgraph_remove_function_insertion_hook(struct cgraph_node_hook_list *entry)$/;"	f
+cgraph_remove_node_duplication_hook	kpatch-build/gcc-plugins/gcc-common.h	/^static inline void cgraph_remove_node_duplication_hook(struct cgraph_2node_hook_list *entry)$/;"	f
+cgraph_remove_node_removal_hook	kpatch-build/gcc-plugins/gcc-common.h	/^static inline void cgraph_remove_node_removal_hook(struct cgraph_node_hook_list *entry)$/;"	f
+change_decl_assembler_name	kpatch-build/gcc-plugins/gcc-common.h	/^static inline void change_decl_assembler_name(tree decl, tree name)$/;"	f
+check_pipe_status	kpatch-build/kpatch-build	/^check_pipe_status() {$/;"	f
+childobj	kpatch-build/create-diff-object.c	/^char *childobj;$/;"	v
+childobj	kpatch-build/create-klp-module.c	/^char *childobj;$/;"	v
+childobj	kpatch-build/create-kpatch-module.c	/^char *childobj;$/;"	v
+children	kpatch-build/kpatch-elf.h	/^	struct list_head children;$/;"	m	struct:symbol	typeref:struct:symbol::list_head
+clean_cache	kpatch-build/kpatch-build	/^clean_cache() {$/;"	f
+cleanup	kpatch-build/kpatch-build	/^cleanup() {$/;"	f
+const_gimple	kpatch-build/gcc-plugins/gcc-common.h	830;"	d
+const_gimple_ptr	kpatch-build/gcc-plugins/gcc-common.h	/^typedef const gimple *const_gimple_ptr;$/;"	t
+container_of	kpatch-build/list.h	42;"	d
+core_loaded	kpatch/kpatch	/^core_loaded () {$/;"	f
+count	kmod/core/core.c	/^	unsigned long count;$/;"	m	struct:kpatch_kallsyms_args	file:
+create_dynamic_rela_sections	kpatch-build/create-kpatch-module.c	/^static void create_dynamic_rela_sections(struct kpatch_elf *kelf, struct section *krelasec,$/;"	f	file:
+create_klp_arch_sections	kpatch-build/create-klp-module.c	/^static void create_klp_arch_sections(struct kpatch_elf *kelf, char *strings)$/;"	f	file:
+create_klp_relasecs_and_syms	kpatch-build/create-klp-module.c	/^static void create_klp_relasecs_and_syms(struct kpatch_elf *kelf, struct section *krelasec,$/;"	f	file:
+create_section_pair	kpatch-build/kpatch-elf.c	/^struct section *create_section_pair(struct kpatch_elf *kelf, char *name,$/;"	f
+create_var_ann	kpatch-build/gcc-plugins/gcc-common.h	557;"	d
+data	kmod/core/shadow.c	/^	void *data;$/;"	m	struct:kpatch_shadow	file:
+data	kpatch-build/kpatch-elf.h	/^	Elf_Data *data;$/;"	m	struct:section
+debug	kpatch-build/create-diff-object.c	/^	bool debug, klp_arch;$/;"	m	struct:arguments	file:
+debug	kpatch-build/create-klp-module.c	/^	int debug;$/;"	m	struct:arguments	file:
+debug	kpatch-build/create-kpatch-module.c	/^	int debug;$/;"	m	struct:arguments	file:
+debug_cgraph_node	kpatch-build/gcc-plugins/gcc-common.h	718;"	d
+debug_gimple_stmt	kpatch-build/gcc-plugins/gcc-common.h	/^static inline void debug_gimple_stmt(const_gimple s)$/;"	f
+debug_gimple_stmt	kpatch-build/gcc-plugins/gcc-common.h	956;"	d
+debug_tree	kpatch-build/gcc-plugins/gcc-common.h	/^static inline void debug_tree(const_tree t)$/;"	f
+debug_tree	kpatch-build/gcc-plugins/gcc-common.h	955;"	d
+dest	kmod/core/kpatch.h	/^	unsigned long dest;$/;"	m	struct:kpatch_dynrela
+dest	kmod/patch/kpatch-patch.h	/^	unsigned long dest;$/;"	m	struct:kpatch_patch_dynrela
+dest	kmod/patch/kpatch.h	/^	unsigned long dest;$/;"	m	struct:kpatch_dynrela
+dest	kpatch-build/kpatch-intermediate.h	/^	unsigned long dest;$/;"	m	struct:kpatch_relocation
+die	kpatch-build/kpatch-build	/^die() {$/;"	f
+die	kpatch/kpatch	/^die() {$/;"	f
+die	test/integration/fedora-27/remote-setup	/^die() {$/;"	f
+disable_patch	kpatch/kpatch	/^disable_patch () {$/;"	f
+disable_patch_strict	kpatch/kpatch	/^disable_patch_strict () {$/;"	f
+displacement	kpatch-build/insn/asm/insn.h	/^	struct insn_field displacement;$/;"	m	struct:insn	typeref:struct:insn::insn_field
+do_for_each_linked_func	kmod/core/core.c	103;"	d	file:
+dump_varpool_node	kpatch-build/gcc-plugins/gcc-common.h	725;"	d
+dynrelas	kmod/core/kpatch.h	/^	struct list_head dynrelas;$/;"	m	struct:kpatch_object	typeref:struct:kpatch_object::list_head
+dynrelas	kmod/patch/kpatch.h	/^	struct list_head dynrelas;$/;"	m	struct:kpatch_object	typeref:struct:kpatch_object::list_head
+elf	kpatch-build/kpatch-elf.h	/^	Elf *elf;$/;"	m	struct:kpatch_elf
+enabled	kmod/core/kpatch.h	/^	bool enabled;$/;"	m	struct:kpatch_module
+enabled	kmod/patch/kpatch.h	/^	bool enabled;$/;"	m	struct:kpatch_module
+error	test/integration/kpatch-test	/^error() {$/;"	f
+ex_table_group_size	kpatch-build/create-diff-object.c	/^static int ex_table_group_size(struct kpatch_elf *kelf, int offset)$/;"	f	file:
+exit_status	kpatch-build/kpatch.h	/^enum exit_status {$/;"	g
+exp_nr	kpatch-build/lookup.c	/^	int obj_nr, exp_nr;$/;"	m	struct:lookup_table	file:
+exp_syms	kpatch-build/lookup.c	/^	struct export_symbol *exp_syms;$/;"	m	struct:lookup_table	typeref:struct:lookup_table::export_symbol	file:
+export_symbol	kpatch-build/lookup.c	/^struct export_symbol {$/;"	s	file:
+exported	kpatch-build/lookup.h	/^	bool global, exported;$/;"	m	struct:lookup_result
+external	kmod/core/kpatch.h	/^	int external;$/;"	m	struct:kpatch_dynrela
+external	kmod/patch/kpatch-patch.h	/^	int external;$/;"	m	struct:kpatch_patch_dynrela
+external	kmod/patch/kpatch.h	/^	int external;$/;"	m	struct:kpatch_dynrela
+external	kpatch-build/kpatch-intermediate.h	/^	int external;$/;"	m	struct:kpatch_relocation
+extra-y	kmod/patch/Makefile	/^extra-y := kpatch.lds$/;"	m
+fatal_error	kpatch-build/gcc-plugins/gcc-common.h	567;"	d
+fd	kpatch-build/kpatch-elf.h	/^	int fd;$/;"	m	struct:kpatch_elf
+filter_parent_obj	kpatch-build/kpatch-build	/^filter_parent_obj()$/;"	f
+find_core_module	kpatch/kpatch	/^find_core_module() {$/;"	f
+find_core_symvers	kpatch-build/kpatch-build	/^find_core_symvers() {$/;"	f
+find_dirs	kpatch-build/kpatch-build	/^find_dirs() {$/;"	f
+find_kobj	kpatch-build/kpatch-build	/^find_kobj() {$/;"	f
+find_local_syms	kpatch-build/lookup.c	/^static void find_local_syms(struct lookup_table *table, char *hint,$/;"	f	file:
+find_module	kpatch/kpatch	/^find_module () {$/;"	f
+find_or_add_klp_relasec	kpatch-build/create-klp-module.c	/^static struct section *find_or_add_klp_relasec(struct kpatch_elf *kelf,$/;"	f	file:
+find_or_add_ksym_to_symbols	kpatch-build/create-klp-module.c	/^static struct symbol *find_or_add_ksym_to_symbols(struct kpatch_elf *kelf,$/;"	f	file:
+find_parent_obj	kpatch-build/kpatch-build	/^find_parent_obj() {$/;"	f
+find_rela_by_offset	kpatch-build/kpatch-elf.c	/^struct rela *find_rela_by_offset(struct section *relasec, unsigned int offset)$/;"	f
+find_section_by_index	kpatch-build/kpatch-elf.c	/^struct section *find_section_by_index(struct list_head *list, unsigned int index)$/;"	f
+find_section_by_name	kpatch-build/kpatch-elf.c	/^struct section *find_section_by_name(struct list_head *list, const char *name)$/;"	f
+find_special_section_data	kpatch-build/kpatch-build	/^find_special_section_data() {$/;"	f
+find_special_section_data_mips64	kpatch-build/kpatch-build	/^find_special_section_data_mips64() {$/;"	f
+find_special_section_data_ppc64le	kpatch-build/kpatch-build	/^find_special_section_data_ppc64le() {$/;"	f
+find_symbol_by_index	kpatch-build/kpatch-elf.c	/^struct symbol *find_symbol_by_index(struct list_head *list, size_t index)$/;"	f
+find_symbol_by_name	kpatch-build/kpatch-elf.c	/^struct symbol *find_symbol_by_name(struct list_head *list, const char *name)$/;"	f
+fixup_barrier_nospec_group_size	kpatch-build/create-diff-object.c	/^static int fixup_barrier_nospec_group_size(struct kpatch_elf *kelf, int offset)$/;"	f	file:
+fixup_entry_group_size	kpatch-build/create-diff-object.c	/^static int fixup_entry_group_size(struct kpatch_elf *kelf, int offset)$/;"	f	file:
+fixup_group_size	kpatch-build/create-diff-object.c	/^static int fixup_group_size(struct kpatch_elf *kelf, int offset)$/;"	f	file:
+fixup_lwsync_group_size	kpatch-build/create-diff-object.c	/^static int fixup_lwsync_group_size(struct kpatch_elf *kelf, int offset)$/;"	f	file:
+flag_fat_lto_objects	kpatch-build/gcc-plugins/gcc-common.h	261;"	d
+flags	kmod/core/shadow.c	/^		unsigned long flags;$/;"	m	union:kpatch_shadow::__anon10	file:
+fn	kmod/patch/kpatch-macros.h	/^	kpatch_post_patch_call_t fn;$/;"	m	struct:kpatch_post_patch_callback
+fn	kmod/patch/kpatch-macros.h	/^	kpatch_post_unpatch_call_t fn;$/;"	m	struct:kpatch_post_unpatch_callback
+fn	kmod/patch/kpatch-macros.h	/^	kpatch_pre_patch_call_t fn;$/;"	m	struct:kpatch_pre_patch_callback
+fn	kmod/patch/kpatch-macros.h	/^	kpatch_pre_unpatch_call_t fn;$/;"	m	struct:kpatch_pre_unpatch_callback
+for_each_exp_symbol	kpatch-build/lookup.c	69;"	d	file:
+for_each_obj_symbol	kpatch-build/lookup.c	63;"	d	file:
+for_each_obj_symbol_continue	kpatch-build/lookup.c	66;"	d	file:
+force	kmod/core/kpatch.h	/^	int force;$/;"	m	struct:kpatch_func
+force	kmod/patch/kpatch.h	/^	int force;$/;"	m	struct:kpatch_func
+funcs	kmod/core/kpatch.h	/^	struct list_head funcs;$/;"	m	struct:kpatch_object	typeref:struct:kpatch_object::list_head
+funcs	kmod/patch/kpatch.h	/^	struct list_head funcs;$/;"	m	struct:kpatch_object	typeref:struct:kpatch_object::list_head
+funcs	kmod/patch/livepatch-patch-hook.c	/^	struct list_head funcs;$/;"	m	struct:patch_object	typeref:struct:patch_object::list_head	file:
+funcs_nr	kmod/patch/livepatch-patch-hook.c	/^	int funcs_nr, relocs_nr;$/;"	m	struct:patch_object	file:
+function_ptr_rela	kpatch-build/create-diff-object.c	/^static int function_ptr_rela(const struct rela *rela)$/;"	f	file:
+gasm	kpatch-build/gcc-plugins/gcc-common.h	/^typedef struct gimple_statement_asm gasm;$/;"	t	typeref:struct:gimple_statement_asm
+gasm	kpatch-build/gcc-plugins/gcc-common.h	/^typedef union gimple_statement_d gasm;$/;"	t	typeref:union:gimple_statement_d
+gassign	kpatch-build/gcc-plugins/gcc-common.h	/^typedef struct gimple_statement_base gassign;$/;"	t	typeref:struct:gimple_statement_base
+gassign	kpatch-build/gcc-plugins/gcc-common.h	/^typedef union gimple_statement_d gassign;$/;"	t	typeref:union:gimple_statement_d
+gcall	kpatch-build/gcc-plugins/gcc-common.h	/^typedef struct gimple_statement_call gcall;$/;"	t	typeref:struct:gimple_statement_call
+gcall	kpatch-build/gcc-plugins/gcc-common.h	/^typedef union gimple_statement_d gcall;$/;"	t	typeref:union:gimple_statement_d
+gcc_version_check	kpatch-build/kpatch-build	/^gcc_version_check() {$/;"	f
+gcc_version_from_file	kpatch-build/kpatch-build	/^gcc_version_from_file() {$/;"	f
+gcond	kpatch-build/gcc-plugins/gcc-common.h	/^typedef struct gimple_statement_base gcond;$/;"	t	typeref:struct:gimple_statement_base
+gcond	kpatch-build/gcc-plugins/gcc-common.h	/^typedef union gimple_statement_d gcond;$/;"	t	typeref:union:gimple_statement_d
+gdebug	kpatch-build/gcc-plugins/gcc-common.h	/^typedef struct gimple_statement_base gdebug;$/;"	t	typeref:struct:gimple_statement_base
+gdebug	kpatch-build/gcc-plugins/gcc-common.h	/^typedef union gimple_statement_d gdebug;$/;"	t	typeref:union:gimple_statement_d
+gen_rtx_set	kpatch-build/gcc-plugins/gcc-common.h	937;"	d
+gen_rtx_set	kpatch-build/gcc-plugins/gcc-common.h	941;"	d
+get_decl_section_name	kpatch-build/gcc-plugins/gcc-common.h	/^static inline const char *get_decl_section_name(const_tree decl)$/;"	f
+get_inner_reference	kpatch-build/gcc-plugins/gcc-common.h	935;"	d
+get_inner_reference	kpatch-build/gcc-plugins/gcc-common.h	960;"	d
+get_module_name	kpatch/kpatch	/^get_module_name () {$/;"	f
+get_module_version	kpatch/kpatch	/^get_module_version() {$/;"	f
+get_next	kpatch-build/insn/insn.c	41;"	d	file:
+get_pass_for_id	kpatch-build/gcc-plugins/gcc-common.h	/^static inline opt_pass *get_pass_for_id(int id)$/;"	f
+get_random_seed	kpatch-build/gcc-plugins/gcc-common.h	263;"	d
+get_transition_patch	kpatch/kpatch	/^get_transition_patch() {$/;"	f
+get_tree_code_name	kpatch-build/gcc-plugins/gcc-common.h	/^static inline const char *get_tree_code_name(enum tree_code code)$/;"	f
+ggoto	kpatch-build/gcc-plugins/gcc-common.h	/^typedef struct gimple_statement_base ggoto;$/;"	t	typeref:struct:gimple_statement_base
+ggoto	kpatch-build/gcc-plugins/gcc-common.h	/^typedef union gimple_statement_d ggoto;$/;"	t	typeref:union:gimple_statement_d
+gimple	kpatch-build/gcc-plugins/gcc-common.h	829;"	d
+gimple_asm_clobbers_memory_p	kpatch-build/gcc-plugins/gcc-common.h	/^static inline bool gimple_asm_clobbers_memory_p(const_gimple stmt)$/;"	f
+gimple_build_assign_with_ops	kpatch-build/gcc-plugins/gcc-common.h	/^static inline gimple gimple_build_assign_with_ops(enum tree_code subcode, tree lhs, tree op1, tree op2 MEM_STAT_DECL)$/;"	f
+gimple_call_builtin_p	kpatch-build/gcc-plugins/gcc-common.h	/^static inline bool gimple_call_builtin_p(gimple stmt, enum built_in_function code)$/;"	f
+gimple_clobber_p	kpatch-build/gcc-plugins/gcc-common.h	/^static inline bool gimple_clobber_p(gimple s __unused)$/;"	f
+gimple_init_singleton	kpatch-build/gcc-plugins/gcc-common.h	/^static inline void gimple_init_singleton(gimple g __unused)$/;"	f
+gimple_ptr	kpatch-build/gcc-plugins/gcc-common.h	/^typedef gimple *gimple_ptr;$/;"	t
+gimple_store_p	kpatch-build/gcc-plugins/gcc-common.h	/^static inline bool gimple_store_p(gimple gs)$/;"	f
+global	kpatch-build/lookup.h	/^	bool global, exported;$/;"	m	struct:lookup_result
+got	kpatch-build/insn/asm/insn.h	/^	unsigned char got;$/;"	m	struct:insn_field
+gphi	kpatch-build/gcc-plugins/gcc-common.h	/^typedef struct gimple_statement_phi gphi;$/;"	t	typeref:struct:gimple_statement_phi
+gphi	kpatch-build/gcc-plugins/gcc-common.h	/^typedef union gimple_statement_d gphi;$/;"	t	typeref:union:gimple_statement_d
+greturn	kpatch-build/gcc-plugins/gcc-common.h	/^typedef struct gimple_statement_base greturn;$/;"	t	typeref:struct:gimple_statement_base
+greturn	kpatch-build/gcc-plugins/gcc-common.h	/^typedef union gimple_statement_d greturn;$/;"	t	typeref:union:gimple_statement_d
+group_size	kpatch-build/create-diff-object.c	/^	int (*group_size)(struct kpatch_elf *kelf, int offset);$/;"	m	struct:special_section	file:
+grouped	kpatch-build/kpatch-elf.h	/^	int grouped;$/;"	m	struct:section
+has_func_profiling	kpatch-build/kpatch-elf.h	/^	int has_func_profiling;$/;"	m	struct:symbol
+ignore	kpatch-build/kpatch-elf.h	/^	int ignore;$/;"	m	struct:section
+immediate	kpatch-build/insn/asm/insn.h	/^		struct insn_field immediate;$/;"	m	union:insn::__anon6	typeref:struct:insn::__anon6::insn_field
+immediate1	kpatch-build/insn/asm/insn.h	/^		struct insn_field immediate1;	\/* for 64bit imm or off16\/32 *\/$/;"	m	union:insn::__anon6	typeref:struct:insn::__anon6::insn_field
+immediate2	kpatch-build/insn/asm/insn.h	/^		struct insn_field immediate2;	\/* for 64bit imm or seg16 *\/$/;"	m	union:insn::__anon7	typeref:struct:insn::__anon7::insn_field
+in_transition	kpatch/kpatch	/^in_transition() {$/;"	f
+inat_accept_vex	kpatch-build/insn/asm/inat.h	/^static inline int inat_accept_vex(insn_attr_t attr)$/;"	f
+inat_avx_tables	kpatch-build/insn/inat-tables.c	/^const insn_attr_t * const inat_avx_tables[X86_VEX_M_MAX + 1][INAT_LSTPFX_MAX + 1] = {$/;"	v
+inat_escape_id	kpatch-build/insn/asm/inat.h	/^static inline int inat_escape_id(insn_attr_t attr)$/;"	f
+inat_escape_table_1	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_escape_table_1[INAT_OPCODE_TABLE_SIZE] = {$/;"	v
+inat_escape_table_1_1	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_escape_table_1_1[INAT_OPCODE_TABLE_SIZE] = {$/;"	v
+inat_escape_table_1_2	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_escape_table_1_2[INAT_OPCODE_TABLE_SIZE] = {$/;"	v
+inat_escape_table_1_3	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_escape_table_1_3[INAT_OPCODE_TABLE_SIZE] = {$/;"	v
+inat_escape_table_2	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_escape_table_2[INAT_OPCODE_TABLE_SIZE] = {$/;"	v
+inat_escape_table_2_1	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_escape_table_2_1[INAT_OPCODE_TABLE_SIZE] = {$/;"	v
+inat_escape_table_2_2	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_escape_table_2_2[INAT_OPCODE_TABLE_SIZE] = {$/;"	v
+inat_escape_table_2_3	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_escape_table_2_3[INAT_OPCODE_TABLE_SIZE] = {$/;"	v
+inat_escape_table_3	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_escape_table_3[INAT_OPCODE_TABLE_SIZE] = {$/;"	v
+inat_escape_table_3_1	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_escape_table_3_1[INAT_OPCODE_TABLE_SIZE] = {$/;"	v
+inat_escape_table_3_3	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_escape_table_3_3[INAT_OPCODE_TABLE_SIZE] = {$/;"	v
+inat_escape_tables	kpatch-build/insn/inat-tables.c	/^const insn_attr_t * const inat_escape_tables[INAT_ESC_MAX + 1][INAT_LSTPFX_MAX + 1] = {$/;"	v
+inat_get_avx_attribute	kpatch-build/insn/inat.c	/^insn_attr_t inat_get_avx_attribute(insn_byte_t opcode, insn_byte_t vex_m,$/;"	f
+inat_get_escape_attribute	kpatch-build/insn/inat.c	/^insn_attr_t inat_get_escape_attribute(insn_byte_t opcode, int lpfx_id,$/;"	f
+inat_get_group_attribute	kpatch-build/insn/inat.c	/^insn_attr_t inat_get_group_attribute(insn_byte_t modrm, int lpfx_id,$/;"	f
+inat_get_last_prefix_id	kpatch-build/insn/inat.c	/^int inat_get_last_prefix_id(insn_byte_t last_pfx)$/;"	f
+inat_get_opcode_attribute	kpatch-build/insn/inat.c	/^insn_attr_t inat_get_opcode_attribute(insn_byte_t opcode)$/;"	f
+inat_group_common_attribute	kpatch-build/insn/asm/inat.h	/^static inline int inat_group_common_attribute(insn_attr_t attr)$/;"	f
+inat_group_id	kpatch-build/insn/asm/inat.h	/^static inline int inat_group_id(insn_attr_t attr)$/;"	f
+inat_group_table_10	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_group_table_10[INAT_GROUP_TABLE_SIZE] = {$/;"	v
+inat_group_table_11	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_group_table_11[INAT_GROUP_TABLE_SIZE] = {$/;"	v
+inat_group_table_13	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_group_table_13[INAT_GROUP_TABLE_SIZE] = {$/;"	v
+inat_group_table_14	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_group_table_14[INAT_GROUP_TABLE_SIZE] = {$/;"	v
+inat_group_table_14_1	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_group_table_14_1[INAT_GROUP_TABLE_SIZE] = {$/;"	v
+inat_group_table_15	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_group_table_15[INAT_GROUP_TABLE_SIZE] = {$/;"	v
+inat_group_table_15_1	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_group_table_15_1[INAT_GROUP_TABLE_SIZE] = {$/;"	v
+inat_group_table_16	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_group_table_16[INAT_GROUP_TABLE_SIZE] = {$/;"	v
+inat_group_table_16_1	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_group_table_16_1[INAT_GROUP_TABLE_SIZE] = {$/;"	v
+inat_group_table_19	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_group_table_19[INAT_GROUP_TABLE_SIZE] = {$/;"	v
+inat_group_table_19_2	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_group_table_19_2[INAT_GROUP_TABLE_SIZE] = {$/;"	v
+inat_group_table_22	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_group_table_22[INAT_GROUP_TABLE_SIZE] = {$/;"	v
+inat_group_table_22_1	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_group_table_22_1[INAT_GROUP_TABLE_SIZE] = {$/;"	v
+inat_group_table_22_2	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_group_table_22_2[INAT_GROUP_TABLE_SIZE] = {$/;"	v
+inat_group_table_23	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_group_table_23[INAT_GROUP_TABLE_SIZE] = {$/;"	v
+inat_group_table_4	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_group_table_4[INAT_GROUP_TABLE_SIZE] = {$/;"	v
+inat_group_table_5	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_group_table_5[INAT_GROUP_TABLE_SIZE] = {$/;"	v
+inat_group_table_6	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_group_table_6[INAT_GROUP_TABLE_SIZE] = {$/;"	v
+inat_group_table_7	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_group_table_7[INAT_GROUP_TABLE_SIZE] = {$/;"	v
+inat_group_table_8	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_group_table_8[INAT_GROUP_TABLE_SIZE] = {$/;"	v
+inat_group_table_9	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_group_table_9[INAT_GROUP_TABLE_SIZE] = {$/;"	v
+inat_group_tables	kpatch-build/insn/inat-tables.c	/^const insn_attr_t * const inat_group_tables[INAT_GRP_MAX + 1][INAT_LSTPFX_MAX + 1] = {$/;"	v
+inat_has_immediate	kpatch-build/insn/asm/inat.h	/^static inline int inat_has_immediate(insn_attr_t attr)$/;"	f
+inat_has_modrm	kpatch-build/insn/asm/inat.h	/^static inline int inat_has_modrm(insn_attr_t attr)$/;"	f
+inat_has_moffset	kpatch-build/insn/asm/inat.h	/^static inline int inat_has_moffset(insn_attr_t attr)$/;"	f
+inat_has_second_immediate	kpatch-build/insn/asm/inat.h	/^static inline int inat_has_second_immediate(insn_attr_t attr)$/;"	f
+inat_has_variant	kpatch-build/insn/asm/inat.h	/^static inline int inat_has_variant(insn_attr_t attr)$/;"	f
+inat_immediate_size	kpatch-build/insn/asm/inat.h	/^static inline int inat_immediate_size(insn_attr_t attr)$/;"	f
+inat_is_address_size_prefix	kpatch-build/insn/asm/inat.h	/^static inline int inat_is_address_size_prefix(insn_attr_t attr)$/;"	f
+inat_is_escape	kpatch-build/insn/asm/inat.h	/^static inline int inat_is_escape(insn_attr_t attr)$/;"	f
+inat_is_force64	kpatch-build/insn/asm/inat.h	/^static inline int inat_is_force64(insn_attr_t attr)$/;"	f
+inat_is_group	kpatch-build/insn/asm/inat.h	/^static inline int inat_is_group(insn_attr_t attr)$/;"	f
+inat_is_legacy_prefix	kpatch-build/insn/asm/inat.h	/^static inline int inat_is_legacy_prefix(insn_attr_t attr)$/;"	f
+inat_is_operand_size_prefix	kpatch-build/insn/asm/inat.h	/^static inline int inat_is_operand_size_prefix(insn_attr_t attr)$/;"	f
+inat_is_rex_prefix	kpatch-build/insn/asm/inat.h	/^static inline int inat_is_rex_prefix(insn_attr_t attr)$/;"	f
+inat_is_vex3_prefix	kpatch-build/insn/asm/inat.h	/^static inline int inat_is_vex3_prefix(insn_attr_t attr)$/;"	f
+inat_is_vex_prefix	kpatch-build/insn/asm/inat.h	/^static inline int inat_is_vex_prefix(insn_attr_t attr)$/;"	f
+inat_last_prefix_id	kpatch-build/insn/asm/inat.h	/^static inline int inat_last_prefix_id(insn_attr_t attr)$/;"	f
+inat_must_vex	kpatch-build/insn/asm/inat.h	/^static inline int inat_must_vex(insn_attr_t attr)$/;"	f
+inat_primary_table	kpatch-build/insn/inat-tables.c	/^const insn_attr_t inat_primary_table[INAT_OPCODE_TABLE_SIZE] = {$/;"	v
+include	kpatch-build/kpatch-elf.h	/^		int include; \/* used in the patched elf *\/$/;"	m	union:symbol::__anon4
+include	kpatch-build/kpatch-elf.h	/^	int include;$/;"	m	struct:section
+index	kpatch-build/kpatch-elf.h	/^	unsigned int index;$/;"	m	struct:section
+index	kpatch-build/kpatch-elf.h	/^	unsigned int index;$/;"	m	struct:symbol
+init_sysfs_var	kpatch/kpatch	/^init_sysfs_var() {$/;"	f
+insn	kpatch-build/insn/asm/insn.h	/^struct insn {$/;"	s
+insn_attr_t	kpatch-build/insn/asm/inat_types.h	/^typedef unsigned int insn_attr_t;$/;"	t
+insn_byte_t	kpatch-build/insn/asm/inat_types.h	/^typedef unsigned char insn_byte_t;$/;"	t
+insn_complete	kpatch-build/insn/asm/insn.h	/^static inline int insn_complete(struct insn *insn)$/;"	f
+insn_field	kpatch-build/insn/asm/insn.h	/^struct insn_field {$/;"	s
+insn_get_attribute	kpatch-build/insn/asm/insn.h	/^static inline void insn_get_attribute(struct insn *insn)$/;"	f
+insn_get_displacement	kpatch-build/insn/insn.c	/^void insn_get_displacement(struct insn *insn)$/;"	f
+insn_get_immediate	kpatch-build/insn/insn.c	/^void insn_get_immediate(struct insn *insn)$/;"	f
+insn_get_length	kpatch-build/insn/insn.c	/^void insn_get_length(struct insn *insn)$/;"	f
+insn_get_modrm	kpatch-build/insn/insn.c	/^void insn_get_modrm(struct insn *insn)$/;"	f
+insn_get_opcode	kpatch-build/insn/insn.c	/^void insn_get_opcode(struct insn *insn)$/;"	f
+insn_get_prefixes	kpatch-build/insn/insn.c	/^void insn_get_prefixes(struct insn *insn)$/;"	f
+insn_get_sib	kpatch-build/insn/insn.c	/^void insn_get_sib(struct insn *insn)$/;"	f
+insn_init	kpatch-build/insn/insn.c	/^void insn_init(struct insn *insn, const void *kaddr, int x86_64)$/;"	f
+insn_is_avx	kpatch-build/insn/asm/insn.h	/^static inline int insn_is_avx(struct insn *insn)$/;"	f
+insn_last_prefix_id	kpatch-build/insn/asm/insn.h	/^static inline int insn_last_prefix_id(struct insn *insn)$/;"	f
+insn_offset_displacement	kpatch-build/insn/asm/insn.h	/^static inline int insn_offset_displacement(struct insn *insn)$/;"	f
+insn_offset_immediate	kpatch-build/insn/asm/insn.h	/^static inline int insn_offset_immediate(struct insn *insn)$/;"	f
+insn_offset_modrm	kpatch-build/insn/asm/insn.h	/^static inline int insn_offset_modrm(struct insn *insn)$/;"	f
+insn_offset_opcode	kpatch-build/insn/asm/insn.h	/^static inline int insn_offset_opcode(struct insn *insn)$/;"	f
+insn_offset_rex_prefix	kpatch-build/insn/asm/insn.h	/^static inline int insn_offset_rex_prefix(struct insn *insn)$/;"	f
+insn_offset_sib	kpatch-build/insn/asm/insn.h	/^static inline int insn_offset_sib(struct insn *insn)$/;"	f
+insn_offset_vex_prefix	kpatch-build/insn/asm/insn.h	/^static inline int insn_offset_vex_prefix(struct insn *insn)$/;"	f
+insn_rip_relative	kpatch-build/insn/insn.c	/^int insn_rip_relative(struct insn *insn)$/;"	f
+insn_value_t	kpatch-build/insn/asm/inat_types.h	/^typedef signed int insn_value_t;$/;"	t
+insn_vex_m_bits	kpatch-build/insn/asm/insn.h	/^static inline insn_byte_t insn_vex_m_bits(struct insn *insn)$/;"	f
+insn_vex_p_bits	kpatch-build/insn/asm/insn.h	/^static inline insn_byte_t insn_vex_p_bits(struct insn *insn)$/;"	f
+install_rpms	test/integration/fedora-27/remote-setup	/^install_rpms() {$/;"	f
+int_const_binop	kpatch-build/gcc-plugins/gcc-common.h	268;"	d
+ipa_ref_list_reference_iterate	kpatch-build/gcc-plugins/gcc-common.h	920;"	d
+ipa_ref_list_referring_iterate	kpatch-build/gcc-plugins/gcc-common.h	918;"	d
+ipa_ref_referring_node	kpatch-build/gcc-plugins/gcc-common.h	/^static inline cgraph_node_ptr ipa_ref_referring_node(struct ipa_ref *ref)$/;"	f
+ipa_remove_stmt_references	kpatch-build/gcc-plugins/gcc-common.h	/^static inline void ipa_remove_stmt_references(symtab_node *referring_node, gimple stmt)$/;"	f
+ipa_remove_stmt_references	kpatch-build/gcc-plugins/gcc-common.h	456;"	d
+ipa_reverse_postorder	kpatch-build/gcc-plugins/gcc-common.h	/^static inline int ipa_reverse_postorder(struct cgraph_node **order)$/;"	f
+is_bundleable	kpatch-build/create-diff-object.c	/^static int is_bundleable(struct symbol *sym)$/;"	f	file:
+is_callback_section	kpatch-build/create-diff-object.c	/^static bool is_callback_section(struct section *sec) {$/;"	f	file:
+is_debug_section	kpatch-build/kpatch-elf.c	/^int is_debug_section(struct section *sec)$/;"	f
+is_dynamic_debug_symbol	kpatch-build/create-diff-object.c	/^static bool is_dynamic_debug_symbol(struct symbol *sym)$/;"	f	file:
+is_exported	kpatch-build/lookup.c	/^bool is_exported(struct lookup_table *table, char *name)$/;"	f
+is_file_sym	kpatch-build/kpatch-elf.c	/^int is_file_sym(struct symbol *sym)$/;"	f
+is_gcc6_localentry_bundled_sym	kpatch-build/create-diff-object.c	/^static int is_gcc6_localentry_bundled_sym(struct symbol *sym)$/;"	f	file:
+is_local_func_sym	kpatch-build/kpatch-elf.c	/^int is_local_func_sym(struct symbol *sym)$/;"	f
+is_local_sym	kpatch-build/kpatch-elf.c	/^int is_local_sym(struct symbol *sym)$/;"	f
+is_null_sym	kpatch-build/kpatch-elf.c	/^int is_null_sym(struct symbol *sym)$/;"	f
+is_rela_section	kpatch-build/kpatch-elf.c	/^int is_rela_section(struct section *sec)$/;"	f
+is_simple_builtin	kpatch-build/gcc-plugins/gcc-common.h	/^static inline bool is_simple_builtin(tree decl)$/;"	f
+is_special_static	kpatch-build/create-diff-object.c	/^static int is_special_static(struct symbol *sym)$/;"	f	file:
+is_stalled	kpatch/kpatch	/^is_stalled() {$/;"	f
+is_text_section	kpatch-build/kpatch-elf.c	/^int is_text_section(struct section *sec)$/;"	f
+jump_table_group_size	kpatch-build/create-diff-object.c	/^static int jump_table_group_size(struct kpatch_elf *kelf, int offset)$/;"	f	file:
+kaddr	kpatch-build/insn/asm/insn.h	/^	const insn_byte_t *kaddr;	\/* kernel address of insn to analyze *\/$/;"	m	struct:insn
+kdynrela	kmod/patch/livepatch-patch-hook.c	/^	struct kpatch_patch_dynrela *kdynrela;$/;"	m	struct:patch_reloc	typeref:struct:patch_reloc::kpatch_patch_dynrela	file:
+kernel_insn_init	kpatch-build/insn/asm/insn.h	/^static inline void kernel_insn_init(struct insn *insn, const void *kaddr)$/;"	f
+kernel_is_rhel	kpatch-build/kpatch-build	/^kernel_is_rhel() {$/;"	f
+kernel_version_gte	kpatch-build/kpatch-build	/^kernel_version_gte() {$/;"	f
+kfunc	kmod/patch/livepatch-patch-hook.c	/^	struct kpatch_patch_func *kfunc;$/;"	m	struct:patch_func	typeref:struct:patch_func::kpatch_patch_func	file:
+klp_arch	kpatch-build/create-diff-object.c	/^	bool debug, klp_arch;$/;"	m	struct:arguments	file:
+kobj	kmod/core/kpatch.h	/^	struct kobject kobj;$/;"	m	struct:kpatch_func	typeref:struct:kpatch_func::kobject
+kobj	kmod/core/kpatch.h	/^	struct kobject kobj;$/;"	m	struct:kpatch_module	typeref:struct:kpatch_module::kobject
+kobj	kmod/core/kpatch.h	/^	struct kobject kobj;$/;"	m	struct:kpatch_object	typeref:struct:kpatch_object::kobject
+kobj	kmod/patch/kpatch.h	/^	struct kobject kobj;$/;"	m	struct:kpatch_func	typeref:struct:kpatch_func::kobject
+kobj	kmod/patch/kpatch.h	/^	struct kobject kobj;$/;"	m	struct:kpatch_module	typeref:struct:kpatch_module::kobject
+kobj	kmod/patch/kpatch.h	/^	struct kobject kobj;$/;"	m	struct:kpatch_object	typeref:struct:kpatch_object::kobject
+kpatch-y	kmod/core/Makefile	/^kpatch-y := core.o shadow.o$/;"	m
+kpatch_apply_patch	kmod/core/core.c	/^static int kpatch_apply_patch(void *data)$/;"	f	file:
+kpatch_apply_patch_args	kmod/core/core.c	/^struct kpatch_apply_patch_args {$/;"	s	file:
+kpatch_arch	kpatch-build/kpatch-intermediate.h	/^struct kpatch_arch {$/;"	s
+kpatch_backtrace_address_verify	kmod/core/core.c	/^static int kpatch_backtrace_address_verify(struct kpatch_module *kpmod,$/;"	f	file:
+kpatch_build_strings_section_data	kpatch-build/create-diff-object.c	/^static void kpatch_build_strings_section_data(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_bundle_symbols	kpatch-build/create-diff-object.c	/^static void kpatch_bundle_symbols(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_centos_dependencies	test/integration/lib.sh	/^kpatch_centos_dependencies()$/;"	f
+kpatch_changed_child_needs_parent_profiling	kpatch-build/create-diff-object.c	/^static bool kpatch_changed_child_needs_parent_profiling(struct symbol *sym)$/;"	f	file:
+kpatch_check_func_profiling_calls	kpatch-build/create-diff-object.c	/^static void kpatch_check_func_profiling_calls(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_check_install_vagrant	test/integration/lib.sh	/^kpatch_check_install_vagrant()$/;"	f
+kpatch_check_program_headers	kpatch-build/create-diff-object.c	/^static void kpatch_check_program_headers(Elf *elf)$/;"	f	file:
+kpatch_check_relocations	kpatch-build/create-diff-object.c	/^static void kpatch_check_relocations(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_compare_addresses	kmod/core/core.c	/^static inline int kpatch_compare_addresses(unsigned long stack_addr,$/;"	f	file:
+kpatch_compare_correlated_elements	kpatch-build/create-diff-object.c	/^static void kpatch_compare_correlated_elements(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_compare_correlated_nonrela_section	kpatch-build/create-diff-object.c	/^static void kpatch_compare_correlated_nonrela_section(struct section *sec)$/;"	f	file:
+kpatch_compare_correlated_rela_section	kpatch-build/create-diff-object.c	/^static void kpatch_compare_correlated_rela_section(struct section *sec)$/;"	f	file:
+kpatch_compare_correlated_section	kpatch-build/create-diff-object.c	/^static void kpatch_compare_correlated_section(struct section *sec)$/;"	f	file:
+kpatch_compare_correlated_symbol	kpatch-build/create-diff-object.c	/^static void kpatch_compare_correlated_symbol(struct symbol *sym)$/;"	f	file:
+kpatch_compare_elf_headers	kpatch-build/create-diff-object.c	/^static void kpatch_compare_elf_headers(Elf *elf1, Elf *elf2)$/;"	f	file:
+kpatch_compare_sections	kpatch-build/create-diff-object.c	/^static void kpatch_compare_sections(struct list_head *seclist)$/;"	f	file:
+kpatch_compare_symbols	kpatch-build/create-diff-object.c	/^static void kpatch_compare_symbols(struct list_head *symlist)$/;"	f	file:
+kpatch_correlate_elfs	kpatch-build/create-diff-object.c	/^static void kpatch_correlate_elfs(struct kpatch_elf *kelf1, struct kpatch_elf *kelf2)$/;"	f	file:
+kpatch_correlate_section	kpatch-build/create-diff-object.c	/^static void kpatch_correlate_section(struct section *sec1, struct section *sec2)$/;"	f	file:
+kpatch_correlate_sections	kpatch-build/create-diff-object.c	/^static void kpatch_correlate_sections(struct list_head *seclist1, struct list_head *seclist2)$/;"	f	file:
+kpatch_correlate_static_local	kpatch-build/create-diff-object.c	/^static void kpatch_correlate_static_local(struct symbol *sym1, struct symbol *sym2)$/;"	f	file:
+kpatch_correlate_static_local_variables	kpatch-build/create-diff-object.c	/^static void kpatch_correlate_static_local_variables(struct kpatch_elf *base,$/;"	f	file:
+kpatch_correlate_symbol	kpatch-build/create-diff-object.c	/^static void kpatch_correlate_symbol(struct symbol *sym1, struct symbol *sym2)$/;"	f	file:
+kpatch_correlate_symbols	kpatch-build/create-diff-object.c	/^static void kpatch_correlate_symbols(struct list_head *symlist1, struct list_head *symlist2)$/;"	f	file:
+kpatch_create_callbacks_objname_rela	kpatch-build/create-diff-object.c	/^static void kpatch_create_callbacks_objname_rela(struct kpatch_elf *kelf, char *objname)$/;"	f	file:
+kpatch_create_intermediate_sections	kpatch-build/create-diff-object.c	/^static void kpatch_create_intermediate_sections(struct kpatch_elf *kelf,$/;"	f	file:
+kpatch_create_kpatch_arch_section	kpatch-build/create-diff-object.c	/^static void kpatch_create_kpatch_arch_section(struct kpatch_elf *kelf, char *objname)$/;"	f	file:
+kpatch_create_mcount_sections	kpatch-build/create-diff-object.c	/^static void kpatch_create_mcount_sections(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_create_patches_sections	kpatch-build/create-diff-object.c	/^static void kpatch_create_patches_sections(struct kpatch_elf *kelf,$/;"	f	file:
+kpatch_create_rela_list	kpatch-build/kpatch-elf.c	/^void kpatch_create_rela_list(struct kpatch_elf *kelf, struct section *sec)$/;"	f
+kpatch_create_section_list	kpatch-build/kpatch-elf.c	/^void kpatch_create_section_list(struct kpatch_elf *kelf)$/;"	f
+kpatch_create_shstrtab	kpatch-build/kpatch-elf.c	/^void kpatch_create_shstrtab(struct kpatch_elf *kelf)$/;"	f
+kpatch_create_strings_elements	kpatch-build/create-diff-object.c	/^static void kpatch_create_strings_elements(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_create_strtab	kpatch-build/kpatch-elf.c	/^void kpatch_create_strtab(struct kpatch_elf *kelf)$/;"	f
+kpatch_create_symbol_list	kpatch-build/kpatch-elf.c	/^void kpatch_create_symbol_list(struct kpatch_elf *kelf)$/;"	f
+kpatch_create_symtab	kpatch-build/kpatch-elf.c	/^void kpatch_create_symtab(struct kpatch_elf *kelf)$/;"	f
+kpatch_dependencies	test/integration/lib.sh	/^kpatch_dependencies()$/;"	f
+kpatch_detect_child_functions	kpatch-build/create-diff-object.c	/^static void kpatch_detect_child_functions(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_dump_kelf	kpatch-build/kpatch-elf.c	/^void kpatch_dump_kelf(struct kpatch_elf *kelf)$/;"	f
+kpatch_dynrela	kmod/core/kpatch.h	/^struct kpatch_dynrela {$/;"	s
+kpatch_dynrela	kmod/patch/kpatch.h	/^struct kpatch_dynrela {$/;"	s
+kpatch_elf	kpatch-build/kpatch-elf.h	/^struct kpatch_elf {$/;"	s
+kpatch_elf_free	kpatch-build/kpatch-elf.c	/^void kpatch_elf_free(struct kpatch_elf *kelf)$/;"	f
+kpatch_elf_locals	kpatch-build/create-diff-object.c	/^static struct sym_compare_type *kpatch_elf_locals(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_elf_open	kpatch-build/kpatch-elf.c	/^struct kpatch_elf *kpatch_elf_open(const char *name)$/;"	f
+kpatch_elf_teardown	kpatch-build/kpatch-elf.c	/^void kpatch_elf_teardown(struct kpatch_elf *kelf)$/;"	f
+kpatch_exit	kmod/core/core.c	/^module_exit(kpatch_exit);$/;"	v
+kpatch_exit	kmod/core/core.c	/^static void kpatch_exit(void)$/;"	f	file:
+kpatch_fedora_dependencies	test/integration/lib.sh	/^kpatch_fedora_dependencies()$/;"	f
+kpatch_find_external_symbol	kmod/core/core.c	/^static int kpatch_find_external_symbol(const char *objname, const char *name,$/;"	f	file:
+kpatch_find_func_profiling_calls	kpatch-build/kpatch-elf.c	/^static void kpatch_find_func_profiling_calls(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_find_object_symbol	kmod/core/core.c	/^static int kpatch_find_object_symbol(const char *objname, const char *name,$/;"	f	file:
+kpatch_find_static_twin	kpatch-build/create-diff-object.c	/^static struct symbol *kpatch_find_static_twin(struct section *sec,$/;"	f	file:
+kpatch_find_static_twin_in_children	kpatch-build/create-diff-object.c	/^static struct symbol *kpatch_find_static_twin_in_children(struct symbol *parent,$/;"	f	file:
+kpatch_find_static_twin_ref	kpatch-build/create-diff-object.c	/^static struct rela *kpatch_find_static_twin_ref(struct section *rela_sec, struct symbol *sym)$/;"	f	file:
+kpatch_find_uncorrelated_rela	kpatch-build/create-diff-object.c	/^static struct symbol *kpatch_find_uncorrelated_rela(struct section *rela_sec,$/;"	f	file:
+kpatch_ftrace_add_func	kmod/core/core.c	/^static int kpatch_ftrace_add_func(unsigned long ip)$/;"	f	file:
+kpatch_ftrace_handler	kmod/core/core.c	/^kpatch_ftrace_handler(unsigned long ip, unsigned long parent_ip,$/;"	f	file:
+kpatch_ftrace_remove_func	kmod/core/core.c	/^static int kpatch_ftrace_remove_func(unsigned long ip)$/;"	f	file:
+kpatch_ftrace_remove_unpatched_funcs	kmod/core/core.c	/^static int kpatch_ftrace_remove_unpatched_funcs(void)$/;"	f	file:
+kpatch_func	kmod/core/kpatch.h	/^struct kpatch_func {$/;"	s
+kpatch_func	kmod/patch/kpatch.h	/^struct kpatch_func {$/;"	s
+kpatch_get_correlated_parent	kpatch-build/create-diff-object.c	/^static struct symbol *kpatch_get_correlated_parent(struct symbol *sym)$/;"	f	file:
+kpatch_get_func	kmod/core/core.c	/^static struct kpatch_func *kpatch_get_func(unsigned long ip)$/;"	f	file:
+kpatch_get_prev_func	kmod/core/core.c	/^static struct kpatch_func *kpatch_get_prev_func(struct kpatch_func *f,$/;"	f	file:
+kpatch_include_callback_elements	kpatch-build/create-diff-object.c	/^static int kpatch_include_callback_elements(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_include_changed_functions	kpatch-build/create-diff-object.c	/^static int kpatch_include_changed_functions(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_include_debug_sections	kpatch-build/create-diff-object.c	/^static void kpatch_include_debug_sections(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_include_force_elements	kpatch-build/create-diff-object.c	/^static void kpatch_include_force_elements(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_include_new_globals	kpatch-build/create-diff-object.c	/^static int kpatch_include_new_globals(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_include_section	kpatch-build/create-diff-object.c	/^static void kpatch_include_section(struct section *sec)$/;"	f	file:
+kpatch_include_standard_elements	kpatch-build/create-diff-object.c	/^static void kpatch_include_standard_elements(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_include_symbol	kpatch-build/create-diff-object.c	/^static void kpatch_include_symbol(struct symbol *sym)$/;"	f	file:
+kpatch_init	kmod/core/core.c	/^module_init(kpatch_init);$/;"	v
+kpatch_init	kmod/core/core.c	/^static int kpatch_init(void)$/;"	f	file:
+kpatch_install_vagrant	test/integration/lib.sh	/^kpatch_install_vagrant()$/;"	f
+kpatch_install_vagrant_centos	test/integration/lib.sh	/^kpatch_install_vagrant_centos()$/;"	f
+kpatch_install_vagrant_fedora	test/integration/lib.sh	/^kpatch_install_vagrant_fedora()$/;"	f
+kpatch_install_vagrant_rhel	test/integration/lib.sh	/^kpatch_install_vagrant_rhel()$/;"	f
+kpatch_integration_tests_vagrant_distro	test/integration/lib.sh	/^kpatch_integration_tests_vagrant_distro()$/;"	f
+kpatch_is_core_module_symbol	kpatch-build/create-diff-object.c	/^static int kpatch_is_core_module_symbol(char *name)$/;"	f	file:
+kpatch_is_normal_static_local	kpatch-build/create-diff-object.c	/^static int kpatch_is_normal_static_local(struct symbol *sym)$/;"	f	file:
+kpatch_kallsyms_args	kmod/core/core.c	/^struct kpatch_kallsyms_args {$/;"	s	file:
+kpatch_kallsyms_callback	kmod/core/core.c	/^static int kpatch_kallsyms_callback(void *data, const char *name,$/;"	f	file:
+kpatch_line_macro_change_only	kpatch-build/create-diff-object.c	/^static int kpatch_line_macro_change_only(struct section *sec)$/;"	f	file:
+kpatch_link_object	kmod/core/core.c	/^static int kpatch_link_object(struct kpatch_module *kpmod,$/;"	f	file:
+kpatch_lookup_parent	kpatch-build/create-diff-object.c	/^static struct symbol *kpatch_lookup_parent(struct kpatch_elf *kelf,$/;"	f	file:
+kpatch_mangled_strcmp	kpatch-build/create-diff-object.c	/^static int kpatch_mangled_strcmp(char *s1, char *s2)$/;"	f	file:
+kpatch_mark_grouped_sections	kpatch-build/create-diff-object.c	/^static void kpatch_mark_grouped_sections(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_mark_ignored_children_same	kpatch-build/create-diff-object.c	/^static void kpatch_mark_ignored_children_same(struct symbol *sym)$/;"	f	file:
+kpatch_mark_ignored_functions_same	kpatch-build/create-diff-object.c	/^static void kpatch_mark_ignored_functions_same(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_mark_ignored_sections	kpatch-build/create-diff-object.c	/^static void kpatch_mark_ignored_sections(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_mark_ignored_sections_same	kpatch-build/create-diff-object.c	/^static void kpatch_mark_ignored_sections_same(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_migrate_included_elements	kpatch-build/create-diff-object.c	/^static void kpatch_migrate_included_elements(struct kpatch_elf *kelf, struct kpatch_elf **kelfout)$/;"	f	file:
+kpatch_migrate_symbols	kpatch-build/create-diff-object.c	/^static void kpatch_migrate_symbols(struct list_head *src,$/;"	f	file:
+kpatch_module	kmod/core/kpatch.h	/^struct kpatch_module {$/;"	s
+kpatch_module	kmod/patch/kpatch.h	/^struct kpatch_module {$/;"	s
+kpatch_module_nb_coming	kmod/core/core.c	/^static struct notifier_block kpatch_module_nb_coming = {$/;"	v	typeref:struct:notifier_block	file:
+kpatch_module_nb_going	kmod/core/core.c	/^static struct notifier_block kpatch_module_nb_going = {$/;"	v	typeref:struct:notifier_block	file:
+kpatch_module_notify_coming	kmod/core/core.c	/^static int kpatch_module_notify_coming(struct notifier_block *nb,$/;"	f	file:
+kpatch_module_notify_going	kmod/core/core.c	/^static int kpatch_module_notify_going(struct notifier_block *nb,$/;"	f	file:
+kpatch_no_sibling_calls_ppc64le	kpatch-build/create-diff-object.c	/^static void kpatch_no_sibling_calls_ppc64le(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_num_patched	kmod/core/core.c	/^static int kpatch_num_patched;$/;"	v	file:
+kpatch_object	kmod/core/kpatch.h	/^struct kpatch_object {$/;"	s
+kpatch_object	kmod/patch/kpatch.h	/^struct kpatch_object {$/;"	s
+kpatch_object_linked	kmod/core/core.c	/^static inline bool kpatch_object_linked(struct kpatch_object *object)$/;"	f	file:
+kpatch_op	kmod/core/kpatch.h	/^enum kpatch_op {$/;"	g
+kpatch_op	kmod/patch/kpatch.h	/^enum kpatch_op {$/;"	g
+kpatch_patch_dynrela	kmod/patch/kpatch-patch.h	/^struct kpatch_patch_dynrela {$/;"	s
+kpatch_patch_func	kmod/patch/kpatch-patch.h	/^struct kpatch_patch_func {$/;"	s
+kpatch_post_patch_call_t	kmod/patch/kpatch-macros.h	/^typedef void (*kpatch_post_patch_call_t)(patch_object *obj);$/;"	t
+kpatch_post_patch_callback	kmod/patch/kpatch-macros.h	/^struct kpatch_post_patch_callback {$/;"	s
+kpatch_post_patch_callback	kmod/patch/kpatch-patch.h	/^struct kpatch_post_patch_callback {$/;"	s
+kpatch_post_unpatch_call_t	kmod/patch/kpatch-macros.h	/^typedef void (*kpatch_post_unpatch_call_t)(patch_object *obj);$/;"	t
+kpatch_post_unpatch_callback	kmod/patch/kpatch-macros.h	/^struct kpatch_post_unpatch_callback {$/;"	s
+kpatch_post_unpatch_callback	kmod/patch/kpatch-patch.h	/^struct kpatch_post_unpatch_callback {$/;"	s
+kpatch_pre_patch_call_t	kmod/patch/kpatch-macros.h	/^typedef int (*kpatch_pre_patch_call_t)(patch_object *obj);$/;"	t
+kpatch_pre_patch_callback	kmod/patch/kpatch-macros.h	/^struct kpatch_pre_patch_callback {$/;"	s
+kpatch_pre_patch_callback	kmod/patch/kpatch-patch.h	/^struct kpatch_pre_patch_callback {$/;"	s
+kpatch_pre_unpatch_call_t	kmod/patch/kpatch-macros.h	/^typedef void (*kpatch_pre_unpatch_call_t)(patch_object *obj);$/;"	t
+kpatch_pre_unpatch_callback	kmod/patch/kpatch-macros.h	/^struct kpatch_pre_unpatch_callback {$/;"	s
+kpatch_pre_unpatch_callback	kmod/patch/kpatch-patch.h	/^struct kpatch_pre_unpatch_callback {$/;"	s
+kpatch_print_changes	kpatch-build/create-diff-object.c	/^static void kpatch_print_changes(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_process_special_sections	kpatch-build/create-diff-object.c	/^static void kpatch_process_special_sections(struct kpatch_elf *kelf,$/;"	f	file:
+kpatch_rebuild_rela_section_data	kpatch-build/kpatch-elf.c	/^void kpatch_rebuild_rela_section_data(struct section *sec)$/;"	f
+kpatch_regenerate_orc_sections	kpatch-build/create-diff-object.c	/^static void kpatch_regenerate_orc_sections(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_regenerate_special_section	kpatch-build/create-diff-object.c	/^static void kpatch_regenerate_special_section(struct kpatch_elf *kelf,$/;"	f	file:
+kpatch_register	kmod/core/core.c	/^EXPORT_SYMBOL(kpatch_register);$/;"	v
+kpatch_register	kmod/core/core.c	/^int kpatch_register(struct kpatch_module *kpmod, bool replace)$/;"	f
+kpatch_reindex_elements	kpatch-build/kpatch-elf.c	/^void kpatch_reindex_elements(struct kpatch_elf *kelf)$/;"	f
+kpatch_relocation	kpatch-build/kpatch-intermediate.h	/^struct kpatch_relocation {$/;"	s
+kpatch_remove_and_free_section	kpatch-build/kpatch-elf.c	/^void kpatch_remove_and_free_section(struct kpatch_elf *kelf, char *secname)$/;"	f
+kpatch_remove_patch	kmod/core/core.c	/^static int kpatch_remove_patch(void *data)$/;"	f	file:
+kpatch_reorder_symbols	kpatch-build/create-diff-object.c	/^static void kpatch_reorder_symbols(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_replace_sections_syms	kpatch-build/create-diff-object.c	/^static void kpatch_replace_sections_syms(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_rhel_dependencies	test/integration/lib.sh	/^kpatch_rhel_dependencies()$/;"	f
+kpatch_root_kobj	kmod/core/core.c	/^EXPORT_SYMBOL_GPL(kpatch_root_kobj);$/;"	v
+kpatch_root_kobj	kmod/core/core.c	/^struct kobject *kpatch_root_kobj;$/;"	v	typeref:struct:kobject
+kpatch_section_function_name	kpatch-build/create-diff-object.c	/^static char *kpatch_section_function_name(struct section *sec)$/;"	f	file:
+kpatch_separate_disk_cache	test/integration/lib.sh	/^kpatch_separate_disk_cache()$/;"	f
+kpatch_separate_partition_cache	test/integration/lib.sh	/^kpatch_separate_partition_cache()$/;"	f
+kpatch_set_ccache_max_size	test/integration/lib.sh	/^kpatch_set_ccache_max_size()$/;"	f
+kpatch_set_memory_ro	kmod/core/core.c	/^static int (*kpatch_set_memory_ro)(unsigned long addr, int numpages);$/;"	v	file:
+kpatch_set_memory_rw	kmod/core/core.c	/^static int (*kpatch_set_memory_rw)(unsigned long addr, int numpages);$/;"	v	file:
+kpatch_shadow	kmod/core/shadow.c	/^struct kpatch_shadow {$/;"	s	file:
+kpatch_shadow_alloc	kmod/core/shadow.c	/^EXPORT_SYMBOL_GPL(kpatch_shadow_alloc);$/;"	v
+kpatch_shadow_alloc	kmod/core/shadow.c	/^void *kpatch_shadow_alloc(void *obj, char *var, size_t size, gfp_t gfp)$/;"	f
+kpatch_shadow_free	kmod/core/shadow.c	/^EXPORT_SYMBOL_GPL(kpatch_shadow_free);$/;"	v
+kpatch_shadow_free	kmod/core/shadow.c	/^void kpatch_shadow_free(void *obj, char *var)$/;"	f
+kpatch_shadow_get	kmod/core/shadow.c	/^EXPORT_SYMBOL_GPL(kpatch_shadow_get);$/;"	v
+kpatch_shadow_get	kmod/core/shadow.c	/^void *kpatch_shadow_get(void *obj, char *var)$/;"	f
+kpatch_shadow_rcu_free	kmod/core/shadow.c	/^static void kpatch_shadow_rcu_free(struct rcu_head *head)$/;"	f	file:
+kpatch_state	kmod/core/core.c	/^static atomic_t kpatch_state;$/;"	v	file:
+kpatch_state_finish	kmod/core/core.c	/^static inline int kpatch_state_finish(int state)$/;"	f	file:
+kpatch_state_idle	kmod/core/core.c	/^static inline void kpatch_state_idle(void)$/;"	f	file:
+kpatch_state_updating	kmod/core/core.c	/^static inline void kpatch_state_updating(void)$/;"	f	file:
+kpatch_strip_unneeded_syms	kpatch-build/create-diff-object.c	/^static void kpatch_strip_unneeded_syms(struct kpatch_elf *kelf,$/;"	f	file:
+kpatch_subsection_changed	kpatch-build/create-diff-object.c	/^static int kpatch_subsection_changed(struct section *sec1, struct section *sec2)$/;"	f	file:
+kpatch_subsection_type	kpatch-build/create-diff-object.c	/^static enum subsection kpatch_subsection_type(struct section *sec)$/;"	f	file:
+kpatch_symbol	kpatch-build/kpatch-intermediate.h	/^struct kpatch_symbol {$/;"	s
+kpatch_ubuntu_dependencies	test/integration/lib.sh	/^kpatch_ubuntu_dependencies()$/;"	f
+kpatch_unlink_object	kmod/core/core.c	/^static int kpatch_unlink_object(struct kpatch_object *object)$/;"	f	file:
+kpatch_unregister	kmod/core/core.c	/^EXPORT_SYMBOL(kpatch_unregister);$/;"	v
+kpatch_unregister	kmod/core/core.c	/^int kpatch_unregister(struct kpatch_module *kpmod)$/;"	f
+kpatch_update_ex_table_addend	kpatch-build/create-diff-object.c	/^static void kpatch_update_ex_table_addend(struct kpatch_elf *kelf,$/;"	f	file:
+kpatch_verify_activeness_safety	kmod/core/core.c	/^static int kpatch_verify_activeness_safety(struct kpatch_module *kpmod,$/;"	f	file:
+kpatch_verify_patchability	kpatch-build/create-diff-object.c	/^static void kpatch_verify_patchability(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_write_output_elf	kpatch-build/kpatch-elf.c	/^void kpatch_write_output_elf(struct kpatch_elf *kelf, Elf *elf, char *outfile,$/;"	f
+kpatch_write_relocations	kmod/core/core.c	/^static int kpatch_write_relocations(struct kpatch_module *kpmod,$/;"	f	file:
+kpatch_write_vagrantfile	test/integration/lib.sh	/^kpatch_write_vagrantfile()$/;"	f
+kpatch_write_vagrantfile_centos_provision	test/integration/lib.sh	/^kpatch_write_vagrantfile_centos_provision()$/;"	f
+kpatch_write_vagrantfile_template	test/integration/lib.sh	/^kpatch_write_vagrantfile_template()$/;"	f
+kpmod	kmod/core/core.c	/^	struct kpatch_module *kpmod;$/;"	m	struct:kpatch_apply_patch_args	typeref:struct:kpatch_apply_patch_args::kpatch_module	file:
+kpmod	kmod/patch/kpatch-patch-hook.c	/^static struct kpatch_module kpmod;$/;"	v	typeref:struct:kpatch_module	file:
+ksym	kpatch-build/kpatch-intermediate.h	/^	struct kpatch_symbol *ksym;$/;"	m	struct:kpatch_relocation	typeref:struct:kpatch_relocation::kpatch_symbol
+label_to_block_map_for_fn	kpatch-build/gcc-plugins/gcc-common.h	410;"	d
+last_basic_block_for_fn	kpatch-build/gcc-plugins/gcc-common.h	409;"	d
+length	kpatch-build/insn/asm/insn.h	/^	unsigned char length;$/;"	m	struct:insn
+list	kmod/core/kpatch.h	/^	struct list_head list;$/;"	m	struct:kpatch_dynrela	typeref:struct:kpatch_dynrela::list_head
+list	kmod/core/kpatch.h	/^	struct list_head list;$/;"	m	struct:kpatch_func	typeref:struct:kpatch_func::list_head
+list	kmod/core/kpatch.h	/^	struct list_head list;$/;"	m	struct:kpatch_module	typeref:struct:kpatch_module::list_head
+list	kmod/core/kpatch.h	/^	struct list_head list;$/;"	m	struct:kpatch_object	typeref:struct:kpatch_object::list_head
+list	kmod/patch/kpatch.h	/^	struct list_head list;$/;"	m	struct:kpatch_dynrela	typeref:struct:kpatch_dynrela::list_head
+list	kmod/patch/kpatch.h	/^	struct list_head list;$/;"	m	struct:kpatch_func	typeref:struct:kpatch_func::list_head
+list	kmod/patch/kpatch.h	/^	struct list_head list;$/;"	m	struct:kpatch_module	typeref:struct:kpatch_module::list_head
+list	kmod/patch/kpatch.h	/^	struct list_head list;$/;"	m	struct:kpatch_object	typeref:struct:kpatch_object::list_head
+list	kmod/patch/livepatch-patch-hook.c	/^	struct list_head list;$/;"	m	struct:patch_func	typeref:struct:patch_func::list_head	file:
+list	kmod/patch/livepatch-patch-hook.c	/^	struct list_head list;$/;"	m	struct:patch_object	typeref:struct:patch_object::list_head	file:
+list	kmod/patch/livepatch-patch-hook.c	/^	struct list_head list;$/;"	m	struct:patch_reloc	typeref:struct:patch_reloc::list_head	file:
+list	kpatch-build/kpatch-elf.h	/^	struct list_head list;$/;"	m	struct:rela	typeref:struct:rela::list_head
+list	kpatch-build/kpatch-elf.h	/^	struct list_head list;$/;"	m	struct:section	typeref:struct:section::list_head
+list	kpatch-build/kpatch-elf.h	/^	struct list_head list;$/;"	m	struct:string	typeref:struct:string::list_head
+list	kpatch-build/kpatch-elf.h	/^	struct list_head list;$/;"	m	struct:symbol	typeref:struct:symbol::list_head
+list_add	kpatch-build/list.h	/^static inline void list_add(struct list_head *new, struct list_head *head)$/;"	f
+list_add_tail	kpatch-build/list.h	/^static inline void list_add_tail(struct list_head *new, struct list_head *head)$/;"	f
+list_del	kpatch-build/list.h	/^static inline void list_del(struct list_head *entry)$/;"	f
+list_entry	kpatch-build/list.h	161;"	d
+list_first_entry	kpatch-build/list.h	172;"	d
+list_for_each_entry	kpatch-build/list.h	189;"	d
+list_for_each_entry_continue	kpatch-build/list.h	203;"	d
+list_for_each_entry_safe	kpatch-build/list.h	215;"	d
+list_head	kpatch-build/list.h	/^struct list_head {$/;"	s
+list_next_entry	kpatch-build/list.h	180;"	d
+list_replace	kpatch-build/list.h	/^static inline void list_replace(struct list_head *old,$/;"	f
+load_module	kpatch/kpatch	/^load_module () {$/;"	f
+local_syms	kpatch-build/lookup.c	/^	struct object_symbol *local_syms;$/;"	m	struct:lookup_table	typeref:struct:lookup_table::object_symbol	file:
+locals_match	kpatch-build/lookup.c	/^static int locals_match(struct lookup_table *table, int idx,$/;"	f	file:
+log	kpatch-build/log.h	17;"	d
+log	test/integration/kpatch-test	/^log() {$/;"	f
+log_debug	kpatch-build/log.h	14;"	d
+log_normal	kpatch-build/log.h	15;"	d
+logger	kpatch-build/kpatch-build	/^logger() {$/;"	f
+loglevel	kpatch-build/create-diff-object.c	/^enum loglevel loglevel = NORMAL;$/;"	v	typeref:enum:loglevel
+loglevel	kpatch-build/create-klp-module.c	/^enum loglevel loglevel = NORMAL;$/;"	v	typeref:enum:loglevel
+loglevel	kpatch-build/create-kpatch-module.c	/^enum loglevel loglevel = NORMAL;$/;"	v	typeref:enum:loglevel
+loglevel	kpatch-build/log.h	/^enum loglevel {$/;"	g
+lookup_close	kpatch-build/lookup.c	/^void lookup_close(struct lookup_table *table)$/;"	f
+lookup_exported_symbol	kpatch-build/lookup.c	/^static bool lookup_exported_symbol(struct lookup_table *table, char *name,$/;"	f	file:
+lookup_global_symbol	kpatch-build/lookup.c	/^static bool lookup_global_symbol(struct lookup_table *table, char *name,$/;"	f	file:
+lookup_local_symbol	kpatch-build/lookup.c	/^static bool lookup_local_symbol(struct lookup_table *table, char *name,$/;"	f	file:
+lookup_open	kpatch-build/lookup.c	/^struct lookup_table *lookup_open(char *symtab_path, char *objname,$/;"	f
+lookup_result	kpatch-build/lookup.h	/^struct lookup_result {$/;"	s
+lookup_symbol	kpatch-build/lookup.c	/^bool lookup_symbol(struct lookup_table *table, char *name,$/;"	f
+lookup_table	kpatch-build/lookup.c	/^struct lookup_table {$/;"	s	file:
+lpatch	kmod/patch/livepatch-patch-hook.c	/^static struct klp_patch *lpatch;$/;"	v	typeref:struct:klp_patch	file:
+main	kpatch-build/create-diff-object.c	/^int main(int argc, char *argv[])$/;"	f
+main	kpatch-build/create-klp-module.c	/^int main(int argc, char *argv[])$/;"	f
+main	kpatch-build/create-kpatch-module.c	/^int main(int argc, char *argv[])$/;"	f
+make_modname	kpatch-build/lookup.c	/^static char *make_modname(char *modname)$/;"	f	file:
+mark_sym_for_renaming	kpatch-build/gcc-plugins/gcc-common.h	555;"	d
+maybe_discarded_sym	kpatch-build/lookup.c	/^static int maybe_discarded_sym(const char *name)$/;"	f	file:
+mod	kmod/core/kpatch.h	/^	struct module *mod;$/;"	m	struct:kpatch_module	typeref:struct:kpatch_module::module
+mod	kmod/core/kpatch.h	/^	struct module *mod;$/;"	m	struct:kpatch_object	typeref:struct:kpatch_object::module
+mod	kmod/patch/kpatch.h	/^	struct module *mod;$/;"	m	struct:kpatch_module	typeref:struct:kpatch_module::module
+mod	kmod/patch/kpatch.h	/^	struct module *mod;$/;"	m	struct:kpatch_object	typeref:struct:kpatch_object::module
+mod_name	kpatch/kpatch	/^mod_name () {$/;"	f
+modrm	kpatch-build/insn/asm/insn.h	/^	struct insn_field modrm;$/;"	m	struct:insn	typeref:struct:insn::insn_field
+module_name_string	kpatch-build/kpatch-build	/^module_name_string() {$/;"	f
+moffset1	kpatch-build/insn/asm/insn.h	/^		struct insn_field moffset1;	\/* for 64bit MOV *\/$/;"	m	union:insn::__anon6	typeref:struct:insn::__anon6::insn_field
+moffset2	kpatch-build/insn/asm/insn.h	/^		struct insn_field moffset2;	\/* for 64bit MOV *\/$/;"	m	union:insn::__anon7	typeref:struct:insn::__anon7::insn_field
+n_basic_blocks_for_fn	kpatch-build/gcc-plugins/gcc-common.h	407;"	d
+n_edges_for_fn	kpatch-build/gcc-plugins/gcc-common.h	408;"	d
+name	kmod/core/core.c	/^	const char *name;$/;"	m	struct:kpatch_kallsyms_args	file:
+name	kmod/core/kpatch.h	/^	const char *name;$/;"	m	struct:kpatch_dynrela
+name	kmod/core/kpatch.h	/^	const char *name;$/;"	m	struct:kpatch_func
+name	kmod/core/kpatch.h	/^	const char *name;$/;"	m	struct:kpatch_object
+name	kmod/patch/kpatch-patch.h	/^	char *name;$/;"	m	struct:kpatch_patch_dynrela
+name	kmod/patch/kpatch-patch.h	/^	char *name;$/;"	m	struct:kpatch_patch_func
+name	kmod/patch/kpatch.h	/^	const char *name;$/;"	m	struct:kpatch_dynrela
+name	kmod/patch/kpatch.h	/^	const char *name;$/;"	m	struct:kpatch_func
+name	kmod/patch/kpatch.h	/^	const char *name;$/;"	m	struct:kpatch_object
+name	kmod/patch/livepatch-patch-hook.c	/^	const char *name;$/;"	m	struct:patch_object	file:
+name	kpatch-build/create-diff-object.c	/^	char *name;$/;"	m	struct:special_section	file:
+name	kpatch-build/kpatch-elf.h	/^	char *name;$/;"	m	struct:section
+name	kpatch-build/kpatch-elf.h	/^	char *name;$/;"	m	struct:string
+name	kpatch-build/kpatch-elf.h	/^	char *name;$/;"	m	struct:symbol
+name	kpatch-build/kpatch-intermediate.h	/^	char *name;$/;"	m	struct:kpatch_symbol
+name	kpatch-build/lookup.c	/^	char *name;$/;"	m	struct:export_symbol	file:
+name	kpatch-build/lookup.c	/^	char *name;$/;"	m	struct:object_symbol	file:
+name	kpatch-build/lookup.h	/^	char *name;$/;"	m	struct:sym_compare_type
+nbytes	kpatch-build/insn/asm/insn.h	/^	unsigned char nbytes;$/;"	m	struct:insn_field
+need_dynrela	kpatch-build/create-diff-object.c	/^static bool need_dynrela(struct lookup_table *table, const struct rela *rela)$/;"	f	file:
+need_dynrela	kpatch-build/kpatch-elf.h	/^	bool need_dynrela;$/;"	m	struct:rela
+new_addr	kmod/core/kpatch.h	/^	unsigned long new_addr;$/;"	m	struct:kpatch_func
+new_addr	kmod/patch/kpatch-patch.h	/^	unsigned long new_addr;$/;"	m	struct:kpatch_patch_func
+new_addr	kmod/patch/kpatch.h	/^	unsigned long new_addr;$/;"	m	struct:kpatch_func
+new_dmesg	test/integration/kpatch-test	/^new_dmesg() {$/;"	f
+new_size	kmod/core/kpatch.h	/^	unsigned long new_size;$/;"	m	struct:kpatch_func
+new_size	kmod/patch/kpatch-patch.h	/^	unsigned long new_size;$/;"	m	struct:kpatch_patch_func
+new_size	kmod/patch/kpatch.h	/^	unsigned long new_size;$/;"	m	struct:kpatch_func
+next	kpatch-build/list.h	/^	struct list_head *next, *prev;$/;"	m	struct:list_head	typeref:struct:list_head::list_head
+next_byte	kpatch-build/insn/asm/insn.h	/^	const insn_byte_t *next_byte;$/;"	m	struct:insn
+no_klp_arch	kpatch-build/create-klp-module.c	/^	int no_klp_arch;$/;"	m	struct:arguments	file:
+node	kmod/core/kpatch.h	/^	struct hlist_node node;$/;"	m	struct:kpatch_func	typeref:struct:kpatch_func::hlist_node
+node	kmod/core/shadow.c	/^	struct hlist_node node;$/;"	m	struct:kpatch_shadow	typeref:struct:kpatch_shadow::hlist_node	file:
+node	kmod/patch/kpatch.h	/^	struct hlist_node node;$/;"	m	struct:kpatch_func	typeref:struct:kpatch_func::hlist_node
+obj	kmod/core/shadow.c	/^	void *obj;$/;"	m	struct:kpatch_shadow	file:
+obj-m	kmod/core/Makefile	/^obj-m := kpatch.o$/;"	m
+obj_nr	kpatch-build/lookup.c	/^	int obj_nr, exp_nr;$/;"	m	struct:lookup_table	file:
+obj_syms	kpatch-build/lookup.c	/^	struct object_symbol *obj_syms;$/;"	m	struct:lookup_table	typeref:struct:lookup_table::object_symbol	file:
+object_symbol	kpatch-build/lookup.c	/^struct object_symbol {$/;"	s	file:
+objects	kmod/core/kpatch.h	/^	struct list_head objects;$/;"	m	struct:kpatch_module	typeref:struct:kpatch_module::list_head
+objects	kmod/patch/kpatch.h	/^	struct list_head objects;$/;"	m	struct:kpatch_module	typeref:struct:kpatch_module::list_head
+objname	kmod/core/core.c	/^	const char *objname;$/;"	m	struct:kpatch_kallsyms_args	file:
+objname	kmod/patch/kpatch-macros.h	/^	char *objname; \/* filled in by create-diff-object *\/$/;"	m	struct:kpatch_post_patch_callback
+objname	kmod/patch/kpatch-macros.h	/^	char *objname; \/* filled in by create-diff-object *\/$/;"	m	struct:kpatch_post_unpatch_callback
+objname	kmod/patch/kpatch-macros.h	/^	char *objname; \/* filled in by create-diff-object *\/$/;"	m	struct:kpatch_pre_patch_callback
+objname	kmod/patch/kpatch-macros.h	/^	char *objname; \/* filled in by create-diff-object *\/$/;"	m	struct:kpatch_pre_unpatch_callback
+objname	kmod/patch/kpatch-patch.h	/^	char *objname;$/;"	m	struct:kpatch_patch_dynrela
+objname	kmod/patch/kpatch-patch.h	/^	char *objname;$/;"	m	struct:kpatch_patch_func
+objname	kmod/patch/kpatch-patch.h	/^	char *objname;$/;"	m	struct:kpatch_post_patch_callback
+objname	kmod/patch/kpatch-patch.h	/^	char *objname;$/;"	m	struct:kpatch_post_unpatch_callback
+objname	kmod/patch/kpatch-patch.h	/^	char *objname;$/;"	m	struct:kpatch_pre_patch_callback
+objname	kmod/patch/kpatch-patch.h	/^	char *objname;$/;"	m	struct:kpatch_pre_unpatch_callback
+objname	kpatch-build/kpatch-intermediate.h	/^	char *objname; \/* object to which this rela applies to *\/$/;"	m	struct:kpatch_relocation
+objname	kpatch-build/kpatch-intermediate.h	/^	char *objname; \/* object to which this sym belongs *\/$/;"	m	struct:kpatch_symbol
+objname	kpatch-build/kpatch-intermediate.h	/^        char *objname;$/;"	m	struct:kpatch_arch
+objname	kpatch-build/lookup.c	/^	char *objname;$/;"	m	struct:export_symbol	file:
+objname	kpatch-build/lookup.c	/^	char *objname;$/;"	m	struct:lookup_table	file:
+objname	kpatch-build/lookup.h	/^	char *objname;$/;"	m	struct:lookup_result
+offset	kpatch-build/kpatch-elf.h	/^	unsigned int offset;$/;"	m	struct:rela
+offset_of_string	kpatch-build/kpatch-elf.c	/^int offset_of_string(struct list_head *list, char *name)$/;"	f
+offsetof	kpatch-build/list.h	33;"	d
+old_addr	kmod/core/kpatch.h	/^	unsigned long old_addr;$/;"	m	struct:kpatch_func
+old_addr	kmod/patch/kpatch-patch.h	/^	unsigned long old_addr;$/;"	m	struct:kpatch_patch_func
+old_addr	kmod/patch/kpatch.h	/^	unsigned long old_addr;$/;"	m	struct:kpatch_func
+old_size	kmod/core/kpatch.h	/^	unsigned long old_size;$/;"	m	struct:kpatch_func
+old_size	kmod/patch/kpatch-patch.h	/^	unsigned long old_size;$/;"	m	struct:kpatch_patch_func
+old_size	kmod/patch/kpatch.h	/^	unsigned long old_size;$/;"	m	struct:kpatch_func
+op	kmod/core/kpatch.h	/^	enum kpatch_op op;$/;"	m	struct:kpatch_func	typeref:enum:kpatch_func::kpatch_op
+op	kmod/patch/kpatch.h	/^	enum kpatch_op op;$/;"	m	struct:kpatch_func	typeref:enum:kpatch_func::kpatch_op
+opcode	kpatch-build/insn/asm/insn.h	/^	struct insn_field opcode;	\/*$/;"	m	struct:insn	typeref:struct:insn::insn_field
+opnd_bytes	kpatch-build/insn/asm/insn.h	/^	unsigned char opnd_bytes;$/;"	m	struct:insn
+options	kpatch-build/create-diff-object.c	/^static struct argp_option options[] = {$/;"	v	typeref:struct:argp_option	file:
+options	kpatch-build/create-klp-module.c	/^static struct argp_option options[] = {$/;"	v	typeref:struct:argp_option	file:
+options	kpatch-build/create-kpatch-module.c	/^static struct argp_option options[] = {$/;"	v	typeref:struct:argp_option	file:
+parainstructions_group_size	kpatch-build/create-diff-object.c	/^static int parainstructions_group_size(struct kpatch_elf *kelf, int offset)$/;"	f	file:
+parent	kpatch-build/kpatch-elf.h	/^	struct symbol *parent;$/;"	m	struct:symbol	typeref:struct:symbol::symbol
+parse_opt	kpatch-build/create-diff-object.c	/^static error_t parse_opt (int key, char *arg, struct argp_state *state)$/;"	f	file:
+parse_opt	kpatch-build/create-klp-module.c	/^static error_t parse_opt (int key, char *arg, struct argp_state *state)$/;"	f	file:
+parse_opt	kpatch-build/create-kpatch-module.c	/^static error_t parse_opt (int key, char *arg, struct argp_state *state)$/;"	f	file:
+patch_add_func_to_object	kmod/patch/livepatch-patch-hook.c	/^static int patch_add_func_to_object(struct kpatch_patch_func *kfunc)$/;"	f	file:
+patch_add_reloc_to_object	kmod/patch/livepatch-patch-hook.c	/^static int patch_add_reloc_to_object(struct kpatch_patch_dynrela *kdynrela)$/;"	f	file:
+patch_alloc_new_object	kmod/patch/livepatch-patch-hook.c	/^static struct patch_object *patch_alloc_new_object(const char *name)$/;"	f	file:
+patch_attrs	kmod/patch/kpatch-patch-hook.c	/^static struct attribute *patch_attrs[] = {$/;"	v	typeref:struct:attribute	file:
+patch_checksum_attr	kmod/patch/kpatch-patch-hook.c	/^static struct kobj_attribute patch_checksum_attr =$/;"	v	typeref:struct:kobj_attribute	file:
+patch_checksum_show	kmod/patch/kpatch-patch-hook.c	/^static ssize_t patch_checksum_show(struct kobject *kobj,$/;"	f	file:
+patch_enabled_attr	kmod/patch/kpatch-patch-hook.c	/^static struct kobj_attribute patch_enabled_attr =$/;"	v	typeref:struct:kobj_attribute	file:
+patch_enabled_show	kmod/patch/kpatch-patch-hook.c	/^static ssize_t patch_enabled_show(struct kobject *kobj,$/;"	f	file:
+patch_enabled_store	kmod/patch/kpatch-patch-hook.c	/^static ssize_t patch_enabled_store(struct kobject *kobj,$/;"	f	file:
+patch_exit	kmod/patch/kpatch-patch-hook.c	/^module_exit(patch_exit);$/;"	v
+patch_exit	kmod/patch/kpatch-patch-hook.c	/^static void __exit patch_exit(void)$/;"	f	file:
+patch_exit	kmod/patch/livepatch-patch-hook.c	/^module_exit(patch_exit);$/;"	v
+patch_exit	kmod/patch/livepatch-patch-hook.c	/^static void __exit patch_exit(void)$/;"	f	file:
+patch_find_object_by_name	kmod/patch/livepatch-patch-hook.c	/^static struct patch_object *patch_find_object_by_name(const char *name)$/;"	f	file:
+patch_find_or_add_object	kmod/patch/kpatch-patch-hook.c	/^static struct kpatch_object *patch_find_or_add_object(struct list_head *head,$/;"	f	file:
+patch_free_livepatch	kmod/patch/livepatch-patch-hook.c	/^static void patch_free_livepatch(struct klp_patch *patch)$/;"	f	file:
+patch_free_objects	kmod/patch/kpatch-patch-hook.c	/^static void patch_free_objects(void)$/;"	f	file:
+patch_free_scaffold	kmod/patch/livepatch-patch-hook.c	/^static void patch_free_scaffold(void) {$/;"	f	file:
+patch_func	kmod/patch/livepatch-patch-hook.c	/^struct patch_func {$/;"	s	file:
+patch_func_kobj_attrs	kmod/patch/kpatch-patch-hook.c	/^static struct attribute *patch_func_kobj_attrs[] = {$/;"	v	typeref:struct:attribute	file:
+patch_func_kobj_free	kmod/patch/kpatch-patch-hook.c	/^static void patch_func_kobj_free(struct kobject *kobj)$/;"	f	file:
+patch_func_kobj_show	kmod/patch/kpatch-patch-hook.c	/^static ssize_t patch_func_kobj_show(struct kobject *kobj,$/;"	f	file:
+patch_func_ktype	kmod/patch/kpatch-patch-hook.c	/^static struct kobj_type patch_func_ktype = {$/;"	v	typeref:struct:kobj_type	file:
+patch_func_new_addr_show	kmod/patch/kpatch-patch-hook.c	/^static ssize_t patch_func_new_addr_show(struct kobject *kobj,$/;"	f	file:
+patch_func_old_addr_show	kmod/patch/kpatch-patch-hook.c	/^static ssize_t patch_func_old_addr_show(struct kobject *kobj,$/;"	f	file:
+patch_func_sysfs_ops	kmod/patch/kpatch-patch-hook.c	/^static const struct sysfs_ops patch_func_sysfs_ops = {$/;"	v	typeref:struct:sysfs_ops	file:
+patch_init	kmod/patch/kpatch-patch-hook.c	/^module_init(patch_init);$/;"	v
+patch_init	kmod/patch/kpatch-patch-hook.c	/^static int __init patch_init(void)$/;"	f	file:
+patch_init	kmod/patch/livepatch-patch-hook.c	/^module_init(patch_init);$/;"	v
+patch_init	kmod/patch/livepatch-patch-hook.c	/^static int __init patch_init(void)$/;"	f	file:
+patch_is_func_forced	kmod/patch/kpatch-patch-hook.c	/^static int patch_is_func_forced(unsigned long addr)$/;"	f	file:
+patch_kobj_free	kmod/patch/kpatch-patch-hook.c	/^static void patch_kobj_free(struct kobject *kobj)$/;"	f	file:
+patch_ktype	kmod/patch/kpatch-patch-hook.c	/^static struct kobj_type patch_ktype = {$/;"	v	typeref:struct:kobj_type	file:
+patch_make_dynrelas_list	kmod/patch/kpatch-patch-hook.c	/^static int patch_make_dynrelas_list(struct list_head *objects)$/;"	f	file:
+patch_make_funcs_list	kmod/patch/kpatch-patch-hook.c	/^static int patch_make_funcs_list(struct list_head *objects)$/;"	f	file:
+patch_new_addr_attr	kmod/patch/kpatch-patch-hook.c	/^static struct kobj_attribute patch_new_addr_attr =$/;"	v	typeref:struct:kobj_attribute	file:
+patch_object	kmod/patch/kpatch-macros.h	/^typedef struct klp_object patch_object;$/;"	t	typeref:struct:klp_object
+patch_object	kmod/patch/kpatch-macros.h	/^typedef struct kpatch_object patch_object;$/;"	t	typeref:struct:kpatch_object
+patch_object	kmod/patch/livepatch-patch-hook.c	/^struct patch_object {$/;"	s	file:
+patch_object_kobj_free	kmod/patch/kpatch-patch-hook.c	/^static void patch_object_kobj_free(struct kobject *kobj)$/;"	f	file:
+patch_object_ktype	kmod/patch/kpatch-patch-hook.c	/^static struct kobj_type patch_object_ktype = {$/;"	v	typeref:struct:kobj_type	file:
+patch_objects_nr	kmod/patch/livepatch-patch-hook.c	/^static int patch_objects_nr;$/;"	v	file:
+patch_old_addr_attr	kmod/patch/kpatch-patch-hook.c	/^static struct kobj_attribute patch_old_addr_attr =$/;"	v	typeref:struct:kobj_attribute	file:
+patch_reloc	kmod/patch/livepatch-patch-hook.c	/^struct patch_reloc {$/;"	s	file:
+patch_set_callbacks	kmod/patch/kpatch-patch-hook.c	/^static int patch_set_callbacks(struct list_head *objects)$/;"	f	file:
+peek_nbyte_next	kpatch-build/insn/insn.c	44;"	d	file:
+peek_next	kpatch-build/insn/insn.c	47;"	d	file:
+plugin_info	kpatch-build/gcc-plugins/ppc64le-plugin.c	/^struct plugin_info plugin_info = {$/;"	v	typeref:struct:plugin_info
+plugin_init	kpatch-build/gcc-plugins/ppc64le-plugin.c	/^int plugin_init(struct plugin_name_args *plugin_info,$/;"	f
+plugin_is_GPL_compatible	kpatch-build/gcc-plugins/ppc64le-plugin.c	/^int plugin_is_GPL_compatible;$/;"	v
+pos	kmod/core/core.c	/^	unsigned long pos;$/;"	m	struct:kpatch_kallsyms_args	file:
+post_patch_callback	kmod/core/core.c	/^static inline void post_patch_callback(struct kpatch_object *object)$/;"	f	file:
+post_patch_callback	kmod/core/kpatch.h	/^	void (*post_patch_callback)(struct kpatch_object *);$/;"	m	struct:kpatch_object
+post_patch_callback	kmod/patch/kpatch.h	/^	void (*post_patch_callback)(struct kpatch_object *);$/;"	m	struct:kpatch_object
+post_unpatch_callback	kmod/core/core.c	/^static inline void post_unpatch_callback(struct kpatch_object *object)$/;"	f	file:
+post_unpatch_callback	kmod/core/kpatch.h	/^	void (*post_unpatch_callback)(struct kpatch_object *);$/;"	m	struct:kpatch_object
+post_unpatch_callback	kmod/patch/kpatch.h	/^	void (*post_unpatch_callback)(struct kpatch_object *);$/;"	m	struct:kpatch_object
+ppc64le_plugin_execute	kpatch-build/gcc-plugins/ppc64le-plugin.c	/^static unsigned int ppc64le_plugin_execute(void)$/;"	f	file:
+pr_fmt	kmod/core/core.c	35;"	d	file:
+pr_fmt	kmod/patch/kpatch-patch-hook.c	20;"	d	file:
+pr_fmt	kmod/patch/livepatch-patch-hook.c	21;"	d	file:
+pre_patch_callback	kmod/core/core.c	/^static inline int pre_patch_callback(struct kpatch_object *object)$/;"	f	file:
+pre_patch_callback	kmod/core/kpatch.h	/^	int (*pre_patch_callback)(struct kpatch_object *);$/;"	m	struct:kpatch_object
+pre_patch_callback	kmod/patch/kpatch.h	/^	int (*pre_patch_callback)(struct kpatch_object *);$/;"	m	struct:kpatch_object
+pre_unpatch_callback	kmod/core/core.c	/^static inline void pre_unpatch_callback(struct kpatch_object *object)$/;"	f	file:
+pre_unpatch_callback	kmod/core/kpatch.h	/^	void (*pre_unpatch_callback)(struct kpatch_object *);$/;"	m	struct:kpatch_object
+pre_unpatch_callback	kmod/patch/kpatch.h	/^	void (*pre_unpatch_callback)(struct kpatch_object *);$/;"	m	struct:kpatch_object
+prefixes	kpatch-build/insn/asm/insn.h	/^	struct insn_field prefixes;	\/*$/;"	m	struct:insn	typeref:struct:insn::insn_field
+prev	kpatch-build/list.h	/^	struct list_head *next, *prev;$/;"	m	struct:list_head	typeref:struct:list_head::
+print_strtab	kpatch-build/kpatch-elf.c	/^void print_strtab(char *buf, size_t size)$/;"	f
+profile_status_for_fn	kpatch-build/gcc-plugins/gcc-common.h	411;"	d
+rcu_head	kmod/core/shadow.c	/^	struct rcu_head rcu_head;$/;"	m	struct:kpatch_shadow	typeref:struct:kpatch_shadow::rcu_head	file:
+rebuild_cgraph_edges	kpatch-build/gcc-plugins/gcc-common.h	/^static inline unsigned int rebuild_cgraph_edges(void)$/;"	f
+rela	kpatch-build/kpatch-elf.h	/^			struct section *rela;$/;"	m	struct:section::__anon1::__anon3	typeref:struct:section::__anon1::__anon3::section
+rela	kpatch-build/kpatch-elf.h	/^	GElf_Rela rela;$/;"	m	struct:rela
+rela	kpatch-build/kpatch-elf.h	/^struct rela {$/;"	s
+rela_equal	kpatch-build/create-diff-object.c	/^static bool rela_equal(struct rela *rela1, struct rela *rela2)$/;"	f	file:
+rela_insn	kpatch-build/create-diff-object.c	/^static void rela_insn(const struct section *sec, const struct rela *rela,$/;"	f	file:
+relas	kpatch-build/kpatch-elf.h	/^			struct list_head relas;$/;"	m	struct:section::__anon1::__anon2	typeref:struct:section::__anon1::__anon2::list_head
+relocs	kmod/patch/livepatch-patch-hook.c	/^	struct list_head relocs;$/;"	m	struct:patch_object	typeref:struct:patch_object::list_head	file:
+relocs_nr	kmod/patch/livepatch-patch-hook.c	/^	int funcs_nr, relocs_nr;$/;"	m	struct:patch_object	file:
+remove_arch_sections	kpatch-build/create-klp-module.c	/^static void remove_arch_sections(struct kpatch_elf *kelf)$/;"	f	file:
+remove_intermediate_sections	kpatch-build/create-klp-module.c	/^static void remove_intermediate_sections(struct kpatch_elf *kelf)$/;"	f	file:
+remove_intermediate_sections	kpatch-build/create-kpatch-module.c	/^static void remove_intermediate_sections(struct kpatch_elf *kelf)$/;"	f	file:
+remove_module	kpatch/kpatch	/^remove_module () {$/;"	f
+remove_patches	kpatch-build/kpatch-build	/^remove_patches() {$/;"	f
+replace	kmod/core/core.c	/^	bool replace;$/;"	m	struct:kpatch_apply_patch_args	file:
+replace	kmod/patch/kpatch-patch-hook.c	/^static bool replace;$/;"	v	file:
+rex_prefix	kpatch-build/insn/asm/insn.h	/^	struct insn_field rex_prefix;	\/* REX prefix *\/$/;"	m	struct:insn	typeref:struct:insn::insn_field
+rtx_insn	kpatch-build/gcc-plugins/gcc-common.h	/^typedef struct rtx_def rtx_insn;$/;"	t	typeref:struct:rtx_def
+run_combined_test	test/integration/kpatch-test	/^run_combined_test() {$/;"	f
+run_custom_test	test/integration/kpatch-test	/^run_custom_test() {$/;"	f
+run_load_test	test/integration/kpatch-test	/^run_load_test() {$/;"	f
+save_dmesg	test/integration/kpatch-test	/^save_dmesg() {$/;"	f
+sec	kpatch-build/kpatch-elf.h	/^	struct section *sec;$/;"	m	struct:symbol	typeref:struct:symbol::section
+sec	kpatch-build/kpatch-intermediate.h	/^        unsigned long sec;$/;"	m	struct:kpatch_arch
+secsym	kpatch-build/kpatch-elf.h	/^			struct symbol *secsym, *sym;$/;"	m	struct:section::__anon1::__anon3	typeref:struct:section::__anon1::__anon3::symbol
+section	kpatch-build/kpatch-elf.h	/^struct section {$/;"	s
+section_name_prefix	kpatch-build/gcc-plugins/gcc-common.h	566;"	d
+sections	kpatch-build/kpatch-elf.h	/^	struct list_head sections;$/;"	m	struct:kpatch_elf	typeref:struct:kpatch_elf::list_head
+set_decl_section_name	kpatch-build/gcc-plugins/gcc-common.h	/^static inline void set_decl_section_name(tree node, const char *value)$/;"	f
+sh	kpatch-build/kpatch-elf.h	/^	GElf_Shdr sh;$/;"	m	struct:section
+shadow_is_inplace	kmod/core/shadow.c	/^static inline int shadow_is_inplace(struct kpatch_shadow *shadow)$/;"	f	file:
+shadow_set_inplace	kmod/core/shadow.c	/^static inline void shadow_set_inplace(struct kpatch_shadow *shadow)$/;"	f	file:
+shadow_var	kmod/core/shadow.c	/^static inline char *shadow_var(struct kpatch_shadow *shadow)$/;"	f	file:
+should_keep_jump_label	kpatch-build/create-diff-object.c	/^static bool should_keep_jump_label(struct lookup_table *lookup,$/;"	f	file:
+should_keep_rela_group	kpatch-build/create-diff-object.c	/^static bool should_keep_rela_group(struct lookup_table *lookup,$/;"	f	file:
+show_stalled_processes	kpatch/kpatch	/^show_stalled_processes() {$/;"	f
+sib	kpatch-build/insn/asm/insn.h	/^	struct insn_field sib;$/;"	m	struct:insn	typeref:struct:insn::insn_field
+signal_stalled_processes	kpatch/kpatch	/^signal_stalled_processes() {$/;"	f
+size	kpatch-build/lookup.c	/^	unsigned long size;$/;"	m	struct:object_symbol	file:
+size	kpatch-build/lookup.h	/^	unsigned long size;$/;"	m	struct:lookup_result
+smp_locks_group_size	kpatch-build/create-diff-object.c	/^static int smp_locks_group_size(struct kpatch_elf *kelf, int offset)$/;"	f	file:
+special_section	kpatch-build/create-diff-object.c	/^struct special_section {$/;"	s	file:
+special_sections	kpatch-build/create-diff-object.c	/^static struct special_section special_sections[] = {$/;"	v	typeref:struct:special_section	file:
+src	kmod/core/kpatch.h	/^	unsigned long src;$/;"	m	struct:kpatch_dynrela
+src	kmod/patch/kpatch-patch.h	/^	unsigned long src;$/;"	m	struct:kpatch_patch_dynrela
+src	kmod/patch/kpatch.h	/^	unsigned long src;$/;"	m	struct:kpatch_dynrela
+src	kpatch-build/kpatch-intermediate.h	/^	unsigned long src;$/;"	m	struct:kpatch_symbol
+stack_entries	kmod/core/core.c	/^static unsigned long stack_entries[MAX_STACK_TRACE_DEPTH];$/;"	v	file:
+status	kpatch-build/kpatch-elf.h	/^	enum status status;$/;"	m	struct:section	typeref:enum:section::status
+status	kpatch-build/kpatch-elf.h	/^	enum status status;$/;"	m	struct:symbol	typeref:enum:symbol::status
+status	kpatch-build/kpatch-elf.h	/^enum status {$/;"	g
+status_str	kpatch-build/kpatch-elf.c	/^char *status_str(enum status status)$/;"	f
+string	kpatch-build/kpatch-elf.h	/^	char *string;$/;"	m	struct:rela
+string	kpatch-build/kpatch-elf.h	/^struct string {$/;"	s
+strings	kpatch-build/kpatch-elf.h	/^	struct list_head strings;$/;"	m	struct:kpatch_elf	typeref:struct:kpatch_elf::list_head
+strip	kpatch-build/kpatch-elf.h	/^		int strip; \/* used in the output elf *\/$/;"	m	union:symbol::__anon4
+subfunction_node	kpatch-build/kpatch-elf.h	/^	struct list_head subfunction_node;$/;"	m	struct:symbol	typeref:struct:symbol::list_head
+subsection	kpatch-build/create-diff-object.c	/^enum subsection {$/;"	g	file:
+sym	kpatch-build/kpatch-elf.h	/^			struct symbol *secsym, *sym;$/;"	m	struct:section::__anon1::__anon3	typeref:struct:section::__anon1::__anon3::
+sym	kpatch-build/kpatch-elf.h	/^	GElf_Sym sym;$/;"	m	struct:symbol
+sym	kpatch-build/kpatch-elf.h	/^	struct symbol *sym;$/;"	m	struct:rela	typeref:struct:rela::symbol
+sym_compare_type	kpatch-build/lookup.h	/^struct sym_compare_type {$/;"	s
+symbol	kpatch-build/kpatch-elf.h	/^struct symbol {$/;"	s
+symbols	kpatch-build/kpatch-elf.h	/^	struct list_head symbols;$/;"	m	struct:kpatch_elf	typeref:struct:kpatch_elf::list_head
+sympos	kmod/core/kpatch.h	/^	unsigned long sympos;$/;"	m	struct:kpatch_dynrela
+sympos	kmod/core/kpatch.h	/^	unsigned long sympos;$/;"	m	struct:kpatch_func
+sympos	kmod/patch/kpatch-patch.h	/^	unsigned long sympos;$/;"	m	struct:kpatch_patch_dynrela
+sympos	kmod/patch/kpatch-patch.h	/^	unsigned long sympos;$/;"	m	struct:kpatch_patch_func
+sympos	kmod/patch/kpatch.h	/^	unsigned long sympos;$/;"	m	struct:kpatch_dynrela
+sympos	kmod/patch/kpatch.h	/^	unsigned long sympos;$/;"	m	struct:kpatch_func
+sympos	kpatch-build/kpatch-intermediate.h	/^	unsigned long sympos;$/;"	m	struct:kpatch_symbol
+sympos	kpatch-build/lookup.h	/^	unsigned long sympos;$/;"	m	struct:lookup_result
+symtab_read	kpatch-build/lookup.c	/^static void symtab_read(struct lookup_table *table, char *path)$/;"	f	file:
+symvers_read	kpatch-build/lookup.c	/^static void symvers_read(struct lookup_table *table, char *path)$/;"	f	file:
+test	kpatch-build/gcc-plugins/gcc-common.h	/^inline bool is_a_helper<const gassign *>::test(const_gimple gs)$/;"	f	class:is_a_helper
+test	kpatch-build/gcc-plugins/gcc-common.h	/^inline bool is_a_helper<const ggoto *>::test(const_gimple gs)$/;"	f	class:is_a_helper
+test	kpatch-build/gcc-plugins/gcc-common.h	/^inline bool is_a_helper<const greturn *>::test(const_gimple gs)$/;"	f	class:is_a_helper
+toc_rela	kpatch-build/create-diff-object.c	/^static struct rela *toc_rela(const struct rela *rela)$/;"	f	file:
+trace	kmod/core/core.c	/^static struct stack_trace trace = {$/;"	v	typeref:struct:stack_trace	file:
+tree_fits_shwi_p	kpatch-build/gcc-plugins/gcc-common.h	/^static inline bool tree_fits_shwi_p(const_tree t)$/;"	f
+tree_fits_uhwi_p	kpatch-build/gcc-plugins/gcc-common.h	/^static inline bool tree_fits_uhwi_p(const_tree t)$/;"	f
+tree_to_shwi	kpatch-build/gcc-plugins/gcc-common.h	/^static inline HOST_WIDE_INT tree_to_shwi(const_tree t)$/;"	f
+tree_to_uhwi	kpatch-build/gcc-plugins/gcc-common.h	/^static inline unsigned HOST_WIDE_INT tree_to_uhwi(const_tree t)$/;"	f
+twin	kpatch-build/kpatch-elf.h	/^	struct section *twin;$/;"	m	struct:section	typeref:struct:section::section
+twin	kpatch-build/kpatch-elf.h	/^	struct symbol *twin;$/;"	m	struct:symbol	typeref:struct:symbol::symbol
+type	kmod/core/kpatch.h	/^	unsigned long type;$/;"	m	struct:kpatch_dynrela
+type	kmod/patch/kpatch-patch.h	/^	unsigned long type;$/;"	m	struct:kpatch_patch_dynrela
+type	kmod/patch/kpatch.h	/^	unsigned long type;$/;"	m	struct:kpatch_dynrela
+type	kpatch-build/kpatch-elf.h	/^	unsigned char bind, type;$/;"	m	struct:symbol
+type	kpatch-build/kpatch-elf.h	/^	unsigned int type;$/;"	m	struct:rela
+type	kpatch-build/kpatch-intermediate.h	/^	unsigned char bind, type;$/;"	m	struct:kpatch_symbol
+type	kpatch-build/kpatch-intermediate.h	/^	unsigned int type;$/;"	m	struct:kpatch_relocation
+type	kpatch-build/lookup.c	/^	int type, bind;$/;"	m	struct:object_symbol	file:
+type	kpatch-build/lookup.h	/^	int type;$/;"	m	struct:sym_compare_type
+unlikely	kpatch-build/insn/insn.c	29;"	d	file:
+unload_all	test/integration/kpatch-test	/^unload_all() {$/;"	f
+unload_module	kpatch/kpatch	/^unload_module () {$/;"	f
+usage	kpatch-build/kpatch-build	/^usage() {$/;"	f
+usage	kpatch/kpatch	/^usage () {$/;"	f
+usage	test/integration/kpatch-test	/^usage() {$/;"	f
+usage	test/integration/test-vagrant	/^usage()$/;"	f
+usage	test/integration/vm-integration-run	/^usage()$/;"	f
+usage_cmd	kpatch/kpatch	/^usage_cmd() {$/;"	f
+vNULL	kpatch-build/gcc-plugins/gcc-common.h	370;"	d
+validate_next	kpatch-build/insn/insn.c	32;"	d	file:
+value	kpatch-build/insn/asm/insn.h	/^		insn_value_t value;$/;"	m	union:insn_field::__anon5
+var	kmod/core/shadow.c	/^		char *var; \/* assumed to be 4-byte aligned *\/$/;"	m	union:kpatch_shadow::__anon10	file:
+varpool_add_new_variable	kpatch-build/gcc-plugins/gcc-common.h	/^static inline void varpool_add_new_variable(tree decl)$/;"	f
+varpool_finalize_decl	kpatch-build/gcc-plugins/gcc-common.h	/^static inline void varpool_finalize_decl(tree decl)$/;"	f
+varpool_get_node	kpatch-build/gcc-plugins/gcc-common.h	724;"	d
+varpool_mark_needed_node	kpatch-build/gcc-plugins/gcc-common.h	556;"	d
+varpool_node_ptr	kpatch-build/gcc-plugins/gcc-common.h	/^typedef struct varpool_node *varpool_node_ptr;$/;"	t	typeref:struct:varpool_node
+verify_module_checksum	kpatch/kpatch	/^verify_module_checksum () {$/;"	f
+verify_patch_files	kpatch-build/kpatch-build	/^verify_patch_files() {$/;"	f
+vex_prefix	kpatch-build/insn/asm/insn.h	/^	struct insn_field vex_prefix;	\/* VEX prefix *\/$/;"	m	struct:insn	typeref:struct:insn::insn_field
+wait_for_patch_transition	kpatch/kpatch	/^wait_for_patch_transition() {$/;"	f
+warn	kpatch-build/kpatch-build	/^warn() {$/;"	f
+warn	kpatch/kpatch	/^warn() {$/;"	f
+warn	test/integration/fedora-27/remote-setup	/^warn() {$/;"	f
+while_for_each_linked_func	kmod/core/core.c	110;"	d	file:
+x86_64	kpatch-build/insn/asm/insn.h	/^	unsigned char x86_64;$/;"	m	struct:insn

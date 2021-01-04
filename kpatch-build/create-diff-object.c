@@ -526,6 +526,8 @@ static void kpatch_compare_correlated_section(struct section *sec)
 
 	if (sec1->sh.sh_size != sec2->sh.sh_size ||
 	    sec1->data->d_size != sec2->data->d_size) {
+printf("kpatch_compare_correlated_section\n");
+printf("%s %lx %s %lx\n", sec1->name, sec1->sh.sh_size, sec2->name, sec2->sh.sh_size);
 		sec->status = CHANGED;
 		goto out;
 	}
@@ -881,11 +883,13 @@ do {								\
 
 static void __kpatch_correlate_section(struct section *sec1, struct section *sec2)
 {
+printf("%s section correlate %s section\n", sec1->name, sec2->name);
 	CORRELATE_ELEMENT(sec1, sec2, "section");
 }
 
 static void kpatch_correlate_symbol(struct symbol *sym1, struct symbol *sym2)
 {
+printf("%s symbol correlate %s symbol\n", sym1->name, sym2->name);
 	CORRELATE_ELEMENT(sym1, sym2, "symbol");
 }
 
@@ -1449,7 +1453,7 @@ static void kpatch_replace_sections_syms(struct kpatch_elf *kelf)
 	struct section *sec;
 	struct rela *rela;
 	struct symbol *sym;
-	unsigned int add_off;
+	unsigned int add_off = 0;
 
 	log_debug("\n");
 
@@ -1486,7 +1490,7 @@ static void kpatch_replace_sections_syms(struct kpatch_elf *kelf)
 
 #ifdef __powerpc64__
 			add_off = 0;
-#else
+#elif defined(x86_64)
 			if (rela->type == R_X86_64_PC32 ||
 			    rela->type == R_X86_64_PLT32) {
 				struct insn insn;
@@ -1499,6 +1503,14 @@ static void kpatch_replace_sections_syms(struct kpatch_elf *kelf)
 				add_off = 0;
 			else
 				continue;
+#else			
+			/*
+			if (rela->type == R_MIPS_26) {
+
+			} else if ()
+			
+			else
+			*/			
 #endif
 
 			/*
@@ -1813,6 +1825,8 @@ static int kpatch_include_changed_functions(struct kpatch_elf *kelf)
 	list_for_each_entry(sym, &kelf->symbols, list) {
 		if (sym->status == CHANGED &&
 		    sym->type == STT_FUNC) {
+printf("kpatch_include_changed_functions\n");
+printf("%s %s %d\n", sym->sec->name, sym->name, sym->status);
 			changed_nr++;
 			kpatch_include_symbol(sym);
 		}
@@ -1833,8 +1847,11 @@ static void kpatch_print_changes(struct kpatch_elf *kelf)
 			continue;
 		if (sym->status == NEW)
 			log_normal("new function: %s\n", sym->name);
-		else if (sym->status == CHANGED)
+		else if (sym->status == CHANGED) {
+printf("kpatch_print_changes\n");
+printf("changed function: %s\n", sym->name);
 			log_normal("changed function: %s\n", sym->name);
+}
 	}
 }
 
@@ -3663,7 +3680,10 @@ int main(int argc, char *argv[])
 
 	childobj = basename(orig_obj);
 
+printf("kpatch_elf_open orig_obj\n");
 	kelf_base = kpatch_elf_open(orig_obj);
+
+printf("kpatch_elf_open patched_obj\n");
 	kelf_patched = kpatch_elf_open(patched_obj);
 
 	kpatch_compare_elf_headers(kelf_base->elf, kelf_patched->elf);
@@ -3714,6 +3734,8 @@ int main(int argc, char *argv[])
 
 	kpatch_include_standard_elements(kelf_patched);
 	num_changed = kpatch_include_changed_functions(kelf_patched);
+printf("kpatch_include_changed_functions\n");
+printf("%d\n", num_changed);
 	callbacks_exist = kpatch_include_callback_elements(kelf_patched);
 	kpatch_include_force_elements(kelf_patched);
 	new_globals_exist = kpatch_include_new_globals(kelf_patched);
@@ -3783,9 +3805,13 @@ int main(int argc, char *argv[])
 	if (!symtab)
 		ERROR("missing .symtab section");
 
+printf("start to kpatch_rebuild_rela_section_data\n");
 	list_for_each_entry(sec, &kelf_out->sections, list) {
+printf("section: %s\n", sec->name);
+
 		if (!is_rela_section(sec))
 			continue;
+printf("this section is rela type, sec->name: %s symtab->index: %d sec->base->index: %d\n", sec->name, symtab->index, sec->base->index);
 		sec->sh.sh_link = symtab->index;
 		sec->sh.sh_info = sec->base->index;
 		kpatch_rebuild_rela_section_data(sec);

@@ -157,9 +157,10 @@ void kpatch_create_rela_list(struct kpatch_elf *kelf, struct section *sec)
 	struct rela *rela;
 	unsigned int symndx;
 	unsigned long rela_nr;
-
+printf("kpatch_create_rela_list\n");
 	/* find matching base (text/data) section */
 	sec->base = find_section_by_index(&kelf->sections, sec->sh.sh_info);
+printf("rela sec: %s base sec: %s\n", sec->name, sec->base->name);
 	if (!sec->base)
 		ERROR("can't find base section for rela section %s", sec->name);
 
@@ -189,11 +190,18 @@ void kpatch_create_rela_list(struct kpatch_elf *kelf, struct section *sec)
 		rela->offset = (unsigned int)rela->rela.r_offset;
 		symndx = (unsigned int)GELF_R_SYM(rela->rela.r_info);
 		rela->sym = find_symbol_by_index(&kelf->symbols, symndx);
+if (rela->sym)
+printf("rela sym: %s\n", rela->sym->name);
+printf("rela info: %lx\n", rela->rela.r_info);
+
 		if (!rela->sym)
 			ERROR("could not find rela entry symbol\n");
 		if (rela->sym->sec &&
 		    (rela->sym->sec->sh.sh_flags & SHF_STRINGS)) {
 			rela->string = rela->sym->sec->data->d_buf + rela->addend;
+printf("rela sym sec: %s\n", rela->sym->sec->name);
+printf("rela string: %s + %ld\n", (char *)rela->sym->sec->data->d_buf, rela->addend);
+
 			if (!rela->string)
 				ERROR("could not lookup rela string for %s+%ld",
 				      rela->sym->name, rela->addend);
@@ -215,10 +223,11 @@ void kpatch_create_section_list(struct kpatch_elf *kelf)
 	Elf_Scn *scn = NULL;
 	struct section *sec;
 	size_t shstrndx, sections_nr;
+printf("kpatch_create_section_list\n");
 
 	if (elf_getshdrnum(kelf->elf, &sections_nr))
 		ERROR("elf_getshdrnum");
-
+printf("sections_nr: %lx\n", sections_nr);
 	/*
 	 * elf_getshdrnum() includes section index 0 but elf_nextscn
 	 * doesn't return that section so subtract one.
@@ -227,6 +236,7 @@ void kpatch_create_section_list(struct kpatch_elf *kelf)
 
 	if (elf_getshdrstrndx(kelf->elf, &shstrndx))
 		ERROR("elf_getshdrstrndx");
+printf("shstrndx: %lx\n", shstrndx);
 
 	log_debug("=== section list (%zu) ===\n", sections_nr);
 
@@ -241,6 +251,7 @@ void kpatch_create_section_list(struct kpatch_elf *kelf)
 			ERROR("gelf_getshdr");
 
 		sec->name = elf_strptr(kelf->elf, shstrndx, sec->sh.sh_name);
+printf("sec name: %s index: %d\n", sec->name, sec->sh.sh_name);
 		if (!sec->name)
 			ERROR("elf_strptr");
 
@@ -249,6 +260,7 @@ void kpatch_create_section_list(struct kpatch_elf *kelf)
 			ERROR("elf_getdata");
 
 		sec->index = (unsigned int)elf_ndxscn(scn);
+printf("sec index: %d\n", sec->index);
 
 		log_debug("ndx %02d, data %p, size %zu, name %s\n",
 			sec->index, sec->data->d_buf, sec->data->d_size,
@@ -274,6 +286,7 @@ void kpatch_create_symbol_list(struct kpatch_elf *kelf)
 
 	log_debug("\n=== symbol list (%d entries) ===\n", symbols_nr);
 
+printf("kpatch_create_symbol_list\n");
 	while (symbols_nr--) {
 		ALLOC_LINK(sym, &kelf->symbols);
 
@@ -286,21 +299,27 @@ void kpatch_create_symbol_list(struct kpatch_elf *kelf)
 
 		sym->name = elf_strptr(kelf->elf, symtab->sh.sh_link,
 				       sym->sym.st_name);
+printf("sym index: %d name: %s\n", sym->index, sym->name);
 		if (!sym->name)
 			ERROR("elf_strptr");
 
 		sym->type = GELF_ST_TYPE(sym->sym.st_info);
 		sym->bind = GELF_ST_BIND(sym->sym.st_info);
+printf("sym st_info: %d type: %d bind: %d\n", sym->sym.st_info, sym->type, sym->bind);
 
+printf("sym st_shndx: %d\n", sym->sym.st_shndx);
 		if (sym->sym.st_shndx > SHN_UNDEF &&
 		    sym->sym.st_shndx < SHN_LORESERVE) {
 			sym->sec = find_section_by_index(&kelf->sections,
 					sym->sym.st_shndx);
+if (sym->sec)
+printf("sym->sec: %s\n", sym->sec->name);
 			if (!sym->sec)
 				ERROR("couldn't find section for symbol %s\n",
 					sym->name);
 
 			if (sym->type == STT_SECTION) {
+printf("sym: %s sec: %s name correlated\n", sym->name, sym->sec->name);
 				sym->sec->secsym = sym;
 				/* use the section name as the symbol name */
 				sym->name = sym->sec->name;
@@ -322,9 +341,13 @@ static void kpatch_find_func_profiling_calls(struct kpatch_elf *kelf)
 {
 	struct symbol *sym;
 	struct rela *rela;
+
 	list_for_each_entry(sym, &kelf->symbols, list) {
+printf("kpatch_find_func_profiling_calls\n");
+printf("sym name: %s\n", sym->name);
 		if (sym->type != STT_FUNC || !sym->sec || !sym->sec->rela)
 			continue;
+		
 #ifdef __powerpc64__
 		list_for_each_entry(rela, &sym->sec->rela->relas, list) {
 			if (!strcmp(rela->sym->name, "_mcount")) {
@@ -332,7 +355,7 @@ static void kpatch_find_func_profiling_calls(struct kpatch_elf *kelf)
 				break;
 			}
 		}
-#else
+#elif defined(x86_64)
 		rela = list_first_entry(&sym->sec->rela->relas, struct rela,
 					list);
 		if ((rela->type != R_X86_64_NONE &&
@@ -342,6 +365,23 @@ static void kpatch_find_func_profiling_calls(struct kpatch_elf *kelf)
 			continue;
 
 		sym->has_func_profiling = 1;
+
+#else		
+		list_for_each_entry(rela, &sym->sec->rela->relas, list) {
+printf("sym->sec: %s sym->sec->rela: %s sym->sec->rela->type: %d\n", sym->sec->name, rela->sym->name, rela->type);
+			if (!strcmp(rela->sym->name, "_mcount")) {
+				sym->has_func_profiling = 1;
+				break;
+			}
+		}
+
+		/*
+ 		rela = list_first_entry(&sym->sec->rela->relas, struct rela, list);
+		if ((rela->type != R_MIPS_26) || strcmp(rela->sym->name, "_mcount"))
+			continue;
+		
+		sym->has_func_profiling = 1;	
+		*/
 #endif
 	}
 }
@@ -733,6 +773,7 @@ void kpatch_rebuild_rela_section_data(struct section *sec)
 	GElf_Rela *relas;
 	size_t size;
 
+printf("section %s rebuild data\n", sec->name);
 	list_for_each_entry(rela, &sec->relas, list)
 		nr++;
 
@@ -746,11 +787,18 @@ void kpatch_rebuild_rela_section_data(struct section *sec)
 	/* d_type remains ELF_T_RELA */
 
 	sec->sh.sh_size = size;
-
 	list_for_each_entry(rela, &sec->relas, list) {
 		relas[index].r_offset = rela->offset;
 		relas[index].r_addend = rela->addend;
 		relas[index].r_info = GELF_R_INFO(rela->sym->index, rela->type);
+if(rela->sym)
+printf("rela sym: %s index: %d\n", rela->sym->name, index);
+printf("r_offset: %d r_info: %lx r_addend: %ld\n", rela->offset, relas[index].r_info, rela->addend);
+
+//#ifdef __mips64__	
+		relas[index].r_info = ((unsigned long)rela->type << 56) | (rela->sym->index & 0xffff);
+printf("change r_info: %lx\n", relas[index].r_info);
+//#endif
 		index++;
 	}
 
@@ -771,6 +819,13 @@ void kpatch_write_output_elf(struct kpatch_elf *kelf, Elf *elf, char *outfile,
 	Elf_Data *data;
 	GElf_Shdr sh;
 
+GElf_Rela *relas;
+struct rela *rela;
+int index = 0;
+
+//char *str = "/home/loongson/.kpatch/tmp/output/arch/mips/loongson64/common/machtype.o";
+//outfile = str;
+printf("kpatch_write_output_elf\n");
 	fd = creat(outfile, mode);
 	if (fd == -1)
 		ERROR("creat");
@@ -793,6 +848,7 @@ void kpatch_write_output_elf(struct kpatch_elf *kelf, Elf *elf, char *outfile,
 	ehout.e_machine = eh.e_machine;
 	ehout.e_type = eh.e_type;
 	ehout.e_version = EV_CURRENT;
+	ehout.e_flags = eh.e_flags;
 
 	shstrtab = find_section_by_name(&kelf->sections, ".shstrtab");
 	if (!shstrtab)
@@ -802,6 +858,8 @@ void kpatch_write_output_elf(struct kpatch_elf *kelf, Elf *elf, char *outfile,
 
 	/* add changed sections */
 	list_for_each_entry(sec, &kelf->sections, list) {
+printf("write section: %s\n", sec->name);
+
 		scn = elf_newscn(elfout);
 		if (!scn)
 			ERROR("elf_newscn");
@@ -824,6 +882,19 @@ void kpatch_write_output_elf(struct kpatch_elf *kelf, Elf *elf, char *outfile,
 
 		if (!gelf_update_shdr(scn, &sh))
 			ERROR("gelf_update_shdr");
+
+if (is_rela_section(sec)) {
+index = 0;
+printf("rela sec: %s base sec: %s\n", sec->name, sec->base->name);
+	relas = data->d_buf;
+	list_for_each_entry(rela, &sec->relas, list) {
+		if(rela->sym)
+		printf("rela sym: %s index: %d\n", rela->sym->name, index);
+		printf("rela r_offset: %lx r_info: %lx r_addend: %ld\n", rela->rela.r_offset, rela->rela.r_info, rela->rela.r_addend);
+		printf("write r_offset: %lx r_info: %lx r_addend: %ld\n", relas[index].r_offset, relas[index].r_info, relas[index].r_addend);
+		index++;
+	}
+}
 	}
 
 	if (!gelf_update_ehdr(elfout, &ehout))

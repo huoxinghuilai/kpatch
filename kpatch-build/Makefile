@@ -23,7 +23,7 @@ PLUGIN_CFLAGS := $(filter-out -Wconversion, $(CFLAGS))
 PLUGIN_CFLAGS += -shared -I$(GCC_PLUGINS_DIR)/include \
 		   -Igcc-plugins -fPIC -fno-rtti -O2 -Wall
 
-#else ifeq ($(ARCH),mips64)
+else ifeq ($(ARCH),mips64)
 #SOURCE += ...
 #...
 

@@ -49,17 +49,21 @@ static void create_dynamic_rela_sections(struct kpatch_elf *kelf, struct section
 	unsigned int index, nr, offset, dest_offset, objname_offset, name_offset;
 	unsigned int type;
 	long addend;
-	char *target_name;
+	//char *target_name;
+
+printf("create_dynamic_rela_sections\n");
 
 	ksyms = ksymsec->data->d_buf;
 	krelas = krelasec->data->d_buf;
 	nr = (unsigned int)(krelasec->data->d_size / sizeof(*krelas));
+printf("dynamic rela include sym: %p, rela: %p, nr: %d\n", ksyms, krelas, nr);
 
 	dynsec = create_section_pair(kelf, ".kpatch.dynrelas", sizeof(*dynrelas), nr);
 	dynrelas = dynsec->data->d_buf;
 
 	for (index = 0; index < nr; index++) {
 		offset = index * (unsigned int)sizeof(*krelas);
+printf("rela in dynsec->data->d_buf arrays offset: %d\n", offset);
 
 		/*
 		 * To fill in each dynrela entry, find dest location,
@@ -72,6 +76,8 @@ static void create_dynamic_rela_sections(struct kpatch_elf *kelf, struct section
 		if (!rela)
 			ERROR("find_rela_by_offset");
 		sym = rela->sym;
+printf("sym name: %s\n", sym->name);
+
 		dest_offset = (unsigned int)rela->addend;
 
 		/* Get objname offset */
@@ -97,12 +103,19 @@ static void create_dynamic_rela_sections(struct kpatch_elf *kelf, struct section
 
 		/* Fill in dynrela entry */
 		type = krelas[index].type;
+if (type == R_MIPS_32 || type == R_MIPS_64 || type == R_MIPS_26)
+{
+printf("type: %d\n", type);
+}
 		addend = krelas[index].addend;
+
+#ifdef __X86_64__
 		if (type == R_X86_64_64 && (addend > INT_MAX || addend <= INT_MIN)) {
 			target_name = (char *)strsec->data->d_buf + name_offset;
 			ERROR("got R_X86_64_64 dynrela for '%s' with addend too large or too small for an int: %lx",
 				target_name, addend);
 		}
+#endif
 
 		dynrelas[index].src = ksym->src;
 		dynrelas[index].addend = addend;
@@ -110,6 +123,7 @@ static void create_dynamic_rela_sections(struct kpatch_elf *kelf, struct section
 		dynrelas[index].external = krelas[index].external;
 		dynrelas[index].sympos = ksym->sympos;
 
+#ifdef __X86_64__
 		/* dest */
 		ALLOC_LINK(rela, &dynsec->rela->relas);
 		rela->sym = sym;
@@ -132,6 +146,25 @@ static void create_dynamic_rela_sections(struct kpatch_elf *kelf, struct section
 		rela->addend = objname_offset;
 		rela->offset = (unsigned int)(index * sizeof(*dynrelas) + \
 					      offsetof(struct kpatch_patch_dynrela, objname));
+#endif
+
+		ALLOC_LINK(rela, &dynsec->rela->relas);
+		rela->sym = sym;
+		rela->type = R_MIPS_64;
+		rela->addend = dest_offset;
+		rela->offset = (unsigned int)(index * sizeof(&dynrelas));
+
+		ALLOC_LINK(rela, &dynsec->rela->relas);
+		rela->sym = strsec->secsym;
+		rela->type = R_MIPS_64;
+		rela->addend = name_offset;
+		rela->offset = (unsigned int)(index * sizeof(*dynrelas) + offsetof(struct kpatch_patch_dynrela, name));
+	
+		ALLOC_LINK(rela, &dynsec->rela->relas);
+		rela->sym = strsec->secsym;
+		rela->type = R_MIPS_64;
+		rela->addend = objname_offset;
+		rela->offset = (unsigned int)(index * sizeof(*dynrelas) + offsetof(struct kpatch_patch_dynrela, objname));		
 	}
 }
 
@@ -201,10 +234,14 @@ int main(int argc, char *argv[])
 	struct arguments arguments;
 	unsigned int ksyms_nr, krelas_nr;
 
+printf("create-kpatch-module\n");
+
 	arguments.debug = 0;
 	argp_parse (&argp, argc, argv, 0, 0, &arguments);
 	if (arguments.debug)
 		loglevel = DEBUG;
+
+printf("parma0: %s param1: %s\n", arguments.args[0], arguments.args[1]);
 
 	elf_version(EV_CURRENT);
 
@@ -226,11 +263,13 @@ int main(int argc, char *argv[])
 	if (!ksymsec)
 		ERROR("missing .kpatch.symbols section");
 	ksyms_nr = (unsigned int)(ksymsec->data->d_size / sizeof(struct kpatch_symbol));
+printf("syms num: %d\n", ksyms_nr);
 
 	krelasec = find_section_by_name(&kelf->sections, ".kpatch.relocations");
 	if (!krelasec)
 		ERROR("missing .kpatch.relocations section");
 	krelas_nr = (unsigned int)(krelasec->data->d_size / sizeof(struct kpatch_relocation));
+printf("relas num: %d\n", krelas_nr);
 
 	if (krelas_nr != ksyms_nr)
 		ERROR("number of krelas and ksyms do not match");

@@ -212,6 +212,8 @@ find_core_symvers() {
 		fi
 	fi
 
+	#测试kmod是否正常
+	#SYMVERSFILE="/home/loongson/kpatch/kpatch/kmod/core/Module.symvers"
 	[[ -e "$SYMVERSFILE" ]]
 }
 
@@ -298,9 +300,54 @@ find_special_section_data_ppc64le() {
 	return
 }
 
+find_special_section_data_mips64() {
+
+	#对内核中的某些配置进行标记
+	#TODO！
+
+        #SPECIAL_VARS="$(readelf -wi "$VMLINUX" |
+        #        gawk --non-decimal-data '
+        #        BEGIN { f = b = e = j = 0 }
+
+                # Set state if name matches
+        #        f == 0 && /DW_AT_name.* *$/ {f = 1; next}
+        #        b == 0 && /DW_AT_name.* *$/ {b = 1; next}
+        #        e == 0 && /DW_AT_name.* *$/ {e = 1; next}
+        #        j == 0 && /DW_AT_name.* *$/ {j = 1; next}
+
+                # Reset state unless this abbrev describes the struct size
+        #        f == 1 && !/DW_AT_byte_size/ { f = 0; next }
+        #        b == 1 && !/DW_AT_byte_size/ { b = 0; next }
+        #        e == 1 && !/DW_AT_byte_size/ { e = 0; next }
+        #        j == 1 && !/DW_AT_byte_size/ { j = 0; next }
+
+                # Now that we know the size, stop parsing for it
+        #        f == 1 {printf("export \n", $4); f = 2}
+        #        b == 1 {printf("export \n", $4); b = 2}
+        #        e == 1 {printf("export \n", $4); e = 2}
+        #        j == 1 {printf("export \n", $4); j = 2}
+
+                # Bail out once we have everything
+        #        f == 2 && b == 2 && e == 2 && (j == 2 || skip_j) {exit}')"
+
+        #[[ -n "$SPECIAL_VARS" ]] && eval "$SPECIAL_VARS"
+
+        #[[ -z "" ]] && die "can't find special struct "
+        #[[ -z "" ]] && die "can't find special struct "
+        #[[ -z "" ]] && die "can't find special struct "
+        #[[ -z "" ]] && die "can't find special struct "
+
+        return
+}
+
 find_special_section_data() {
 	if [[ "$ARCH" = "ppc64le" ]]; then
 		find_special_section_data_ppc64le
+		return
+	fi
+	
+	if [[ "$ARCH" = "mips64" ]]; then
+		find_special_section_data_mips64
 		return
 	fi
 
@@ -625,11 +672,11 @@ elif [[ "$DISTRO" = ubuntu ]] || [[ "$DISTRO" = debian ]]; then
 
 	export PATH="/usr/lib/ccache:$PATH"
 
-#elif [[ "$DISTRO" = loongnix ]]; then
-#        [[ -z "$VMLINUX" ]] && VMLINUX="/usr/lib/modules/$ARCHVERSION/source/vmlinux"
-#        [[ -e "$VMLINUX" ]] || die "kernel-debuginfo-$ARCHVERSION not installed"
-#
-#        export PATH="/usr/lib64/ccache:$PATH"
+elif [[ "$DISTRO" = loongnix ]]; then
+        [[ -z "$VMLINUX" ]] && VMLINUX="/usr/lib/modules/$ARCHVERSION/source/vmlinux"
+        [[ -e "$VMLINUX" ]] || die "kernel-debuginfo-$ARCHVERSION not installed"
+
+        export PATH="/usr/lib64/ccache:$PATH"
 
 fi
 
@@ -1014,7 +1061,13 @@ else
 	md5sum ../patch/tmp_output.o | awk '{printf "%s\0", $1}' > checksum.tmp || die
 	objcopy --add-section .kpatch.checksum=checksum.tmp --set-section-flags .kpatch.checksum=alloc,load,contents,readonly  ../patch/tmp_output.o || die
 	rm -f checksum.tmp
+
+cp "$TEMPDIR"/patch/tmp_output.o /home/loongson/tmp_output.o
+
 	"$TOOLSDIR"/create-kpatch-module "$TEMPDIR"/patch/tmp_output.o "$TEMPDIR"/patch/output.o 2>&1 | logger 1
+
+cp "$TEMPDIR"/patch/output.o /home/loongson/output.o
+
 	check_pipe_status create-kpatch-module
 fi
 

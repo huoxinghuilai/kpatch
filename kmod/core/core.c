@@ -54,6 +54,7 @@
 #define UTS_UBUNTU_RELEASE_ABI 0
 #endif
 
+#ifndef CONFIG_MIPS
 #if !defined(CONFIG_FUNCTION_TRACER) || \
 	!defined(CONFIG_HAVE_FENTRY) || \
 	!defined(CONFIG_MODULES) || \
@@ -61,6 +62,16 @@
 	!defined(CONFIG_STACKTRACE) || \
 	!defined(CONFIG_KALLSYMS_ALL)
 #error "CONFIG_FUNCTION_TRACER, CONFIG_HAVE_FENTRY, CONFIG_MODULES, CONFIG_SYSFS, CONFIG_KALLSYMS_ALL kernel config options are required"
+#endif
+
+#else
+#if !defined(CONFIG_FUNCTION_TRACER) || \
+	!defined(CONFIG_MODULES) || \
+	!defined(CONFIG_SYSFS) || \
+	!defined(CONFIG_STACKTRACE) || \
+	!defined(CONFIG_KALLSYMS_ALL)
+#error "CONFIG_FUNCTION_TRACER, CONFIG_MODULES, CONFIG_SYSFS, CONFIG_KALLSYMS_ALL kernel config options are required"
+#endif
 #endif
 
 #define KPATCH_HASH_BITS 8
@@ -510,7 +521,12 @@ kpatch_ftrace_handler(unsigned long ip, unsigned long parent_ip,
 	}
 done:
 	if (func)
+
+#ifdef CONFIG_MIPS
+		regs->regs[31] = func->new_addr;
+#else
 		regs->ip = func->new_addr + MCOUNT_INSN_SIZE;
+#endif
 
 	preempt_enable_notrace();
 }
@@ -705,6 +721,7 @@ static int kpatch_write_relocations(struct kpatch_module *kpmod,
 		}
 
 		switch (dynrela->type) {
+#ifndef CONFIG_MIPS
 		case R_X86_64_NONE:
 			continue;
 		case R_X86_64_PC32:
@@ -724,6 +741,17 @@ static int kpatch_write_relocations(struct kpatch_module *kpmod,
 			val = dynrela->src + dynrela->addend;
 			size = 8;
 			break;
+#else
+		//根据mips的elf格式来进行改动
+		case R_MIPS_NONE:
+			continue;
+		case R_MIPS_32:
+			break;
+		case R_MIPS_26:
+			break;
+		case R_MIPS_64:
+			break;
+#endif
 		default:
 			pr_err("unsupported rela type %ld for source %s (0x%lx <- 0x%lx)\n",
 			       dynrela->type, dynrela->name, dynrela->dest,
@@ -763,7 +791,7 @@ static int kpatch_write_relocations(struct kpatch_module *kpmod,
 
 		numpages = (PAGE_SIZE - (loc & ~PAGE_MASK) >= size) ? 1 : 2;
 
-		if (readonly)
+		if (!readonly)
 			kpatch_set_memory_rw(loc & PAGE_MASK, numpages);
 
 		ret = probe_kernel_write((void *)loc, &val, size);
@@ -1013,6 +1041,7 @@ int kpatch_register(struct kpatch_module *kpmod, bool replace)
 	struct kpatch_object *object, *object_err = NULL;
 	struct kpatch_func *func;
 
+printk("register kpatch\n");
 	struct kpatch_apply_patch_args args = {
 		.kpmod = kpmod,
 		.replace = replace,
@@ -1042,6 +1071,7 @@ int kpatch_register(struct kpatch_module *kpmod, bool replace)
 			object_err = object;
 			goto err_unlink;
 		}
+printk("down kpatch_link_object\n");
 
 		if (!kpatch_object_linked(object)) {
 			pr_notice("delaying patch of unloaded module '%s'\n",

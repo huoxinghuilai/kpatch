@@ -377,7 +377,7 @@ static int patch_set_callbacks(struct list_head *objects)
 static int __init patch_init(void)
 {
 	int ret;
-
+printk("start to patch_init\n");
 	ret = kobject_init_and_add(&kpmod.kobj, &patch_ktype,
 				   kpatch_root_kobj, "%s",
 				   THIS_MODULE->name);
@@ -387,18 +387,22 @@ static int __init patch_init(void)
 	kpmod.mod = THIS_MODULE;
 	INIT_LIST_HEAD(&kpmod.objects);
 
+printk("start to patch_make_funcs_list\n");
 	ret = patch_make_funcs_list(&kpmod.objects);
 	if (ret)
 		goto err_objects;
 
+printk("start to patch_make_dynrelas_lsit\n");
 	ret = patch_make_dynrelas_list(&kpmod.objects);
 	if (ret)
 		goto err_objects;
 
+printk("start to patch_set_callbacks\n");
 	ret = patch_set_callbacks(&kpmod.objects);
 	if (ret)
 		goto err_objects;
 
+printk("start to kpatch_register\n");
 	ret = kpatch_register(&kpmod, replace);
 	if (ret)
 		goto err_objects;
