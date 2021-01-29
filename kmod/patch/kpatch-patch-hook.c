@@ -237,6 +237,9 @@ static int patch_make_funcs_list(struct list_head *objects)
 	int ret;
 
 	for (p_func = __kpatch_funcs; p_func < __kpatch_funcs_end; p_func++) {
+
+printk("p_func->objname: %s p_func->name: %s\n", p_func->objname, p_func->name);
+
 		object = patch_find_or_add_object(&kpmod.objects,
 						  p_func->objname);
 		if (!object)
@@ -269,6 +272,8 @@ static int patch_make_dynrelas_list(struct list_head *objects)
 	struct kpatch_object *object;
 	struct kpatch_patch_dynrela *p_dynrela;
 	struct kpatch_dynrela *dynrela;
+
+printk("__kpatch_dynrelas: %lx __kpatch_dynrelas_end: %lx", __kpatch_dynrelas, __kpatch_dynrelas_end);
 
 	for (p_dynrela = __kpatch_dynrelas; p_dynrela < __kpatch_dynrelas_end;
 	     p_dynrela++) {

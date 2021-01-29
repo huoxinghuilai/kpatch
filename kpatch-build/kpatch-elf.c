@@ -157,10 +157,9 @@ void kpatch_create_rela_list(struct kpatch_elf *kelf, struct section *sec)
 	struct rela *rela;
 	unsigned int symndx;
 	unsigned long rela_nr;
-printf("kpatch_create_rela_list\n");
+
 	/* find matching base (text/data) section */
 	sec->base = find_section_by_index(&kelf->sections, sec->sh.sh_info);
-printf("rela sec: %s base sec: %s\n", sec->name, sec->base->name);
 	if (!sec->base)
 		ERROR("can't find base section for rela section %s", sec->name);
 
@@ -190,18 +189,12 @@ printf("rela sec: %s base sec: %s\n", sec->name, sec->base->name);
 		rela->offset = (unsigned int)rela->rela.r_offset;
 		symndx = (unsigned int)GELF_R_SYM(rela->rela.r_info);
 		rela->sym = find_symbol_by_index(&kelf->symbols, symndx);
-if (rela->sym)
-printf("rela sym: %s\n", rela->sym->name);
-printf("rela info: %lx\n", rela->rela.r_info);
 
 		if (!rela->sym)
 			ERROR("could not find rela entry symbol\n");
 		if (rela->sym->sec &&
 		    (rela->sym->sec->sh.sh_flags & SHF_STRINGS)) {
 			rela->string = rela->sym->sec->data->d_buf + rela->addend;
-printf("rela sym sec: %s\n", rela->sym->sec->name);
-printf("rela string: %s + %ld\n", (char *)rela->sym->sec->data->d_buf, rela->addend);
-
 			if (!rela->string)
 				ERROR("could not lookup rela string for %s+%ld",
 				      rela->sym->name, rela->addend);
@@ -223,11 +216,10 @@ void kpatch_create_section_list(struct kpatch_elf *kelf)
 	Elf_Scn *scn = NULL;
 	struct section *sec;
 	size_t shstrndx, sections_nr;
-printf("kpatch_create_section_list\n");
 
 	if (elf_getshdrnum(kelf->elf, &sections_nr))
 		ERROR("elf_getshdrnum");
-printf("sections_nr: %lx\n", sections_nr);
+
 	/*
 	 * elf_getshdrnum() includes section index 0 but elf_nextscn
 	 * doesn't return that section so subtract one.
@@ -236,7 +228,6 @@ printf("sections_nr: %lx\n", sections_nr);
 
 	if (elf_getshdrstrndx(kelf->elf, &shstrndx))
 		ERROR("elf_getshdrstrndx");
-printf("shstrndx: %lx\n", shstrndx);
 
 	log_debug("=== section list (%zu) ===\n", sections_nr);
 
@@ -251,7 +242,6 @@ printf("shstrndx: %lx\n", shstrndx);
 			ERROR("gelf_getshdr");
 
 		sec->name = elf_strptr(kelf->elf, shstrndx, sec->sh.sh_name);
-printf("sec name: %s index: %d\n", sec->name, sec->sh.sh_name);
 		if (!sec->name)
 			ERROR("elf_strptr");
 
@@ -260,7 +250,6 @@ printf("sec name: %s index: %d\n", sec->name, sec->sh.sh_name);
 			ERROR("elf_getdata");
 
 		sec->index = (unsigned int)elf_ndxscn(scn);
-printf("sec index: %d\n", sec->index);
 
 		log_debug("ndx %02d, data %p, size %zu, name %s\n",
 			sec->index, sec->data->d_buf, sec->data->d_size,
@@ -286,7 +275,6 @@ void kpatch_create_symbol_list(struct kpatch_elf *kelf)
 
 	log_debug("\n=== symbol list (%d entries) ===\n", symbols_nr);
 
-printf("kpatch_create_symbol_list\n");
 	while (symbols_nr--) {
 		ALLOC_LINK(sym, &kelf->symbols);
 
@@ -299,27 +287,22 @@ printf("kpatch_create_symbol_list\n");
 
 		sym->name = elf_strptr(kelf->elf, symtab->sh.sh_link,
 				       sym->sym.st_name);
-printf("sym index: %d name: %s\n", sym->index, sym->name);
 		if (!sym->name)
 			ERROR("elf_strptr");
 
 		sym->type = GELF_ST_TYPE(sym->sym.st_info);
 		sym->bind = GELF_ST_BIND(sym->sym.st_info);
-printf("sym st_info: %d type: %d bind: %d\n", sym->sym.st_info, sym->type, sym->bind);
 
-printf("sym st_shndx: %d\n", sym->sym.st_shndx);
 		if (sym->sym.st_shndx > SHN_UNDEF &&
 		    sym->sym.st_shndx < SHN_LORESERVE) {
 			sym->sec = find_section_by_index(&kelf->sections,
 					sym->sym.st_shndx);
-if (sym->sec)
-printf("sym->sec: %s\n", sym->sec->name);
+
 			if (!sym->sec)
 				ERROR("couldn't find section for symbol %s\n",
 					sym->name);
 
 			if (sym->type == STT_SECTION) {
-printf("sym: %s sec: %s name correlated\n", sym->name, sym->sec->name);
 				sym->sec->secsym = sym;
 				/* use the section name as the symbol name */
 				sym->name = sym->sec->name;
@@ -343,8 +326,6 @@ static void kpatch_find_func_profiling_calls(struct kpatch_elf *kelf)
 	struct rela *rela;
 
 	list_for_each_entry(sym, &kelf->symbols, list) {
-printf("kpatch_find_func_profiling_calls\n");
-printf("sym name: %s\n", sym->name);
 		if (sym->type != STT_FUNC || !sym->sec || !sym->sec->rela)
 			continue;
 		
@@ -366,22 +347,17 @@ printf("sym name: %s\n", sym->name);
 
 		sym->has_func_profiling = 1;
 
-#else		
+#else
+		//mips架构
+		//遍历函数符号所对应的rela_type-section中的重定位信息	
+		//查看重定位位置是否存在_mcount()接口
+		
 		list_for_each_entry(rela, &sym->sec->rela->relas, list) {
-printf("sym->sec: %s sym->sec->rela: %s sym->sec->rela->type: %d\n", sym->sec->name, rela->sym->name, rela->type);
 			if (!strcmp(rela->sym->name, "_mcount")) {
 				sym->has_func_profiling = 1;
 				break;
 			}
 		}
-
-		/*
- 		rela = list_first_entry(&sym->sec->rela->relas, struct rela, list);
-		if ((rela->type != R_MIPS_26) || strcmp(rela->sym->name, "_mcount"))
-			continue;
-		
-		sym->has_func_profiling = 1;	
-		*/
 #endif
 	}
 }
@@ -711,6 +687,168 @@ struct section *create_section_pair(struct kpatch_elf *kelf, char *name,
 	return sec;
 }
 
+/*
+ * 对被改动的section并进行修改与替换
+ *
+ */
+
+void fixup_changed_section(struct kpatch_elf *kelf, struct sec_record *rec)
+{
+	struct section *old_sec, *rel_sec;
+	struct rela *rela, *tmp_rela, *tmp1_rela;
+	struct sec_record *tmp_rec; 
+	unsigned char *tmp_data, *start, *data;
+	int size, nr_rela = 0, relas = 0, nr = 0;
+	unsigned int up_rela_offset = 0;
+
+	//遍历记录链表
+	list_for_each_entry(tmp_rec, &rec->list, list) {
+		
+		//创建链表时，首位置空
+		if (!tmp_rec->sec)
+			continue;
+
+		//创建替换的.section
+		//创建替换的.rela.section
+		rel_sec = (struct section *)malloc(sizeof(*rel_sec));
+		memset(rel_sec, 0, sizeof(*rel_sec));
+			
+		rel_sec->name = (char *)malloc(strlen(tmp_rec->sec->rela->name));
+		strcpy(rel_sec->name, tmp_rec->sec->rela->name);
+
+		rel_sec->data = malloc(sizeof(Elf_Data));
+		rel_sec->data->d_type = ELF_T_RELA;
+
+		INIT_LIST_HEAD(&rel_sec->relas);		
+
+		//遍历out_elf中的section
+		list_for_each_entry(old_sec, &kelf->sections, list) {
+
+			if (strcmp(tmp_rec->sec->name, old_sec->name))
+				continue;
+			//设置.rela.section节头信息
+			rel_sec->sh.sh_type = old_sec->rela->sh.sh_type;
+			rel_sec->sh.sh_entsize = old_sec->rela->sh.sh_entsize;
+			rel_sec->sh.sh_addralign = old_sec->rela->sh.sh_addralign;
+			rel_sec->sh.sh_flags = old_sec->rela->sh.sh_flags;
+			
+			//计算section数据应使用的空间大小
+			list_for_each_entry(rela, &old_sec->rela->relas, list) {
+				switch(rela->type) {
+				case R_MIPS_26:
+					++nr_rela;
+					break;
+				default:
+					relas++;
+					break;
+				}	
+			}
+
+			//申请.section的空间大小
+			data = tmp_data = (void *)malloc(old_sec->data->d_size + (8 * nr_rela));
+			memset(tmp_data, 0, old_sec->data->d_size + (8 * nr_rela));
+		
+			//遍历section中的重定位位置，填充.section以及.rela.section
+			start = old_sec->data->d_buf;
+			list_for_each_entry(rela, &old_sec->rela->relas, list) {
+			/*
+ 			 * 如果重定位类型为526M范围，则将I型指令更改为R型指令
+ 			 *
+ 			 * (I型)
+ 			 * jal 0x03000000
+ 			 *
+ 			 * (R型)
+ 			 * lui v1, 0x0
+ 			 * daddiu v1, v1, 0x0
+ 			 * jalr v1
+ 			 *
+ 			 */
+
+				switch(rela->type) {				
+				case R_MIPS_26:
+					memcpy(tmp_data, start, rela->offset - up_rela_offset);
+
+					tmp_data = tmp_data + (rela->offset - up_rela_offset);
+					
+					tmp_data[0] = 0x00;
+					tmp_data[1] = 0x00;
+					tmp_data[2] = 0x03;
+					tmp_data[3] = 0x3c;
+
+					tmp_data[4] = 0x00;
+					tmp_data[5] = 0x00;
+					tmp_data[6] = 0x63;
+					tmp_data[7] = 0x64;					
+
+					tmp_data[8] = 0x09;
+					tmp_data[9] = 0xf8;
+					tmp_data[10] = 0x60;
+					tmp_data[11] = 0x00;
+	
+					//重新计算复制地址
+					start = start + rela->offset + 4;
+					tmp_data = tmp_data + 12;
+					up_rela_offset = rela->offset;
+					size += 8;						
+
+					//创建rela重定位结构体
+					tmp_rela = (struct rela *)malloc(sizeof(struct rela));
+					memset(tmp_rela, 0, sizeof(struct rela));
+			
+					list_add_tail(&tmp_rela->list, &rel_sec->relas);
+					tmp_rela->sym = rela->sym;
+					tmp_rela->type = R_MIPS_HI16;
+					tmp_rela->offset = (unsigned int)rela->rela.r_offset;
+					tmp_rela->addend = rela->rela.r_addend;
+					
+					tmp1_rela = (struct rela *)malloc(sizeof(struct rela));
+					memset(tmp1_rela, 0, sizeof(struct rela));
+
+					list_add_tail(&tmp1_rela->list, &rel_sec->relas);
+					tmp1_rela->sym = rela->sym;					
+					tmp1_rela->type = R_MIPS_LO16;
+					tmp1_rela->offset = (unsigned int)rela->rela.r_offset + 4;
+					tmp1_rela->addend = rela->rela.r_addend;
+					
+					++nr;
+					break;
+
+				default:
+
+					tmp_rela = (struct rela *)malloc(sizeof(struct rela));
+					memset(tmp_rela, 0, sizeof(struct rela));
+
+					list_add_tail(&tmp_rela->list, &rel_sec->relas);
+					tmp_rela->sym = rela->sym;
+					tmp_rela->type = rela->rela.r_info & 0xffffffff;
+					tmp_rela->offset = (unsigned int)rela->rela.r_offset + (8 * nr);
+					tmp_rela->addend = rela->rela.r_addend;
+
+					break;
+				}
+			}
+
+			memcpy(tmp_data, start, (unsigned int)(old_sec->data->d_size - up_rela_offset - 4));
+		
+			//替换.section
+			old_sec->data->d_buf = data;
+			old_sec->data->d_size = old_sec->data->d_size + (8 * nr_rela);
+			
+			//替换.rela.section
+			rel_sec->list.prev = old_sec->rela->list.prev;
+			rel_sec->list.next = old_sec->rela->list.next;
+			old_sec->rela->list.prev->next = &rel_sec->list;
+			old_sec->rela->list.next->prev = &rel_sec->list;			
+
+			rel_sec->base = old_sec;
+			old_sec->rela = rel_sec;
+			nr_rela = 0;
+		}
+
+	}
+		
+}
+
 void kpatch_remove_and_free_section(struct kpatch_elf *kelf, char *secname)
 {
 	struct section *sec, *safesec;
@@ -773,7 +911,6 @@ void kpatch_rebuild_rela_section_data(struct section *sec)
 	GElf_Rela *relas;
 	size_t size;
 
-printf("section %s rebuild data\n", sec->name);
 	list_for_each_entry(rela, &sec->relas, list)
 		nr++;
 
@@ -791,13 +928,9 @@ printf("section %s rebuild data\n", sec->name);
 		relas[index].r_offset = rela->offset;
 		relas[index].r_addend = rela->addend;
 		relas[index].r_info = GELF_R_INFO(rela->sym->index, rela->type);
-if(rela->sym)
-printf("rela sym: %s index: %d\n", rela->sym->name, index);
-printf("r_offset: %d r_info: %lx r_addend: %ld\n", rela->offset, relas[index].r_info, rela->addend);
 
 //#ifdef __mips64__	
 		relas[index].r_info = ((unsigned long)rela->type << 56) | (rela->sym->index & 0xffff);
-printf("change r_info: %lx\n", relas[index].r_info);
 //#endif
 		index++;
 	}
@@ -819,13 +952,6 @@ void kpatch_write_output_elf(struct kpatch_elf *kelf, Elf *elf, char *outfile,
 	Elf_Data *data;
 	GElf_Shdr sh;
 
-GElf_Rela *relas;
-struct rela *rela;
-int index = 0;
-
-//char *str = "/home/loongson/.kpatch/tmp/output/arch/mips/loongson64/common/machtype.o";
-//outfile = str;
-printf("kpatch_write_output_elf\n");
 	fd = creat(outfile, mode);
 	if (fd == -1)
 		ERROR("creat");
@@ -858,7 +984,6 @@ printf("kpatch_write_output_elf\n");
 
 	/* add changed sections */
 	list_for_each_entry(sec, &kelf->sections, list) {
-printf("write section: %s\n", sec->name);
 
 		scn = elf_newscn(elfout);
 		if (!scn)
@@ -879,22 +1004,8 @@ printf("write section: %s\n", sec->name);
 			ERROR("gelf_getshdr");
 
 		sh = sec->sh;
-
 		if (!gelf_update_shdr(scn, &sh))
 			ERROR("gelf_update_shdr");
-
-if (is_rela_section(sec)) {
-index = 0;
-printf("rela sec: %s base sec: %s\n", sec->name, sec->base->name);
-	relas = data->d_buf;
-	list_for_each_entry(rela, &sec->relas, list) {
-		if(rela->sym)
-		printf("rela sym: %s index: %d\n", rela->sym->name, index);
-		printf("rela r_offset: %lx r_info: %lx r_addend: %ld\n", rela->rela.r_offset, rela->rela.r_info, rela->rela.r_addend);
-		printf("write r_offset: %lx r_info: %lx r_addend: %ld\n", relas[index].r_offset, relas[index].r_info, relas[index].r_addend);
-		index++;
-	}
-}
 	}
 
 	if (!gelf_update_ehdr(elfout, &ehout))

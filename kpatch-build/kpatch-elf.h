@@ -110,6 +110,12 @@ struct kpatch_elf {
 	int fd;
 };
 
+//sec_record结构体用于记录发生改变的section
+struct sec_record {
+	struct list_head list;
+	struct section *sec;
+};
+
 /*******************
  * Helper functions
  ******************/
@@ -161,6 +167,9 @@ void kpatch_create_strtab(struct kpatch_elf *kelf);
 void kpatch_create_symtab(struct kpatch_elf *kelf);
 struct section *create_section_pair(struct kpatch_elf *kelf, char *name,
                                     int entsize, int nr);
+
+void fixup_changed_section(struct kpatch_elf *kelf, struct sec_record *rec);
+
 void kpatch_remove_and_free_section(struct kpatch_elf *kelf, char *secname);
 void kpatch_reindex_elements(struct kpatch_elf *kelf);
 void kpatch_rebuild_rela_section_data(struct section *sec);

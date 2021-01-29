@@ -62,8 +62,10 @@
 
 #ifdef __powerpc64__
 #define ABSOLUTE_RELA_TYPE R_PPC64_ADDR64
-#else
+#elif defined(x86_64)
 #define ABSOLUTE_RELA_TYPE R_X86_64_64
+#else
+#define ABSOLUTE_RELA_TYPE R_MIPS_64
 #endif
 
 char *childobj;
@@ -526,8 +528,6 @@ static void kpatch_compare_correlated_section(struct section *sec)
 
 	if (sec1->sh.sh_size != sec2->sh.sh_size ||
 	    sec1->data->d_size != sec2->data->d_size) {
-printf("kpatch_compare_correlated_section\n");
-printf("%s %lx %s %lx\n", sec1->name, sec1->sh.sh_size, sec2->name, sec2->sh.sh_size);
 		sec->status = CHANGED;
 		goto out;
 	}
@@ -883,13 +883,11 @@ do {								\
 
 static void __kpatch_correlate_section(struct section *sec1, struct section *sec2)
 {
-printf("%s section correlate %s section\n", sec1->name, sec2->name);
 	CORRELATE_ELEMENT(sec1, sec2, "section");
 }
 
 static void kpatch_correlate_symbol(struct symbol *sym1, struct symbol *sym2)
 {
-printf("%s symbol correlate %s symbol\n", sym1->name, sym2->name);
 	CORRELATE_ELEMENT(sym1, sym2, "symbol");
 }
 
@@ -1382,6 +1380,7 @@ static void kpatch_correlate_static_local_variables(struct kpatch_elf *base,
 
 static void kpatch_correlate_elfs(struct kpatch_elf *kelf1, struct kpatch_elf *kelf2)
 {
+
 	kpatch_correlate_sections(&kelf1->sections, &kelf2->sections);
 	kpatch_correlate_symbols(&kelf1->symbols, &kelf2->symbols);
 }
@@ -1504,13 +1503,7 @@ static void kpatch_replace_sections_syms(struct kpatch_elf *kelf)
 			else
 				continue;
 #else			
-			/*
-			if (rela->type == R_MIPS_26) {
-
-			} else if ()
-			
-			else
-			*/			
+			add_off = 0;			
 #endif
 
 			/*
@@ -1817,23 +1810,30 @@ static int kpatch_include_new_globals(struct kpatch_elf *kelf)
 	return nr;
 }
 
-static int kpatch_include_changed_functions(struct kpatch_elf *kelf)
+static int kpatch_include_changed_functions(struct kpatch_elf *kelf, struct sec_record *rec)
 {
 	struct symbol *sym;
 	int changed_nr = 0;
 
+	INIT_LIST_HEAD(&rec->list);
+
 	list_for_each_entry(sym, &kelf->symbols, list) {
 		if (sym->status == CHANGED &&
 		    sym->type == STT_FUNC) {
-printf("kpatch_include_changed_functions\n");
-printf("%s %s %d\n", sym->sec->name, sym->name, sym->status);
+
 			changed_nr++;
 			kpatch_include_symbol(sym);
+
+			//记录发生改变的section，需要对section进行修改
+			struct sec_record *tmp;
+
+			ALLOC_LINK(tmp, &rec->list);
+			tmp->sec = sym->sec;
 		}
 
 		if (sym->type == STT_FILE)
 			sym->include = 1;
-	}
+	}	
 
 	return changed_nr;
 }
@@ -1848,8 +1848,6 @@ static void kpatch_print_changes(struct kpatch_elf *kelf)
 		if (sym->status == NEW)
 			log_normal("new function: %s\n", sym->name);
 		else if (sym->status == CHANGED) {
-printf("kpatch_print_changes\n");
-printf("changed function: %s\n", sym->name);
 			log_normal("changed function: %s\n", sym->name);
 }
 	}
@@ -2848,6 +2846,7 @@ static void kpatch_create_patches_sections(struct kpatch_elf *kelf,
 	}
 
 	/* create text/rela section pair */
+	//创建.kpatch.funcs section，主要存储struct kpatch_patch_func结构体信息
 	sec = create_section_pair(kelf, ".kpatch.funcs", sizeof(*funcs), nr);
 	relasec = sec->rela;
 	funcs = sec->data->d_buf;
@@ -2862,6 +2861,8 @@ static void kpatch_create_patches_sections(struct kpatch_elf *kelf,
 
 	/* populate sections */
 	index = 0;
+
+	//遍历ELF中的所有符号，检索类型为STT_FUNC且已被改动
 	list_for_each_entry(sym, &kelf->symbols, list) {
 		if (sym->type != STT_FUNC || sym->status != CHANGED ||
 		    sym->parent)
@@ -2888,6 +2889,7 @@ static void kpatch_create_patches_sections(struct kpatch_elf *kelf,
 				   GELF_ST_INFO(sym->bind, sym->type);
 
 		/* add entry in text section */
+		//填充struct kpatch_patch_func结构体
 		funcs[index].old_addr = symbol.addr;
 		funcs[index].old_size = symbol.size;
 		funcs[index].new_size = sym->sym.st_size;
@@ -2952,6 +2954,7 @@ static int function_ptr_rela(const struct rela *rela)
 		rela->type == R_PPC64_TOC16_HA ||
 		rela->type == R_PPC64_TOC16_LO_DS));
 }
+
 
 static bool need_dynrela(struct lookup_table *table, const struct rela *rela)
 {
@@ -3137,7 +3140,6 @@ static void kpatch_create_intermediate_sections(struct kpatch_elf *kelf,
 		if (!strcmp(sec->name, ".rela.kpatch.funcs"))
 			continue;
 		list_for_each_entry(rela, &sec->relas, list) {
-
 			/* upper bound on number of kpatch relas and symbols */
 			nr++;
 
@@ -3152,8 +3154,10 @@ static void kpatch_create_intermediate_sections(struct kpatch_elf *kelf,
 			 * internal symbol function pointer check which is done
 			 * via .toc indirection in need_dynrela().
 			 */
+
 			if (need_dynrela(table, rela))
 				toc_rela(rela)->need_dynrela = 1;
+
 		}
 	}
 
@@ -3433,15 +3437,16 @@ static void kpatch_create_mcount_sections(struct kpatch_elf *kelf)
 			rela->type = R_X86_64_PC32;
 		}
 
-#else /* __powerpc64__ */
+#else /* __powerpc64__ && __mips64__*/
 {
 		bool found = false;
 
-		list_for_each_entry(rela, &sym->sec->rela->relas, list)
+		list_for_each_entry(rela, &sym->sec->rela->relas, list) {
 			if (!strcmp(rela->sym->name, "_mcount")) {
 				found = true;
 				break;
 			}
+		}
 
 		if (!found)
 			ERROR("%s: unexpected missing call to _mcount()", __func__);
@@ -3494,7 +3499,10 @@ static void kpatch_create_strings_elements(struct kpatch_elf *kelf)
 	/* create .kpatch.strings */
 
 	/* allocate section resources */
+
 	ALLOC_LINK(sec, &kelf->sections);
+
+
 	sec->name = ".kpatch.strings";
 
 	/* set data */
@@ -3661,6 +3669,9 @@ int main(int argc, char *argv[])
 	char *parent_symtab, *mod_symvers, *patch_name, *output_obj;
 	struct sym_compare_type *base_locals, *sym_comp;
 
+	//记录被改变的section
+	struct sec_record rec;
+
 	memset(&arguments, 0, sizeof(arguments));
 	argp_parse (&argp, argc, argv, 0, NULL, &arguments);
 	if (arguments.debug)
@@ -3670,20 +3681,17 @@ int main(int argc, char *argv[])
 
 	elf_version(EV_CURRENT);
 
-	orig_obj      = arguments.args[0];
-	patched_obj   = arguments.args[1];
-	parent_name   = arguments.args[2];
-	parent_symtab = arguments.args[3];
-	mod_symvers   = arguments.args[4];
-	patch_name    = arguments.args[5];
-	output_obj    = arguments.args[6];
+	orig_obj      = arguments.args[0]; //orig目录下.o文件
+	patched_obj   = arguments.args[1]; //patched目录下.o文件
+	parent_name   = arguments.args[2]; //-t选项后的字符串
+	parent_symtab = arguments.args[3]; //内核镜像的符号表
+	mod_symvers   = arguments.args[4]; //内核镜像的模块符号表
+	patch_name    = arguments.args[5]; //补丁名称
+	output_obj    = arguments.args[6]; //输出的文件名称
 
 	childobj = basename(orig_obj);
 
-printf("kpatch_elf_open orig_obj\n");
 	kelf_base = kpatch_elf_open(orig_obj);
-
-printf("kpatch_elf_open patched_obj\n");
 	kelf_patched = kpatch_elf_open(patched_obj);
 
 	kpatch_compare_elf_headers(kelf_base->elf, kelf_patched->elf);
@@ -3698,7 +3706,7 @@ printf("kpatch_elf_open patched_obj\n");
 
 	list_for_each_entry(sym, &kelf_base->symbols, list) {
 		if (sym->type == STT_FILE) {
-			hint = strdup(sym->name);
+			hint = strdup(sym->name); //文件名称
 			break;
 		}
 	}
@@ -3733,9 +3741,10 @@ printf("kpatch_elf_open patched_obj\n");
 	kpatch_elf_free(kelf_base);
 
 	kpatch_include_standard_elements(kelf_patched);
-	num_changed = kpatch_include_changed_functions(kelf_patched);
-printf("kpatch_include_changed_functions\n");
-printf("%d\n", num_changed);
+
+	//记录被修改的section
+	num_changed = kpatch_include_changed_functions(kelf_patched, &rec);
+	
 	callbacks_exist = kpatch_include_callback_elements(kelf_patched);
 	kpatch_include_force_elements(kelf_patched);
 	new_globals_exist = kpatch_include_new_globals(kelf_patched);
@@ -3761,6 +3770,9 @@ printf("%d\n", num_changed);
 	/* this is destructive to kelf_patched */
 	kpatch_migrate_included_elements(kelf_patched, &kelf_out);
 
+	//对发生改变的section进行修改
+	fixup_changed_section(kelf_out, &rec);
+
 	/*
 	 * Teardown kelf_patched since we shouldn't access sections or symbols
 	 * through it anymore.  Don't free however, since our section and symbol
@@ -3769,13 +3781,13 @@ printf("%d\n", num_changed);
 	 */
 	kpatch_elf_teardown(kelf_patched);
 
+
 	for (sym_comp = base_locals; sym_comp && sym_comp->name; sym_comp++)
 		free(sym_comp->name);
 	free(base_locals);
 	free(hint);
 
 	kpatch_no_sibling_calls_ppc64le(kelf_out);
-
 	/* create strings, patches, and dynrelas sections */
 	kpatch_create_strings_elements(kelf_out);
 	kpatch_create_patches_sections(kelf_out, lookup, parent_name);
@@ -3785,7 +3797,6 @@ printf("%d\n", num_changed);
 	kpatch_build_strings_section_data(kelf_out);
 
 	kpatch_create_mcount_sections(kelf_out);
-
 	/*
 	 *  At this point, the set of output sections and symbols is
 	 *  finalized.  Reorder the symbols into linker-compliant
@@ -3804,14 +3815,9 @@ printf("%d\n", num_changed);
 	symtab = find_section_by_name(&kelf_out->sections, ".symtab");
 	if (!symtab)
 		ERROR("missing .symtab section");
-
-printf("start to kpatch_rebuild_rela_section_data\n");
 	list_for_each_entry(sec, &kelf_out->sections, list) {
-printf("section: %s\n", sec->name);
-
 		if (!is_rela_section(sec))
 			continue;
-printf("this section is rela type, sec->name: %s symtab->index: %d sec->base->index: %d\n", sec->name, symtab->index, sec->base->index);
 		sec->sh.sh_link = symtab->index;
 		sec->sh.sh_info = sec->base->index;
 		kpatch_rebuild_rela_section_data(sec);

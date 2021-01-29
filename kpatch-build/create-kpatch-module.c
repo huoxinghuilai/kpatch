@@ -234,14 +234,10 @@ int main(int argc, char *argv[])
 	struct arguments arguments;
 	unsigned int ksyms_nr, krelas_nr;
 
-printf("create-kpatch-module\n");
-
 	arguments.debug = 0;
 	argp_parse (&argp, argc, argv, 0, 0, &arguments);
 	if (arguments.debug)
 		loglevel = DEBUG;
-
-printf("parma0: %s param1: %s\n", arguments.args[0], arguments.args[1]);
 
 	elf_version(EV_CURRENT);
 
@@ -263,13 +259,11 @@ printf("parma0: %s param1: %s\n", arguments.args[0], arguments.args[1]);
 	if (!ksymsec)
 		ERROR("missing .kpatch.symbols section");
 	ksyms_nr = (unsigned int)(ksymsec->data->d_size / sizeof(struct kpatch_symbol));
-printf("syms num: %d\n", ksyms_nr);
 
 	krelasec = find_section_by_name(&kelf->sections, ".kpatch.relocations");
 	if (!krelasec)
 		ERROR("missing .kpatch.relocations section");
 	krelas_nr = (unsigned int)(krelasec->data->d_size / sizeof(struct kpatch_relocation));
-printf("relas num: %d\n", krelas_nr);
 
 	if (krelas_nr != ksyms_nr)
 		ERROR("number of krelas and ksyms do not match");

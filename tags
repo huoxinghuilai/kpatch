@@ -6,7 +6,8 @@
 !_TAG_PROGRAM_VERSION	5.8	//
 ABSOLUTE_RELA_TYPE	kpatch-build/create-diff-object.c	64;"	d	file:
 ABSOLUTE_RELA_TYPE	kpatch-build/create-diff-object.c	66;"	d	file:
-ALLOC_LINK	kpatch-build/kpatch-elf.h	127;"	d
+ABSOLUTE_RELA_TYPE	kpatch-build/create-diff-object.c	68;"	d	file:
+ALLOC_LINK	kpatch-build/kpatch-elf.h	133;"	d
 ANY_RETURN_P	kpatch-build/gcc-plugins/gcc-common.h	257;"	d
 ARCH	test/unit/Makefile	/^ARCH    = $(shell uname -m)$/;"	m
 AVAIL_INTERPOSABLE	kpatch-build/gcc-plugins/gcc-common.h	564;"	d
@@ -46,12 +47,12 @@ FOR_EACH_FUNCTION_WITH_GIMPLE_BODY	kpatch-build/gcc-plugins/gcc-common.h	351;"	d
 FOR_EACH_LOCAL_DECL	kpatch-build/gcc-plugins/gcc-common.h	189;"	d
 FOR_EACH_VARIABLE	kpatch-build/gcc-plugins/gcc-common.h	364;"	d
 FOR_EACH_VEC_ELT	kpatch-build/gcc-plugins/gcc-common.h	194;"	d
-FTRACE_OPS_FL_IPMODIFY	kmod/core/core.c	535;"	d	file:
+FTRACE_OPS_FL_IPMODIFY	kmod/core/core.c	549;"	d	file:
 GCC_COMMON_H_INCLUDED	kpatch-build/gcc-plugins/gcc-common.h	2;"	d
 GCC_PLUGINS_DIR	kpatch-build/Makefile	/^GCC_PLUGINS_DIR := $(shell gcc -print-file-name=plugin)$/;"	m
 HAS_LIVEPATCH_CALLBACKS	kmod/patch/kpatch-macros.h	35;"	d
 HAS_LIVEPATCH_CALLBACKS	kmod/patch/kpatch-macros.h	38;"	d
-HAS_MODULE_TAINT	kmod/core/core.c	1180;"	d	file:
+HAS_MODULE_TAINT	kmod/core/core.c	1201;"	d	file:
 HAVE_CALLBACKS	kmod/patch/livepatch-patch-hook.c	61;"	d	file:
 HAVE_CALLBACKS	kmod/patch/livepatch-patch-hook.c	64;"	d	file:
 HAVE_ELF_RELOCS	kmod/patch/livepatch-patch-hook.c	40;"	d	file:
@@ -170,7 +171,7 @@ NO_EXECUTE	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	149;"	d
 NO_GATE	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	148;"	d
 NO_GATE	kpatch-build/gcc-plugins/ppc64le-plugin.c	78;"	d	file:
 OBJDIR	test/unit/Makefile	/^OBJDIR ?= objs\/$(ARCH)$/;"	m
-ORC_IP_PTR_SIZE	kpatch-build/create-diff-object.c	2403;"	d	file:
+ORC_IP_PTR_SIZE	kpatch-build/create-diff-object.c	2401;"	d	file:
 O_BINARY	kpatch-build/gcc-plugins/gcc-common.h	200;"	d
 PASS_INFO	kpatch-build/gcc-plugins/gcc-common.h	180;"	d
 PASS_NAME	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	147;"	d
@@ -179,7 +180,7 @@ PATCH_DIR	test/integration/Makefile	/^PATCH_DIR?=${ID}-${VERSION_ID}$/;"	m
 PLUGIN	kpatch-build/Makefile	/^PLUGIN   = gcc-plugins\/ppc64le-plugin.so$/;"	m
 PLUGIN_CFLAGS	kpatch-build/Makefile	/^PLUGIN_CFLAGS := $(filter-out -Wconversion, $(CFLAGS))$/;"	m
 PLUGIN_NAME	kpatch-build/gcc-plugins/ppc64le-plugin.c	4;"	d	file:
-PPC64_LOCAL_ENTRY_OFFSET	kpatch-build/create-diff-object.c	144;"	d	file:
+PPC64_LOCAL_ENTRY_OFFSET	kpatch-build/create-diff-object.c	146;"	d	file:
 PPC_INSTR_LEN	kpatch-build/create-diff-object.c	656;"	d	file:
 PPC_RA_OFFSET	kpatch-build/create-diff-object.c	657;"	d	file:
 PROCESSOR	kmod/patch/Makefile	/^PROCESSOR = $(shell uname -m)$/;"	m
@@ -190,7 +191,7 @@ PROPERTIES_PROVIDED	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	61;"	d
 PROPERTIES_REQUIRED	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	153;"	d
 PROPERTIES_REQUIRED	kpatch-build/gcc-plugins/gcc-generate-rtl-pass.h	57;"	d
 PROP_loops	kpatch-build/gcc-plugins/gcc-common.h	366;"	d
-R_PPC64_ENTRY	kpatch-build/kpatch-elf.h	141;"	d
+R_PPC64_ENTRY	kpatch-build/kpatch-elf.h	147;"	d
 SAME	kpatch-build/kpatch-elf.h	/^	SAME$/;"	e	enum:status
 SCOPE_FILE_SCOPE_P	kpatch-build/gcc-plugins/gcc-common.h	197;"	d
 SET_DECL_ALIGN	kpatch-build/gcc-plugins/gcc-common.h	965;"	d
@@ -203,8 +204,8 @@ SHF_RELA_LIVEPATCH	kpatch-build/kpatch-elf.h	31;"	d
 SHN_LIVEPATCH	kpatch-build/kpatch-elf.h	32;"	d
 SOURCES	kpatch-build/Makefile	/^SOURCES = create-diff-object.c kpatch-elf.c \\$/;"	m
 SSH_USER	test/integration/Makefile	/^SSH_USER ?= root$/;"	m
-STO_PPC64_LOCAL_BIT	kpatch-build/create-diff-object.c	142;"	d	file:
-STO_PPC64_LOCAL_MASK	kpatch-build/create-diff-object.c	143;"	d	file:
+STO_PPC64_LOCAL_BIT	kpatch-build/create-diff-object.c	144;"	d	file:
+STO_PPC64_LOCAL_MASK	kpatch-build/create-diff-object.c	145;"	d	file:
 SUBDIRS	Makefile	/^SUBDIRS     = kpatch-build kpatch kmod man contrib$/;"	m
 SUBSECTION_HOT	kpatch-build/create-diff-object.c	/^	SUBSECTION_HOT,$/;"	e	enum:subsection	file:
 SUBSECTION_NORMAL	kpatch-build/create-diff-object.c	/^	SUBSECTION_NORMAL,$/;"	e	enum:subsection	file:
@@ -510,6 +511,7 @@ find_special_section_data_ppc64le	kpatch-build/kpatch-build	/^find_special_secti
 find_symbol_by_index	kpatch-build/kpatch-elf.c	/^struct symbol *find_symbol_by_index(struct list_head *list, size_t index)$/;"	f
 find_symbol_by_name	kpatch-build/kpatch-elf.c	/^struct symbol *find_symbol_by_name(struct list_head *list, const char *name)$/;"	f
 fixup_barrier_nospec_group_size	kpatch-build/create-diff-object.c	/^static int fixup_barrier_nospec_group_size(struct kpatch_elf *kelf, int offset)$/;"	f	file:
+fixup_changed_section	kpatch-build/kpatch-elf.c	/^void fixup_changed_section(struct kpatch_elf *kelf, struct sec_record *rec)$/;"	f
 fixup_entry_group_size	kpatch-build/create-diff-object.c	/^static int fixup_entry_group_size(struct kpatch_elf *kelf, int offset)$/;"	f	file:
 fixup_group_size	kpatch-build/create-diff-object.c	/^static int fixup_group_size(struct kpatch_elf *kelf, int offset)$/;"	f	file:
 fixup_lwsync_group_size	kpatch-build/create-diff-object.c	/^static int fixup_lwsync_group_size(struct kpatch_elf *kelf, int offset)$/;"	f	file:
@@ -779,7 +781,7 @@ kpatch_get_correlated_parent	kpatch-build/create-diff-object.c	/^static struct s
 kpatch_get_func	kmod/core/core.c	/^static struct kpatch_func *kpatch_get_func(unsigned long ip)$/;"	f	file:
 kpatch_get_prev_func	kmod/core/core.c	/^static struct kpatch_func *kpatch_get_prev_func(struct kpatch_func *f,$/;"	f	file:
 kpatch_include_callback_elements	kpatch-build/create-diff-object.c	/^static int kpatch_include_callback_elements(struct kpatch_elf *kelf)$/;"	f	file:
-kpatch_include_changed_functions	kpatch-build/create-diff-object.c	/^static int kpatch_include_changed_functions(struct kpatch_elf *kelf)$/;"	f	file:
+kpatch_include_changed_functions	kpatch-build/create-diff-object.c	/^static int kpatch_include_changed_functions(struct kpatch_elf *kelf, struct sec_record *rec)$/;"	f	file:
 kpatch_include_debug_sections	kpatch-build/create-diff-object.c	/^static void kpatch_include_debug_sections(struct kpatch_elf *kelf)$/;"	f	file:
 kpatch_include_force_elements	kpatch-build/create-diff-object.c	/^static void kpatch_include_force_elements(struct kpatch_elf *kelf)$/;"	f	file:
 kpatch_include_new_globals	kpatch-build/create-diff-object.c	/^static int kpatch_include_new_globals(struct kpatch_elf *kelf)$/;"	f	file:
@@ -903,6 +905,7 @@ list	kmod/patch/livepatch-patch-hook.c	/^	struct list_head list;$/;"	m	struct:pa
 list	kmod/patch/livepatch-patch-hook.c	/^	struct list_head list;$/;"	m	struct:patch_object	typeref:struct:patch_object::list_head	file:
 list	kmod/patch/livepatch-patch-hook.c	/^	struct list_head list;$/;"	m	struct:patch_reloc	typeref:struct:patch_reloc::list_head	file:
 list	kpatch-build/kpatch-elf.h	/^	struct list_head list;$/;"	m	struct:rela	typeref:struct:rela::list_head
+list	kpatch-build/kpatch-elf.h	/^	struct list_head list;$/;"	m	struct:sec_record	typeref:struct:sec_record::list_head
 list	kpatch-build/kpatch-elf.h	/^	struct list_head list;$/;"	m	struct:section	typeref:struct:section::list_head
 list	kpatch-build/kpatch-elf.h	/^	struct list_head list;$/;"	m	struct:string	typeref:struct:string::list_head
 list	kpatch-build/kpatch-elf.h	/^	struct list_head list;$/;"	m	struct:symbol	typeref:struct:symbol::list_head
@@ -1128,8 +1131,10 @@ run_combined_test	test/integration/kpatch-test	/^run_combined_test() {$/;"	f
 run_custom_test	test/integration/kpatch-test	/^run_custom_test() {$/;"	f
 run_load_test	test/integration/kpatch-test	/^run_load_test() {$/;"	f
 save_dmesg	test/integration/kpatch-test	/^save_dmesg() {$/;"	f
+sec	kpatch-build/kpatch-elf.h	/^	struct section *sec;$/;"	m	struct:sec_record	typeref:struct:sec_record::section
 sec	kpatch-build/kpatch-elf.h	/^	struct section *sec;$/;"	m	struct:symbol	typeref:struct:symbol::section
 sec	kpatch-build/kpatch-intermediate.h	/^        unsigned long sec;$/;"	m	struct:kpatch_arch
+sec_record	kpatch-build/kpatch-elf.h	/^struct sec_record {$/;"	s
 secsym	kpatch-build/kpatch-elf.h	/^			struct symbol *secsym, *sym;$/;"	m	struct:section::__anon1::__anon3	typeref:struct:section::__anon1::__anon3::symbol
 section	kpatch-build/kpatch-elf.h	/^struct section {$/;"	s
 section_name_prefix	kpatch-build/gcc-plugins/gcc-common.h	566;"	d
@@ -1180,6 +1185,7 @@ sympos	kpatch-build/kpatch-intermediate.h	/^	unsigned long sympos;$/;"	m	struct:
 sympos	kpatch-build/lookup.h	/^	unsigned long sympos;$/;"	m	struct:lookup_result
 symtab_read	kpatch-build/lookup.c	/^static void symtab_read(struct lookup_table *table, char *path)$/;"	f	file:
 symvers_read	kpatch-build/lookup.c	/^static void symvers_read(struct lookup_table *table, char *path)$/;"	f	file:
+test	kmod/core/core.c	/^char *test(void)$/;"	f
 test	kpatch-build/gcc-plugins/gcc-common.h	/^inline bool is_a_helper<const gassign *>::test(const_gimple gs)$/;"	f	class:is_a_helper
 test	kpatch-build/gcc-plugins/gcc-common.h	/^inline bool is_a_helper<const ggoto *>::test(const_gimple gs)$/;"	f	class:is_a_helper
 test	kpatch-build/gcc-plugins/gcc-common.h	/^inline bool is_a_helper<const greturn *>::test(const_gimple gs)$/;"	f	class:is_a_helper

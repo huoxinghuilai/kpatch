@@ -390,6 +390,7 @@ static int kpatch_apply_patch(void *data)
 
 	/* tentatively add the new funcs to the global func hash */
 	do_for_each_linked_func(kpmod, func) {
+printk("kpatch func name: %s old_addr: %lx new_addr: %lx\n", func->name, func->old_addr, func->new_addr);
 		hash_add_rcu(kpatch_func_hash, &func->node, func->old_addr);
 	} while_for_each_linked_func();
 
@@ -480,12 +481,26 @@ err:
  * function, the last one to register wins, as it'll be first in the hash
  * bucket.
  */
+
+/*
+char *test(void)
+{
+	printk("fuck damend mips\n");
+	return "fucking damend mips";	
+}
+*/
+
 static void notrace
 kpatch_ftrace_handler(unsigned long ip, unsigned long parent_ip,
 		      struct ftrace_ops *fops, struct pt_regs *regs)
 {
 	struct kpatch_func *func;
 	int state;
+
+//char *(*f)(void);
+//char *str;
+
+printk("kpatch_ftrace_handler\n");
 
 	preempt_disable_notrace();
 
@@ -519,14 +534,18 @@ kpatch_ftrace_handler(unsigned long ip, unsigned long parent_ip,
 				func = kpatch_get_prev_func(func, ip);
 		}
 	}
-done:
-	if (func)
 
-#ifdef CONFIG_MIPS
-		regs->regs[31] = func->new_addr;
-#else
-		regs->ip = func->new_addr + MCOUNT_INSN_SIZE;
-#endif
+//f = test;
+//str = f();
+//printk("%s\n", str);
+//regs->regs[0] = (unsigned long)f;
+
+done:
+	if (!func)
+		printk("not found kpatch_func structure\n");
+	//if (func)
+		//regs->regs[0] = func->new_addr;
+		//regs->ip = func->new_addr + MCOUNT_INSN_SIZE;
 
 	preempt_enable_notrace();
 }
@@ -537,7 +556,8 @@ done:
 
 static struct ftrace_ops kpatch_ftrace_ops __read_mostly = {
 	.func = kpatch_ftrace_handler,
-	.flags = FTRACE_OPS_FL_SAVE_REGS | FTRACE_OPS_FL_IPMODIFY,
+	
+	//.flags = FTRACE_OPS_FL_SAVE_REGS | FTRACE_OPS_FL_IPMODIFY,
 };
 
 static int kpatch_ftrace_add_func(unsigned long ip)
@@ -547,8 +567,12 @@ static int kpatch_ftrace_add_func(unsigned long ip)
 	/* check if any other patch modules have also patched this func */
 	if (kpatch_get_func(ip))
 		return 0;
-
-	ret = ftrace_set_filter_ip(&kpatch_ftrace_ops, ip, 0, 0);
+	
+	//mips架构下编译，ip地址需要向下偏移4个字节
+	ret = ftrace_set_filter_ip(&kpatch_ftrace_ops, ip + 4, 0, 0);
+	
+	//ret = ftrace_set_filter_ip(&kpatch_ftrace_ops, ip, 0, 0);
+	
 	if (ret) {
 		pr_err("can't set ftrace filter at address 0x%lx\n", ip);
 		return ret;
@@ -558,7 +582,10 @@ static int kpatch_ftrace_add_func(unsigned long ip)
 		ret = register_ftrace_function(&kpatch_ftrace_ops);
 		if (ret) {
 			pr_err("can't register ftrace handler\n");
-			ftrace_set_filter_ip(&kpatch_ftrace_ops, ip, 1, 0);
+
+			ftrace_set_filter_ip(&kpatch_ftrace_ops, ip + 4, 1, 0);
+			
+			//ftrace_set_filter_ip(&kpatch_ftrace_ops, ip, 1, 0);
 			return ret;
 		}
 	}
@@ -849,6 +876,13 @@ static int kpatch_link_object(struct kpatch_module *kpmod,
 	int ret;
 	bool vmlinux = !strcmp(object->name, "vmlinux");
 
+const char *(*func1)(void);
+char *str;
+int i;
+unsigned int *tmp = NULL, tmp1 = 0, tmp2 = 0;
+unsigned long s = ~0UL;
+printk("kpatch_link_object\n");
+
 	if (!vmlinux) {
 		mutex_lock(&module_mutex);
 		mod = find_module(object->name);
@@ -878,6 +912,38 @@ static int kpatch_link_object(struct kpatch_module *kpmod,
 						func->name,
 						func->sympos,
 						&func->old_addr);
+
+printk("kpatch_func name: %s old_addr: %lx new_addr: %lx\n", func->name, func->old_addr, func->new_addr);
+func1 = (void *)func->new_addr;
+str = func1();
+printk("str: %s %p\n", str, str);
+
+tmp = (unsigned long)func->new_addr;
+for (i = 0; i < 8; i++) {
+printk("%d %x\n", i, tmp[i]);
+
+if (i == 5) {
+tmp1 = (unsigned int)((tmp[i] & 0x0000ffff) << 16);
+printk("tmp1: %x\n", tmp1); 
+}
+
+if (i == 7) {
+tmp2 = (unsigned int)(tmp[i] & 0x0000ffff); 
+printk("tmp1: %x\n", tmp2);
+}
+
+}
+
+tmp1 = tmp1 + tmp2;
+printk("%x\n", tmp1);
+
+s = (s & 0xffffffff00000000) | (unsigned long)tmp1;
+printk("%lx\n", s);
+
+tmp = s;
+for (i = 0; i < 4; i++)
+printk("%d %x\n", i, tmp[i]);
+
 		if (ret) {
 			func_err = func;
 			goto err_ftrace;
@@ -1041,12 +1107,13 @@ int kpatch_register(struct kpatch_module *kpmod, bool replace)
 	struct kpatch_object *object, *object_err = NULL;
 	struct kpatch_func *func;
 
-printk("register kpatch\n");
+
 	struct kpatch_apply_patch_args args = {
 		.kpmod = kpmod,
 		.replace = replace,
 	};
 
+printk("replace value: %d\n", (int)replace);
 	if (!kpmod->mod || list_empty(&kpmod->objects))
 		return -EINVAL;
 
@@ -1065,13 +1132,11 @@ printk("register kpatch\n");
 	}
 
 	list_for_each_entry(object, &kpmod->objects, list) {
-
 		ret = kpatch_link_object(kpmod, object);
 		if (ret) {
 			object_err = object;
 			goto err_unlink;
 		}
-printk("down kpatch_link_object\n");
 
 		if (!kpatch_object_linked(object)) {
 			pr_notice("delaying patch of unloaded module '%s'\n",
@@ -1106,6 +1171,7 @@ printk("down kpatch_link_object\n");
 	}
 
 	/* if pre_patch_callback succeed. */
+printk("ret value: %d\n", ret);
 	if (!ret) {
 		/*
 		 * Idle the CPUs, verify activeness safety, and atomically make the new
