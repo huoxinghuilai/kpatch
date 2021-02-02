@@ -191,36 +191,10 @@ static struct kpatch_func *kpatch_get_func(unsigned long ip)
 {
 	struct kpatch_func *f;
 
-struct hlist_node *tmp1; 
-int i;
-for (i = 0; i < (1 << KPATCH_HASH_BITS); i++) {
-tmp1 = kpatch_func_hash[i].first;
-if (tmp1) {
-printk("%d\n", i);
-printk("%lx\n", &(kpatch_func_hash[i].first));
-printk("%lx %lx %lx", tmp1, tmp1->next, tmp1->pprev);
-printk("%lx\n", rcu_dereference_raw(hlist_first_rcu(&kpatch_func_hash[i])));
-f = container_of(tmp1, typeof(*f), node);
-if (!f)
-printk("f value1: %lx\n", f);
-if (f) {
-printk("f value2: %lx\n", f);
-}
-}
-}
-
-
-f = NULL;
-
-printk("ip: %lx %lx hash index: %d\n", ip, HASH_BITS(kpatch_func_hash), hash_min(ip, HASH_BITS(kpatch_func_hash)));
-
 	/* Here, we have to use rcu safe hlist because of NMI concurrency */
-	hash_for_each_possible_rcu(kpatch_func_hash, f, node, ip) 
-{
-printk("%lx\n", f);
+	hash_for_each_possible_rcu(kpatch_func_hash, f, node, ip)
 		if (f->old_addr == ip)
 			return f;
-}
 	return NULL;
 }
 
@@ -402,7 +376,7 @@ static int kpatch_apply_patch(void *data)
 {
 	struct kpatch_apply_patch_args *args = data;
 	struct kpatch_module *kpmod;
-	struct kpatch_func *func, *f = NULL;
+	struct kpatch_func *func, *f;
 	struct hlist_node *tmp;
 	struct kpatch_object *object;
 	int ret;
@@ -424,7 +398,7 @@ struct hlist_node *tmp1;
 printk("kpatch func name: %s old_addr: %lx new_addr: %lx node: %lx %lx\n", func->name, func->old_addr, func->new_addr, &(func->node), func);
 memcpy(&global_func, func, sizeof(struct kpatch_func));
 
-printk("%lx %lx hash index: %d\n", func->old_addr, HASH_BITS(kpatch_func_hash), hash_min(func->old_addr, HASH_BITS(kpatch_func_hash)));
+printk("hash index: %d\n", hash_min(func->old_addr, HASH_BITS(kpatch_func_hash)));
 
 		hash_add_rcu(kpatch_func_hash, &func->node, func->old_addr); //哈希表添加
 	} while_for_each_linked_func();
@@ -435,12 +409,6 @@ if (tmp1) {
 printk("%d\n", i);
 printk("%lx\n", &(kpatch_func_hash[i].first));
 printk("%lx %lx %lx", tmp1, tmp1->next, tmp1->pprev);
-f = container_of(tmp1, typeof(*f), node);
-if (!f)
-printk("f value1: %lx\n", f);
-if (f) {
-printk("f value2: %lx\n", f);
-}
 }
 }
 
@@ -545,8 +513,6 @@ kpatch_ftrace_handler(unsigned long ip, unsigned long parent_ip,
 	int state;
 
 printk("kpatch_ftrace_handler\n");
-	//MIPS
-	ip -= 4;
 
 	preempt_disable_notrace();
 
@@ -582,17 +548,15 @@ printk("kpatch_ftrace_handler\n");
 	}
 
 done:
-if (func) {
+if (!func) {
 printk("not found kpatch_func structure\n");
 printk("name: %s addr: %lx\n", global_func.name, global_func.new_addr);
-//regs->regs[0] = global_func.new_addr;		
+regs->regs[0] = global_func.new_addr;		
 }
-	if (func) 
-{
-printk("find func: %s %lx\n", func->name, func->new_addr);
-		regs->regs[0] = func->new_addr;
+	//if (func)
+		//regs->regs[0] = func->new_addr;
 		//regs->ip = func->new_addr + MCOUNT_INSN_SIZE;
-}
+
 	preempt_enable_notrace();
 }
 
@@ -1093,11 +1057,7 @@ printk("kpatch_module_notify_going\n");
 	down(&kpatch_mutex);
 
 	list_for_each_entry(kpmod, &kpmod_list, list) {
-if (kpmod)
-printk("kpmod: %s\n", kpmod->mod->name);
 		list_for_each_entry(object, &kpmod->objects, list) {
-if (object)
-printk("object: %s\n", object->name);
 if (object->mod)
 printk("yes\n");
 printk("%s %s\n", object->name, mod->name);
