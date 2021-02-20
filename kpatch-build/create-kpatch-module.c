@@ -52,6 +52,7 @@ static void create_dynamic_rela_sections(struct kpatch_elf *kelf, struct section
 	//char *target_name;
 
 printf("create_dynamic_rela_sections\n");
+printf("section name: %s\n", ksymsec->name);
 
 	ksyms = ksymsec->data->d_buf;
 	krelas = krelasec->data->d_buf;

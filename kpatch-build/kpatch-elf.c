@@ -700,6 +700,8 @@ void fixup_changed_section(struct kpatch_elf *kelf, struct sec_record *rec)
 	unsigned char *tmp_data, *start, *data;
 	int size, nr_rela = 0, relas = 0, nr = 0;
 	unsigned int up_rela_offset = 0;
+int i = 0, j = 0;
+unsigned int *t;
 
 	//遍历记录链表
 	list_for_each_entry(tmp_rec, &rec->list, list) {
@@ -732,7 +734,7 @@ void fixup_changed_section(struct kpatch_elf *kelf, struct sec_record *rec)
 			rel_sec->sh.sh_addralign = old_sec->rela->sh.sh_addralign;
 			rel_sec->sh.sh_flags = old_sec->rela->sh.sh_flags;
 			
-			//计算section数据应使用的空间大小
+			//计算.section数据空间大小
 			list_for_each_entry(rela, &old_sec->rela->relas, list) {
 				switch(rela->type) {
 				case R_MIPS_26:
@@ -744,7 +746,8 @@ void fixup_changed_section(struct kpatch_elf *kelf, struct sec_record *rec)
 				}	
 			}
 
-			//申请.section的空间大小
+			//申请.section的数据空间大小
+printf("d_size: %lx\n", old_sec->data->d_size);
 			data = tmp_data = (void *)malloc(old_sec->data->d_size + (8 * nr_rela));
 			memset(tmp_data, 0, old_sec->data->d_size + (8 * nr_rela));
 		
@@ -766,6 +769,18 @@ void fixup_changed_section(struct kpatch_elf *kelf, struct sec_record *rec)
 
 				switch(rela->type) {				
 				case R_MIPS_26:
+t = (unsigned int *)start;
+j = (int)old_sec->data->d_size;
+j = j / 4;
+while (i < j) {
+	printf("%x \n", t[i]);
+	i++;
+}
+printf("\n\n");
+i = 0;
+j = 0;
+t = (unsigned int *)tmp_data;
+printf("%x %x %x\n", rela->offset, up_rela_offset, rela->offset - up_rela_offset);
 					memcpy(tmp_data, start, rela->offset - up_rela_offset);
 
 					tmp_data = tmp_data + (rela->offset - up_rela_offset);
@@ -784,11 +799,19 @@ void fixup_changed_section(struct kpatch_elf *kelf, struct sec_record *rec)
 					tmp_data[9] = 0xf8;
 					tmp_data[10] = 0x60;
 					tmp_data[11] = 0x00;
-	
+
+j = (rela->offset - up_rela_offset) / 4;
+while (i < j) {
+	printf("%x \n", t[i]);
+	i++;
+}
+printf("\n\n");
+i = 0;
+j = 0;
 					//重新计算复制地址
-					start = start + rela->offset + 4;
+					start = old_sec->data->d_buf + rela->offset + 4;
 					tmp_data = tmp_data + 12;
-					up_rela_offset = rela->offset;
+					up_rela_offset = rela->offset + 4;
 					size += 8;						
 
 					//创建rela重定位结构体
@@ -828,8 +851,15 @@ void fixup_changed_section(struct kpatch_elf *kelf, struct sec_record *rec)
 				}
 			}
 
-			memcpy(tmp_data, start, (unsigned int)(old_sec->data->d_size - up_rela_offset - 4));
-		
+			memcpy(tmp_data, start, (unsigned int)(old_sec->data->d_size - up_rela_offset));
+j = (int)old_sec->data->d_size;
+printf("j: %d\n", j);
+j = (j + (8 * nr_rela)) / 4;
+printf("j: %d\n", j);
+
+for (i = 0; i < j; i++)
+	printf("%x: %x \n", i * 4, ((unsigned int *)data)[i]);
+	
 			//替换.section
 			old_sec->data->d_buf = data;
 			old_sec->data->d_size = old_sec->data->d_size + (8 * nr_rela);

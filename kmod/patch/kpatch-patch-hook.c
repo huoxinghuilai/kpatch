@@ -260,7 +260,7 @@ printk("p_func->objname: %s p_func->name: %s\n", p_func->objname, p_func->name);
 		ret = kobject_init_and_add(&func->kobj, &patch_func_ktype,
 					   &object->kobj, "%s,%lu",
 					   func->name, func->sympos ? func->sympos : 1);
-printk("func node: %lx, node->next: %lx node->pprev: %lx\n", &(func->node), func->node->next, func->node->pprev);
+printk("func node: %lx, node->next: %lx node->pprev: %lx\n", &(func->node), func->node.next, func->node.pprev);
 		if (ret)
 			return ret;
 	}
