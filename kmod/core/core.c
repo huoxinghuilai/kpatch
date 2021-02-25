@@ -191,36 +191,10 @@ static struct kpatch_func *kpatch_get_func(unsigned long ip)
 {
 	struct kpatch_func *f;
 
-struct hlist_node *tmp1; 
-int i;
-for (i = 0; i < (1 << KPATCH_HASH_BITS); i++) {
-tmp1 = kpatch_func_hash[i].first;
-if (tmp1) {
-printk("%d\n", i);
-printk("%lx\n", &(kpatch_func_hash[i].first));
-printk("%lx %lx %lx", tmp1, tmp1->next, tmp1->pprev);
-printk("%lx\n", rcu_dereference_raw(hlist_first_rcu(&kpatch_func_hash[i])));
-f = container_of(tmp1, typeof(*f), node);
-if (!f)
-printk("f value1: %lx\n", f);
-if (f) {
-printk("f value2: %lx\n", f);
-}
-}
-}
-
-
-f = NULL;
-
-printk("ip: %lx %lx hash index: %d\n", ip, HASH_BITS(kpatch_func_hash), hash_min(ip, HASH_BITS(kpatch_func_hash)));
-
 	/* Here, we have to use rcu safe hlist because of NMI concurrency */
 	hash_for_each_possible_rcu(kpatch_func_hash, f, node, ip) 
-{
-printk("%lx\n", f);
 		if (f->old_addr == ip)
 			return f;
-}
 	return NULL;
 }
 
@@ -421,28 +395,12 @@ struct hlist_node *tmp1;
 	/* tentatively add the new funcs to the global func hash */
 	do_for_each_linked_func(kpmod, func) {
 
-printk("kpatch func name: %s old_addr: %lx new_addr: %lx node: %lx %lx\n", func->name, func->old_addr, func->new_addr, &(func->node), func);
-memcpy(&global_func, func, sizeof(struct kpatch_func));
+printk("kpatch func name: %s old_addr: %lx new_addr: %lx \n", func->name, func->old_addr, func->new_addr);
 
-printk("%lx %lx hash index: %d\n", func->old_addr, HASH_BITS(kpatch_func_hash), hash_min(func->old_addr, HASH_BITS(kpatch_func_hash)));
 
 		hash_add_rcu(kpatch_func_hash, &func->node, func->old_addr); //哈希表添加
 	} while_for_each_linked_func();
 
-for (i = 0; i < (1 << KPATCH_HASH_BITS); i++) {
-tmp1 = kpatch_func_hash[i].first;
-if (tmp1) {
-printk("%d\n", i);
-printk("%lx\n", &(kpatch_func_hash[i].first));
-printk("%lx %lx %lx", tmp1, tmp1->next, tmp1->pprev);
-f = container_of(tmp1, typeof(*f), node);
-if (!f)
-printk("f value1: %lx\n", f);
-if (f) {
-printk("f value2: %lx\n", f);
-}
-}
-}
 
 	/* memory barrier between func hash add and state change */
 	smp_wmb();
@@ -582,11 +540,6 @@ printk("kpatch_ftrace_handler\n");
 	}
 
 done:
-if (func) {
-printk("not found kpatch_func structure\n");
-printk("name: %s addr: %lx\n", global_func.name, global_func.new_addr);
-//regs->regs[0] = global_func.new_addr;		
-}
 	if (func) 
 {
 printk("find func: %s %lx\n", func->name, func->new_addr);
@@ -654,7 +607,10 @@ static int kpatch_ftrace_remove_func(unsigned long ip)
 	}
 	kpatch_num_patched--;
 
-	ret = ftrace_set_filter_ip(&kpatch_ftrace_ops, ip, 1, 0);
+	//ret = ftrace_set_filter_ip(&kpatch_ftrace_ops, ip, 1, 0);
+	
+	//MIPS
+	ret = ftrace_set_filter_ip(&kpatch_ftrace_ops, ip + 4, 1, 0);
 	if (ret) {
 		pr_err("can't remove ftrace filter at address 0x%lx\n", ip);
 		return ret;
@@ -919,11 +875,10 @@ static int kpatch_link_object(struct kpatch_module *kpmod,
 	int ret;
 	bool vmlinux = !strcmp(object->name, "vmlinux");
 
-const char *(*func1)(void);
-char *str;
-int i;
-unsigned int *tmp = NULL, tmp1 = 0, tmp2 = 0;
-unsigned long s = ~0UL;
+int i, k = 0;
+unsigned int *tmp;
+//const char *(*func1)(void);
+//char *str;
 printk("kpatch_link_object\n");
 
 	if (!vmlinux) {
@@ -956,36 +911,18 @@ printk("kpatch_link_object\n");
 						func->sympos,
 						&func->old_addr);
 
-printk("kpatch_func name: %s old_addr: %lx new_addr: %lx\n", func->name, func->old_addr, func->new_addr);
-func1 = (void *)func->new_addr;
-str = func1();
-printk("str: %s %p\n", str, str);
+printk("kpatch_func name: %s old_addr: %lx new_addr: %lx old_size:%lx  new_size: %lx\n", func->name, func->old_addr, func->new_addr, func->old_size, func->new_size);
 
 tmp = (unsigned long)func->new_addr;
-for (i = 0; i < 8; i++) {
-printk("%d %x\n", i, tmp[i]);
-
-if (i == 5) {
-tmp1 = (unsigned int)((tmp[i] & 0x0000ffff) << 16);
-printk("tmp1: %x\n", tmp1); 
+for (i = 0; i < func->new_size; i++, k += 4) {
+printk("%x %x\n", k, tmp[i]);
 }
 
-if (i == 7) {
-tmp2 = (unsigned int)(tmp[i] & 0x0000ffff); 
-printk("tmp1: %x\n", tmp2);
-}
+//func1 = (void *)func->new_addr;
+//str = func1();
+//printk("str: %s %p\n", str, str);
 
-}
 
-tmp1 = tmp1 + tmp2;
-printk("%x\n", tmp1);
-
-s = (s & 0xffffffff00000000) | (unsigned long)tmp1;
-printk("%lx\n", s);
-
-tmp = s;
-for (i = 0; i < 4; i++)
-printk("%d %x\n", i, tmp[i]);
 
 		if (ret) {
 			func_err = func;
@@ -1059,11 +996,9 @@ done:
 		goto out;	/* and WARN */
 	}
 
-printk("add func!\n");
 	/* add to the global func hash */
 	list_for_each_entry(func, &object->funcs, list)
 		hash_add_rcu(kpatch_func_hash, &func->node, func->old_addr);
-printk("add func!\n");
 
 	/* run user-defined post-patch callback */
 	post_patch_callback(object);
@@ -1116,11 +1051,9 @@ done:
 	/* run user-defined pre-unpatch callback */
 	pre_unpatch_callback(object);
 
-printk("delete hash func!\n");
 	/* remove from the global func hash */
 	list_for_each_entry(func, &object->funcs, list)
 		hash_del_rcu(&func->node);
-printk("delete hash func!\n");
 	/* run user-defined pre-unpatch callback */
 	post_unpatch_callback(object);
 

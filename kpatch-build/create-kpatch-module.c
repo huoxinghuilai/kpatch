@@ -49,15 +49,15 @@ static void create_dynamic_rela_sections(struct kpatch_elf *kelf, struct section
 	unsigned int index, nr, offset, dest_offset, objname_offset, name_offset;
 	unsigned int type;
 	long addend;
-	//char *target_name;
+	char *target_name = NULL;
 
 printf("create_dynamic_rela_sections\n");
-printf("section name: %s\n", ksymsec->name);
+printf("section name: %s %s\n", krelasec->name, ksymsec->name);
 
 	ksyms = ksymsec->data->d_buf;
 	krelas = krelasec->data->d_buf;
 	nr = (unsigned int)(krelasec->data->d_size / sizeof(*krelas));
-printf("dynamic rela include sym: %p, rela: %p, nr: %d\n", ksyms, krelas, nr);
+printf("dynamic rela include krelas: %d\n", nr);
 
 	dynsec = create_section_pair(kelf, ".kpatch.dynrelas", sizeof(*dynrelas), nr);
 	dynrelas = dynsec->data->d_buf;
@@ -110,13 +110,11 @@ printf("type: %d\n", type);
 }
 		addend = krelas[index].addend;
 
-#ifdef __X86_64__
 		if (type == R_X86_64_64 && (addend > INT_MAX || addend <= INT_MIN)) {
 			target_name = (char *)strsec->data->d_buf + name_offset;
 			ERROR("got R_X86_64_64 dynrela for '%s' with addend too large or too small for an int: %lx",
 				target_name, addend);
 		}
-#endif
 
 		dynrelas[index].src = ksym->src;
 		dynrelas[index].addend = addend;
@@ -124,7 +122,7 @@ printf("type: %d\n", type);
 		dynrelas[index].external = krelas[index].external;
 		dynrelas[index].sympos = ksym->sympos;
 
-#ifdef __X86_64__
+#ifdef __x86_64__
 		/* dest */
 		ALLOC_LINK(rela, &dynsec->rela->relas);
 		rela->sym = sym;

@@ -1,13 +1,696 @@
-DEBUG mode enabled
-Using source directory at /home/loongson/linux-4.19-loongson
-Testing patch file(s)
-Reading special section data
-Building original source
-Building patched source
-Extracting new and modified ELF sections
-machtype.o: changed function: get_system_type
-Patched objects: vmlinux
-Building patch module: kpatch-0001-change-get_system_type.ko
-create_dynamic_rela_sections
-dynamic rela include sym: (nil), rela: (nil), nr: 0
-SUCCESS
+[    0.175781] pci 0000:00:0f.0:   bridge window [io  0x5000-0x5fff]
+[    0.175781] pci 0000:00:0f.0:   bridge window [mem 0x45300000-0x453fffff]
+[    0.175781] pci 0000:00:0f.0:   bridge window [mem 0x50000000-0x5fffffff 64bit pref]
+[    0.175781] ls-spi-pci 0000:00:16.0: Device 14:7a0b, irq 0
+[    0.175781] ls-spi ls-spi.0: controller is unqueued, this is deprecated
+[    0.179687] clocksource: Switched to clocksource hpet
+[    0.222656] VFS: Disk quotas dquot_6.6.0
+[    0.222656] VFS: Dquot-cache hash table entries: 2048 (order 0, 16384 bytes)
+[    0.222656] pnp: PnP ACPI: disabled
+[    0.230468] NET: Registered protocol family 2
+[    0.230468] tcp_listen_portaddr_hash hash table entries: 4096 (order: 2, 65536 bytes)
+[    0.230468] TCP established hash table entries: 65536 (order: 5, 524288 bytes)
+[    0.230468] TCP bind hash table entries: 65536 (order: 6, 1048576 bytes)
+[    0.230468] TCP: Hash tables configured (established 65536 bind 65536)
+[    0.230468] UDP hash table entries: 4096 (order: 3, 131072 bytes)
+[    0.230468] UDP-Lite hash table entries: 4096 (order: 3, 131072 bytes)
+[    0.230468] NET: Registered protocol family 1
+[    0.230468] RPC: Registered named UNIX socket transport module.
+[    0.230468] RPC: Registered udp transport module.
+[    0.230468] RPC: Registered tcp transport module.
+[    0.230468] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.230468] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:04.1: EHCI: capability loop?
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: unrecognized capability ff
+[    0.234375] pci 0000:00:05.1: EHCI: capability loop?
+[    0.234375] pci 0000:00:06.1: Overriding boot device as 1002:6611
+[    0.234375] pci 0000:01:00.0: enabling device (0000 -> 0002)
+[    0.234375] pci 0000:03:00.1: Linked as a consumer to 0000:03:00.0
+[    0.234375] pci 0000:03:00.1: D0 power state depends on 0000:03:00.0
+[    0.234375] PCI: CLS 0 bytes, default 64
+[    0.238281] input: ACPI Power Button as /devices/virtual/input/input0
+[    0.238281] ACPI Power Button Driver: Init successful!
+[    0.238281] Initialise system trusted keyrings
+[    0.238281] workingset: timestamp_bits=40 max_order=19 bucket_order=0
+[    0.242187] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.242187] NFS: Registering the id_resolver key type
+[    0.242187] Key type id_resolver registered
+[    0.242187] Key type id_legacy registered
+[    0.242187] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    0.242187] Installing knfsd (copyright (C) 1996 okir@monad.swb.de).
+[    0.242187] SGI XFS with security attributes, no debug enabled
+[    0.246093] Key type asymmetric registered
+[    0.246093] Asymmetric key parser 'x509' registered
+[    0.246093] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 250)
+[    0.246093] io scheduler noop registered
+[    0.246093] io scheduler cfq registered (default)
+[    0.246093] io scheduler mq-deadline registered
+[    0.246093] io scheduler kyber registered
+[    0.246093] ls-pwm 100a0000.pwm: pwm->clock_frequency=50000000
+[    0.246093] ls-pwm 100a0100.pwm: pwm->clock_frequency=50000000
+[    0.246093] ls-pwm 100a0200.pwm: pwm->clock_frequency=50000000
+[    0.246093] ls-pwm 100a0300.pwm: pwm->clock_frequency=50000000
+[    0.246093] pcieport 0000:00:0a.0: Device 14:7a09, irq 255
+[    0.246093] pcieport 0000:00:0a.0: Signaling PME with IRQ 93
+[    0.246093] pcieport 0000:00:0a.0: AER enabled with IRQ 93
+[    0.246093] pcieport 0000:00:0b.0: Device 14:7a09, irq 255
+[    0.246093] pcieport 0000:00:0b.0: Signaling PME with IRQ 94
+[    0.246093] pcieport 0000:00:0b.0: AER enabled with IRQ 94
+[    0.246093] pcieport 0000:00:0f.0: Device 14:7a29, irq 255
+[    0.246093] pcieport 0000:00:0f.0: Signaling PME with IRQ 95
+[    0.246093] pcieport 0000:00:0f.0: AER enabled with IRQ 95
+[    0.250000] shpchp: Standard Hot Plug PCI Controller Driver version: 0.4
+[    0.250000] Serial: 8250/16550 driver, 16 ports, IRQ sharing enabled
+[    0.273437] serial8250.0: ttyS0 at MMIO 0x1fe001e0 (irq = 92, base_baud = 2062500) is a 16550A
+[    0.273437] 10080000.serial: ttyS1 at MMIO 0x10080000 (irq = 29, base_baud = 3125000) is a Loongson 16550
+[    0.273437] parport_pc parport_pc.956: Unable to set coherent dma mask: disabling DMA
+[    0.273437] parport_pc parport_pc.888: Unable to set coherent dma mask: disabling DMA
+[    0.273437] parport_pc parport_pc.632: Unable to set coherent dma mask: disabling DMA
+[    0.277343] brd: module loaded
+[    0.285156] loop: module loaded
+[    0.285156] megaraid cmm: 2.20.2.7 (Release Date: Sun Jul 16 00:01:03 EST 2006)
+[    0.285156] megaraid: 2.20.5.1 (Release Date: Thu Nov 16 15:32:35 EST 2006)
+[    0.285156] megasas: 07.706.03.00-rc1
+[    0.285156] mpt3sas version 26.100.00.00 loaded
+[    0.285156] ahci 0000:00:08.0: Device 14:7a08, irq 80
+[    0.285156] ahci 0000:00:08.0: version 3.0
+[    0.285156] ahci 0000:00:08.0: SSS flag set, parallel bus scan disabled
+[    0.285156] ahci 0000:00:08.0: AHCI 0001.0300 32 slots 1 ports 3 Gbps 0x1 impl SATA mode
+[    0.285156] ahci 0000:00:08.0: flags: 64bit ncq sntf stag pm led clo only pmp pio slum part ccc apst 
+[    0.285156] scsi host0: ahci
+[    0.289062] ata1: SATA max UDMA/133 abar m8192@0x454a0000 port 0x454a0100 irq 37
+[    0.289062] ahci 0000:00:08.1: Device 14:7a08, irq 81
+[    0.289062] ahci 0000:00:08.1: SSS flag set, parallel bus scan disabled
+[    0.289062] ahci 0000:00:08.1: AHCI 0001.0300 32 slots 1 ports 3 Gbps 0x1 impl SATA mode
+[    0.289062] ahci 0000:00:08.1: flags: 64bit ncq sntf stag pm led clo only pmp pio slum part ccc apst 
+[    0.289062] scsi host1: ahci
+[    0.289062] ata2: SATA max UDMA/133 abar m8192@0x454a2000 port 0x454a2100 irq 38
+[    0.289062] ahci 0000:00:08.2: Device 14:7a08, irq 82
+[    0.289062] ahci 0000:00:08.2: SSS flag set, parallel bus scan disabled
+[    0.289062] ahci 0000:00:08.2: AHCI 0001.0300 32 slots 1 ports 3 Gbps 0x1 impl SATA mode
+[    0.289062] ahci 0000:00:08.2: flags: 64bit ncq sntf stag pm led clo only pmp pio slum part ccc apst 
+[    0.289062] scsi host2: ahci
+[    0.289062] ata3: SATA max UDMA/133 abar m8192@0x454a4000 port 0x454a4100 irq 39
+[    0.289062] libphy: Fixed MDIO Bus: probed
+[    0.289062] e1000: Intel(R) PRO/1000 Network Driver - version 7.3.21-k8-NAPI
+[    0.289062] e1000: Copyright (c) 1999-2006 Intel Corporation.
+[    0.289062] e1000e: Intel(R) PRO/1000 Network Driver - 3.2.6-k
+[    0.289062] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
+[    0.289062] igb: Intel(R) Gigabit Ethernet Network Driver - version 5.4.0-k
+[    0.289062] igb: Copyright (c) 2007-2014 Intel Corporation.
+[    0.289062] ixgbe: Intel(R) 10 Gigabit PCI Express Network Driver - version 5.1.0-k
+[    0.289062] ixgbe: Copyright (c) 1999-2016 Intel Corporation.
+[    0.289062] ixgb: Intel(R) PRO/10GbE Network Driver - version 1.0.135-k2-NAPI
+[    0.289062] ixgb: Copyright (c) 1999-2008 Intel Corporation.
+[    0.289062] r8168 0000:02:00.0: Device 10ec:8168, irq 255
+[    0.289062] r8168 Gigabit Ethernet driver 8.046.00 loaded
+[    0.312500] r8168: This product is covered by one or more of the following patents: US6,570,884, US6,115,776, and US6,327,625.
+[    0.312500] r8168  Copyright (C) 2018  Realtek NIC software team <nicfae@realtek.com> 
+ This program comes with ABSOLUTELY NO WARRANTY; for details, please see <http://www.gnu.org/licenses/>. 
+ This is free software, and you are welcome to redistribute it under certain conditions; see <http://www.gnu.org/licenses/>. 
+[    0.312500] stmmaceth 0000:00:03.0: Device 14:7a03, irq 76
+[    0.312500] stmmaceth 0000:00:03.0: User ID: 0xd1, Synopsys ID: 0x37
+[    0.312500] stmmaceth 0000:00:03.0: 	DWMAC1000
+[    0.312500] stmmaceth 0000:00:03.0: DMA HW capability register supported
+[    0.312500] stmmaceth 0000:00:03.0: RX Checksum Offload Engine supported
+[    0.312500] stmmaceth 0000:00:03.0: COE Type 2
+[    0.312500] stmmaceth 0000:00:03.0: TX Checksum insertion supported
+[    0.312500] stmmaceth 0000:00:03.0: Wake-Up On Lan supported
+[    0.312500] stmmaceth 0000:00:03.0: Enhanced/Alternate descriptors
+[    0.312500] stmmaceth 0000:00:03.0: Enabled extended descriptors
+[    0.312500] stmmaceth 0000:00:03.0: Ring mode enabled
+[    0.312500] stmmaceth 0000:00:03.0: Enable RX Mitigation via HW Watchdog Timer
+[    0.312500] stmmaceth 0000:00:03.0 (unnamed net_device) (uninitialized): device MAC address c2:7a:ca:88:a9:5b
+[    0.324218] libphy: stmmac: probed
+[    0.324218] mdio_bus stmmac-18:00: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:00, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:01: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:01, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:02: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:02, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:03: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:03, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:04: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:04, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:05: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:05, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:06: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:06, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:07: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:07, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:08: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:08, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:09: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:09, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:0a: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:0a, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:0b: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:0b, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:0c: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:0c, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:0d: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:0d, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:0e: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:0e, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:0f: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:0f, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:10: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:10, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:11: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:11, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:12: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:12, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:13: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:13, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:14: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:14, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:15: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:15, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:16: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:16, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:17: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:17, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:18: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:18, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:19: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:19, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:1a: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:1a, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:1b: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:1b, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:1c: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:1c, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:1d: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:1d, irq=POLL)
+[    0.324218] mdio_bus stmmac-18:1e: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:1e, irq=POLL)
+[    0.328125] mdio_bus stmmac-18:1f: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-18:1f, irq=POLL)
+[    0.328125] stmmaceth 0000:00:03.1: Device 14:7a03, irq 78
+[    0.328125] stmmaceth 0000:00:03.1: User ID: 0xd1, Synopsys ID: 0x37
+[    0.328125] stmmaceth 0000:00:03.1: 	DWMAC1000
+[    0.328125] stmmaceth 0000:00:03.1: DMA HW capability register supported
+[    0.328125] stmmaceth 0000:00:03.1: RX Checksum Offload Engine supported
+[    0.328125] stmmaceth 0000:00:03.1: COE Type 2
+[    0.328125] stmmaceth 0000:00:03.1: TX Checksum insertion supported
+[    0.328125] stmmaceth 0000:00:03.1: Wake-Up On Lan supported
+[    0.328125] stmmaceth 0000:00:03.1: Enhanced/Alternate descriptors
+[    0.328125] stmmaceth 0000:00:03.1: Enabled extended descriptors
+[    0.328125] stmmaceth 0000:00:03.1: Ring mode enabled
+[    0.328125] stmmaceth 0000:00:03.1: Enable RX Mitigation via HW Watchdog Timer
+[    0.328125] stmmaceth 0000:00:03.1 (unnamed net_device) (uninitialized): device MAC address c2:f1:bf:94:d5:b5
+[    0.335937] random: fast init done
+[    0.335937] libphy: stmmac: probed
+[    0.339843] mdio_bus stmmac-19:00: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:00, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:01: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:01, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:02: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:02, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:03: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:03, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:04: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:04, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:05: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:05, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:06: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:06, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:07: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:07, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:08: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:08, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:09: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:09, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:0a: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:0a, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:0b: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:0b, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:0c: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:0c, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:0d: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:0d, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:0e: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:0e, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:0f: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:0f, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:10: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:10, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:11: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:11, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:12: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:12, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:13: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:13, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:14: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:14, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:15: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:15, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:16: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:16, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:17: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:17, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:18: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:18, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:19: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:19, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:1a: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:1a, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:1b: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:1b, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:1c: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:1c, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:1d: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:1d, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:1e: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:1e, irq=POLL)
+[    0.339843] mdio_bus stmmac-19:1f: attached PHY driver [unbound] (mii_bus:phy_addr=stmmac-19:1f, irq=POLL)
+[    0.339843] VFIO - User Level meta-driver version: 0.3
+[    0.339843] i8042: PNP: No PS/2 controller found.
+[    0.339843] i8042: Probing ports directly.
+[    0.343750] i8042: Detected active multiplexing controller, rev 1.1
+[    0.347656] serio: i8042 KBD port at 0x60,0x64 irq 1
+[    0.347656] serio: i8042 AUX0 port at 0x60,0x64 irq 12
+[    0.347656] serio: i8042 AUX1 port at 0x60,0x64 irq 12
+[    0.347656] serio: i8042 AUX2 port at 0x60,0x64 irq 12
+[    0.347656] serio: i8042 AUX3 port at 0x60,0x64 irq 12
+[    0.347656] mousedev: PS/2 mouse device common for all mice
+[    0.347656] rtc rtc0: invalid alarm value: 1959-11-31 25:63:47
+[    0.347656] ls2x-rtc 100d0100.rtc: rtc core: registered 100d0100.rtc as rtc0
+[    0.347656] i2c /dev entries driver
+[    0.351562] device-mapper: ioctl: 4.39.0-ioctl (2018-04-03) initialised: dm-devel@redhat.com
+[    0.351562] hidraw: raw HID events driver (C) Jiri Kosina
+[    0.351562] usbcore: registered new interface driver usbhid
+[    0.351562] usbhid: USB HID core driver
+[    0.351562] Loongson Hwmon Enter...
+[    0.351562] (NULL device *): hwmon_device_register() is deprecated. Please convert the driver to use hwmon_device_register_with_info().
+[    0.351562] EMC1412: No valid reference.
+[    0.351562] Initial CPU temperature is 41 Celsius (highest).
+[    0.351562] Loongson-EA Laptop not dmimatch devices!
+[    0.351562] Loongson-Bitland Laptop not dmimatch devices!
+[    0.351562] Loongson-3nod Laptop not match from device_table.
+[    0.351562] Loongson-3nod Laptop not dmimatch devices!
+[    0.351562] snd_hda_intel 0000:03:00.1: Device 1002:aab0, irq 255
+[    0.351562] snd_hda_intel 0000:03:00.1: Force to snoop mode by module option
+[    0.351562] Initializing XFRM netlink socket
+[    0.351562] NET: Registered protocol family 10
+[    0.351562] Segment Routing with IPv6
+[    0.351562] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    0.351562] NET: Registered protocol family 17
+[    0.351562] NET: Registered protocol family 15
+[    0.351562] Key type dns_resolver registered
+[    0.351562] cpuautoplug: Loongson-3 CPU autoplug driver.
+[    0.355468] registered taskstats version 1
+[    0.355468] Loading compiled-in X.509 certificates
+[    0.355468] ls2x-rtc 100d0100.rtc: setting system clock to 2021-02-25 07:13:55 UTC (1614237235)
+[    0.355468] (NULL device *): hwmon_device_register() is deprecated. Please convert the driver to use hwmon_device_register_with_info().
+[    0.355468] (NULL device *): hwmon_device_register() is deprecated. Please convert the driver to use hwmon_device_register_with_info().
+[    0.355468] (NULL device *): hwmon_device_register() is deprecated. Please convert the driver to use hwmon_device_register_with_info().
+[    0.355468] (NULL device *): hwmon_device_register() is deprecated. Please convert the driver to use hwmon_device_register_with_info().
+[    0.355468] ALSA device list:
+[    0.355468]   No soundcards found.
+[    0.355468] input: HDA ATI HDMI HDMI/DP,pcm=3 as /devices/pci0000:00/0000:00:0f.0/0000:03:00.1/sound/card0/input2
+[    0.605468] ata1: SATA link down (SStatus 0 SControl 300)
+[    0.605468] ata2: SATA link down (SStatus 0 SControl 300)
+[    0.765625] ata3: SATA link up 3.0 Gbps (SStatus 123 SControl 300)
+[    0.765625] ata3.00: ATA-11: Phison SATA SSD, SBFM61.2, max UDMA/133
+[    0.765625] ata3.00: 250069680 sectors, multi 16: LBA48 NCQ (depth 32), AA
+[    0.765625] ata3.00: configured for UDMA/133
+[    0.765625] scsi 2:0:0:0: Direct-Access     ATA      Phison SATA SSD  61.2 PQ: 0 ANSI: 5
+[    0.765625] sd 2:0:0:0: [sda] 250069680 512-byte logical blocks: (128 GB/119 GiB)
+[    0.765625] sd 2:0:0:0: Attached scsi generic sg0 type 0
+[    0.765625] sd 2:0:0:0: [sda] Write Protect is off
+[    0.765625] sd 2:0:0:0: [sda] Mode Sense: 00 3a 00 00
+[    0.765625] sd 2:0:0:0: [sda] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+[    0.765625]  sda: sda1 sda2 sda3
+[    0.765625] sd 2:0:0:0: [sda] Attached SCSI disk
+[    1.039062] EXT4-fs (sda1): INFO: recovery required on readonly filesystem
+[    1.039062] EXT4-fs (sda1): write access will be enabled during recovery
+[    1.082031] EXT4-fs (sda1): orphan cleanup on readonly fs
+[    1.085937] EXT4-fs (sda1): 4 orphan inodes deleted
+[    1.085937] EXT4-fs (sda1): recovery complete
+[    1.089843] EXT4-fs (sda1): mounted filesystem with ordered data mode. Opts: (null)
+[    1.089843] VFS: Mounted root (ext4 filesystem) readonly on device 8:1.
+[    1.093750] devtmpfs: mounted
+[    1.164062] Freeing unused kernel memory: 1088K
+[    1.164062] This architecture does not have kernel memory protection.
+[    1.164062] Run /sbin/init as init process
+[    1.300781] systemd[1]: Inserted module 'ip_tables'
+[    1.308593] random: systemd: uninitialized urandom read (16 bytes read)
+[    1.312500] random: systemd: uninitialized urandom read (16 bytes read)
+[    1.312500] random: systemd: uninitialized urandom read (16 bytes read)
+[    1.316406] systemd[1]: systemd 219 running in system mode. (+PAM +AUDIT +SELINUX +IMA -APPARMOR +SMACK +SYSVINIT +UTMP +LIBCRYPTSETUP +GCRYPT +GNUTLS +ACL +XZ -LZ4 -SECCOMP +BLKID +ELFUTILS +KMOD +IDN)
+[    1.316406] systemd[1]: Detected architecture mips64.
+[    1.316406] systemd[1]: Set hostname to <linux>.
+[    1.421875] systemd[1]: Configuration file /usr/lib/systemd/system/auditd.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+[    1.503906] systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+[    1.503906] systemd[1]: Reached target User and Group Name Lookups.
+[    1.503906] systemd[1]: Created slice Root Slice.
+[    1.503906] systemd[1]: Listening on Journal Socket.
+[    1.503906] systemd[1]: Listening on /dev/initctl Compatibility Named Pipe.
+[    1.503906] systemd[1]: Listening on Delayed Shutdown Socket.
+[    1.652343] EXT4-fs (sda1): re-mounted. Opts: (null)
+[    1.699218] systemd-journald[1331]: Received request to flush runtime journal from PID 1
+[    1.957031] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    1.964843] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    1.972656] [drm] CMA-based KMS for ls7a1000 is disabled.
+[    1.980468] ehci-pci: EHCI PCI platform driver
+[    1.980468] ehci-pci 0000:00:04.1: Device 14:7a14, irq 76
+[    1.980468] ehci-pci 0000:00:04.1: EHCI Host Controller
+[    1.980468] ehci-pci 0000:00:04.1: new USB bus registered, assigned bus number 1
+[    1.980468] ehci-pci 0000:00:04.1: Enabling legacy PCI PM
+[    1.980468] ehci-pci 0000:00:04.1: cache line size of 64 is not supported
+[    1.980468] ehci-pci 0000:00:04.1: irq 76, io mem 0x45488000
+[    1.988281] loongson-audio 0000:00:07.0: Device 14:7a07, irq 122
+[    1.996093] ehci-pci 0000:00:04.1: USB f.f started, EHCI 1.00
+[    1.996093] hub 1-0:1.0: USB hub found
+[    1.996093] hub 1-0:1.0: 3 ports detected
+[    1.996093] ehci-pci 0000:00:05.1: Device 14:7a14, irq 78
+[    1.996093] ehci-pci 0000:00:05.1: EHCI Host Controller
+[    1.996093] ehci-pci 0000:00:05.1: new USB bus registered, assigned bus number 2
+[    1.996093] ehci-pci 0000:00:05.1: Enabling legacy PCI PM
+[    1.996093] ehci-pci 0000:00:05.1: cache line size of 64 is not supported
+[    1.996093] ehci-pci 0000:00:05.1: irq 78, io mem 0x45498000
+[    2.003906] stmmaceth 0000:00:03.0 enp0s3f0: renamed from eth1
+[    2.015625] ehci-pci 0000:00:05.1: USB f.f started, EHCI 1.00
+[    2.015625] hub 2-0:1.0: USB hub found
+[    2.015625] hub 2-0:1.0: 3 ports detected
+[    2.031250] etnaviv 0000:00:06.0: Device 14:7a15, irq 93
+[    2.039062] ohci-pci: OHCI PCI platform driver
+[    2.039062] ohci-pci 0000:00:04.0: Device 14:7a24, irq 77
+[    2.062500] snd_hda_codec_realtek hdaudioC1D0: autoconfig for ALC269VC: line_outs=2 (0x15/0x14/0x0/0x0/0x0) type:line
+[    2.062500] snd_hda_codec_realtek hdaudioC1D0:    speaker_outs=0 (0x0/0x0/0x0/0x0/0x0)
+[    2.062500] snd_hda_codec_realtek hdaudioC1D0:    hp_outs=1 (0x1b/0x0/0x0/0x0/0x0)
+[    2.062500] snd_hda_codec_realtek hdaudioC1D0:    mono: mono_out=0x0
+[    2.062500] snd_hda_codec_realtek hdaudioC1D0:    dig-out=0x1e/0x0
+[    2.062500] snd_hda_codec_realtek hdaudioC1D0:    inputs:
+[    2.062500] snd_hda_codec_realtek hdaudioC1D0:      Front Mic=0x19
+[    2.062500] snd_hda_codec_realtek hdaudioC1D0:      Rear Mic=0x18
+[    2.062500] snd_hda_codec_realtek hdaudioC1D0:      Line=0x1a
+[    2.062500] r8168 0000:02:00.0 enp2s0: renamed from eth0
+[    2.070312] xhci_hcd 0000:01:00.0: Device 1912:14, irq 255
+[    2.093750] stmmaceth 0000:00:03.1 enp0s3f1: renamed from eth2
+[    2.105468] ohci-pci 0000:00:04.0: OHCI PCI host controller
+[    2.105468] ohci-pci 0000:00:04.0: new USB bus registered, assigned bus number 3
+[    2.105468] xhci_hcd 0000:01:00.0: xHCI Host Controller
+[    2.105468] xhci_hcd 0000:01:00.0: new USB bus registered, assigned bus number 4
+[    2.109375] etnaviv 0000:00:06.0: model: GC1000, revision: 5037
+[    2.113281] ohci-pci 0000:00:04.0: irq 77, io mem 0x45480000
+[    2.175781] hub 3-0:1.0: USB hub found
+[    2.175781] hub 3-0:1.0: 3 ports detected
+[    2.175781] ohci-pci 0000:00:05.0: Device 14:7a24, irq 79
+[    2.191406] input: HDA Digital PCBeep as /devices/pci0000:00/0000:00:07.0/sound/card1/input7
+[    2.191406] ohci-pci 0000:00:05.0: OHCI PCI host controller
+[    2.191406] ohci-pci 0000:00:05.0: new USB bus registered, assigned bus number 5
+[    2.199218] input: HD-Audio Loongson Front Mic as /devices/pci0000:00/0000:00:07.0/sound/card1/input9
+[    2.199218] input: HD-Audio Loongson Rear Mic as /devices/pci0000:00/0000:00:07.0/sound/card1/input10
+[    2.199218] input: HD-Audio Loongson Line as /devices/pci0000:00/0000:00:07.0/sound/card1/input11
+[    2.199218] input: HD-Audio Loongson Line Out Front as /devices/pci0000:00/0000:00:07.0/sound/card1/input12
+[    2.199218] input: HD-Audio Loongson Line Out Surround as /devices/pci0000:00/0000:00:07.0/sound/card1/input13
+[    2.199218] input: HD-Audio Loongson Front Headphone as /devices/pci0000:00/0000:00:07.0/sound/card1/input14
+[    2.203125] [drm] Initialized etnaviv 1.2.0 20151214 for 0000:00:06.0 on minor 0
+[    2.203125] ohci-pci 0000:00:05.0: irq 79, io mem 0x45490000
+[    2.203125] xhci_hcd 0000:01:00.0: hcc params 0x014051cf hci version 0x100 quirks 0x0000000100000410
+[    2.203125] hub 4-0:1.0: USB hub found
+[    2.203125] hub 4-0:1.0: 4 ports detected
+[    2.203125] xhci_hcd 0000:01:00.0: xHCI Host Controller
+[    2.203125] xhci_hcd 0000:01:00.0: new USB bus registered, assigned bus number 6
+[    2.203125] xhci_hcd 0000:01:00.0: Host supports USB 3.0 SuperSpeed
+[    2.203125] usb usb6: We don't know the algorithms for LPM for this host, disabling LPM.
+[    2.207031] hub 6-0:1.0: USB hub found
+[    2.207031] hub 6-0:1.0: 4 ports detected
+[    2.265625] hub 5-0:1.0: USB hub found
+[    2.265625] hub 5-0:1.0: 3 ports detected
+[    2.292968] [drm] radeon kernel modesetting enabled.
+[    2.292968] radeon 0000:03:00.0: Device 1002:6611, irq 255
+[    2.304687] [drm] initializing kernel modesetting (OLAND 0x1002:0x6611 0x1642:0x1601 0x87).
+[    2.324218] Adding 8388592k swap on /dev/sda3.  Priority:-2 extents:1 across:8388592k SS
+[    2.457031] input: AT Raw Set 2 keyboard as /devices/platform/i8042/serio0/input/input8
+[    2.589843] atkbd serio1: keyboard reset failed on isa0060/serio1
+[    2.621093] atkbd serio0: Unknown key pressed (raw set 2, code 0x17c on isa0060/serio0).
+[    2.621093] atkbd serio0: Use 'setkeycodes 7c <keycode>' to make it known.
+[    2.632812] ATOM BIOS: C57701
+[    2.632812] radeon 0000:03:00.0: VRAM: 2048M 0x0000000000000000 - 0x000000007FFFFFFF (2048M used)
+[    2.632812] radeon 0000:03:00.0: GTT: 2048M 0x0000000080000000 - 0x00000000FFFFFFFF
+[    2.632812] [drm] Detected VRAM RAM=2048M, BAR=256M
+[    2.632812] [drm] RAM width 64bits DDR
+[    2.632812] [TTM] Zone  kernel: Available graphics memory: 3854624 kiB
+[    2.632812] [TTM] Zone   dma32: Available graphics memory: 2097152 kiB
+[    2.632812] [TTM] Initializing pool allocator
+[    2.632812] [TTM] Initializing DMA pool allocator
+[    2.632812] [drm] radeon: 2048M of VRAM memory ready
+[    2.632812] [drm] radeon: 2048M of GTT memory ready.
+[    2.632812] [drm] Loading oland Microcode
+[    2.648437] [drm] Internal thermal controller with fan control
+[    2.664062] [drm] radeon: dpm initialized
+[    2.671875] [drm] Found VCE firmware/feedback version 50.0.1 / 17!
+[    2.671875] [drm] GART: num cpu pages 131072, num gpu pages 524288
+[    2.675781] [drm] PCIE gen 2 link speeds already enabled
+[    2.820312] usb 3-2: new low-speed USB device number 2 using ohci-pci
+[    2.929687] [drm] PCIE GART of 2048M enabled (table at 0x00000000001DC000).
+[    2.929687] radeon 0000:03:00.0: WB enabled
+[    2.929687] radeon 0000:03:00.0: fence driver on ring 0 use gpu addr 0x0000000080000c00 and cpu addr 0x(____ptrval____)
+[    2.929687] radeon 0000:03:00.0: fence driver on ring 1 use gpu addr 0x0000000080000c04 and cpu addr 0x(____ptrval____)
+[    2.929687] radeon 0000:03:00.0: fence driver on ring 2 use gpu addr 0x0000000080000c08 and cpu addr 0x(____ptrval____)
+[    2.929687] radeon 0000:03:00.0: fence driver on ring 3 use gpu addr 0x0000000080000c0c and cpu addr 0x(____ptrval____)
+[    2.929687] radeon 0000:03:00.0: fence driver on ring 4 use gpu addr 0x0000000080000c10 and cpu addr 0x(____ptrval____)
+[    2.945312] radeon 0000:03:00.0: fence driver on ring 5 use gpu addr 0x0000000000075a18 and cpu addr 0x(____ptrval____)
+[    3.058593] radeon 0000:03:00.0: failed VCE resume (-145).
+[    3.058593] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[    3.058593] [drm] Driver supports precise vblank timestamp query.
+[    3.058593] radeon 0000:03:00.0: radeon: MSI limited to 32-bit
+[    3.058593] radeon 0000:03:00.0: radeon: using MSI.
+[    3.058593] [drm] radeon: irq initialized.
+[    3.253906] [drm] ring test on 0 succeeded in 1 usecs
+[    3.253906] [drm] ring test on 1 succeeded in 1 usecs
+[    3.253906] [drm] ring test on 2 succeeded in 1 usecs
+[    3.253906] [drm] ring test on 3 succeeded in 4 usecs
+[    3.253906] [drm] ring test on 4 succeeded in 4 usecs
+[    3.257812] EXT4-fs (sda2): mounted filesystem with ordered data mode. Opts: (null)
+[    3.429687] [drm] ring test on 5 succeeded in 1 usecs
+[    3.429687] [drm] UVD initialized successfully.
+[    3.429687] [drm] ib test on ring 0 succeeded in 0 usecs
+[    3.429687] [drm] ib test on ring 1 succeeded in 0 usecs
+[    3.429687] [drm] ib test on ring 2 succeeded in 0 usecs
+[    3.429687] [drm] ib test on ring 3 succeeded in 0 usecs
+[    3.429687] [drm] ib test on ring 4 succeeded in 0 usecs
+[    3.582031] [drm] ib test on ring 5 succeeded
+[    3.585937] input: HID 04f3:0103 as /devices/pci0000:00/0000:00:04.0/usb3/3-2/3-2:1.0/0003:04F3:0103.0001/input/input17
+[    3.585937] hid-generic 0003:04F3:0103.0001: input,hidraw0: USB HID v1.11 Keyboard [HID 04f3:0103] on usb-0000:00:04.0-2/input0
+[    3.585937] [drm] Radeon Display Connectors
+[    3.589843] [drm] Connector 0:
+[    3.589843] [drm]   HDMI-A-1
+[    3.589843] [drm]   HPD2
+[    3.589843] [drm]   DDC: 0x6530 0x6530 0x6534 0x6534 0x6538 0x6538 0x653c 0x653c
+[    3.589843] [drm]   Encoders:
+[    3.589843] [drm]     DFP1: INTERNAL_UNIPHY
+[    3.589843] [drm] Connector 1:
+[    3.589843] [drm]   VGA-1
+[    3.589843] [drm]   DDC: 0x65c0 0x65c0 0x65c4 0x65c4 0x65c8 0x65c8 0x65cc 0x65cc
+[    3.589843] [drm]   Encoders:
+[    3.589843] [drm]     CRT1: INTERNAL_KLDSCP_DAC1
+[    3.593750] input: HID 04f3:0103 Consumer Control as /devices/pci0000:00/0000:00:04.0/usb3/3-2/3-2:1.1/0003:04F3:0103.0002/input/input18
+[    3.593750] input: HID 04f3:0103 System Control as /devices/pci0000:00/0000:00:04.0/usb3/3-2/3-2:1.1/0003:04F3:0103.0002/input/input19
+[    3.593750] hid-generic 0003:04F3:0103.0002: input,hidraw1: USB HID v1.11 Device [HID 04f3:0103] on usb-0000:00:04.0-2/input1
+[    3.644531] atkbd serio2: keyboard reset failed on isa0060/serio2
+[    3.648437] atkbd serio0: Unknown key pressed (raw set 2, code 0x17c on isa0060/serio0).
+[    3.648437] atkbd serio0: Use 'setkeycodes 7c <keycode>' to make it known.
+[    3.730468] [drm] fb mappable at 0x505E4000
+[    3.730468] [drm] vram apper at 0x50000000
+[    3.730468] [drm] size 8306688
+[    3.730468] [drm] fb depth is 24
+[    3.730468] [drm]    pitch is 7680
+[    3.855468] atkbd serio0: Unknown key pressed (raw set 2, code 0x17c on isa0060/serio0).
+[    3.855468] atkbd serio0: Use 'setkeycodes 7c <keycode>' to make it known.
+[    3.878906] Console: switching to colour frame buffer device 240x67
+[    3.921875] usb 3-1: new low-speed USB device number 3 using ohci-pci
+[    4.062500] atkbd serio0: Frame/parity error: 02
+[    4.082031] atkbd serio0: Spurious NAK on isa0060/serio0. Some program might be trying to access hardware directly.
+[    4.152343] input: PixArt USB Optical Mouse as /devices/pci0000:00/0000:00:04.0/usb3/3-1/3-1:1.0/0003:093A:2510.0003/input/input21
+[    4.152343] hid-generic 0003:093A:2510.0003: input,hidraw2: USB HID v1.11 Mouse [PixArt USB Optical Mouse] on usb-0000:00:04.0-1/input0
+[    4.332031] radeon 0000:03:00.0: fb0: radeondrmfb frame buffer device
+[    4.347656] [drm] Initialized radeon 2.50.0 20080528 for 0000:03:00.0 on minor 1
+[    4.773437] [drm] amdgpu kernel modesetting enabled.
+[    5.085937] atkbd serio3: keyboard reset failed on isa0060/serio3
+[    5.089843] atkbd serio0: Unknown key pressed (raw set 2, code 0x17c on isa0060/serio0).
+[    5.093750] atkbd serio0: Use 'setkeycodes 7c <keycode>' to make it known.
+[    5.300781] atkbd serio0: Unknown key pressed (raw set 2, code 0x17c on isa0060/serio0).
+[    5.300781] atkbd serio0: Use 'setkeycodes 7c <keycode>' to make it known.
+[    5.507812] atkbd serio0: Unknown key pressed (raw set 2, code 0x17c on isa0060/serio0).
+[    5.671875] atkbd serio0: Use 'setkeycodes 7c <keycode>' to make it known.
+[    6.519531] atkbd serio4: keyboard reset failed on isa0060/serio4
+[    6.523437] atkbd serio0: Unknown key pressed (raw set 2, code 0x17c on isa0060/serio0).
+[    6.523437] atkbd serio0: Use 'setkeycodes 7c <keycode>' to make it known.
+[    6.730468] atkbd serio0: Unknown key pressed (raw set 2, code 0x17c on isa0060/serio0).
+[    6.929687] atkbd serio0: Use 'setkeycodes 7c <keycode>' to make it known.
+[    7.843750] random: crng init done
+[    7.843750] random: 7 urandom warning(s) missed due to ratelimiting
+[    9.027343] bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+[    9.914062] IPv6: ADDRCONF(NETDEV_UP): enp2s0: link is not ready
+[    9.914062] enp2s0: 0x9000000045100000, 00:0b:2f:17:4a:b1, IRQ 96
+[    9.988281] IPv6: ADDRCONF(NETDEV_UP): enp2s0: link is not ready
+[    9.992187] IPv6: ADDRCONF(NETDEV_UP): enp0s3f1: link is not ready
+[    9.992187] Generic PHY stmmac-19:00: attached PHY driver [Generic PHY] (mii_bus:phy_addr=stmmac-19:00, irq=POLL)
+[   10.101562] stmmaceth 0000:00:03.1: Failed to reset the dma
+[   10.562500] stmmaceth 0000:00:03.1 enp0s3f1: stmmac_hw_setup: DMA engine initialization failed
+[   10.562500] stmmaceth 0000:00:03.1 enp0s3f1: stmmac_open: Hw setup failed
+[   10.671875] IPv6: ADDRCONF(NETDEV_UP): enp0s3f0: link is not ready
+[   10.859375] Generic PHY stmmac-18:00: attached PHY driver [Generic PHY] (mii_bus:phy_addr=stmmac-18:00, irq=POLL)
+[   10.964843] stmmaceth 0000:00:03.0: Failed to reset the dma
+[   11.148437] stmmaceth 0000:00:03.0 enp0s3f0: stmmac_hw_setup: DMA engine initialization failed
+[   11.148437] stmmaceth 0000:00:03.0 enp0s3f0: stmmac_open: Hw setup failed
+[   13.054687] tun: Universal TUN/TAP device driver, 1.6
+[   13.187500] r8168: enp2s0: link up
+[   13.187500] IPv6: ADDRCONF(NETDEV_CHANGE): enp2s0: link becomes ready
+[   13.417968] virbr0: port 1(virbr0-nic) entered blocking state
+[   13.417968] virbr0: port 1(virbr0-nic) entered disabled state
+[   13.417968] device virbr0-nic entered promiscuous mode
+[   13.917968] virbr0: port 1(virbr0-nic) entered blocking state
+[   13.917968] virbr0: port 1(virbr0-nic) entered listening state
+[   14.207031] virbr0: port 1(virbr0-nic) entered disabled state
+[   17.375000] fuse init (API version 7.27)
+[   52.808593] kpatch: loading out-of-tree module taints kernel.
+[   52.808593] kpatch_module_notify_going
+[   52.808593] kpatch_module_notify_coming
+[   52.902343] base sec index: 10
+[   52.902343] location: ffffffffc06545cc code: c000000
+[   52.902343] sec start: ffffffffc06545c8 offset: 4
+[   52.902343] sym name: get_system_type value: ffffffffc06545c8
+[   52.902343] addend: 18
+[   52.902343] v: ffffffffc06545e0
+[   52.902343] location code: c195178
+[   52.902343] base sec index: 10
+[   52.902343] location: ffffffffc06545d4 code: 3c020000
+[   52.902343] sec start: ffffffffc06545c8 offset: c
+[   52.902343] sym name:  value: ffffffffc0658078
+[   52.902343] addend: 2f8
+[   52.902343] v: ffffffffc0658370
+[   52.902343] location code: 3c02c066
+[   52.902343] base sec index: 10
+[   52.902343] location: ffffffffc06545dc code: 64420000
+[   52.902343] sec start: ffffffffc06545c8 offset: 14
+[   52.902343] sym name:  value: ffffffffc0658078
+[   52.902343] addend: 2f8
+[   52.902343] v: ffffffffc0658370
+[   52.902343] location code: 64428370
+[   52.902343] base sec index: 10
+[   52.902343] location: ffffffffc06545e0 code: 3c030000
+[   52.902343] sec start: ffffffffc06545c8 offset: 18
+[   52.902343] sym name: _mcount value: ffffffff80223750
+[   52.902343] addend: 0
+[   52.902343] v: ffffffff80223750
+[   52.902343] location code: 3c038022
+[   52.902343] base sec index: 10
+[   52.902343] location: ffffffffc06545e4 code: 64630000
+[   52.902343] sec start: ffffffffc06545c8 offset: 1c
+[   52.902343] sym name: _mcount value: ffffffff80223750
+[   52.902343] addend: 0
+[   52.902343] v: ffffffff80223750
+[   52.902343] location code: 64633750
+[   52.902343] kpatch_module_notify_going
+[   52.902343] kpatch_module_notify_coming
+[   52.902343] start to patch_init
+[   52.902343] start to patch_make_funcs_list
+[   52.902343] p_func->objname: vmlinux p_func->name: get_system_type
+[   52.902343] start to patch_make_dynrelas_lsit
+[   52.902343] start to patch_set_callbacks
+[   52.902343] start to kpatch_register
+[   52.902343] replace value: 0
+[   52.902343] kpatch_link_object
+[   52.941406] kpatch_func name: get_system_type old_addr: ffffffff80202860 new_addr: ffffffffc06545c8 new_size: 18
+[   52.941406] 0 3e0082d
+[   52.941406] 4 c195178
+[   52.941406] 8 602d
+[   52.941406] c 3c02c066
+[   52.941406] 10 3e00008
+[   52.941406] 14 64428370
+[   52.941406] 18 10000003
+[   52.941406] 1c 64633750
+[   52.941406] 20 60f809
+[   52.941406] 24 20f82d
+[   52.941406] 28 3e00008
+[   52.941406] 2c 0
+[   52.941406] 30 0
+[   52.941406] 34 0
+[   52.941406] 38 0
+[   52.941406] 3c 0
+[   52.941406] 40 0
+[   52.941406] 44 0
+[   52.941406] 48 0
+[   52.941406] 4c 0
+[   52.941406] 50 0
+[   52.941406] 54 0
+[   52.941406] 58 0
+[   52.941406] 5c 0
+[   52.945312] ret value: 0
+[   52.945312] kpatch func name: get_system_type old_addr: ffffffff80202860 new_addr: ffffffffc06545c8 
+[   52.945312] state ret: 2
+[   52.976562] kpatch: tainting kernel with TAINT_LIVEPATCH
+[   52.976562] kpatch: loaded patch module 'kpatch_0001_change_get_system_type_interface'
+[   52.976562] kpatch_module_notify_going
+[   52.976562] kpatch_module_notify_coming
+[   59.066406] device virbr0-nic left promiscuous mode
+[   59.066406] virbr0: port 1(virbr0-nic) entered disabled state
+[   59.085937] IPv6: ADDRCONF(NETDEV_UP): virbr0-nic: link is not ready
+[   85.546875] kpatch_ftrace_handler
+[   85.546875] find func: get_system_type ffffffffc06545c8

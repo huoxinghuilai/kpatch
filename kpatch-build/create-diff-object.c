@@ -2892,7 +2892,10 @@ static void kpatch_create_patches_sections(struct kpatch_elf *kelf,
 		//填充struct kpatch_patch_func结构体
 		funcs[index].old_addr = symbol.addr;
 		funcs[index].old_size = symbol.size;
-		funcs[index].new_size = sym->sym.st_size;
+		//funcs[index].new_size = sym->sym.st_size;
+
+		//MIPS，修改section指令，大小发生变化
+		funcs[index].new_size = sym->sec->data->d_size;
 		funcs[index].sympos = symbol.sympos;
 
 		/*
@@ -2995,6 +2998,7 @@ static bool need_dynrela(struct lookup_table *table, const struct rela *rela)
 		return false;
 
 	if (rela->sym->sec) {
+
 		/*
 		 * Internal symbols usually don't need dynrelas, because they
 		 * live in the patch module and can be relocated normally.
@@ -3038,6 +3042,7 @@ static bool need_dynrela(struct lookup_table *table, const struct rela *rela)
 		 */
 		return false;
 	}
+
 
 	if (rela->sym->bind == STB_LOCAL) {
 
@@ -3156,8 +3161,12 @@ static void kpatch_create_intermediate_sections(struct kpatch_elf *kelf,
 			 */
 
 			if (need_dynrela(table, rela))
-				toc_rela(rela)->need_dynrela = 1;
+{
+printf("%s\n", rela->sym->name);
+printf("%s\n", sec->name);
 
+				toc_rela(rela)->need_dynrela = 1;
+}
 		}
 	}
 

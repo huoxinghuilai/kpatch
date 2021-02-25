@@ -695,22 +695,22 @@ struct section *create_section_pair(struct kpatch_elf *kelf, char *name,
 void fixup_changed_section(struct kpatch_elf *kelf, struct sec_record *rec)
 {
 	struct section *old_sec, *rel_sec;
-	struct rela *rela, *tmp_rela, *tmp1_rela;
+	struct rela *rela, *tmp_rela;
 	struct sec_record *tmp_rec; 
-	unsigned char *tmp_data, *start, *data;
-	int size, nr_rela = 0, relas = 0, nr = 0;
-	unsigned int up_rela_offset = 0;
-int i = 0, j = 0;
-unsigned int *t;
+	unsigned char *data, *tmp1_data;
+	int nr_rela = 0, nr = 0;
+	struct list_head add_rela;
 
+	INIT_LIST_HEAD(&add_rela);
+	
+int i = 0, j = 0, k = 0;
 	//遍历记录链表
 	list_for_each_entry(tmp_rec, &rec->list, list) {
 		
-		//创建链表时，首位置空
 		if (!tmp_rec->sec)
 			continue;
+printf("tmp_rec: %s\n", tmp_rec->sec->name);
 
-		//创建替换的.section
 		//创建替换的.rela.section
 		rel_sec = (struct section *)malloc(sizeof(*rel_sec));
 		memset(rel_sec, 0, sizeof(*rel_sec));
@@ -741,18 +741,22 @@ unsigned int *t;
 					++nr_rela;
 					break;
 				default:
-					relas++;
 					break;
 				}	
 			}
 
 			//申请.section的数据空间大小
-printf("d_size: %lx\n", old_sec->data->d_size);
-			data = tmp_data = (void *)malloc(old_sec->data->d_size + (8 * nr_rela));
-			memset(tmp_data, 0, old_sec->data->d_size + (8 * nr_rela));
+j = (int)old_sec->data->d_size + (20 * nr_rela);
+printf("%d\n", j);
+			data = (void *)malloc(old_sec->data->d_size + (20 * nr_rela));
+			memset(data, 0, old_sec->data->d_size + (20 * nr_rela));
+			memcpy(data, old_sec->data->d_buf, old_sec->data->d_size);
+for (i = 0; i < j / 4; i++, k += 4)
+printf("%x %x\n", k, ((unsigned int *)data)[i]);
+
+			tmp1_data = data + old_sec->data->d_size;
 		
 			//遍历section中的重定位位置，填充.section以及.rela.section
-			start = old_sec->data->d_buf;
 			list_for_each_entry(rela, &old_sec->rela->relas, list) {
 			/*
  			 * 如果重定位类型为526M范围，则将I型指令更改为R型指令
@@ -764,74 +768,71 @@ printf("d_size: %lx\n", old_sec->data->d_size);
  			 * lui v1, 0x0
  			 * daddiu v1, v1, 0x0
  			 * jalr v1
+ 			 * nop
+ 			 * jr ra
  			 *
  			 */
 
 				switch(rela->type) {				
 				case R_MIPS_26:
-t = (unsigned int *)start;
-j = (int)old_sec->data->d_size;
-j = j / 4;
-while (i < j) {
-	printf("%x \n", t[i]);
-	i++;
-}
-printf("\n\n");
-i = 0;
-j = 0;
-t = (unsigned int *)tmp_data;
-printf("%x %x %x\n", rela->offset, up_rela_offset, rela->offset - up_rela_offset);
-					memcpy(tmp_data, start, rela->offset - up_rela_offset);
+					//创建rela重定位结构体	
+					tmp1_data[0] = 0x00;
+					tmp1_data[1] = 0x00;
+					tmp1_data[2] = 0x03;
+					tmp1_data[3] = 0x3c;
 
-					tmp_data = tmp_data + (rela->offset - up_rela_offset);
+					tmp1_data[4] = 0x00;
+					tmp1_data[5] = 0x00;
+					tmp1_data[6] = 0x63;
+					tmp1_data[7] = 0x64;					
+
+					tmp1_data[8] = 0x09;
+					tmp1_data[9] = 0xf8;
+					tmp1_data[10] = 0x60;
+					tmp1_data[11] = 0x00;
 					
-					tmp_data[0] = 0x00;
-					tmp_data[1] = 0x00;
-					tmp_data[2] = 0x03;
-					tmp_data[3] = 0x3c;
+					tmp1_data[12] = 0x00;
+					tmp1_data[13] = 0x00;
+					tmp1_data[14] = 0x00;
+					tmp1_data[15] = 0x00;
+						
+					tmp1_data[16] = 0x08;
+					tmp1_data[17] = 0x00;
+					tmp1_data[18] = 0xe0;
+					tmp1_data[19] = 0x03;
+					
+					tmp1_data[20] = 0x2d;
+					tmp1_data[21] = 0xf8;
+					tmp1_data[22] = 0x20;
+					tmp1_data[23] = 0x00;
 
-					tmp_data[4] = 0x00;
-					tmp_data[5] = 0x00;
-					tmp_data[6] = 0x63;
-					tmp_data[7] = 0x64;					
+					tmp1_data += nr * 24;
 
-					tmp_data[8] = 0x09;
-					tmp_data[9] = 0xf8;
-					tmp_data[10] = 0x60;
-					tmp_data[11] = 0x00;
-
-j = (rela->offset - up_rela_offset) / 4;
-while (i < j) {
-	printf("%x \n", t[i]);
-	i++;
-}
-printf("\n\n");
-i = 0;
-j = 0;
-					//重新计算复制地址
-					start = old_sec->data->d_buf + rela->offset + 4;
-					tmp_data = tmp_data + 12;
-					up_rela_offset = rela->offset + 4;
-					size += 8;						
-
-					//创建rela重定位结构体
+					//修改原有R_MIPS_26信息
 					tmp_rela = (struct rela *)malloc(sizeof(struct rela));
 					memset(tmp_rela, 0, sizeof(struct rela));
-			
 					list_add_tail(&tmp_rela->list, &rel_sec->relas);
+					tmp_rela->sym = old_sec->sym;
+					tmp_rela->type = R_MIPS_26;
+					tmp_rela->offset = (unsigned int)rela->rela.r_offset;
+					tmp_rela->addend = old_sec->data->d_size + nr * 24; 					
+					
+					//添加rela信息
+					tmp_rela = (struct rela *)malloc(sizeof(struct rela));
+					memset(tmp_rela, 0, sizeof(struct rela));
+					list_add_tail(&tmp_rela->list, &add_rela);
 					tmp_rela->sym = rela->sym;
 					tmp_rela->type = R_MIPS_HI16;
-					tmp_rela->offset = (unsigned int)rela->rela.r_offset;
+					tmp_rela->offset = (unsigned int)old_sec->data->d_size + nr * 24;
 					tmp_rela->addend = rela->rela.r_addend;
 					
-					tmp1_rela = (struct rela *)malloc(sizeof(struct rela));
-					memset(tmp1_rela, 0, sizeof(struct rela));
-
-					list_add_tail(&tmp1_rela->list, &rel_sec->relas);
-					tmp1_rela->sym = rela->sym;					
-					tmp1_rela->type = R_MIPS_LO16;
-					tmp1_rela->offset = (unsigned int)rela->rela.r_offset + 4;
-					tmp1_rela->addend = rela->rela.r_addend;
+					tmp_rela = (struct rela *)malloc(sizeof(struct rela));
+					memset(tmp_rela, 0, sizeof(struct rela));
+					list_add_tail(&tmp_rela->list, &add_rela);
+					tmp_rela->sym = rela->sym;					
+					tmp_rela->type = R_MIPS_LO16;
+					tmp_rela->offset = (unsigned int)old_sec->data->d_size + nr * 24 + 4;
+					tmp_rela->addend = rela->rela.r_addend;
 					
 					++nr;
 					break;
@@ -844,26 +845,25 @@ j = 0;
 					list_add_tail(&tmp_rela->list, &rel_sec->relas);
 					tmp_rela->sym = rela->sym;
 					tmp_rela->type = rela->rela.r_info & 0xffffffff;
-					tmp_rela->offset = (unsigned int)rela->rela.r_offset + (8 * nr);
+					tmp_rela->offset = (unsigned int)rela->rela.r_offset;
 					tmp_rela->addend = rela->rela.r_addend;
 
 					break;
 				}
 			}
 
-			memcpy(tmp_data, start, (unsigned int)(old_sec->data->d_size - up_rela_offset));
-j = (int)old_sec->data->d_size;
-printf("j: %d\n", j);
-j = (j + (8 * nr_rela)) / 4;
-printf("j: %d\n", j);
-
-for (i = 0; i < j; i++)
-	printf("%x: %x \n", i * 4, ((unsigned int *)data)[i]);
-	
 			//替换.section
 			old_sec->data->d_buf = data;
-			old_sec->data->d_size = old_sec->data->d_size + (8 * nr_rela);
+			old_sec->data->d_size = old_sec->data->d_size + (24 * nr_rela);
 			
+			//重组rela链表
+			rel_sec->relas.prev->next = add_rela.next;
+			add_rela.next->prev = rel_sec->relas.prev;
+			add_rela.prev->next = &rel_sec->relas;
+			rel_sec->relas.prev = add_rela.prev;
+			add_rela.next = NULL;
+			add_rela.prev = NULL;
+
 			//替换.rela.section
 			rel_sec->list.prev = old_sec->rela->list.prev;
 			rel_sec->list.next = old_sec->rela->list.next;

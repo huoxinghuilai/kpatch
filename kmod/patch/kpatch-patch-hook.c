@@ -260,7 +260,6 @@ printk("p_func->objname: %s p_func->name: %s\n", p_func->objname, p_func->name);
 		ret = kobject_init_and_add(&func->kobj, &patch_func_ktype,
 					   &object->kobj, "%s,%lu",
 					   func->name, func->sympos ? func->sympos : 1);
-printk("func node: %lx, node->next: %lx node->pprev: %lx\n", &(func->node), func->node.next, func->node.pprev);
 		if (ret)
 			return ret;
 	}
@@ -274,10 +273,11 @@ static int patch_make_dynrelas_list(struct list_head *objects)
 	struct kpatch_patch_dynrela *p_dynrela;
 	struct kpatch_dynrela *dynrela;
 
-printk("__kpatch_dynrelas: %lx __kpatch_dynrelas_end: %lx", __kpatch_dynrelas, __kpatch_dynrelas_end);
-
 	for (p_dynrela = __kpatch_dynrelas; p_dynrela < __kpatch_dynrelas_end;
 	     p_dynrela++) {
+
+printk("p_dynrela->name: %s\n", p_dynrela->name);
+
 		object = patch_find_or_add_object(objects, p_dynrela->objname);
 		if (!object)
 			return -ENOMEM;
