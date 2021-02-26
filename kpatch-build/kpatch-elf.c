@@ -746,10 +746,10 @@ printf("tmp_rec: %s\n", tmp_rec->sec->name);
 			}
 
 			//申请.section的数据空间大小
-j = (int)old_sec->data->d_size + (20 * nr_rela);
+j = (int)old_sec->data->d_size + (24 * nr_rela);
 printf("%d\n", j);
-			data = (void *)malloc(old_sec->data->d_size + (20 * nr_rela));
-			memset(data, 0, old_sec->data->d_size + (20 * nr_rela));
+			data = (void *)malloc(old_sec->data->d_size + (24 * nr_rela));
+			memset(data, 0, old_sec->data->d_size + (24 * nr_rela));
 			memcpy(data, old_sec->data->d_buf, old_sec->data->d_size);
 for (i = 0; i < j / 4; i++, k += 4)
 printf("%x %x\n", k, ((unsigned int *)data)[i]);
@@ -770,7 +770,7 @@ printf("%x %x\n", k, ((unsigned int *)data)[i]);
  			 * jalr v1
  			 * nop
  			 * jr ra
- 			 *
+ 			 * move ra, at
  			 */
 
 				switch(rela->type) {				
