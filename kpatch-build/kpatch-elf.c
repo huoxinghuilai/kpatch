@@ -775,6 +775,8 @@ printf("%x %x\n", k, ((unsigned int *)data)[i]);
 
 				switch(rela->type) {				
 				case R_MIPS_26:
+printf("rela name: %s\n", rela->sym->name);
+printf("change section instruction\n");
 					//创建rela重定位结构体	
 					tmp1_data[0] = 0x00;
 					tmp1_data[1] = 0x00;
@@ -806,7 +808,7 @@ printf("%x %x\n", k, ((unsigned int *)data)[i]);
 					tmp1_data[22] = 0x20;
 					tmp1_data[23] = 0x00;
 
-					tmp1_data += nr * 24;
+					tmp1_data += 24;
 
 					//修改原有R_MIPS_26信息
 					tmp_rela = (struct rela *)malloc(sizeof(struct rela));
@@ -838,7 +840,7 @@ printf("%x %x\n", k, ((unsigned int *)data)[i]);
 					break;
 
 				default:
-
+printf("rela name: %s\n", rela->sym->name);
 					tmp_rela = (struct rela *)malloc(sizeof(struct rela));
 					memset(tmp_rela, 0, sizeof(struct rela));
 
@@ -851,6 +853,11 @@ printf("%x %x\n", k, ((unsigned int *)data)[i]);
 					break;
 				}
 			}
+
+k = 0;
+for (i = 0; i < j / 4; i++, k += 4)
+printf("%x %x\n", k, ((unsigned int *)data)[i]);
+
 
 			//替换.section
 			old_sec->data->d_buf = data;

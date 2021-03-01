@@ -104,10 +104,6 @@ printf("sym name: %s\n", sym->name);
 
 		/* Fill in dynrela entry */
 		type = krelas[index].type;
-if (type == R_MIPS_32 || type == R_MIPS_64 || type == R_MIPS_26)
-{
-printf("type: %d\n", type);
-}
 		addend = krelas[index].addend;
 
 		if (type == R_X86_64_64 && (addend > INT_MAX || addend <= INT_MIN)) {
@@ -158,12 +154,12 @@ printf("type: %d\n", type);
 		rela->type = R_MIPS_64;
 		rela->addend = name_offset;
 		rela->offset = (unsigned int)(index * sizeof(*dynrelas) + offsetof(struct kpatch_patch_dynrela, name));
-	
+
 		ALLOC_LINK(rela, &dynsec->rela->relas);
 		rela->sym = strsec->secsym;
 		rela->type = R_MIPS_64;
 		rela->addend = objname_offset;
-		rela->offset = (unsigned int)(index * sizeof(*dynrelas) + offsetof(struct kpatch_patch_dynrela, objname));		
+		rela->offset = (unsigned int)(index * sizeof(*dynrelas) + offsetof(struct kpatch_patch_dynrela, objname));	
 	}
 }
 

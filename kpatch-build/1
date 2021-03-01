@@ -67,6 +67,16 @@ f8 0
 fc 0
 100 0
 104 0
+rela name: _mcount
+rela name: .rodata.str1.8
+rela name: .rodata.str1.8
+rela name: file_systems
+rela name: printk
+rela name: file_systems
+rela name: file_systems
+rela name: strncmp
+rela name: find_filesystem
+rela name: file_systems
 file_systems
 .rela.text.find_filesystem
 file_systems

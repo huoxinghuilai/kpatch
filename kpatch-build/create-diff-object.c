@@ -3231,6 +3231,8 @@ printf("%s\n", sec->name);
 				ERROR("can't find symbol '%s' in symbol table",
 				      rela->sym->name);
 
+printf("symbol name: %s objname: %s sympos: %lx addr: %lx\n", rela->sym->name, symbol.objname, symbol.sympos, symbol.addr);
+
 			log_debug("lookup for %s: obj=%s sympos=%lu",
 			          rela->sym->name, symbol.objname,
 				  symbol.sympos);
@@ -3799,6 +3801,7 @@ int main(int argc, char *argv[])
 	kpatch_no_sibling_calls_ppc64le(kelf_out);
 	/* create strings, patches, and dynrelas sections */
 	kpatch_create_strings_elements(kelf_out);
+printf("parent_name: %s\n", parent_name);
 	kpatch_create_patches_sections(kelf_out, lookup, parent_name);
 	kpatch_create_intermediate_sections(kelf_out, lookup, parent_name, patch_name);
 	kpatch_create_kpatch_arch_section(kelf_out, parent_name);

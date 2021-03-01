@@ -1,5 +1,5 @@
 
-kpatch-0001-change-get_system_type-interface.ko:     file format elf64-tradlittlemips
+kpatch-0001-change-find-filesystems.ko:     file format elf64-tradlittlemips
 
 
 Disassembly of section .text:
@@ -402,7 +402,6 @@ static void patch_free_objects(void)
   30:	64630000 	daddiu	v1,v1,0
   34:	03e0082d 	move	at,ra
   38:	0060f809 	jalr	v1
-__list_add():
   3c:	67ac0048 	daddiu	t0,sp,72
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:207
 	struct kpatch_object *object, *object_safe;
@@ -412,9 +411,7 @@ __list_add():
 	list_for_each_entry_safe(object, object_safe, &kpmod.objects, list) {
   40:	3c020000 	lui	v0,0x0
   44:	dc540000 	ld	s4,0(v0)
-__write_once_size():
   48:	64570000 	daddiu	s7,v0,0
-patch_init():
   4c:	de960000 	ld	s6,0(s4)
 list_del():
 /home/loongson/linux-4.19-loongson/./include/linux/list.h:126
@@ -428,13 +425,14 @@ static inline void list_del(struct list_head *entry)
 /home/loongson/linux-4.19-loongson/./include/linux/list.h:127
 	entry->prev = LIST_POISON2;
   54:	24100200 	li	s0,512
-patch_init():
+__write_once_size():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:211
 		list_for_each_entry_safe(func, func_safe, &object->funcs,
 					 list) {
 			list_del(&func->list);
 			kobject_put(&func->kobj);
   58:	3c120000 	lui	s2,0x0
+patch_init():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:216
 		}
 		list_for_each_entry_safe(dynrela, dynrela_safe,
@@ -774,7 +772,7 @@ static inline void list_add_tail(struct list_head *new, struct list_head *head)
 {
 	__list_add(new, head->prev, head);
  210:	de820010 	ld	v0,16(s4)
-patch_find_or_add_object.constprop.6():
+patch_init():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:185
 		return NULL;
 
@@ -787,7 +785,7 @@ patch_find_or_add_object.constprop.6():
 INIT_LIST_HEAD():
 /home/loongson/linux-4.19-loongson/./include/linux/compiler.h:220
  21c:	fe240018 	sd	a0,24(s1)
-patch_find_or_add_object.constprop.6():
+patch_init():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:184
 
 	object = kzalloc(sizeof(*object), GFP_KERNEL);
@@ -991,7 +989,7 @@ printk("start to patch_init\n");
 				   kpatch_root_kobj, "%s",
 				   THIS_MODULE->name);
 	if (ret)
-  88:	1440010e 	bnez	v0,4c4 <init_module+0x4c4>
+  88:	14400113 	bnez	v0,4d8 <init_module+0x4d8>
   8c:	2403fff4 	li	v1,-12
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:393
 		return -ENOMEM;
@@ -1137,7 +1135,7 @@ printk("p_func->objname: %s p_func->name: %s\n", p_func->objname, p_func->name);
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:245
 						  p_func->objname);
 		if (!object)
- 114:	104000db 	beqz	v0,484 <init_module+0x484>
+ 114:	104000e0 	beqz	v0,498 <init_module+0x498>
  118:	0040982d 	move	s3,v0
 /home/loongson/linux-4.19-loongson/./include/linux/slab.h:515
  11c:	3c020000 	lui	v0,0x0
@@ -1153,7 +1151,7 @@ printk("p_func->objname: %s p_func->name: %s\n", p_func->objname, p_func->name);
 
 		func = kzalloc(sizeof(*func), GFP_KERNEL);
 		if (!func)
- 13c:	104000d1 	beqz	v0,484 <init_module+0x484>
+ 13c:	104000d6 	beqz	v0,498 <init_module+0x498>
  140:	0040202d 	move	a0,v0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:256
 
@@ -1349,7 +1347,7 @@ patch_set_callbacks():
 
 	for (p_pre_patch_callback = __kpatch_callbacks_pre_patch;
  200:	0214102b 	sltu	v0,s0,s4
- 204:	10400057 	beqz	v0,364 <init_module+0x364>
+ 204:	1040005c 	beqz	v0,378 <init_module+0x378>
  208:	66a30000 	daddiu	v1,s5,0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:313
 	     p_pre_patch_callback < __kpatch_callbacks_pre_patch_end;
@@ -1360,7 +1358,7 @@ patch_set_callbacks():
  210:	de040008 	ld	a0,8(s0)
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:314
 		if (!object)
- 214:	1040009b 	beqz	v0,484 <init_module+0x484>
+ 214:	104000a0 	beqz	v0,498 <init_module+0x498>
  218:	00000000 	nop
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:317
 			return -ENOMEM;
@@ -1411,14 +1409,10 @@ printk("start to patch_make_dynrelas_lsit\n");
  264:	64840000 	daddiu	a0,a0,0
  268:	0220f809 	jalr	s1
  26c:	3c150000 	lui	s5,0x0
-/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:279
-	struct kpatch_dynrela *dynrela;
-
-	for (p_dynrela = __kpatch_dynrelas; p_dynrela < __kpatch_dynrelas_end;
-	     p_dynrela++) {
-
-printk("p_dynrela->name: %s\n", p_dynrela->name);
- 270:	3c140000 	lui	s4,0x0
+kmalloc():
+/home/loongson/linux-4.19-loongson/./include/linux/slab.h:515
+ 270:	3c140060 	lui	s4,0x60
+patch_init():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:276
 {
 	struct kpatch_object *object;
@@ -1427,27 +1421,19 @@ printk("p_dynrela->name: %s\n", p_dynrela->name);
 
 	for (p_dynrela = __kpatch_dynrelas; p_dynrela < __kpatch_dynrelas_end;
  274:	3c030000 	lui	v1,0x0
-kmalloc():
-/home/loongson/linux-4.19-loongson/./include/linux/slab.h:515
- 278:	3c100060 	lui	s0,0x60
-patch_init():
-/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:276
- 27c:	64730000 	daddiu	s3,v1,0
- 280:	66b50000 	daddiu	s5,s5,0
-/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:279
+ 278:	64730000 	daddiu	s3,v1,0
+ 27c:	66b50000 	daddiu	s5,s5,0
+/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:280
 	     p_dynrela++) {
 
-printk("p_dynrela->name: %s\n", p_dynrela->name);
- 284:	66940000 	daddiu	s4,s4,0
-/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:281
 
 		object = patch_find_or_add_object(objects, p_dynrela->objname);
- 288:	3c1e0000 	lui	s8,0x0
+ 280:	3c1e0000 	lui	s8,0x0
 kmalloc():
 /home/loongson/linux-4.19-loongson/./include/linux/slab.h:515
- 28c:	3c170000 	lui	s7,0x0
- 290:	361080c0 	ori	s0,s0,0x80c0
- 294:	3c160000 	lui	s6,0x0
+ 284:	3c170000 	lui	s7,0x0
+ 288:	369480c0 	ori	s4,s4,0x80c0
+ 28c:	3c160000 	lui	s6,0x0
 patch_init():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:276
 {
@@ -1456,113 +1442,123 @@ patch_init():
 	struct kpatch_dynrela *dynrela;
 
 	for (p_dynrela = __kpatch_dynrelas; p_dynrela < __kpatch_dynrelas_end;
- 298:	0275102b 	sltu	v0,s3,s5
- 29c:	10400029 	beqz	v0,344 <init_module+0x344>
- 2a0:	3c040000 	lui	a0,0x0
-/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:279
+ 290:	0275102b 	sltu	v0,s3,s5
+ 294:	1040002f 	beqz	v0,354 <init_module+0x354>
+ 298:	67c50000 	daddiu	a1,s8,0
+/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:280
 	     p_dynrela++) {
 
-printk("p_dynrela->name: %s\n", p_dynrela->name);
- 2a4:	de650020 	ld	a1,32(s3)
- 2a8:	0220f809 	jalr	s1
- 2ac:	0280202d 	move	a0,s4
-/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:281
 
 		object = patch_find_or_add_object(objects, p_dynrela->objname);
- 2b0:	67c20000 	daddiu	v0,s8,0
- 2b4:	0040f809 	jalr	v0
- 2b8:	de640028 	ld	a0,40(s3)
+ 29c:	00a0f809 	jalr	a1
+ 2a0:	de640028 	ld	a0,40(s3)
 kmalloc():
 /home/loongson/linux-4.19-loongson/./include/linux/slab.h:515
- 2bc:	66e40000 	daddiu	a0,s7,0
+ 2a4:	66e40000 	daddiu	a0,s7,0
+patch_init():
+/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:280
+ 2a8:	0040802d 	move	s0,v0
+kmalloc():
+/home/loongson/linux-4.19-loongson/./include/linux/slab.h:515
+ 2ac:	0280282d 	move	a1,s4
+ 2b0:	24060040 	li	a2,64
 patch_init():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:281
- 2c0:	0040382d 	move	a3,v0
-kmalloc():
-/home/loongson/linux-4.19-loongson/./include/linux/slab.h:515
- 2c4:	0200282d 	move	a1,s0
- 2c8:	24060040 	li	a2,64
-patch_init():
-/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:282
 		if (!object)
- 2cc:	10e0006d 	beqz	a3,484 <init_module+0x484>
- 2d0:	66c20000 	daddiu	v0,s6,0
+ 2b4:	12000078 	beqz	s0,498 <init_module+0x498>
+ 2b8:	66c20000 	daddiu	v0,s6,0
 kmalloc():
 /home/loongson/linux-4.19-loongson/./include/linux/slab.h:515
- 2d4:	dc840030 	ld	a0,48(a0)
- 2d8:	0040f809 	jalr	v0
- 2dc:	ffa70008 	sd	a3,8(sp)
+ 2bc:	0040f809 	jalr	v0
+ 2c0:	dc840030 	ld	a0,48(a0)
 patch_init():
+/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:285
+			return -ENOMEM;
+
+		dynrela = kzalloc(sizeof(*dynrela), GFP_KERNEL);
+		if (!dynrela)
+ 2c4:	10400074 	beqz	v0,498 <init_module+0x498>
+ 2c8:	0040582d 	move	a7,v0
+/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:291
+			return -ENOMEM;
+
+		dynrela->dest = p_dynrela->dest;
+		dynrela->type = p_dynrela->type;
+		dynrela->sympos = p_dynrela->sympos;
+		dynrela->name = p_dynrela->name;
+ 2cc:	de6e0020 	ld	t2,32(s3)
+/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:289
+		dynrela = kzalloc(sizeof(*dynrela), GFP_KERNEL);
+		if (!dynrela)
+			return -ENOMEM;
+
+		dynrela->dest = p_dynrela->dest;
+		dynrela->type = p_dynrela->type;
+ 2d0:	de780010 	ld	t8,16(s3)
+/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:290
+		dynrela->sympos = p_dynrela->sympos;
+ 2d4:	de6f0018 	ld	t3,24(s3)
+ 2d8:	00000000 	nop
+/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:292
+		dynrela->name = p_dynrela->name;
+		dynrela->external = p_dynrela->external;
+ 2dc:	8e6d0030 	lw	t1,48(s3)
+/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:293
+		dynrela->addend = p_dynrela->addend;
+ 2e0:	de620038 	ld	v0,56(s3)
+/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:288
+
+		dynrela = kzalloc(sizeof(*dynrela), GFP_KERNEL);
+		if (!dynrela)
+			return -ENOMEM;
+
+		dynrela->dest = p_dynrela->dest;
+ 2e4:	de790000 	ld	t9,0(s3)
+/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:294
+		dynrela->type = p_dynrela->type;
+		dynrela->sympos = p_dynrela->sympos;
+		dynrela->name = p_dynrela->name;
+		dynrela->external = p_dynrela->external;
+		dynrela->addend = p_dynrela->addend;
+printk("dest: %lx type: %d sympos %lu name: %s external: %lu addend: %lx\n", p_dynrela->name, p_dynrela->type, p_dynrela->sympos, p_dynrela->name, p_dynrela->external, p_dynrela->addend);
+ 2e8:	3c040000 	lui	a0,0x0
+ 2ec:	64840000 	daddiu	a0,a0,0
+ 2f0:	01c0282d 	move	a1,t2
+ 2f4:	0300302d 	move	a2,t8
+ 2f8:	01e0382d 	move	a3,t3
+ 2fc:	01c0402d 	move	a4,t2
+ 300:	01a0482d 	move	a5,t1
+ 304:	0040502d 	move	a6,v0
+/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:288
+
+		dynrela = kzalloc(sizeof(*dynrela), GFP_KERNEL);
+		if (!dynrela)
+			return -ENOMEM;
+
+		dynrela->dest = p_dynrela->dest;
+ 308:	fd790000 	sd	t9,0(a7)
+/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:289
+		dynrela->type = p_dynrela->type;
+ 30c:	fd780010 	sd	t8,16(a7)
+/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:290
+		dynrela->sympos = p_dynrela->sympos;
+ 310:	fd6f0018 	sd	t3,24(a7)
+/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:291
+		dynrela->name = p_dynrela->name;
+ 314:	fd6e0020 	sd	t2,32(a7)
+/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:292
+		dynrela->external = p_dynrela->external;
+ 318:	ad6d002c 	sw	t1,44(a7)
+/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:293
+		dynrela->addend = p_dynrela->addend;
+ 31c:	ad620028 	sw	v0,40(a7)
+/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:294
+printk("dest: %lx type: %d sympos %lu name: %s external: %lu addend: %lx\n", p_dynrela->name, p_dynrela->type, p_dynrela->sympos, p_dynrela->name, p_dynrela->external, p_dynrela->addend);
+ 320:	0220f809 	jalr	s1
+ 324:	ffab0008 	sd	a7,8(sp)
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:295
-		dynrela->type = p_dynrela->type;
-		dynrela->sympos = p_dynrela->sympos;
-		dynrela->name = p_dynrela->name;
-		dynrela->external = p_dynrela->external;
-		dynrela->addend = p_dynrela->addend;
 		list_add_tail(&dynrela->list, &object->dynrelas);
- 2e0:	dfa70008 	ld	a3,8(sp)
- 2e4:	64450030 	daddiu	a1,v0,48
-/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:286
-		object = patch_find_or_add_object(objects, p_dynrela->objname);
-		if (!object)
-			return -ENOMEM;
-
-		dynrela = kzalloc(sizeof(*dynrela), GFP_KERNEL);
-		if (!dynrela)
- 2e8:	10400066 	beqz	v0,484 <init_module+0x484>
- 2ec:	64e60028 	daddiu	a2,a3,40
-/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:294
-		dynrela->dest = p_dynrela->dest;
-		dynrela->type = p_dynrela->type;
-		dynrela->sympos = p_dynrela->sympos;
-		dynrela->name = p_dynrela->name;
-		dynrela->external = p_dynrela->external;
-		dynrela->addend = p_dynrela->addend;
- 2f0:	de640038 	ld	a0,56(s3)
-/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:289
-
-		dynrela = kzalloc(sizeof(*dynrela), GFP_KERNEL);
-		if (!dynrela)
-			return -ENOMEM;
-
-		dynrela->dest = p_dynrela->dest;
- 2f4:	de6c0000 	ld	t0,0(s3)
-/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:290
-		dynrela->type = p_dynrela->type;
- 2f8:	de6b0010 	ld	a7,16(s3)
- 2fc:	00000000 	nop
-/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:291
-		dynrela->sympos = p_dynrela->sympos;
- 300:	de6a0018 	ld	a6,24(s3)
-/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:292
-		dynrela->name = p_dynrela->name;
- 304:	de690020 	ld	a5,32(s3)
-/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:293
-		dynrela->external = p_dynrela->external;
- 308:	8e680030 	lw	a4,48(s3)
-/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:289
-
-		dynrela = kzalloc(sizeof(*dynrela), GFP_KERNEL);
-		if (!dynrela)
-			return -ENOMEM;
-
-		dynrela->dest = p_dynrela->dest;
- 30c:	fc4c0000 	sd	t0,0(v0)
-/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:290
-		dynrela->type = p_dynrela->type;
- 310:	fc4b0010 	sd	a7,16(v0)
-/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:291
-		dynrela->sympos = p_dynrela->sympos;
- 314:	fc4a0018 	sd	a6,24(v0)
-/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:292
-		dynrela->name = p_dynrela->name;
- 318:	fc490020 	sd	a5,32(v0)
-/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:293
-		dynrela->external = p_dynrela->external;
- 31c:	ac48002c 	sw	a4,44(v0)
-/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:294
-		dynrela->addend = p_dynrela->addend;
- 320:	ac440028 	sw	a0,40(v0)
+ 328:	dfab0008 	ld	a7,8(sp)
 list_add_tail():
 /home/loongson/linux-4.19-loongson/./include/linux/list.h:93
  * Insert a new entry before the specified head.
@@ -1571,7 +1567,20 @@ list_add_tail():
 static inline void list_add_tail(struct list_head *new, struct list_head *head)
 {
 	__list_add(new, head->prev, head);
- 324:	dce40030 	ld	a0,48(a3)
+ 32c:	de020030 	ld	v0,48(s0)
+patch_init():
+/home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:295
+ 330:	65640030 	daddiu	a0,a7,48
+ 334:	66050028 	daddiu	a1,s0,40
+__list_add():
+/home/loongson/linux-4.19-loongson/./include/linux/list.h:63
+			      struct list_head *next)
+{
+	if (!__list_add_valid(new, prev, next))
+		return;
+
+	next->prev = new;
+ 338:	fe040030 	sd	a0,48(s0)
 patch_init():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:277
 	struct kpatch_object *object;
@@ -1580,24 +1589,16 @@ patch_init():
 
 	for (p_dynrela = __kpatch_dynrelas; p_dynrela < __kpatch_dynrelas_end;
 	     p_dynrela++) {
- 328:	66730040 	daddiu	s3,s3,64
-list_add_tail():
-/home/loongson/linux-4.19-loongson/./include/linux/list.h:63
-			      struct list_head *next)
-{
-	if (!__list_add_valid(new, prev, next))
-		return;
-
-	next->prev = new;
- 32c:	fce50030 	sd	a1,48(a3)
+ 33c:	66730040 	daddiu	s3,s3,64
+__list_add():
 /home/loongson/linux-4.19-loongson/./include/linux/list.h:64
 	new->next = next;
- 330:	fc460030 	sd	a2,48(v0)
+ 340:	fd650030 	sd	a1,48(a7)
 /home/loongson/linux-4.19-loongson/./include/linux/list.h:65
 	new->prev = prev;
- 334:	fc440038 	sd	a0,56(v0)
+ 344:	fd620038 	sd	v0,56(a7)
 /home/loongson/linux-4.19-loongson/./include/linux/compiler.h:220
- 338:	fc850000 	sd	a1,0(a0)
+ 348:	fc440000 	sd	a0,0(v0)
 patch_init():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:276
 {
@@ -1606,8 +1607,8 @@ patch_init():
 	struct kpatch_dynrela *dynrela;
 
 	for (p_dynrela = __kpatch_dynrelas; p_dynrela < __kpatch_dynrelas_end;
- 33c:	08000000 	j	0 <init_module>
- 340:	0275102b 	sltu	v0,s3,s5
+ 34c:	08000000 	j	0 <init_module>
+ 350:	0275102b 	sltu	v0,s3,s5
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:406
 printk("start to patch_make_dynrelas_lsit\n");
 	ret = patch_make_dynrelas_list(&kpmod.objects);
@@ -1615,7 +1616,8 @@ printk("start to patch_make_dynrelas_lsit\n");
 		goto err_objects;
 
 printk("start to patch_set_callbacks\n");
- 344:	64840000 	daddiu	a0,a0,0
+ 354:	3c040000 	lui	a0,0x0
+ 358:	64840000 	daddiu	a0,a0,0
 patch_set_callbacks():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:309
 	struct kpatch_post_patch_callback *p_post_patch_callback;
@@ -1624,7 +1626,7 @@ patch_set_callbacks():
 	struct kpatch_object *object;
 
 	for (p_pre_patch_callback = __kpatch_callbacks_pre_patch;
- 348:	3c100000 	lui	s0,0x0
+ 35c:	3c100000 	lui	s0,0x0
 patch_init():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:406
 printk("start to patch_make_dynrelas_lsit\n");
@@ -1633,8 +1635,8 @@ printk("start to patch_make_dynrelas_lsit\n");
 		goto err_objects;
 
 printk("start to patch_set_callbacks\n");
- 34c:	0220f809 	jalr	s1
- 350:	3c140000 	lui	s4,0x0
+ 360:	0220f809 	jalr	s1
+ 364:	3c140000 	lui	s4,0x0
 patch_set_callbacks():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:309
 	struct kpatch_post_patch_callback *p_post_patch_callback;
@@ -1643,16 +1645,16 @@ patch_set_callbacks():
 	struct kpatch_object *object;
 
 	for (p_pre_patch_callback = __kpatch_callbacks_pre_patch;
- 354:	66100000 	daddiu	s0,s0,0
- 358:	66940000 	daddiu	s4,s4,0
+ 368:	66100000 	daddiu	s0,s0,0
+ 36c:	66940000 	daddiu	s4,s4,0
 patch_init():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:313
 	     p_pre_patch_callback < __kpatch_callbacks_pre_patch_end;
 	     p_pre_patch_callback++) {
 
 		object = patch_find_or_add_object(objects, p_pre_patch_callback->objname);
- 35c:	08000000 	j	0 <init_module>
- 360:	3c150000 	lui	s5,0x0
+ 370:	08000000 	j	0 <init_module>
+ 374:	3c150000 	lui	s5,0x0
 patch_set_callbacks():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:309
 	struct kpatch_post_patch_callback *p_post_patch_callback;
@@ -1661,7 +1663,7 @@ patch_set_callbacks():
 	struct kpatch_object *object;
 
 	for (p_pre_patch_callback = __kpatch_callbacks_pre_patch;
- 364:	3c100000 	lui	s0,0x0
+ 378:	3c100000 	lui	s0,0x0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:327
 
 		object->pre_patch_callback =
@@ -1669,7 +1671,7 @@ patch_set_callbacks():
 	}
 
 	for (p_post_patch_callback = __kpatch_callbacks_post_patch;
- 368:	3c140000 	lui	s4,0x0
+ 37c:	3c140000 	lui	s4,0x0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:309
 	struct kpatch_post_patch_callback *p_post_patch_callback;
 	struct kpatch_pre_unpatch_callback *p_pre_unpatch_callback;
@@ -1677,7 +1679,7 @@ patch_set_callbacks():
 	struct kpatch_object *object;
 
 	for (p_pre_patch_callback = __kpatch_callbacks_pre_patch;
- 36c:	66100000 	daddiu	s0,s0,0
+ 380:	66100000 	daddiu	s0,s0,0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:327
 
 		object->pre_patch_callback =
@@ -1685,13 +1687,13 @@ patch_set_callbacks():
 	}
 
 	for (p_post_patch_callback = __kpatch_callbacks_post_patch;
- 370:	66940000 	daddiu	s4,s4,0
+ 384:	66940000 	daddiu	s4,s4,0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:331
 	     p_post_patch_callback < __kpatch_callbacks_post_patch_end;
 	     p_post_patch_callback++) {
 
 		object = patch_find_or_add_object(objects, p_post_patch_callback->objname);
- 374:	3c150000 	lui	s5,0x0
+ 388:	3c150000 	lui	s5,0x0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:327
 
 		object->pre_patch_callback =
@@ -1699,45 +1701,45 @@ patch_set_callbacks():
 	}
 
 	for (p_post_patch_callback = __kpatch_callbacks_post_patch;
- 378:	0214102b 	sltu	v0,s0,s4
- 37c:	10400011 	beqz	v0,3c4 <init_module+0x3c4>
- 380:	66a20000 	daddiu	v0,s5,0
+ 38c:	0214102b 	sltu	v0,s0,s4
+ 390:	10400011 	beqz	v0,3d8 <init_module+0x3d8>
+ 394:	66a20000 	daddiu	v0,s5,0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:331
 	     p_post_patch_callback < __kpatch_callbacks_post_patch_end;
 	     p_post_patch_callback++) {
 
 		object = patch_find_or_add_object(objects, p_post_patch_callback->objname);
- 384:	0040f809 	jalr	v0
- 388:	de040008 	ld	a0,8(s0)
+ 398:	0040f809 	jalr	v0
+ 39c:	de040008 	ld	a0,8(s0)
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:332
 		if (!object)
- 38c:	1040003d 	beqz	v0,484 <init_module+0x484>
- 390:	00000000 	nop
+ 3a0:	1040003d 	beqz	v0,498 <init_module+0x498>
+ 3a4:	00000000 	nop
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:335
 			return -ENOMEM;
 
 		if (object->post_patch_callback) {
- 394:	dc430040 	ld	v1,64(v0)
- 398:	10600006 	beqz	v1,3b4 <init_module+0x3b4>
- 39c:	3c040000 	lui	a0,0x0
+ 3a8:	dc430040 	ld	v1,64(v0)
+ 3ac:	10600006 	beqz	v1,3c8 <init_module+0x3c8>
+ 3b0:	3c040000 	lui	a0,0x0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:336
 			pr_err("extra post-patch callback for object: %s\n",
- 3a0:	dc450010 	ld	a1,16(v0)
- 3a4:	0220f809 	jalr	s1
- 3a8:	64840000 	daddiu	a0,a0,0
+ 3b4:	dc450010 	ld	a1,16(v0)
+ 3b8:	0220f809 	jalr	s1
+ 3bc:	64840000 	daddiu	a0,a0,0
 patch_init():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:338
 				object->name);
 			return -EINVAL;
- 3ac:	08000000 	j	0 <init_module>
- 3b0:	2402ffea 	li	v0,-22
+ 3c0:	08000000 	j	0 <init_module>
+ 3c4:	2402ffea 	li	v0,-22
 patch_set_callbacks():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:342
 		}
 
 		object->post_patch_callback =
 			(void (*)(struct kpatch_object *)) p_post_patch_callback->callback;
- 3b4:	de030000 	ld	v1,0(s0)
+ 3c8:	de030000 	ld	v1,0(s0)
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:329
 			(int (*)(struct kpatch_object *)) p_pre_patch_callback->callback;
 	}
@@ -1745,7 +1747,7 @@ patch_set_callbacks():
 	for (p_post_patch_callback = __kpatch_callbacks_post_patch;
 	     p_post_patch_callback < __kpatch_callbacks_post_patch_end;
 	     p_post_patch_callback++) {
- 3b8:	66100010 	daddiu	s0,s0,16
+ 3cc:	66100010 	daddiu	s0,s0,16
 patch_init():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:341
 			pr_err("extra post-patch callback for object: %s\n",
@@ -1754,8 +1756,8 @@ patch_init():
 		}
 
 		object->post_patch_callback =
- 3bc:	08000000 	j	0 <init_module>
- 3c0:	fc430040 	sd	v1,64(v0)
+ 3d0:	08000000 	j	0 <init_module>
+ 3d4:	fc430040 	sd	v1,64(v0)
 patch_set_callbacks():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:327
 
@@ -1764,7 +1766,7 @@ patch_set_callbacks():
 	}
 
 	for (p_post_patch_callback = __kpatch_callbacks_post_patch;
- 3c4:	3c100000 	lui	s0,0x0
+ 3d8:	3c100000 	lui	s0,0x0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:345
 
 		object->post_patch_callback =
@@ -1772,7 +1774,7 @@ patch_set_callbacks():
 	}
 
 	for (p_pre_unpatch_callback = __kpatch_callbacks_pre_unpatch;
- 3c8:	3c140000 	lui	s4,0x0
+ 3dc:	3c140000 	lui	s4,0x0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:327
 
 		object->pre_patch_callback =
@@ -1780,7 +1782,7 @@ patch_set_callbacks():
 	}
 
 	for (p_post_patch_callback = __kpatch_callbacks_post_patch;
- 3cc:	66100000 	daddiu	s0,s0,0
+ 3e0:	66100000 	daddiu	s0,s0,0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:345
 
 		object->post_patch_callback =
@@ -1788,13 +1790,13 @@ patch_set_callbacks():
 	}
 
 	for (p_pre_unpatch_callback = __kpatch_callbacks_pre_unpatch;
- 3d0:	66940000 	daddiu	s4,s4,0
+ 3e4:	66940000 	daddiu	s4,s4,0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:349
 	     p_pre_unpatch_callback < __kpatch_callbacks_pre_unpatch_end;
 	     p_pre_unpatch_callback++) {
 
 		object = patch_find_or_add_object(objects, p_pre_unpatch_callback->objname);
- 3d4:	3c150000 	lui	s5,0x0
+ 3e8:	3c150000 	lui	s5,0x0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:345
 
 		object->post_patch_callback =
@@ -1802,45 +1804,45 @@ patch_set_callbacks():
 	}
 
 	for (p_pre_unpatch_callback = __kpatch_callbacks_pre_unpatch;
- 3d8:	0214102b 	sltu	v0,s0,s4
- 3dc:	10400011 	beqz	v0,424 <init_module+0x424>
- 3e0:	66a20000 	daddiu	v0,s5,0
+ 3ec:	0214102b 	sltu	v0,s0,s4
+ 3f0:	10400011 	beqz	v0,438 <init_module+0x438>
+ 3f4:	66a20000 	daddiu	v0,s5,0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:349
 	     p_pre_unpatch_callback < __kpatch_callbacks_pre_unpatch_end;
 	     p_pre_unpatch_callback++) {
 
 		object = patch_find_or_add_object(objects, p_pre_unpatch_callback->objname);
- 3e4:	0040f809 	jalr	v0
- 3e8:	de040008 	ld	a0,8(s0)
+ 3f8:	0040f809 	jalr	v0
+ 3fc:	de040008 	ld	a0,8(s0)
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:350
 		if (!object)
- 3ec:	10400025 	beqz	v0,484 <init_module+0x484>
- 3f0:	00000000 	nop
+ 400:	10400025 	beqz	v0,498 <init_module+0x498>
+ 404:	00000000 	nop
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:353
 			return -ENOMEM;
 
 		if (object->pre_unpatch_callback) {
- 3f4:	dc430048 	ld	v1,72(v0)
- 3f8:	10600006 	beqz	v1,414 <init_module+0x414>
- 3fc:	3c040000 	lui	a0,0x0
+ 408:	dc430048 	ld	v1,72(v0)
+ 40c:	10600006 	beqz	v1,428 <init_module+0x428>
+ 410:	3c040000 	lui	a0,0x0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:354
 			pr_err("extra pre-unpatch callback for object: %s\n",
- 400:	dc450010 	ld	a1,16(v0)
- 404:	0220f809 	jalr	s1
- 408:	64840000 	daddiu	a0,a0,0
+ 414:	dc450010 	ld	a1,16(v0)
+ 418:	0220f809 	jalr	s1
+ 41c:	64840000 	daddiu	a0,a0,0
 patch_init():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:356
 				object->name);
 			return -EINVAL;
- 40c:	08000000 	j	0 <init_module>
- 410:	2402ffea 	li	v0,-22
+ 420:	08000000 	j	0 <init_module>
+ 424:	2402ffea 	li	v0,-22
 patch_set_callbacks():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:360
 		}
 
 		object->pre_unpatch_callback =
 			(void (*)(struct kpatch_object *)) p_pre_unpatch_callback->callback;
- 414:	de030000 	ld	v1,0(s0)
+ 428:	de030000 	ld	v1,0(s0)
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:347
 			(void (*)(struct kpatch_object *)) p_post_patch_callback->callback;
 	}
@@ -1848,7 +1850,7 @@ patch_set_callbacks():
 	for (p_pre_unpatch_callback = __kpatch_callbacks_pre_unpatch;
 	     p_pre_unpatch_callback < __kpatch_callbacks_pre_unpatch_end;
 	     p_pre_unpatch_callback++) {
- 418:	66100010 	daddiu	s0,s0,16
+ 42c:	66100010 	daddiu	s0,s0,16
 patch_init():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:359
 			pr_err("extra pre-unpatch callback for object: %s\n",
@@ -1857,8 +1859,8 @@ patch_init():
 		}
 
 		object->pre_unpatch_callback =
- 41c:	08000000 	j	0 <init_module>
- 420:	fc430048 	sd	v1,72(v0)
+ 430:	08000000 	j	0 <init_module>
+ 434:	fc430048 	sd	v1,72(v0)
 patch_set_callbacks():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:345
 
@@ -1867,7 +1869,7 @@ patch_set_callbacks():
 	}
 
 	for (p_pre_unpatch_callback = __kpatch_callbacks_pre_unpatch;
- 424:	3c100000 	lui	s0,0x0
+ 438:	3c100000 	lui	s0,0x0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:363
 
 		object->pre_unpatch_callback =
@@ -1875,7 +1877,7 @@ patch_set_callbacks():
 	}
 
 	for (p_post_unpatch_callback = __kpatch_callbacks_post_unpatch;
- 428:	3c140000 	lui	s4,0x0
+ 43c:	3c140000 	lui	s4,0x0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:345
 
 		object->post_patch_callback =
@@ -1883,7 +1885,7 @@ patch_set_callbacks():
 	}
 
 	for (p_pre_unpatch_callback = __kpatch_callbacks_pre_unpatch;
- 42c:	66100000 	daddiu	s0,s0,0
+ 440:	66100000 	daddiu	s0,s0,0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:363
 
 		object->pre_unpatch_callback =
@@ -1891,13 +1893,13 @@ patch_set_callbacks():
 	}
 
 	for (p_post_unpatch_callback = __kpatch_callbacks_post_unpatch;
- 430:	66940000 	daddiu	s4,s4,0
+ 444:	66940000 	daddiu	s4,s4,0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:367
 	     p_post_unpatch_callback < __kpatch_callbacks_post_unpatch_end;
 	     p_post_unpatch_callback++) {
 
 		object = patch_find_or_add_object(objects, p_post_unpatch_callback->objname);
- 434:	3c150000 	lui	s5,0x0
+ 448:	3c150000 	lui	s5,0x0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:363
 
 		object->pre_unpatch_callback =
@@ -1905,45 +1907,45 @@ patch_set_callbacks():
 	}
 
 	for (p_post_unpatch_callback = __kpatch_callbacks_post_unpatch;
- 438:	0214102b 	sltu	v0,s0,s4
- 43c:	10400013 	beqz	v0,48c <init_module+0x48c>
- 440:	66a20000 	daddiu	v0,s5,0
+ 44c:	0214102b 	sltu	v0,s0,s4
+ 450:	10400013 	beqz	v0,4a0 <init_module+0x4a0>
+ 454:	66a20000 	daddiu	v0,s5,0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:367
 	     p_post_unpatch_callback < __kpatch_callbacks_post_unpatch_end;
 	     p_post_unpatch_callback++) {
 
 		object = patch_find_or_add_object(objects, p_post_unpatch_callback->objname);
- 444:	0040f809 	jalr	v0
- 448:	de040008 	ld	a0,8(s0)
+ 458:	0040f809 	jalr	v0
+ 45c:	de040008 	ld	a0,8(s0)
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:368
 		if (!object)
- 44c:	1040000d 	beqz	v0,484 <init_module+0x484>
- 450:	00000000 	nop
+ 460:	1040000d 	beqz	v0,498 <init_module+0x498>
+ 464:	00000000 	nop
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:371
 			return -ENOMEM;
 
 		if (object->post_unpatch_callback) {
- 454:	dc430050 	ld	v1,80(v0)
- 458:	10600006 	beqz	v1,474 <init_module+0x474>
- 45c:	3c040000 	lui	a0,0x0
+ 468:	dc430050 	ld	v1,80(v0)
+ 46c:	10600006 	beqz	v1,488 <init_module+0x488>
+ 470:	3c040000 	lui	a0,0x0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:372
 			pr_err("extra post-unpatch callback for object: %s\n",
- 460:	dc450010 	ld	a1,16(v0)
- 464:	0220f809 	jalr	s1
- 468:	64840000 	daddiu	a0,a0,0
+ 474:	dc450010 	ld	a1,16(v0)
+ 478:	0220f809 	jalr	s1
+ 47c:	64840000 	daddiu	a0,a0,0
 patch_init():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:374
 				object->name);
 			return -EINVAL;
- 46c:	08000000 	j	0 <init_module>
- 470:	2402ffea 	li	v0,-22
+ 480:	08000000 	j	0 <init_module>
+ 484:	2402ffea 	li	v0,-22
 patch_set_callbacks():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:378
 		}
 
 		object->post_unpatch_callback =
 			(void (*)(struct kpatch_object *)) p_post_unpatch_callback->callback;
- 474:	de030000 	ld	v1,0(s0)
+ 488:	de030000 	ld	v1,0(s0)
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:365
 			(void (*)(struct kpatch_object *)) p_pre_unpatch_callback->callback;
 	}
@@ -1951,7 +1953,7 @@ patch_set_callbacks():
 	for (p_post_unpatch_callback = __kpatch_callbacks_post_unpatch;
 	     p_post_unpatch_callback < __kpatch_callbacks_post_unpatch_end;
 	     p_post_unpatch_callback++) {
- 478:	66100010 	daddiu	s0,s0,16
+ 48c:	66100010 	daddiu	s0,s0,16
 patch_init():
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:377
 			pr_err("extra post-unpatch callback for object: %s\n",
@@ -1960,8 +1962,8 @@ patch_init():
 		}
 
 		object->post_unpatch_callback =
- 47c:	08000000 	j	0 <init_module>
- 480:	fc430050 	sd	v1,80(v0)
+ 490:	08000000 	j	0 <init_module>
+ 494:	fc430050 	sd	v1,80(v0)
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:315
 	     p_pre_patch_callback < __kpatch_callbacks_pre_patch_end;
 	     p_pre_patch_callback++) {
@@ -1969,8 +1971,8 @@ patch_init():
 		object = patch_find_or_add_object(objects, p_pre_patch_callback->objname);
 		if (!object)
 			return -ENOMEM;
- 484:	08000000 	j	0 <init_module>
- 488:	2402fff4 	li	v0,-12
+ 498:	08000000 	j	0 <init_module>
+ 49c:	2402fff4 	li	v0,-12
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:411
 printk("start to patch_set_callbacks\n");
 	ret = patch_set_callbacks(&kpmod.objects);
@@ -1978,28 +1980,28 @@ printk("start to patch_set_callbacks\n");
 		goto err_objects;
 
 printk("start to kpatch_register\n");
- 48c:	3c040000 	lui	a0,0x0
- 490:	0220f809 	jalr	s1
- 494:	64840000 	daddiu	a0,a0,0
+ 4a0:	3c040000 	lui	a0,0x0
+ 4a4:	0220f809 	jalr	s1
+ 4a8:	64840000 	daddiu	a0,a0,0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:412
 	ret = kpatch_register(&kpmod, replace);
- 498:	3c020000 	lui	v0,0x0
- 49c:	90450000 	lbu	a1,0(v0)
- 4a0:	3c020000 	lui	v0,0x0
- 4a4:	64440000 	daddiu	a0,v0,0
- 4a8:	3c020000 	lui	v0,0x0
- 4ac:	64420000 	daddiu	v0,v0,0
- 4b0:	0040f809 	jalr	v0
- 4b4:	00000000 	nop
+ 4ac:	3c020000 	lui	v0,0x0
+ 4b0:	90450000 	lbu	a1,0(v0)
+ 4b4:	3c020000 	lui	v0,0x0
+ 4b8:	64440000 	daddiu	a0,v0,0
+ 4bc:	3c020000 	lui	v0,0x0
+ 4c0:	64420000 	daddiu	v0,v0,0
+ 4c4:	0040f809 	jalr	v0
+ 4c8:	00000000 	nop
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:413
 	if (ret)
- 4b8:	1440ff60 	bnez	v0,23c <init_module+0x23c>
- 4bc:	3c030000 	lui	v1,0x0
+ 4cc:	1440ff5b 	bnez	v0,23c <init_module+0x23c>
+ 4d0:	3c030000 	lui	v1,0x0
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:416
 		goto err_objects;
 
 	return 0;
- 4c0:	0000182d 	move	v1,zero
+ 4d4:	0000182d 	move	v1,zero
 /home/loongson/.kpatch/tmp/patch/kpatch-patch-hook.c:422
 
 err_objects:
@@ -2007,22 +2009,22 @@ err_objects:
 	kobject_put(&kpmod.kobj);
 	return ret;
 }
- 4c4:	dfbf0058 	ld	ra,88(sp)
- 4c8:	dfbe0050 	ld	s8,80(sp)
- 4cc:	dfb70048 	ld	s7,72(sp)
- 4d0:	00000000 	nop
- 4d4:	dfb60040 	ld	s6,64(sp)
- 4d8:	dfb50038 	ld	s5,56(sp)
- 4dc:	dfb40030 	ld	s4,48(sp)
- 4e0:	00000000 	nop
- 4e4:	dfb30028 	ld	s3,40(sp)
- 4e8:	dfb20020 	ld	s2,32(sp)
- 4ec:	dfb10018 	ld	s1,24(sp)
- 4f0:	00000000 	nop
- 4f4:	dfb00010 	ld	s0,16(sp)
- 4f8:	0060102d 	move	v0,v1
- 4fc:	03e00008 	jr	ra
- 500:	67bd0060 	daddiu	sp,sp,96
+ 4d8:	dfbf0058 	ld	ra,88(sp)
+ 4dc:	dfbe0050 	ld	s8,80(sp)
+ 4e0:	dfb70048 	ld	s7,72(sp)
+ 4e4:	00000000 	nop
+ 4e8:	dfb60040 	ld	s6,64(sp)
+ 4ec:	dfb50038 	ld	s5,56(sp)
+ 4f0:	dfb40030 	ld	s4,48(sp)
+ 4f4:	00000000 	nop
+ 4f8:	dfb30028 	ld	s3,40(sp)
+ 4fc:	dfb20020 	ld	s2,32(sp)
+ 500:	dfb10018 	ld	s1,24(sp)
+ 504:	00000000 	nop
+ 508:	dfb00010 	ld	s0,16(sp)
+ 50c:	0060102d 	move	v0,v1
+ 510:	03e00008 	jr	ra
+ 514:	67bd0060 	daddiu	sp,sp,96
 
 Disassembly of section .exit.text:
 
@@ -2079,39 +2081,156 @@ static void __exit patch_exit(void)
   50:	03200008 	jr	t9
   54:	67bd0010 	daddiu	sp,sp,16
 
-Disassembly of section .text.get_system_type:
+Disassembly of section .text.find_filesystem:
 
-0000000000000000 <get_system_type>:
-get_system_type():
-/home/loongson/linux-4.19-loongson/arch/mips/loongson64/common/machtype.c:35
-	[MACH_LOONGSON_GENERIC]	= "generic-loongson-machine",
-	[MACH_LOONGSON_END]	= NULL,
-};
-
-const char *get_system_type(void)
+0000000000000000 <find_filesystem>:
+find_filesystem():
+/home/loongson/linux-4.19-loongson/fs/filesystems.c:49
 {
-   0:	03e0082d 	move	at,ra
-   4:	0c000000 	jal	0 <get_system_type>
-   8:	0000602d 	move	t0,zero
-/home/loongson/linux-4.19-loongson/arch/mips/loongson64/common/machtype.c:37
-	return system_types[mips_machtype];
-}
-   c:	3c020000 	lui	v0,0x0
-/home/loongson/linux-4.19-loongson/arch/mips/loongson64/common/machtype.c:38
-
-  10:	03e00008 	jr	ra
-  14:	64420000 	daddiu	v0,v0,0
-prom_init_machtype():
-/home/loongson/linux-4.19-loongson/arch/mips/loongson64/common/machtype.c:45
-{
+	module_put(fs->owner);
 }
 
-void __init prom_init_machtype(void)
+static struct file_system_type **find_filesystem(const char *name, unsigned len)
 {
-	char *p, str[MACHTYPE_LEN + 1];
-  18:	3c030000 	lui	v1,0x0
-  1c:	64630000 	daddiu	v1,v1,0
-  20:	0060f809 	jalr	v1
-  24:	00000000 	nop
-  28:	03e00008 	jr	ra
-  2c:	0020f82d 	move	ra,at
+   0:	67bdffe0 	daddiu	sp,sp,-32
+   4:	ffbf0018 	sd	ra,24(sp)
+   8:	ffb20010 	sd	s2,16(sp)
+   c:	ffb10008 	sd	s1,8(sp)
+  10:	ffb00000 	sd	s0,0(sp)
+  14:	03e0082d 	move	at,ra
+  18:	0c000000 	jal	0 <find_filesystem>
+  1c:	67ac0018 	daddiu	t0,sp,24
+  20:	0080902d 	move	s2,a0
+/home/loongson/linux-4.19-loongson/fs/filesystems.c:51
+	struct file_system_type **p;
+	for (p = &file_systems; *p; p = &(*p)->next)
+  24:	3c040000 	lui	a0,0x0
+  28:	64840000 	daddiu	a0,a0,0
+/home/loongson/linux-4.19-loongson/fs/filesystems.c:59
+			break;
+	return p;
+}
+
+/**
+ *	register_filesystem - register a new filesystem
+  2c:	3c100000 	lui	s0,0x0
+/home/loongson/linux-4.19-loongson/fs/filesystems.c:51
+}
+
+static struct file_system_type **find_filesystem(const char *name, unsigned len)
+{
+	struct file_system_type **p;
+	for (p = &file_systems; *p; p = &(*p)->next)
+  30:	0c000000 	jal	0 <find_filesystem>
+  34:	00a0882d 	move	s1,a1
+/home/loongson/linux-4.19-loongson/fs/filesystems.c:59
+			break;
+	return p;
+}
+
+/**
+ *	register_filesystem - register a new filesystem
+  38:	de070000 	ld	a3,0(s0)
+  3c:	10e00017 	beqz	a3,9c <find_filesystem+0x9c>
+  40:	7e31f803 	dext	s1,s1,0x0,0x20
+  44:	66100000 	daddiu	s0,s0,0
+/home/loongson/linux-4.19-loongson/fs/filesystems.c:60
+ *	@fs: the file system structure
+  48:	dce40000 	ld	a0,0(a3)
+  4c:	0240282d 	move	a1,s2
+  50:	0c000000 	jal	0 <find_filesystem>
+  54:	0220302d 	move	a2,s1
+  58:	14400006 	bnez	v0,74 <find_filesystem+0x74>
+  5c:	de030000 	ld	v1,0(s0)
+/home/loongson/linux-4.19-loongson/fs/filesystems.c:60 (discriminator 1)
+  60:	dc620000 	ld	v0,0(v1)
+  64:	0051102d 	daddu	v0,v0,s1
+  68:	80420000 	lb	v0,0(v0)
+  6c:	10400005 	beqz	v0,84 <find_filesystem+0x84>
+  70:	dfbf0018 	ld	ra,24(sp)
+/home/loongson/linux-4.19-loongson/fs/filesystems.c:59
+			break;
+	return p;
+}
+
+/**
+ *	register_filesystem - register a new filesystem
+  74:	dc670028 	ld	a3,40(v1)
+  78:	14e0fff3 	bnez	a3,48 <find_filesystem+0x48>
+  7c:	64700028 	daddiu	s0,v1,40
+/home/loongson/linux-4.19-loongson/fs/filesystems.c:66
+ *
+ *	Adds the file system passed to the list of file systems the kernel
+ *	is aware of for mount and other syscalls. Returns 0 on success,
+ *	or a negative errno code on an error.
+ *
+ *	The &struct file_system_type that is passed is linked into the kernel 
+  80:	dfbf0018 	ld	ra,24(sp)
+  84:	0200102d 	move	v0,s0
+  88:	dfb20010 	ld	s2,16(sp)
+  8c:	dfb10008 	ld	s1,8(sp)
+  90:	dfb00000 	ld	s0,0(sp)
+  94:	03e00008 	jr	ra
+  98:	67bd0020 	daddiu	sp,sp,32
+/home/loongson/linux-4.19-loongson/fs/filesystems.c:58
+		    !(*p)->name[len])
+			break;
+	return p;
+}
+
+/**
+  9c:	08000000 	j	0 <find_filesystem>
+  a0:	66100000 	daddiu	s0,s0,0
+filesystems_proc_show():
+/home/loongson/linux-4.19-loongson/fs/filesystems.c:150
+	}
+	read_unlock(&file_systems_lock);
+	putname(name);
+	return err;
+}
+
+  a4:	00000000 	nop
+  a8:	3c030000 	lui	v1,0x0
+  ac:	64630000 	daddiu	v1,v1,0
+  b0:	0060f809 	jalr	v1
+  b4:	00000000 	nop
+  b8:	03e00008 	jr	ra
+/home/loongson/linux-4.19-loongson/fs/filesystems.c:151
+static int fs_name(unsigned int index, char __user * buf)
+  bc:	0020f82d 	move	ra,at
+register_filesystem():
+  c0:	3c030000 	lui	v1,0x0
+get_filesystem_list():
+  c4:	64630000 	daddiu	v1,v1,0
+  c8:	0060f809 	jalr	v1
+  cc:	00000000 	nop
+/home/loongson/linux-4.19-loongson/fs/filesystems.c:156
+{
+	struct file_system_type * tmp;
+	int len, res;
+
+	read_lock(&file_systems_lock);
+  d0:	03e00008 	jr	ra
+  d4:	0020f82d 	move	ra,at
+get_fs_type():
+/home/loongson/linux-4.19-loongson/fs/filesystems.c:157
+	for (tmp = file_systems; tmp; tmp = tmp->next, index--)
+  d8:	3c030000 	lui	v1,0x0
+  dc:	64630000 	daddiu	v1,v1,0
+/home/loongson/linux-4.19-loongson/fs/filesystems.c:196
+		case 1:
+			retval = fs_index((const char __user *) arg1);
+			break;
+
+		case 2:
+			retval = fs_name(arg1, (char __user *) arg2);
+  e0:	0060f809 	jalr	v1
+  e4:	00000000 	nop
+  e8:	03e00008 	jr	ra
+  ec:	0020f82d 	move	ra,at
+  f0:	3c030000 	lui	v1,0x0
+  f4:	64630000 	daddiu	v1,v1,0
+  f8:	0060f809 	jalr	v1
+  fc:	00000000 	nop
+ 100:	03e00008 	jr	ra
+ 104:	0020f82d 	move	ra,at

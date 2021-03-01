@@ -660,7 +660,7 @@ static int kpatch_find_object_symbol(const char *objname, const char *name,
 		.count = 0,
 		.pos = sympos,
 	};
-
+printk("objname: %s name: %s sympos: %lx addr: %lx", objname, name, sympos, addr);
 	mutex_lock(&module_mutex);
 	kallsyms_on_each_symbol(kpatch_kallsyms_callback, &args);
 	mutex_unlock(&module_mutex);
@@ -677,6 +677,7 @@ static int kpatch_find_object_symbol(const char *objname, const char *name,
 	} else if (sympos != args.count && sympos > 0) {
 		pr_err("symbol position %lu for symbol '%s' in object '%s' not found\n",
 		       sympos, name, objname);
+		printk("%lx %s %s %d %lx\n", sympos, name, objname, args.count, args.addr);
 	} else {
 		*addr = args.addr;
 		return 0;
@@ -719,6 +720,8 @@ static int kpatch_write_relocations(struct kpatch_module *kpmod,
 	int ret, size, readonly = 0, numpages;
 	struct kpatch_dynrela *dynrela;
 	u64 loc, val;
+
+printk("into kpatch_write_relocations\n");
 #if (( LINUX_VERSION_CODE >= KERNEL_VERSION(4, 5, 0) ) || \
      ( LINUX_VERSION_CODE >= KERNEL_VERSION(4, 4, 0) && \
       UTS_UBUNTU_RELEASE_ABI >= 7 ) \
@@ -731,6 +734,7 @@ static int kpatch_write_relocations(struct kpatch_module *kpmod,
 #endif
 
 	list_for_each_entry(dynrela, &object->dynrelas, list) {
+printk("dynrela name: %s external: %d\n", dynrela->name, dynrela->external);
 		if (dynrela->external)
 			ret = kpatch_find_external_symbol(kpmod->mod->name,
 							  dynrela->name,
@@ -769,13 +773,10 @@ static int kpatch_write_relocations(struct kpatch_module *kpmod,
 			break;
 #else
 		//MIPS
-		case R_MIPS_NONE:
-			continue;
-		case R_MIPS_32:
-			break;
-		case R_MIPS_26:
-			break;
 		case R_MIPS_64:
+			loc = dynrela->dest;
+			val = dynrela->src + dynrela->addend;
+			size = 4;
 			break;
 #endif
 		default:
@@ -898,7 +899,7 @@ printk("kpatch_link_object\n");
 		mutex_unlock(&module_mutex);
 		object->mod = mod;
 	}
-
+printk("kpatch_write_relocations\n");
 	ret = kpatch_write_relocations(kpmod, object);
 	if (ret)
 		goto err_put;

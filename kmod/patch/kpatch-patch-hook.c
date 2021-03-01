@@ -276,7 +276,6 @@ static int patch_make_dynrelas_list(struct list_head *objects)
 	for (p_dynrela = __kpatch_dynrelas; p_dynrela < __kpatch_dynrelas_end;
 	     p_dynrela++) {
 
-printk("p_dynrela->name: %s\n", p_dynrela->name);
 
 		object = patch_find_or_add_object(objects, p_dynrela->objname);
 		if (!object)
@@ -292,6 +291,7 @@ printk("p_dynrela->name: %s\n", p_dynrela->name);
 		dynrela->name = p_dynrela->name;
 		dynrela->external = p_dynrela->external;
 		dynrela->addend = p_dynrela->addend;
+printk("dest: %lx type: %d sympos %lu name: %s external: %lu addend: %lx\n", p_dynrela->name, p_dynrela->type, p_dynrela->sympos, p_dynrela->name, p_dynrela->external, p_dynrela->addend);
 		list_add_tail(&dynrela->list, &object->dynrelas);
 	}
 
