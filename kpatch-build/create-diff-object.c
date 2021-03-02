@@ -3139,14 +3139,14 @@ static void kpatch_create_intermediate_sections(struct kpatch_elf *kelf,
 
 	/* count rela entries that need to be dynamic */
 	nr = 0;
-	list_for_each_entry(sec, &kelf->sections, list) {
-		if (!is_rela_section(sec))
+	list_for_each_entry(sec, &kelf->sections, list) { //遍历所有的section
+		if (!is_rela_section(sec)) //过滤类型不是重定位的section
 			continue;
-		if (!strcmp(sec->name, ".rela.kpatch.funcs"))
+		if (!strcmp(sec->name, ".rela.kpatch.funcs")) //过滤.rela.kpatch.funcs section
 			continue;
-		list_for_each_entry(rela, &sec->relas, list) {
+		list_for_each_entry(rela, &sec->relas, list) { //遍历section中的所有重定位信息
 			/* upper bound on number of kpatch relas and symbols */
-			nr++;
+			nr++; //统计section中的重定位个数
 
 			/*
 			 * We set 'need_dynrela' here in the first pass because
@@ -3160,26 +3160,26 @@ static void kpatch_create_intermediate_sections(struct kpatch_elf *kelf,
 			 * via .toc indirection in need_dynrela().
 			 */
 
-			if (need_dynrela(table, rela))
+			if (need_dynrela(table, rela)) //根据table检查当前重定位符号是否需要进行动态的重定位
 {
 printf("%s\n", rela->sym->name);
 printf("%s\n", sec->name);
 
-				toc_rela(rela)->need_dynrela = 1;
+				toc_rela(rela)->need_dynrela = 1; //如果需要，则将该属性置1
 }
 		}
 	}
 
 	/* create .kpatch.relocations text/rela section pair */
-	krela_sec = create_section_pair(kelf, ".kpatch.relocations", sizeof(*krelas), nr);
+	krela_sec = create_section_pair(kelf, ".kpatch.relocations", sizeof(*krelas), nr); //创建.kpatch.relocation section
 	krelas = krela_sec->data->d_buf;
 
 	/* create .kpatch.symbols text/rela section pair */
-	ksym_sec = create_section_pair(kelf, ".kpatch.symbols", sizeof(*ksyms), nr);
+	ksym_sec = create_section_pair(kelf, ".kpatch.symbols", sizeof(*ksyms), nr); //创建.kpatch.symbols section
 	ksyms = ksym_sec->data->d_buf;
 
 	/* create .kpatch.symbols section symbol (to set rela->sym later) */
-	ALLOC_LINK(ksym_sec_sym, &kelf->symbols);
+	ALLOC_LINK(ksym_sec_sym, &kelf->symbols); //创建.kpatch.symbols symbol并与.kpatch.symbols section管联，目的是将kpatch_symbol与kpatch_relocation进行关联
 	ksym_sec_sym->sec = ksym_sec;
 	ksym_sec_sym->sym.st_info = GELF_ST_INFO(STB_LOCAL, STT_SECTION);
 	ksym_sec_sym->type = STT_SECTION;
@@ -3193,10 +3193,10 @@ printf("%s\n", sec->name);
 
 	/* populate sections */
 	index = 0;
-	list_for_each_entry(sec, &kelf->sections, list) {
-		if (!is_rela_section(sec))
+	list_for_each_entry(sec, &kelf->sections, list) { //遍历所有section
+		if (!is_rela_section(sec)) //过滤掉不是重定位的
 			continue;
-		if (!strcmp(sec->name, ".rela.kpatch.funcs") ||
+		if (!strcmp(sec->name, ".rela.kpatch.funcs") || //过滤掉不需要的section
 		    !strcmp(sec->name, ".rela.kpatch.relocations") ||
 		    !strcmp(sec->name, ".rela.kpatch.symbols"))
 			continue;
@@ -3206,8 +3206,8 @@ printf("%s\n", sec->name);
 			if (!strcmp(sec->base->name, s->name))
 				special = true;
 
-		list_for_each_entry_safe(rela, safe, &sec->relas, list) {
-			if (!rela->need_dynrela)
+		list_for_each_entry_safe(rela, safe, &sec->relas, list) { //遍历当前section中所有的重定位
+			if (!rela->need_dynrela) //如果重定位不需要动态的重定位，则跳过
 				continue;
 
 			/*
@@ -3227,7 +3227,7 @@ printf("%s\n", sec->name);
 				ERROR("unsupported dynrela reference to symbol '%s' in module-specific special section '%s'",
 				      rela->sym->name, sec->base->name);
 
-			if (!lookup_symbol(table, rela->sym->name, &symbol))
+			if (!lookup_symbol(table, rela->sym->name, &symbol)) //查找重定位符号信息
 				ERROR("can't find symbol '%s' in symbol table",
 				      rela->sym->name);
 
@@ -3237,23 +3237,22 @@ printf("symbol name: %s objname: %s sympos: %lx addr: %lx\n", rela->sym->name, s
 			          rela->sym->name, symbol.objname,
 				  symbol.sympos);
 
-			/* Fill in ksyms[index] */
-			if (vmlinux)
-				ksyms[index].src = symbol.addr;
+			/* Fill in ksyms[index] */ 
+			if (vmlinux) //填充与.kpatch.relocation相关的.kpatch.symbol信息
+				ksyms[index].src = symbol.addr; //赋值重定位符号的源地址
 			else
 				/* for modules, src is discovered at runtime */
 				ksyms[index].src = 0;
-			ksyms[index].sympos = symbol.sympos;
-			ksyms[index].type = rela->sym->type;
-			ksyms[index].bind = rela->sym->bind;
+			ksyms[index].sympos = symbol.sympos; //赋值sympos
+			ksyms[index].type = rela->sym->type; //赋值重定位符号的类型
+			ksyms[index].bind = rela->sym->bind; 
 
 			/* add rela to fill in ksyms[index].name field */
-			ALLOC_LINK(rela2, &ksym_sec->rela->relas);
-			rela2->sym = strsym;
+			ALLOC_LINK(rela2, &ksym_sec->rela->relas); //赋值重定位符号名称
+			rela2->sym = strsym; //重定位符号设置为.kpatch.strings
 			rela2->type = ABSOLUTE_RELA_TYPE;
-			rela2->addend = offset_of_string(&kelf->strings, rela->sym->name);
-			rela2->offset = (unsigned int)(index * sizeof(*ksyms) + \
-					offsetof(struct kpatch_symbol, name));
+			rela2->addend = offset_of_string(&kelf->strings, rela->sym->name); //偏移量
+			rela2->offset = (unsigned int)(index * sizeof(*ksyms) + offsetof(struct kpatch_symbol, name));
 
 			/* add rela to fill in ksyms[index].objname field */
 			ALLOC_LINK(rela2, &ksym_sec->rela->relas);
@@ -3264,25 +3263,26 @@ printf("symbol name: %s objname: %s sympos: %lx addr: %lx\n", rela->sym->name, s
 					offsetof(struct kpatch_symbol, objname));
 
 			/* Fill in krelas[index] */
-			if (is_gcc6_localentry_bundled_sym(rela->sym) &&
+			if (is_gcc6_localentry_bundled_sym(rela->sym) && //填充.kpatch.relocation
 			    rela->addend == (int)rela->sym->sym.st_value)
 				rela->addend -= rela->sym->sym.st_value;
-			krelas[index].addend = rela->addend;
-			krelas[index].type = rela->type;
+			krelas[index].addend = rela->addend; //重定位偏移量
+			krelas[index].type = rela->type; //重定位类型
 			krelas[index].external = !vmlinux && symbol.exported;
 
 			/* add rela to fill in krelas[index].dest field */
 			ALLOC_LINK(rela2, &krela_sec->rela->relas);
 			if (sec->base->secsym)
-				rela2->sym = sec->base->secsym;
+				rela2->sym = sec->base->secsym; //设置重定位符号为.text.func符号，即函数入口地址
 			else
 				ERROR("can't create dynrela for section %s (symbol %s): no bundled or section symbol",
 				      sec->name, rela->sym->name);
 
 			rela2->type = ABSOLUTE_RELA_TYPE;
-			rela2->addend = rela->offset;
+			rela2->addend = rela->offset; //重定位偏移量
 			rela2->offset = (unsigned int)(index * sizeof(*krelas) + \
 					offsetof(struct kpatch_relocation, dest));
+			//dest为调用该重定位符号的地址
 
 			/* add rela to fill in krelas[index].objname field */
 			ALLOC_LINK(rela2, &krela_sec->rela->relas);

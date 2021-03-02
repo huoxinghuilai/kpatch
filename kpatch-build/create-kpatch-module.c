@@ -147,7 +147,7 @@ printf("sym name: %s\n", sym->name);
 		rela->sym = sym;
 		rela->type = R_MIPS_64;
 		rela->addend = dest_offset;
-		rela->offset = (unsigned int)(index * sizeof(&dynrelas));
+		rela->offset = (unsigned int)(index * sizeof(*dynrelas));
 
 		ALLOC_LINK(rela, &dynsec->rela->relas);
 		rela->sym = strsec->secsym;

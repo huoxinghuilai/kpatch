@@ -721,7 +721,9 @@ static int kpatch_write_relocations(struct kpatch_module *kpmod,
 	struct kpatch_dynrela *dynrela;
 	u64 loc, val;
 
+unsigned long *tmp;
 printk("into kpatch_write_relocations\n");
+
 #if (( LINUX_VERSION_CODE >= KERNEL_VERSION(4, 5, 0) ) || \
      ( LINUX_VERSION_CODE >= KERNEL_VERSION(4, 4, 0) && \
       UTS_UBUNTU_RELEASE_ABI >= 7 ) \
@@ -773,10 +775,21 @@ printk("dynrela name: %s external: %d\n", dynrela->name, dynrela->external);
 			break;
 #else
 		//MIPS
-		case R_MIPS_64:
+		case R_MIPS_HI16:
 			loc = dynrela->dest;
-			val = dynrela->src + dynrela->addend;
-			size = 4;
+tmp = loc;
+printk("1 loc: %lx opcode: %x\n", loc, *tmp);
+			val = ((dynrela->src + dynrela->addend) >> 16) & 0xffff;
+			//val = 0xffff;
+			size = 2;
+			break;
+		case R_MIPS_LO16:
+			loc = dynrela->dest;
+tmp = loc;
+printk("2 loc: %lx opcode: %x\n", loc, *tmp);
+			val = (dynrela->src + dynrela->addend) & 0xffff;
+			//val = 0xffff;
+			size = 2;
 			break;
 #endif
 		default:
@@ -821,8 +834,9 @@ printk("dynrela name: %s external: %d\n", dynrela->name, dynrela->external);
 		if (!readonly)
 			kpatch_set_memory_rw(loc & PAGE_MASK, numpages);
 
-		ret = probe_kernel_write((void *)loc, &val, size);
-
+		ret = probe_kernel_write((void *)loc, &val, size); //向地址loc处写入val的size个字节，对于MIPS需要进行替换
+tmp = loc;
+printk("after write: %lx", *tmp);
 		if (readonly)
 			kpatch_set_memory_ro(loc & PAGE_MASK, numpages);
 
@@ -915,7 +929,7 @@ printk("kpatch_write_relocations\n");
 printk("kpatch_func name: %s old_addr: %lx new_addr: %lx old_size:%lx  new_size: %lx\n", func->name, func->old_addr, func->new_addr, func->old_size, func->new_size);
 
 tmp = (unsigned long)func->new_addr;
-for (i = 0; i < func->new_size; i++, k += 4) {
+for (i = 0; i < func->new_size / 4; i++, k += 4) {
 printk("%x %x\n", k, tmp[i]);
 }
 
