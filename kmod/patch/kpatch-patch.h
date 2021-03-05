@@ -43,6 +43,14 @@ struct kpatch_patch_dynrela {
 	long addend;
 };
 
+//MIPS
+struct kpatch_patch_insn {
+	unsigned long old_addr;
+	unsigned long new_addr;
+	unsigned long offset;
+	char *objname;
+};
+
 struct kpatch_pre_patch_callback {
 	int (*callback)(void *obj);
 	char *objname;

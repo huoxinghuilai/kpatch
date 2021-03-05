@@ -1,6 +1,12 @@
 __kpatch_funcs = ADDR(.kpatch.funcs);
 __kpatch_funcs_end = ADDR(.kpatch.funcs) + SIZEOF(.kpatch.funcs);
 
+
+//for MIPS
+__kpatch_insns = ADDR(.kpatch.insns);
+__kpatch_insns_end = ADDR(.kpatch.insns) + SIZEOF(.kpatch.insns);
+
+
 #ifdef __KPATCH_MODULE__
 __kpatch_dynrelas = ADDR(.kpatch.dynrelas);
 __kpatch_dynrelas_end = ADDR(.kpatch.dynrelas) + SIZEOF(.kpatch.dynrelas);

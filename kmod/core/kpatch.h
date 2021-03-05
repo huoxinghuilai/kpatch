@@ -47,6 +47,9 @@ struct kpatch_func {
 	struct hlist_node node;
 	enum kpatch_op op;
 	struct kobject kobj;
+
+	//MIPS，需要记录指令偏移量
+	//unsigned long offset;
 };
 
 struct kpatch_dynrela {
@@ -60,12 +63,23 @@ struct kpatch_dynrela {
 	struct list_head list;
 };
 
+//MIPS
+struct kpatch_insn {
+	unsigned long old_addr;
+	unsigned long new_addr;
+	unsigned long offset;
+	struct list_head list;
+};
+
 struct kpatch_object {
 	struct list_head list;
 	const char *name;
 	struct list_head funcs;
 	struct list_head dynrelas;
 
+	//MIPS
+	struct list_head insns;
+	
 	int (*pre_patch_callback)(struct kpatch_object *);
 	void (*post_patch_callback)(struct kpatch_object *);
 	void (*pre_unpatch_callback)(struct kpatch_object *);

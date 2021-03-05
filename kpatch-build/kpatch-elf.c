@@ -261,6 +261,7 @@ void kpatch_create_section_list(struct kpatch_elf *kelf)
 		ERROR("expected NULL");
 }
 
+
 void kpatch_create_symbol_list(struct kpatch_elf *kelf)
 {
 	struct section *symtab;
@@ -349,7 +350,7 @@ static void kpatch_find_func_profiling_calls(struct kpatch_elf *kelf)
 
 #else
 		//mips架构
-		//遍历函数符号所对应的rela_type-section中的重定位信息	
+		//遍历函数符号所对应的.rela.section中的重定位信息	
 		//查看重定位位置是否存在_mcount()接口
 		
 		list_for_each_entry(rela, &sym->sec->rela->relas, list) {
@@ -360,6 +361,36 @@ static void kpatch_find_func_profiling_calls(struct kpatch_elf *kelf)
 		}
 #endif
 	}
+}
+
+//MIPS，组织指令结构体链表
+int offset_of_insn(struct sec_record *rec, struct insn_record *insn)
+{
+	struct sec_record *rec_tmp;
+	struct rela *rela;
+	int nr = 0;
+
+	INIT_LIST_HEAD(&insn->list);
+	
+	list_for_each_entry(rec_tmp, &rec->list, list) {
+		if (!rec_tmp)
+			continue;
+		//rec_tmp所指向的section状态为CHANGED，类型为FUNC，遍历重定位信息，确认_mcount地址偏移量
+		list_for_each_entry(rela, &rec_tmp->sec->rela->relas, list) {
+			if (!strcmp(rela->sym->name, "_mcount")) {
+
+				struct insn_record *tmp;
+
+				ALLOC_LINK(tmp, &insn->list);
+				tmp->symbol = rec_tmp->sec->sym; //设置_mcount所关联的调用函数符号
+				tmp->offset = (unsigned long)rela->offset; //记录偏移量
+			
+				nr++;
+			}	
+		}
+	}
+
+	return nr; 
 }
 
 struct kpatch_elf *kpatch_elf_open(const char *name)

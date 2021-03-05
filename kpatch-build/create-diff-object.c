@@ -1810,6 +1810,7 @@ static int kpatch_include_new_globals(struct kpatch_elf *kelf)
 	return nr;
 }
 
+//对该接口进行修改，方便后期MIPS架构下对section的修改
 static int kpatch_include_changed_functions(struct kpatch_elf *kelf, struct sec_record *rec)
 {
 	struct symbol *sym;
@@ -3484,6 +3485,56 @@ static void kpatch_create_mcount_sections(struct kpatch_elf *kelf)
 		ERROR("size mismatch in funcs sections");
 }
 
+//创建.kpatch.insn.section
+static void kpatch_create_insn_section(struct kpatch_elf *kelf, struct lookup_table *table, struct insn_record *insn, int num)
+{
+	struct insn_record *insn_tmp;
+	struct section *kinsn_sec;
+	struct symbol *strsym;
+	struct rela *kinsn_rela;
+	struct kpatch_patch_insn *kinsn;
+	struct lookup_result symbol;
+	int index = 0;
+
+	kinsn_sec = create_section_pair(kelf, ".kpatch.insns", sizeof(struct kpatch_patch_insn), num);
+	kinsn = kinsn_sec->data->d_buf;
+
+	strsym = find_symbol_by_name(&kelf->symbols, ".kpatch.strings");
+	if (!strsym)
+		ERROR("can't find .kpatch.strings symbol");
+
+	list_for_each_entry(insn_tmp, &insn->list, list) {
+
+		if (!lookup_symbol(table, insn_tmp->symbol->name, &symbol))
+			ERROR("can't find symbol '%s' in symbol table", insn_tmp->symbol->name);
+
+		kinsn[index].old_addr = symbol.addr;
+	
+		ALLOC_LINK(kinsn_rela, &kinsn_sec->rela->relas);
+		kinsn_rela->sym = insn_tmp->symbol; //该符号为函数符号，即函数入口地址
+		kinsn_rela->addend = 0;
+		kinsn_rela->type = ABSOLUTE_RELA_TYPE;
+		kinsn_rela->offset = (unsigned int)(index * sizeof(*kinsn) + offsetof(struct kpatch_patch_insn, new_addr));
+
+		ALLOC_LINK(kinsn_rela, &kinsn_sec->rela->relas);
+		kinsn_rela->sym = insn_tmp->symbol;
+		kinsn_rela->addend = insn_tmp->offset; //sym+addend，可知值为调用ftrace_caller指令的地址
+		kinsn_rela->type = ABSOLUTE_RELA_TYPE;
+		kinsn_rela->offset = (unsigned int)(index * sizeof(*kinsn) + offsetof(struct kpatch_patch_insn, offset));
+
+		ALLOC_LINK(kinsn_rela, &kinsn_sec->rela->relas);
+		kinsn_rela->sym = strsym;
+		kinsn_rela->addend = offset_of_string(&kelf->strings, symbol.objname);
+		kinsn_rela->type = ABSOLUTE_RELA_TYPE;
+		kinsn_rela->offset = (unsigned int)(index * sizeof(*kinsn) + offsetof(struct kpatch_patch_insn, objname));
+
+		index++;
+	}
+	
+	kinsn_sec->data->d_size = index * sizeof(struct kpatch_patch_insn);
+	kinsn_sec->sh.sh_size = kinsn_sec->data->d_size;
+}
+
 /*
  * This function strips out symbols that were referenced by changed rela
  * sections, but the rela entries that referenced them were converted to
@@ -3679,9 +3730,13 @@ int main(int argc, char *argv[])
 	char *hint = NULL, *orig_obj, *patched_obj, *parent_name;
 	char *parent_symtab, *mod_symvers, *patch_name, *output_obj;
 	struct sym_compare_type *base_locals, *sym_comp;
-
+	
 	//记录被改变的section
 	struct sec_record rec;
+	//指令偏移
+	struct insn_record insn;
+	int insn_num;
+struct insn_record *tmp;
 
 	memset(&arguments, 0, sizeof(arguments));
 	argp_parse (&argp, argc, argv, 0, NULL, &arguments);
@@ -3704,6 +3759,7 @@ int main(int argc, char *argv[])
 
 	kelf_base = kpatch_elf_open(orig_obj);
 	kelf_patched = kpatch_elf_open(patched_obj);
+
 
 	kpatch_compare_elf_headers(kelf_base->elf, kelf_patched->elf);
 	kpatch_check_program_headers(kelf_base->elf);
@@ -3756,6 +3812,13 @@ int main(int argc, char *argv[])
 	//记录被修改的section
 	num_changed = kpatch_include_changed_functions(kelf_patched, &rec);
 	
+	//MIPS，计算jal ftrace_caller指令偏移量
+	insn_num = offset_of_insn(&rec, &insn);
+list_for_each_entry(tmp, &insn.list, list)
+{
+	printf("symbol: %s, offset: %lx\n", tmp->symbol->name, tmp->offset);
+}
+
 	callbacks_exist = kpatch_include_callback_elements(kelf_patched);
 	kpatch_include_force_elements(kelf_patched);
 	new_globals_exist = kpatch_include_new_globals(kelf_patched);
@@ -3809,6 +3872,10 @@ printf("parent_name: %s\n", parent_name);
 	kpatch_build_strings_section_data(kelf_out);
 
 	kpatch_create_mcount_sections(kelf_out);
+
+	//MIPS，保存insn_offset，为此创建.kpatch.insn.section
+	kpatch_create_insn_section(kelf_out, lookup, &insn, insn_num);
+	
 	/*
 	 *  At this point, the set of output sections and symbols is
 	 *  finalized.  Reorder the symbols into linker-compliant

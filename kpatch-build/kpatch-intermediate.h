@@ -45,4 +45,6 @@ struct kpatch_arch {
         unsigned long sec;
         char *objname;
 };
+
+
 #endif /* _KPATCH_INTERMEDIATE_H_ */

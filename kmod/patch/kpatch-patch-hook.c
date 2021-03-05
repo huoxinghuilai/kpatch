@@ -39,6 +39,9 @@ extern struct kpatch_post_unpatch_callback __kpatch_callbacks_post_unpatch[], __
 extern unsigned long __kpatch_force_funcs[], __kpatch_force_funcs_end[];
 extern char __kpatch_checksum[];
 
+//MIPS
+extern struct kpatch_patch_insn __kpatch_insns[], __kpatch_insns_end[];
+
 static struct kpatch_module kpmod;
 
 static ssize_t patch_enabled_show(struct kobject *kobj,
@@ -172,7 +175,9 @@ static struct kpatch_object *patch_find_or_add_object(struct list_head *head,
 	struct kpatch_object *object;
 	int ret;
 
+printk("patch_find_or_add_object\n");
 	list_for_each_entry(object, head, list) {
+printk("name: %s\n", name);
 		if (!strcmp(object->name, name))
 			return object;
 	}
@@ -181,9 +186,13 @@ static struct kpatch_object *patch_find_or_add_object(struct list_head *head,
 	if (!object)
 		return NULL;
 
+printk("first object name: %s\n", name);
 	object->name = name;
 	INIT_LIST_HEAD(&object->funcs);
 	INIT_LIST_HEAD(&object->dynrelas);
+	
+	//MIPS, 需要初始insns链表头
+	INIT_LIST_HEAD(&object->insns);
 
 	list_add_tail(&object->list, head);
 
@@ -278,6 +287,7 @@ static int patch_make_dynrelas_list(struct list_head *objects)
 
 
 		object = patch_find_or_add_object(objects, p_dynrela->objname);
+printk("objname: %s\n", p_dynrela->objname);
 		if (!object)
 			return -ENOMEM;
 
@@ -297,6 +307,46 @@ printk("dest: %lx type: %d sympos %lu name: %s external: %lu addend: %lx\n", p_d
 
 	return 0;
 }
+
+
+//MIPS，implement patch_make_insns_list() interface
+static int patch_make_insns_list(struct list_head *objects)
+{
+	struct kpatch_object *object;
+	struct kpatch_patch_insn *p_insn;
+	struct kpatch_insn *insn;
+	struct kpatch_func *func;
+
+
+	for (p_insn = __kpatch_insns; p_insn < __kpatch_insns_end; p_insn++) {
+		
+		object = patch_find_or_add_object(objects, p_insn->objname);
+		if (!object)
+			return -ENOMEM;
+	
+		insn = kzalloc(sizeof(*insn), GFP_KERNEL);
+		if (!insn)
+			return -ENOMEM;
+
+		insn->old_addr = p_insn->old_addr;
+		insn->new_addr = p_insn->new_addr;
+		insn->offset = p_insn->offset - p_insn->new_addr;
+printk("old_addr: %lx new_addr: %lx offset: %lx name: %s\n", insn->old_addr, insn->new_addr, insn->offset, p_insn->objname);
+		list_add_tail(&insn->list, &object->insns);
+printk("patch_make_insn_list end\n");
+/*
+		list_for_each_entry(func, object->funcs, list) {
+			if (func->old_addr == insn->old_addr) {
+				func->offset = insn->offset;
+				break;
+			}
+		} 
+*/ 	
+	}
+
+	return 0;
+}	
+
 
 static int patch_set_callbacks(struct list_head *objects)
 {
@@ -398,10 +448,18 @@ printk("start to patch_make_funcs_list\n");
 	if (ret)
 		goto err_objects;
 
-printk("start to patch_make_dynrelas_lsit\n");
+printk("start to patch_make_dynrelas_list\n");
 	ret = patch_make_dynrelas_list(&kpmod.objects);
 	if (ret)
 		goto err_objects;
+
+
+//MIPS，创建struct kpatch_insn结构体链表
+printk("start to patch_make_insns_list\n");
+	ret = patch_make_insns_list(&kpmod.objects);
+	if (ret)
+		goto err_objects;
+
 
 printk("start to patch_set_callbacks\n");
 	ret = patch_set_callbacks(&kpmod.objects);

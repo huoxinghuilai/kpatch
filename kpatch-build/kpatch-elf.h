@@ -116,6 +116,13 @@ struct sec_record {
 	struct section *sec;
 };
 
+//MIPS，记录jal ftrace_caller地址偏移量
+struct insn_record {
+	struct list_head list;
+	struct symbol *symbol;
+	unsigned long offset;
+};
+
 /*******************
  * Helper functions
  ******************/
@@ -143,6 +150,9 @@ struct rela *find_rela_by_offset(struct section *relasec, unsigned int offset);
 
 int offset_of_string(struct list_head *list, char *name);
 
+//MIPS，记录jal ftrace_caller指令地址偏移量
+int offset_of_insn(struct sec_record *rec, struct insn_record *insn);
+
 #ifndef R_PPC64_ENTRY
 #define R_PPC64_ENTRY   118
 #endif
@@ -167,7 +177,7 @@ void kpatch_create_strtab(struct kpatch_elf *kelf);
 void kpatch_create_symtab(struct kpatch_elf *kelf);
 struct section *create_section_pair(struct kpatch_elf *kelf, char *name,
                                     int entsize, int nr);
-
+//MIPS，修改section内容
 void fixup_changed_section(struct kpatch_elf *kelf, struct sec_record *rec);
 
 void kpatch_remove_and_free_section(struct kpatch_elf *kelf, char *secname);

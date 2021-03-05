@@ -486,6 +486,30 @@ err:
 	return ret;
 }
 
+
+static unsigned long offset_of_insn_mcount(unsigned long ip)
+{
+	struct kpatch_module *kpmod;
+	struct kpatch_object *object;
+	struct kpatch_insn *insn;
+	unsigned long insn_offset;
+
+	//遍历各个模块中所记录的指令偏移量，进行查找
+	list_for_each_entry(kpmod, &kpmod_list, list) {
+		list_for_each_entry(object, &kpmod->objects, list) {
+			list_for_each_entry(insn, &object->insns, list) {
+printk("old_addr: %lx offset: %lx\n", insn->old_addr, insn->offset);
+				if (ip == (insn->old_addr + insn->offset)) {
+					insn_offset = insn->offset;
+					break;
+				}
+			}
+		}
+	}
+printk("insn_offset: %lx", insn_offset);
+	return insn_offset;
+}
+
 /*
  * This is where the magic happens.  Update regs->ip to tell ftrace to return
  * to the new function.
@@ -501,10 +525,19 @@ kpatch_ftrace_handler(unsigned long ip, unsigned long parent_ip,
 {
 	struct kpatch_func *func;
 	int state;
+	
+	//MIPS
+	unsigned long insn_offset = 0;
 
 printk("kpatch_ftrace_handler\n");
-	//MIPS
-	ip -= 4;
+printk("ip: %lx\n", ip);
+
+	//MIPS，获取指令偏移量
+	insn_offset = offset_of_insn_mcount(ip); 
+
+	//MIPS，ftrace注册的ip为函数入口地址，该函数由内核回调，提供的ip为jal ftrace_caller指令的地址
+	ip -= insn_offset;
+printk("ip: %lx offset: %lx\n", ip, insn_offset);
 
 	preempt_disable_notrace();
 
@@ -555,10 +588,13 @@ printk("find func: %s %lx\n", func->name, func->new_addr);
 
 static struct ftrace_ops kpatch_ftrace_ops __read_mostly = {
 	.func = kpatch_ftrace_handler,
+
+	//MIPS暂且不用
 	//.flags = FTRACE_OPS_FL_SAVE_REGS | FTRACE_OPS_FL_IPMODIFY,
 };
 
-static int kpatch_ftrace_add_func(unsigned long ip)
+//MIPS架构下，需要jal ftrace_acller地址偏移量
+static int kpatch_ftrace_add_func(unsigned long ip, unsigned long offset)
 {
 	int ret;
 
@@ -567,10 +603,12 @@ static int kpatch_ftrace_add_func(unsigned long ip)
 		return 0;
 	
 	//ret = ftrace_set_filter_ip(&kpatch_ftrace_ops, ip, 0, 0);
-	ret = ftrace_set_filter_ip(&kpatch_ftrace_ops, ip + 4, 0, 0);
+	
+	//MIPS，kpatch_ftrace_add_func接口由用户态调用，提供的ip地址为函数入口地址
+	ret = ftrace_set_filter_ip(&kpatch_ftrace_ops, ip + offset, 0, 0);
 	
 	if (ret) {
-		pr_err("can't set ftrace filter at address 0x%lx\n", ip);
+		pr_err("can't set ftrace filter at address 0x%lx\n", ip + offset);
 		return ret;
 	}
 
@@ -580,7 +618,9 @@ static int kpatch_ftrace_add_func(unsigned long ip)
 			pr_err("can't register ftrace handler\n");
 
 			//ftrace_set_filter_ip(&kpatch_ftrace_ops, ip, 1, 0);
-			ftrace_set_filter_ip(&kpatch_ftrace_ops, ip + 4, 1, 0);
+			
+			//MIPS
+			ftrace_set_filter_ip(&kpatch_ftrace_ops, ip + offset, 1, 0);
 			
 			return ret;
 		}
@@ -610,7 +650,7 @@ static int kpatch_ftrace_remove_func(unsigned long ip)
 	//ret = ftrace_set_filter_ip(&kpatch_ftrace_ops, ip, 1, 0);
 	
 	//MIPS
-	ret = ftrace_set_filter_ip(&kpatch_ftrace_ops, ip + 4, 1, 0);
+	ret = ftrace_set_filter_ip(&kpatch_ftrace_ops, ip, 1, 0);
 	if (ret) {
 		pr_err("can't remove ftrace filter at address 0x%lx\n", ip);
 		return ret;
@@ -780,7 +820,6 @@ printk("dynrela name: %s external: %d\n", dynrela->name, dynrela->external);
 tmp = loc;
 printk("1 loc: %lx opcode: %x\n", loc, *tmp);
 			val = ((dynrela->src + dynrela->addend) >> 16) & 0xffff;
-			//val = 0xffff;
 			size = 2;
 			break;
 		case R_MIPS_LO16:
@@ -788,7 +827,6 @@ printk("1 loc: %lx opcode: %x\n", loc, *tmp);
 tmp = loc;
 printk("2 loc: %lx opcode: %x\n", loc, *tmp);
 			val = (dynrela->src + dynrela->addend) & 0xffff;
-			//val = 0xffff;
 			size = 2;
 			break;
 #endif
@@ -890,10 +928,12 @@ static int kpatch_link_object(struct kpatch_module *kpmod,
 	int ret;
 	bool vmlinux = !strcmp(object->name, "vmlinux");
 
+	//MIPS
+	struct kpatch_insn *insn;
+	unsigned long insn_offset = 0;
+
 int i, k = 0;
 unsigned int *tmp;
-//const char *(*func1)(void);
-//char *str;
 printk("kpatch_link_object\n");
 
 	if (!vmlinux) {
@@ -933,19 +973,23 @@ for (i = 0; i < func->new_size / 4; i++, k += 4) {
 printk("%x %x\n", k, tmp[i]);
 }
 
-//func1 = (void *)func->new_addr;
-//str = func1();
-//printk("str: %s %p\n", str, str);
-
-
-
 		if (ret) {
 			func_err = func;
 			goto err_ftrace;
 		}
 
+		
+		//MIPS，获取指令偏移量
+		list_for_each_entry(insn, &object->insns, list) {
+printk("old_addr: %lx offset: %lx\n", insn->old_addr, insn->offset);
+			if (func->old_addr == insn->old_addr) {
+				insn_offset = insn->offset;
+				break;
+			}
+		}
+
 		/* add to ftrace filter and register handler if needed */
-		ret = kpatch_ftrace_add_func(func->old_addr);
+		ret = kpatch_ftrace_add_func(func->old_addr, insn_offset);
 		if (ret) {
 			func_err = func;
 			goto err_ftrace;
