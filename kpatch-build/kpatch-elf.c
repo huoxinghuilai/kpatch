@@ -723,6 +723,9 @@ struct section *create_section_pair(struct kpatch_elf *kelf, char *name,
  *
  */
 
+#define INSN_NUM 6
+#define INSN_BYTES (INSN_NUM * 4)
+
 void fixup_changed_section(struct kpatch_elf *kelf, struct sec_record *rec)
 {
 	struct section *old_sec, *rel_sec;
@@ -777,10 +780,10 @@ printf("tmp_rec: %s\n", tmp_rec->sec->name);
 			}
 
 			//申请.section的数据空间大小
-j = (int)old_sec->data->d_size + (24 * nr_rela);
+j = (int)old_sec->data->d_size + (INSN_BYTES * nr_rela);
 printf("%d\n", j);
-			data = (void *)malloc(old_sec->data->d_size + (24 * nr_rela));
-			memset(data, 0, old_sec->data->d_size + (24 * nr_rela));
+			data = (void *)malloc(old_sec->data->d_size + (INSN_BYTES * nr_rela));
+			memset(data, 0, old_sec->data->d_size + (INSN_BYTES * nr_rela));
 			memcpy(data, old_sec->data->d_buf, old_sec->data->d_size);
 for (i = 0; i < j / 4; i++, k += 4)
 printf("%x %x\n", k, ((unsigned int *)data)[i]);
@@ -800,8 +803,9 @@ printf("%x %x\n", k, ((unsigned int *)data)[i]);
  			 * daddiu v1, v1, 0x0
  			 * jalr v1
  			 * nop
- 			 * jr ra
- 			 * move ra, at
+ 			 * j func()+offset
+ 			 * nop
+ 			 *
  			 */
 
 				switch(rela->type) {				
@@ -828,18 +832,30 @@ printf("change section instruction\n");
 					tmp1_data[13] = 0x00;
 					tmp1_data[14] = 0x00;
 					tmp1_data[15] = 0x00;
-						
+					
+					tmp1_data[16] = 0x00;
+					tmp1_data[17] = 0x00;
+					tmp1_data[18] = 0x00;
+					tmp1_data[19] = 0x08;
+/*						
 					tmp1_data[16] = 0x08;
 					tmp1_data[17] = 0x00;
 					tmp1_data[18] = 0xe0;
 					tmp1_data[19] = 0x03;
-					
+*/
+
+/*					
 					tmp1_data[20] = 0x2d;
 					tmp1_data[21] = 0xf8;
 					tmp1_data[22] = 0x20;
 					tmp1_data[23] = 0x00;
+*/
+					tmp1_data[20] = 0x00;
+					tmp1_data[21] = 0x00;
+					tmp1_data[22] = 0x00;
+					tmp1_data[23] = 0x00;
 
-					tmp1_data += 24;
+					tmp1_data += INSN_BYTES;
 
 					//修改原有R_MIPS_26信息
 					tmp_rela = (struct rela *)malloc(sizeof(struct rela));
@@ -848,7 +864,7 @@ printf("change section instruction\n");
 					tmp_rela->sym = old_sec->sym;
 					tmp_rela->type = R_MIPS_26;
 					tmp_rela->offset = (unsigned int)rela->rela.r_offset;
-					tmp_rela->addend = old_sec->data->d_size + nr * 24; 					
+					tmp_rela->addend = old_sec->data->d_size + nr * INSN_BYTES; 					
 					
 					//添加rela信息
 					tmp_rela = (struct rela *)malloc(sizeof(struct rela));
@@ -856,7 +872,7 @@ printf("change section instruction\n");
 					list_add_tail(&tmp_rela->list, &add_rela);
 					tmp_rela->sym = rela->sym;
 					tmp_rela->type = R_MIPS_HI16;
-					tmp_rela->offset = (unsigned int)old_sec->data->d_size + nr * 24;
+					tmp_rela->offset = (unsigned int)old_sec->data->d_size + nr * INSN_BYTES;
 					tmp_rela->addend = rela->rela.r_addend;
 					
 					tmp_rela = (struct rela *)malloc(sizeof(struct rela));
@@ -864,8 +880,17 @@ printf("change section instruction\n");
 					list_add_tail(&tmp_rela->list, &add_rela);
 					tmp_rela->sym = rela->sym;					
 					tmp_rela->type = R_MIPS_LO16;
-					tmp_rela->offset = (unsigned int)old_sec->data->d_size + nr * 24 + 4;
+					tmp_rela->offset = (unsigned int)old_sec->data->d_size + nr * INSN_BYTES + 4;
 					tmp_rela->addend = rela->rela.r_addend;
+
+					//恢复现场
+					tmp_rela = (struct rela *)malloc(sizeof(struct rela));
+					memset(tmp_rela, 0, sizeof(struct rela));
+					list_add_tail(&tmp_rela->list, &add_rela);
+					tmp_rela->sym = old_sec->sym;
+					tmp_rela->type = R_MIPS_26;
+					tmp_rela->offset = (unsigned int)old_sec->data->d_size + nr * INSN_BYTES + 16;
+					tmp_rela->addend = rela->rela.r_offset + 4;
 					
 					++nr;
 					break;
@@ -892,7 +917,7 @@ printf("%x %x\n", k, ((unsigned int *)data)[i]);
 
 			//替换.section
 			old_sec->data->d_buf = data;
-			old_sec->data->d_size = old_sec->data->d_size + (24 * nr_rela);
+			old_sec->data->d_size = old_sec->data->d_size + (INSN_BYTES * nr_rela);
 			
 			//重组rela链表
 			rel_sec->relas.prev->next = add_rela.next;
