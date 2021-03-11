@@ -843,18 +843,18 @@ printf("change section instruction\n");
 					tmp1_data[18] = 0xe0;
 					tmp1_data[19] = 0x03;
 */
-
-/*					
+					
 					tmp1_data[20] = 0x2d;
 					tmp1_data[21] = 0xf8;
 					tmp1_data[22] = 0x20;
 					tmp1_data[23] = 0x00;
-*/
+
+/*
 					tmp1_data[20] = 0x00;
 					tmp1_data[21] = 0x00;
 					tmp1_data[22] = 0x00;
 					tmp1_data[23] = 0x00;
-
+*/
 					tmp1_data += INSN_BYTES;
 
 					//修改原有R_MIPS_26信息
@@ -890,7 +890,7 @@ printf("change section instruction\n");
 					tmp_rela->sym = old_sec->sym;
 					tmp_rela->type = R_MIPS_26;
 					tmp_rela->offset = (unsigned int)old_sec->data->d_size + nr * INSN_BYTES + 16;
-					tmp_rela->addend = rela->rela.r_offset + 4;
+					tmp_rela->addend = rela->rela.r_offset + 8;
 					
 					++nr;
 					break;

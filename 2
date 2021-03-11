@@ -1,5 +1,5 @@
 
-kpatch-0001-make-patch.ko:     file format elf64-tradlittlemips
+kpatch-0001-change-get_system_type-interface.ko:     file format elf64-tradlittlemips
 
 
 Disassembly of section .text:
@@ -2332,207 +2332,39 @@ static void __exit patch_exit(void)
   50:	03200008 	jr	t9
   54:	67bd0010 	daddiu	sp,sp,16
 
-Disassembly of section .text.find_filesystem:
+Disassembly of section .text.get_system_type:
 
-0000000000000000 <find_filesystem>:
-find_filesystem():
-/home/loongson/linux-4.19-loongson/fs/filesystems.c:49
+0000000000000000 <get_system_type>:
+get_system_type():
+/home/loongson/linux-4.19-loongson/arch/mips/loongson64/common/machtype.c:35
+	[MACH_LOONGSON_GENERIC]	= "generic-loongson-machine",
+	[MACH_LOONGSON_END]	= NULL,
+};
+
+const char *get_system_type(void)
 {
-	module_put(fs->owner);
+   0:	03e0082d 	move	at,ra
+   4:	0c000000 	jal	0 <get_system_type>
+   8:	0000602d 	move	t0,zero
+/home/loongson/linux-4.19-loongson/arch/mips/loongson64/common/machtype.c:37
+	return system_types[mips_machtype];
+}
+   c:	3c020000 	lui	v0,0x0
+/home/loongson/linux-4.19-loongson/arch/mips/loongson64/common/machtype.c:38
+
+  10:	03e00008 	jr	ra
+  14:	64420000 	daddiu	v0,v0,0
+prom_init_machtype():
+/home/loongson/linux-4.19-loongson/arch/mips/loongson64/common/machtype.c:45
+{
 }
 
-static struct file_system_type **find_filesystem(const char *name, unsigned len)
+void __init prom_init_machtype(void)
 {
-   0:	67bdffe0 	daddiu	sp,sp,-32
-   4:	ffbf0018 	sd	ra,24(sp)
-   8:	ffb20010 	sd	s2,16(sp)
-   c:	ffb10008 	sd	s1,8(sp)
-  10:	ffb00000 	sd	s0,0(sp)
-  14:	03e0082d 	move	at,ra
-  18:	0c000000 	jal	0 <find_filesystem>
-  1c:	67ac0018 	daddiu	t0,sp,24
-  20:	0080902d 	move	s2,a0
-/home/loongson/linux-4.19-loongson/fs/filesystems.c:51
-	struct file_system_type **p;
-	for (p = &file_systems; *p; p = &(*p)->next)
-  24:	3c040000 	lui	a0,0x0
-/home/loongson/linux-4.19-loongson/fs/filesystems.c:49
-{
-	module_put(fs->owner);
-}
-
-static struct file_system_type **find_filesystem(const char *name, unsigned len)
-{
-  28:	00a0882d 	move	s1,a1
-/home/loongson/linux-4.19-loongson/fs/filesystems.c:51
-	struct file_system_type **p;
-	for (p = &file_systems; *p; p = &(*p)->next)
-  2c:	64840000 	daddiu	a0,a0,0
-  30:	0240282d 	move	a1,s2
-  34:	0c000000 	jal	0 <find_filesystem>
-  38:	3c100000 	lui	s0,0x0
-/home/loongson/linux-4.19-loongson/fs/filesystems.c:52
-		if (strncmp((*p)->name, name, len) == 0 &&
-  3c:	de070000 	ld	a3,0(s0)
-  40:	10e00027 	beqz	a3,e0 <find_filesystem+0xe0>
-  44:	7e31f803 	dext	s1,s1,0x0,0x20
-  48:	66100000 	daddiu	s0,s0,0
-  4c:	00000000 	nop
-/home/loongson/linux-4.19-loongson/fs/filesystems.c:53
-		    !(*p)->name[len])
-  50:	dce40000 	ld	a0,0(a3)
-  54:	0240282d 	move	a1,s2
-  58:	0c000000 	jal	0 <find_filesystem>
-  5c:	0220302d 	move	a2,s1
-  60:	14400006 	bnez	v0,7c <find_filesystem+0x7c>
-  64:	de030000 	ld	v1,0(s0)
-/home/loongson/linux-4.19-loongson/fs/filesystems.c:54 (discriminator 1)
-			break;
-  68:	dc620000 	ld	v0,0(v1)
-  6c:	0051102d 	daddu	v0,v0,s1
-/home/loongson/linux-4.19-loongson/fs/filesystems.c:53 (discriminator 1)
-static struct file_system_type **find_filesystem(const char *name, unsigned len)
-{
-	struct file_system_type **p;
-	for (p = &file_systems; *p; p = &(*p)->next)
-		if (strncmp((*p)->name, name, len) == 0 &&
-		    !(*p)->name[len])
-  70:	80420000 	lb	v0,0(v0)
-  74:	1040000e 	beqz	v0,b0 <find_filesystem+0xb0>
-  78:	00000000 	nop
-/home/loongson/linux-4.19-loongson/fs/filesystems.c:52 (discriminator 2)
-
-static struct file_system_type **find_filesystem(const char *name, unsigned len)
-{
-	struct file_system_type **p;
-	for (p = &file_systems; *p; p = &(*p)->next)
-		if (strncmp((*p)->name, name, len) == 0 &&
-  7c:	dc670028 	ld	a3,40(v1)
-  80:	14e0fff3 	bnez	a3,50 <find_filesystem+0x50>
-  84:	64700028 	daddiu	s0,v1,40
-/home/loongson/linux-4.19-loongson/fs/filesystems.c:59
-			break;
-	return p;
-}
-
-/**
- *	register_filesystem - register a new filesystem
-  88:	3c040000 	lui	a0,0x0
-  8c:	0c000000 	jal	0 <find_filesystem>
-  90:	64840000 	daddiu	a0,a0,0
-/home/loongson/linux-4.19-loongson/fs/filesystems.c:61
- *	@fs: the file system structure
- *
-  94:	dfbf0018 	ld	ra,24(sp)
-  98:	0200102d 	move	v0,s0
-  9c:	dfb20010 	ld	s2,16(sp)
-  a0:	dfb10008 	ld	s1,8(sp)
-  a4:	dfb00000 	ld	s0,0(sp)
-  a8:	03e00008 	jr	ra
-  ac:	67bd0020 	daddiu	sp,sp,32
-/home/loongson/linux-4.19-loongson/fs/filesystems.c:56
-	for (p = &file_systems; *p; p = &(*p)->next)
-		if (strncmp((*p)->name, name, len) == 0 &&
-		    !(*p)->name[len])
-			break;
-	return p;
-}
-  b0:	1060fff5 	beqz	v1,88 <find_filesystem+0x88>
-  b4:	00000000 	nop
-/home/loongson/linux-4.19-loongson/fs/filesystems.c:57
-
-  b8:	3c040000 	lui	a0,0x0
-  bc:	0c000000 	jal	0 <find_filesystem>
-  c0:	64840000 	daddiu	a0,a0,0
-/home/loongson/linux-4.19-loongson/fs/filesystems.c:61
-/**
- *	register_filesystem - register a new filesystem
- *	@fs: the file system structure
- *
-  c4:	dfbf0018 	ld	ra,24(sp)
-  c8:	0200102d 	move	v0,s0
-  cc:	dfb20010 	ld	s2,16(sp)
-  d0:	dfb10008 	ld	s1,8(sp)
-  d4:	dfb00000 	ld	s0,0(sp)
-  d8:	03e00008 	jr	ra
-  dc:	67bd0020 	daddiu	sp,sp,32
-/home/loongson/linux-4.19-loongson/fs/filesystems.c:52
-
-static struct file_system_type **find_filesystem(const char *name, unsigned len)
-{
-	struct file_system_type **p;
-	for (p = &file_systems; *p; p = &(*p)->next)
-		if (strncmp((*p)->name, name, len) == 0 &&
-  e0:	08000000 	j	0 <find_filesystem>
-  e4:	66100000 	daddiu	s0,s0,0
-get_fs_type():
-/home/loongson/linux-4.19-loongson/fs/filesystems.c:191
-SYSCALL_DEFINE3(sysfs, int, option, unsigned long, arg1, unsigned long, arg2)
-{
-	int retval = -EINVAL;
-
-	switch (option) {
-		case 1:
-  e8:	3c030000 	lui	v1,0x0
-  ec:	64630000 	daddiu	v1,v1,0
-  f0:	0060f809 	jalr	v1
-  f4:	00000000 	nop
-  f8:	08000000 	j	0 <find_filesystem>
-  fc:	00000000 	nop
- 100:	3c030000 	lui	v1,0x0
- 104:	64630000 	daddiu	v1,v1,0
-/home/loongson/linux-4.19-loongson/fs/filesystems.c:181
-	read_lock(&file_systems_lock);
-	for (tmp = file_systems, index = 0 ; tmp ; tmp = tmp->next, index++)
-		;
-	read_unlock(&file_systems_lock);
-	return index;
-}
- 108:	0060f809 	jalr	v1
- 10c:	00000000 	nop
- 110:	08000000 	j	0 <find_filesystem>
-/home/loongson/linux-4.19-loongson/fs/filesystems.c:182
-
- 114:	00000000 	nop
- 118:	3c030000 	lui	v1,0x0
- 11c:	64630000 	daddiu	v1,v1,0
- 120:	0060f809 	jalr	v1
- 124:	00000000 	nop
- 128:	08000000 	j	0 <find_filesystem>
- 12c:	00000000 	nop
-__se_sys_sysfs():
- 130:	3c030000 	lui	v1,0x0
- 134:	64630000 	daddiu	v1,v1,0
- 138:	0060f809 	jalr	v1
-/home/loongson/linux-4.19-loongson/fs/filesystems.c:184
-/*
- * Whee.. Weird sysv syscall. 
- 13c:	00000000 	nop
- 140:	08000000 	j	0 <find_filesystem>
-/home/loongson/linux-4.19-loongson/fs/filesystems.c:191
-SYSCALL_DEFINE3(sysfs, int, option, unsigned long, arg1, unsigned long, arg2)
-{
-	int retval = -EINVAL;
-
-	switch (option) {
-		case 1:
- 144:	00000000 	nop
- 148:	3c030000 	lui	v1,0x0
- 14c:	64630000 	daddiu	v1,v1,0
- 150:	0060f809 	jalr	v1
- 154:	00000000 	nop
- 158:	08000000 	j	0 <find_filesystem>
- 15c:	00000000 	nop
- 160:	3c030000 	lui	v1,0x0
- 164:	64630000 	daddiu	v1,v1,0
-/home/loongson/linux-4.19-loongson/fs/filesystems.c:161
-	read_lock(&file_systems_lock);
-	for (tmp = file_systems; tmp; tmp = tmp->next, index--)
-		if (index <= 0 && try_module_get(tmp->owner))
-			break;
-	read_unlock(&file_systems_lock);
-	if (!tmp)
- 168:	0060f809 	jalr	v1
- 16c:	00000000 	nop
- 170:	08000000 	j	0 <find_filesystem>
- 174:	00000000 	nop
+	char *p, str[MACHTYPE_LEN + 1];
+  18:	3c030000 	lui	v1,0x0
+  1c:	64630000 	daddiu	v1,v1,0
+  20:	0060f809 	jalr	v1
+  24:	00000000 	nop
+  28:	08000000 	j	0 <get_system_type>
+  2c:	0020f82d 	move	ra,at
