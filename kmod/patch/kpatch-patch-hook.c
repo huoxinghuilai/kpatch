@@ -315,7 +315,7 @@ static int patch_make_insns_list(struct list_head *objects)
 {
 	struct kpatch_object *object;
 	struct kpatch_patch_insn *p_insn;
-	struct kpatch_insn *insn;
+	struct kpatch_insn *insn, *tmp;
 	struct kpatch_func *func;
 
 
@@ -333,6 +333,13 @@ static int patch_make_insns_list(struct list_head *objects)
 		insn->new_addr = p_insn->new_addr;
 		insn->offset = p_insn->offset - p_insn->new_addr;
 printk("old_addr: %lx new_addr: %lx offset: %lx name: %s\n", insn->old_addr, insn->new_addr, insn->offset, p_insn->objname);
+
+		list_for_each_entry(tmp, &object->insns, list) {
+			if (tmp->old_addr == insn->old_addr) {
+				return 0;
+			}
+		}
+
 		list_add_tail(&insn->list, &object->insns);
 printk("patch_make_insn_list end\n");
 /*

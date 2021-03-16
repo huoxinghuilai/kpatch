@@ -499,12 +499,13 @@ static unsigned long offset_of_insn_mcount(unsigned long ip)
 		list_for_each_entry(object, &kpmod->objects, list) {
 			list_for_each_entry(insn, &object->insns, list) {
 printk("old_addr: %lx offset: %lx\n", insn->old_addr, insn->offset);
-				if (ip == (insn->old_addr + insn->offset)) {
+				if (ip == (insn->old_addr + insn->offset) && insn->count != 0) {
 					insn_offset = insn->offset;
 					break;
 				}
 				if (ip == insn->old_addr) {
 					insn_offset = insn->offset;
+					insn->count--;
 					break;
 				}
 			}
@@ -995,6 +996,7 @@ printk("%x %x\n", k, tmp[i]);
 printk("old_addr: %lx offset: %lx\n", insn->old_addr, insn->offset);
 			if (func->old_addr == insn->old_addr) {
 				insn_offset = insn->offset;
+				insn->count++;
 				break;
 			}
 		}

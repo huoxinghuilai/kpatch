@@ -69,6 +69,7 @@ struct kpatch_insn {
 	unsigned long new_addr;
 	unsigned long offset;
 	struct list_head list;
+	int count; //count user
 };
 
 struct kpatch_object {
