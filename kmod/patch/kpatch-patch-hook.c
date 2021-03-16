@@ -62,7 +62,8 @@ static ssize_t patch_enabled_store(struct kobject *kobj,
 		return ret;
 
 	val = !!val;
-
+printk("patch_enabled_store\n");
+printk("val: %ld\n", val);
 	if (val)
 		ret = kpatch_register(&kpmod, replace);
 	else

@@ -503,6 +503,10 @@ printk("old_addr: %lx offset: %lx\n", insn->old_addr, insn->offset);
 					insn_offset = insn->offset;
 					break;
 				}
+				if (ip == insn->old_addr) {
+					insn_offset = insn->offset;
+					break;
+				}
 			}
 		}
 	}
@@ -630,13 +634,19 @@ static int kpatch_ftrace_add_func(unsigned long ip, unsigned long offset)
 	return 0;
 }
 
+//MIPS
 static int kpatch_ftrace_remove_func(unsigned long ip)
 {
 	int ret;
+	unsigned long offset;
 
+printk("kpatch_ftrace_remove_func\n");
 	/* check if any other patch modules have also patched this func */
 	if (kpatch_get_func(ip))
 		return 0;
+
+	offset = offset_of_insn_mcount(ip);
+printk("offset: %lx\n", offset);
 
 	if (kpatch_num_patched == 1) {
 		ret = unregister_ftrace_function(&kpatch_ftrace_ops);
@@ -646,13 +656,12 @@ static int kpatch_ftrace_remove_func(unsigned long ip)
 		}
 	}
 	kpatch_num_patched--;
-
 	//ret = ftrace_set_filter_ip(&kpatch_ftrace_ops, ip, 1, 0);
 	
 	//MIPS
-	ret = ftrace_set_filter_ip(&kpatch_ftrace_ops, ip, 1, 0);
+	ret = ftrace_set_filter_ip(&kpatch_ftrace_ops, ip + offset, 1, 0);
 	if (ret) {
-		pr_err("can't remove ftrace filter at address 0x%lx\n", ip);
+		pr_err("can't remove ftrace filter at address 0x%lx\n", ip + offset);
 		return ret;
 	}
 
@@ -893,9 +902,11 @@ static int kpatch_unlink_object(struct kpatch_object *object)
 	struct kpatch_func *func;
 	int ret;
 
+printk("kpatch_unlink_object\n");
 	list_for_each_entry(func, &object->funcs, list) {
 		if (!func->old_addr)
 			continue;
+
 		ret = kpatch_ftrace_remove_func(func->old_addr);
 		if (ret) {
 			WARN(1, "can't unregister ftrace for address 0x%lx\n",
@@ -1344,7 +1355,7 @@ int kpatch_unregister(struct kpatch_module *kpmod)
 	struct kpatch_object *object;
 	struct kpatch_func *func;
 	int ret, force = 0;
-
+printk("kpatch_unregister\n");
 	down(&kpatch_mutex);
 
 	if (!kpmod->enabled) {
