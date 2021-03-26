@@ -151,7 +151,7 @@ struct rela *find_rela_by_offset(struct section *relasec, unsigned int offset);
 int offset_of_string(struct list_head *list, char *name);
 
 //MIPS，记录jal ftrace_caller指令地址偏移量
-int offset_of_insn(struct sec_record *rec, struct insn_record *insn);
+int offset_of_insn(struct kpatch_elf *kelf, struct sec_record *rec, struct insn_record *insn);
 
 #ifndef R_PPC64_ENTRY
 #define R_PPC64_ENTRY   118

@@ -1602,6 +1602,12 @@ static void kpatch_verify_patchability(struct kpatch_elf *kelf)
 
 	list_for_each_entry(sec, &kelf->sections, list) {
 		if (sec->status == CHANGED && !sec->include) {
+
+			//MIPS
+			if (!strcmp(sec->name, ".MIPS.options") || !strcmp(sec->name, ".pdr")) {
+				continue;
+			}
+
 			log_normal("changed section %s not selected for inclusion\n",
 				   sec->name);
 			errs++;
@@ -3804,8 +3810,8 @@ struct insn_record *tmp;
 	kpatch_mark_ignored_functions_same(kelf_patched);
 	kpatch_mark_ignored_sections_same(kelf_patched);
 	kpatch_check_func_profiling_calls(kelf_patched);
-	kpatch_elf_teardown(kelf_base);
-	kpatch_elf_free(kelf_base);
+	//kpatch_elf_teardown(kelf_base);
+	//kpatch_elf_free(kelf_base);
 
 	kpatch_include_standard_elements(kelf_patched);
 
@@ -3813,11 +3819,14 @@ struct insn_record *tmp;
 	num_changed = kpatch_include_changed_functions(kelf_patched, &rec);
 	
 	//MIPS，计算jal ftrace_caller指令偏移量
-	insn_num = offset_of_insn(&rec, &insn);
+	insn_num = offset_of_insn(kelf_base, &rec, &insn);
 list_for_each_entry(tmp, &insn.list, list)
 {
 	printf("symbol: %s, offset: %lx\n", tmp->symbol->name, tmp->offset);
 }
+	//MIPS
+	kpatch_elf_teardown(kelf_base);
+	kpatch_elf_free(kelf_base);
 
 	callbacks_exist = kpatch_include_callback_elements(kelf_patched);
 	kpatch_include_force_elements(kelf_patched);

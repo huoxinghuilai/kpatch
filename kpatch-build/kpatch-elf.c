@@ -364,10 +364,11 @@ static void kpatch_find_func_profiling_calls(struct kpatch_elf *kelf)
 }
 
 //MIPS，组织指令结构体链表
-int offset_of_insn(struct sec_record *rec, struct insn_record *insn)
+int offset_of_insn(struct kpatch_elf *kelf, struct sec_record *rec, struct insn_record *insn)
 {
 	struct sec_record *rec_tmp;
 	struct rela *rela;
+	struct section *sec;
 	int nr = 0;
 
 	INIT_LIST_HEAD(&insn->list);
@@ -376,16 +377,20 @@ int offset_of_insn(struct sec_record *rec, struct insn_record *insn)
 		if (!rec_tmp)
 			continue;
 		//rec_tmp所指向的section状态为CHANGED，类型为FUNC，遍历重定位信息，确认_mcount地址偏移量
-		list_for_each_entry(rela, &rec_tmp->sec->rela->relas, list) {
-			if (!strcmp(rela->sym->name, "_mcount")) {
+		list_for_each_entry(sec, &kelf->sections, list) {
+			if (!strcmp(rec_tmp->sec->name, sec->name)) {
+				list_for_each_entry(rela, &sec->rela->relas, list) {
+					if (!strcmp(rela->sym->name, "_mcount")) {
 
-				struct insn_record *tmp;
+						struct insn_record *tmp;
 
-				ALLOC_LINK(tmp, &insn->list);
-				tmp->symbol = rec_tmp->sec->sym; //设置_mcount所关联的调用函数符号
-				tmp->offset = (unsigned long)rela->offset; //记录偏移量
+						ALLOC_LINK(tmp, &insn->list);
+						tmp->symbol = rec_tmp->sec->sym; //设置_mcount所关联的调用函数符号
+						tmp->offset = (unsigned long)rela->offset; //记录偏移量
 			
-				nr++;
+						nr++;
+					}
+				}
 			}	
 		}
 	}
